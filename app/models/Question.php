@@ -2,9 +2,7 @@
 
 use Eloquent;
 
-class User extends Eloquent {
-
-	protected $table = 'User';
+class Question extends Eloquent {
 
 	protected $hidden = ['id'];
 

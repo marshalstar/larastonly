@@ -2,9 +2,7 @@
 
 use Eloquent;
 
-class User extends Eloquent {
-
-	protected $table = 'User';
+class Alternative extends Eloquent {
 
 	protected $hidden = ['id'];
 

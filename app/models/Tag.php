@@ -2,9 +2,9 @@
 
 use Eloquent;
 
-class User extends Eloquent {
+class Tag extends Eloquent {
 
-	protected $table = 'User';
+	protected $table = 'Tag';
 
 	protected $hidden = ['id'];
 
