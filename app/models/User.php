@@ -28,7 +28,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value) 
  */
-class User extends Ardent {
+class User extends Ardent
+{
 
     protected $table = 'users';
     protected $guarded = ['id'];

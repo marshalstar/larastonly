@@ -1,13 +1,15 @@
 <?php
 
-class TypesController extends Controller {
+class TypesController extends Controller
+{
 
 	/**
 	 * Lista types
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$types = Type::all();
 		return View::make('types.index', compact('types'));
 	}
@@ -17,7 +19,8 @@ class TypesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('types.create');
 	}
 
@@ -26,7 +29,8 @@ class TypesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $type = new Type();
         if ($type->save()) {
             return Redirect::route('types.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class TypesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$type = Type::findOrFail($id);
 		return View::make('types.show', compact('type'));
 	}
@@ -51,7 +56,8 @@ class TypesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$type = Type::find($id);
 		return View::make('types.edit', compact('type'));
 	}
@@ -62,7 +68,8 @@ class TypesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $type = Type::find($id);
         $type->fill(Input::all());
         if ($type->updateUniques()) {
@@ -77,7 +84,8 @@ class TypesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Type::destroy($id);
 		return Redirect::route('types.index');
 	}

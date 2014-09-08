@@ -1,23 +1,26 @@
 <?php
 
-class AlternativesController extends Controller {
+class AlternativesController extends Controller
+{
 
 	/**
-	 * Lista alternatives
+	 * Lista alternativas
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$alternatives = Alternative::all();
 		return View::make('alternatives.index', compact('alternatives'));
 	}
 
 	/**
-	 * Mostra formulário de cadastro espefíco de alternative
+	 * Mostra formulário de cadastro espefíco de alternativa
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
         $types = [];
         foreach (Type::all() as $type) {
             $types[$type->id] = $type->name;
@@ -26,11 +29,12 @@ class AlternativesController extends Controller {
 	}
 
 	/**
-	 * Salva alternative espefíco no banco
+	 * Salva alternativa espefíca no banco
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $alternative = new Alternative();
         if ($alternative->save()) {
             return Redirect::route('alternatives.index')->with('message', Lang::get('Salvo com sucesso'));
@@ -39,23 +43,25 @@ class AlternativesController extends Controller {
 	}
 
 	/**
-	 * Mostra alternative específico.
+	 * Mostra alternativa específico.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$alternative = Alternative::findOrFail($id);
 		return View::make('alternatives.show', compact('alternative'));
 	}
 
 	/**
-	 * Mostra formulário de edição espefícico de alternative.
+	 * Mostra formulário de edição espefícica de alternativa.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$alternative = Alternative::find($id);
         $types = [];
         foreach (Type::all() as $type) {
@@ -65,12 +71,13 @@ class AlternativesController extends Controller {
 	}
 
 	/**
-	 * Atualiza alternative específico no banco
+	 * Atualiza alternativa específica no banco
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $alternative = Alternative::find($id);
         $alternative->fill(Input::all());
         if ($alternative->updateUniques()) {
@@ -80,12 +87,13 @@ class AlternativesController extends Controller {
 	}
 
 	/**
-	 * Remove alternative específico do banco.
+	 * Remove alternativa específica do banco.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Alternative::destroy($id);
 		return Redirect::route('alternatives.index');
 	}

@@ -16,7 +16,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Title whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Title whereUpdatedAt($value) 
  */
-class Title extends Ardent {
+class Title extends Ardent
+{
 
     protected $table = 'titles';
     protected $guarded = ['id'];

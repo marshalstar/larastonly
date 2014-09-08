@@ -18,7 +18,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Question whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Question whereUpdatedAt($value) 
  */
-class Question extends Ardent {
+class Question extends Ardent
+{
 
     protected $table = 'questions';
     protected $guarded = ['id'];

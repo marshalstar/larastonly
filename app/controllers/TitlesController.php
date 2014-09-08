@@ -1,13 +1,15 @@
 <?php
 
-class TitlesController extends Controller {
+class TitlesController extends Controller
+{
 
 	/**
 	 * Lista titles
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$titles = Title::all();
 		return View::make('titles.index', compact('titles'));
 	}
@@ -17,7 +19,8 @@ class TitlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('titles.create');
 	}
 
@@ -26,7 +29,8 @@ class TitlesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $title = new Title();
         if ($title->save()) {
             return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class TitlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$title = Title::findOrFail($id);
 		return View::make('titles.show', compact('title'));
 	}
@@ -51,7 +56,8 @@ class TitlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$title = Title::find($id);
 		return View::make('titles.edit', compact('title'));
 	}
@@ -62,7 +68,8 @@ class TitlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $title = Title::find($id);
         $title->fill(Input::all());
         if ($title->updateUniques()) {
@@ -77,7 +84,8 @@ class TitlesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Title::destroy($id);
 		return Redirect::route('titles.index');
 	}

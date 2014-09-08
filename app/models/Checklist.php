@@ -18,7 +18,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereUpdatedAt($value) 
  */
-class Checklist extends Ardent {
+class Checklist extends Ardent
+{
 
     protected $table = 'checklists';
     protected $guarded = ['id'];

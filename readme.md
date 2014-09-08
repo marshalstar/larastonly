@@ -31,6 +31,7 @@ https://github.com/JeffreyWay/Laravel-Guard
 
 front-end e middle-end mais fáceis:
 http://octobercms.com/features
+https://github.com/octobercms/october
 
 ver o que é:
 
@@ -43,3 +44,8 @@ tarefas:
 filtar tamanho máximo de string nos campos
 
 https://github.com/marshalstar/larastonly
+
+PSR's:
+https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md

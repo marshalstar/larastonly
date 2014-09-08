@@ -1,13 +1,15 @@
 <?php
 
-class QuestionsController extends Controller {
+class QuestionsController extends Controller
+{
 
 	/**
 	 * Lista questions
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$questions = Question::all();
 		return View::make('questions.index', compact('questions'));
 	}
@@ -17,7 +19,8 @@ class QuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('questions.create');
 	}
 
@@ -26,7 +29,8 @@ class QuestionsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $question = new Question();
         if ($question->save()) {
             return Redirect::route('questions.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class QuestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$question = Question::findOrFail($id);
 		return View::make('questions.show', compact('question'));
 	}
@@ -51,7 +56,8 @@ class QuestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$question = Question::find($id);
 		return View::make('questions.edit', compact('question'));
 	}
@@ -62,7 +68,8 @@ class QuestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $question = Question::find($id);
         $question->fill(Input::all());
         if ($question->updateUniques()) {
@@ -77,7 +84,8 @@ class QuestionsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Question::destroy($id);
 		return Redirect::route('questions.index');
 	}

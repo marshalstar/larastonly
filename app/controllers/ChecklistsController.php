@@ -1,13 +1,15 @@
 <?php
 
-class ChecklistsController extends Controller {
+class ChecklistsController extends Controller
+{
 
 	/**
 	 * Lista checklists
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$checklists = Checklist::all();
 		return View::make('checklists.index', compact('checklists'));
 	}
@@ -17,7 +19,8 @@ class ChecklistsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('checklists.create');
 	}
 
@@ -26,10 +29,11 @@ class ChecklistsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $checklist = new Checklist();
         if ($checklist->save()) {
-            return Redirect::route('checklists.index')->with('message', 'Salvo com sucesso');
+            return Redirect::route('checklists.index')->with('message', Lang::get('Salvo com sucesso'));
         }
         return Redirect::route('checklists.create')->withErrors($checklist->errors());
 	}
@@ -40,7 +44,8 @@ class ChecklistsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$checklist = Checklist::findOrFail($id);
 		return View::make('checklists.show', compact('checklist'));
 	}
@@ -51,7 +56,8 @@ class ChecklistsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$checklist = Checklist::find($id);
 		return View::make('checklists.edit', compact('checklist'));
 	}
@@ -62,11 +68,12 @@ class ChecklistsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $checklist = Checklist::find($id);
         $checklist->fill(Input::all());
         if ($checklist->updateUniques()) {
-            return Redirect::route('checklists.index')->with('message', 'Salvo com sucesso');
+            return Redirect::route('checklists.index')->with('message', Lang::get('Salvo com sucesso'));
         }
         return Redirect::route('checklists.create')->withErrors($checklist->errors());
 	}
@@ -77,7 +84,8 @@ class ChecklistsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Checklist::destroy($id);
 		return Redirect::route('checklists.index');
 	}

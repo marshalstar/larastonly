@@ -1,13 +1,15 @@
 <?php
 
-class TagsController extends BaseController {
+class TagsController extends BaseController
+{
 
 	/**
 	 * Lista tags
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$tags = Tag::all();
 		return View::make('tags.index', compact('tags'));
 	}
@@ -17,7 +19,8 @@ class TagsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('tags.create');
 	}
 
@@ -26,7 +29,8 @@ class TagsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $tag = new Tag();
         if ($tag->save()) {
             return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class TagsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$tag = Tag::findOrFail($id);
 		return View::make('tags.show', compact('tag'));
 	}
@@ -51,7 +56,8 @@ class TagsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
         $tag = Tag::find($id);
         return View::make('tags.edit', compact('tag'));
 	}
@@ -62,7 +68,8 @@ class TagsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $tag = Tag::find($id);
         $tag->fill(Input::all());
         if ($tag->updateUniques()) {
@@ -77,7 +84,8 @@ class TagsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Tag::destroy($id);
 		return Redirect::route('tags.index');
 	}

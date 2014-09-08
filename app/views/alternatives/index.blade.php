@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title')Alternativas @stop
+@section('title'){{ Lang::get('Alternativas') }} @stop
 
 @section('content')
 
@@ -8,15 +8,15 @@
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <a href="{{ URL::to('alternatives/create') }}">Nova alternative</a>
+    <a href="{{ URL::to('alternatives/create') }}">{{ Lang::get('Nova alternativa') }}</a>
 
     <table>
 
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>type_id</th>
-            <th>ações</th>
+            <th>{{ Lang::get('id') }}</th>
+            <th>{{ Lang::get('name') }}</th>
+            <th>{{ Lang::get('type_id') }}</th>
+            <th>{{ Lang::get('ações') }}</th>
         </tr>
 
         @foreach ($alternatives as $alternative)
@@ -25,11 +25,12 @@
             <td>{{ $alternative->name }}</td>
             <td>{{ $alternative->type_id }}</td>
             <td>
-                <a href="{{ URL::route('alternatives.show', $alternative->id) }}">Mostrar alternative</a>
-                <a href="{{ URL::route('alternatives.edit', $alternative->id) }}">Editar alternative</a>
+                <a href="{{ URL::route('alternatives.show', $alternative->id) }}">{{ Lang::get('Mostrar alternativa') }}</a>
+                <a href="{{ URL::route('alternatives.edit', $alternative->id) }}">{{ Lang::get('Editar alternativa') }}</a>
+                <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}">{{ Lang::get('Destruir alternativa') }}</a>
                 {{ Form::open(array('url' => 'alternatives/' . $alternative->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Deletar alternative', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit(Lang::get('Deletar Alternativa'), array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
             </td>
         </tr>

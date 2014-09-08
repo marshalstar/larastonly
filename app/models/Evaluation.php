@@ -18,7 +18,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUpdatedAt($value) 
  */
-class Evaluation extends Ardent {
+class Evaluation extends Ardent
+{
 
     protected $table = 'evaluations';
     protected $guarded = ['id'];

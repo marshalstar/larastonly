@@ -1,13 +1,15 @@
 <?php
 
-class UsersController extends Controller {
+class UsersController extends Controller
+{
 
 	/**
 	 * Lista users
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$users = User::all();
 		return View::make('users.index', compact('users'));
 	}
@@ -17,7 +19,8 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('users.create');
 	}
 
@@ -26,7 +29,8 @@ class UsersController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $user = new User();
         if ($user->save()) {
             return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
         $user = User::findOrFail($id);
         return View::make('users.show', compact('user'));
 	}
@@ -51,7 +56,8 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
         $user = User::find($id);
         return View::make('users.edit', compact('user'));
 	}
@@ -62,7 +68,8 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $user = User::find($id);
         $user->fill(Input::all());
         if ($user->updateUniques()) {
@@ -77,7 +84,8 @@ class UsersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
         User::destroy($id);
         return Redirect::route('users.index');
 	}

@@ -14,7 +14,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Type whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Type whereUpdatedAt($value) 
  */
-class Type extends Ardent {
+class Type extends Ardent
+{
 
     protected $table = 'types';
     protected $guarded = ['id'];

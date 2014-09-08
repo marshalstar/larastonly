@@ -1,13 +1,15 @@
 <?php
 
-class EvaluationsController extends Controller {
+class EvaluationsController extends Controller
+{
 
 	/**
 	 * Lista evaluations
 	 *
 	 * @return Response
 	 */
-	public function index() {
+	public function index()
+    {
 		$evaluations = Evaluation::all();
 		return View::make('evaluations.index', compact('evaluations'));
 	}
@@ -17,7 +19,8 @@ class EvaluationsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create() {
+	public function create()
+    {
 		return View::make('evaluations.create');
 	}
 
@@ -26,7 +29,8 @@ class EvaluationsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store() {
+	public function store()
+    {
         $evaluation = new Evaluation();
         if ($evaluation->save()) {
             return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
@@ -40,7 +44,8 @@ class EvaluationsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id) {
+	public function show($id)
+    {
 		$evaluation = Evaluation::findOrFail($id);
 		return View::make('evaluations.show', compact('evaluation'));
 	}
@@ -51,7 +56,8 @@ class EvaluationsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id) {
+	public function edit($id)
+    {
 		$evaluation = Evaluation::find($id);
 		return View::make('evaluations.edit', compact('evaluation'));
 	}
@@ -62,7 +68,8 @@ class EvaluationsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id) {
+	public function update($id)
+    {
         $evaluation = Evaluation::find($id);
         $evaluation->fill(Input::all());
         if ($evaluation->updateUniques()) {
@@ -77,7 +84,8 @@ class EvaluationsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id) {
+	public function destroy($id)
+    {
 		Evaluation::destroy($id);
 		return Redirect::route('evaluations.index');
 	}

@@ -16,7 +16,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Alternative whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Alternative whereUpdatedAt($value) 
  */
-class Alternative extends Ardent {
+class Alternative extends Ardent
+{
 
     protected $table = 'alternatives';
     protected $guarded = ['id'];

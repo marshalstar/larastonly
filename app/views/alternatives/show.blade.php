@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title')Alternativa: {{ $alternative->name }} @stop
+@section('title'){{ Lang::get('Alternativa'). ' ' .$alternative->name }} @stop
 
 @section('content')
 

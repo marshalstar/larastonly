@@ -14,7 +14,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Tag whereCreatedAt($value) 
  * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value) 
  */
-class Tag extends Ardent {
+class Tag extends Ardent
+{
 
 	protected $table = 'tags';
     protected $guarded = ['id'];
