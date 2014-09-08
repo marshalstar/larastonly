@@ -1,12 +1,20 @@
-{{ HTML::ul($errors->all()) }}
+@extends('templates.default')
 
-{{ Form::open(['url' => 'tags']) }}
+@section('title'){{ Str::title(Lang::get('criar tag')) }} @stop
+
+@section('content')
+
+    {{ HTML::ul($errors->all()) }}
+
+    {{ Form::open(['url' => 'tags']) }}
 
     <div class="form-group">
-        {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', Input::old('name'), ['class' => 'form-control']) }}
+        {{ Form::label('name', Str::title(Lang::get('nome'))) }}
+        {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
     </div>
 
-    {{ Form::submit('Criar Tag', ['class' => 'btn btn-primary']) }}
+    {{ Form::submit(Str::title(Lang::get('criar tag')), ['class' => 'btn btn-primary']) }}
 
-{{ Form::close() }}
+    {{ Form::close() }}
+
+@stop
