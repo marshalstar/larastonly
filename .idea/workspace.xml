@@ -26,7 +26,7 @@
       <file leaf-file-name="create.blade.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tags/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="289">
+            <state line="5" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="-0.0" vertical-offset="85" max-vertical-offset="289">
               <folding />
             </state>
           </provider>
@@ -51,7 +51,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/TypesController.php" />
         <option value="$PROJECT_DIR$/app/controllers/UsersController.php" />
         <option value="$PROJECT_DIR$/app/views/templates/partials/header.blade.php" />
         <option value="$PROJECT_DIR$/app/views/templates/partials/footer.blade.php" />
@@ -102,6 +101,7 @@
         <option value="$PROJECT_DIR$/app/views/titles/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/titles/show.blade.php" />
         <option value="$PROJECT_DIR$/app/views/titles/create.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -346,8 +346,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1616" height="886" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -388,11 +388,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/alternatives/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="38" selection-start="170" selection-end="170" vertical-scroll-proportion="0.15156017" vertical-offset="0" max-vertical-offset="673" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/emails/auth/reminder.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="728" />
@@ -677,6 +672,13 @@
     <entry file="file://$PROJECT_DIR$/app/views/tags/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="0" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="5" selection-start="105" selection-end="105" vertical-scroll-proportion="0.18655692" vertical-offset="0" max-vertical-offset="729">
           <folding />
         </state>
       </provider>
