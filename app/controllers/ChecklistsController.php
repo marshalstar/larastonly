@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class ChecklistsController extends Controller {
 
@@ -12,7 +9,7 @@ class ChecklistsController extends Controller {
 	 */
 	public function index() {
 		$checklists = Checklist::all();
-		return view('checklists.index', compact('checklists'));
+		return View::make('checklists.index', compact('checklists'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class ChecklistsController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('checklists.create');
+		return View::make('checklists.create');
 	}
 
 	/**
@@ -42,7 +39,7 @@ class ChecklistsController extends Controller {
 	 */
 	public function show($id) {
 		$checklist = Checklist::findOrFail($id);
-		return view('checklists.show', compact('checklist'));
+		return View::make('checklists.show', compact('checklist'));
 	}
 
 	/**
@@ -53,7 +50,7 @@ class ChecklistsController extends Controller {
 	 */
 	public function edit($id) {
 		$checklist = Checklist::find($id);
-		return view('checklists.edit', compact('checklist'));
+		return View::make('checklists.edit', compact('checklist'));
 	}
 
 	/**

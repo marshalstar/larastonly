@@ -15,9 +15,11 @@ class CreateChecklistsTable extends Migration {
 		Schema::create('checklists', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('userId');
-			$table->string('name')->nullable();
-			$table->integer('titleId')->nullable();
+			$table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
+			$table->string('name', 255);
+			$table->integer('title_id')->unsigned()->index(); /** @TODO: tentar tirar isto depois */
+			$table->foreign('title_id')->references('id')->on('titles');
 			$table->timestamps();
 		});
 	}

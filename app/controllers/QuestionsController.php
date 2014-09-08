@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class QuestionsController extends Controller {
 
@@ -12,7 +9,7 @@ class QuestionsController extends Controller {
 	 */
 	public function index() {
 		$questions = Question::all();
-		return view('questions.index', compact('questions'));
+		return View::make('questions.index', compact('questions'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class QuestionsController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('questions.create');
+		return View::make('questions.create');
 	}
 
 	/**
@@ -42,7 +39,7 @@ class QuestionsController extends Controller {
 	 */
 	public function show($id) {
 		$question = Question::findOrFail($id);
-		return view('questions.show', compact('question'));
+		return View::make('questions.show', compact('question'));
 	}
 
 	/**
@@ -53,7 +50,7 @@ class QuestionsController extends Controller {
 	 */
 	public function edit($id) {
 		$question = Question::find($id);
-		return view('questions.edit', compact('question'));
+		return View::make('questions.edit', compact('question'));
 	}
 
 	/**

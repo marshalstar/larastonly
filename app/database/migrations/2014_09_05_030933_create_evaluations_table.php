@@ -15,9 +15,11 @@ class CreateEvaluationsTable extends Migration {
 		Schema::create('evaluations', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('userId');
-			$table->integer('checklistId');
-			$table->text('commentary')->nullable();
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('checklist_id')->unsigned()->index();
+            $table->foreign('checklist_id')->references('id')->on('checklists');
+			$table->text('commentary')->default("");
 			$table->timestamps();
 		});
 	}

@@ -15,10 +15,10 @@ class CreateAlternativesTable extends Migration {
 		Schema::create('alternatives', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('statement')->nullable();
-			$table->integer('typeId');
-			$table->integer('questionId');
-			$table->timestamps();
+			$table->string('name', 255)->nullable();
+			$table->integer('type_id')->unsigned()->index();
+            $table->foreign('type_id')->references('id')->on('types');
+			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

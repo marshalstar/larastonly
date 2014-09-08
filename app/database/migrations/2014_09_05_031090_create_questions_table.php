@@ -15,10 +15,11 @@ class CreateQuestionsTable extends Migration {
 		Schema::create('questions', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('titleId');
-			$table->string('name')->nullable();
-			$table->boolean('isAbout')->default(false);
-			$table->timestamps();
+			$table->integer('title_id')->unsigned()->index();
+            $table->foreign('title_id')->references('id')->on('titles');
+			$table->text('statement')->default("");
+			$table->boolean('is_about_assessable')->default(false);
+			$table->timestamps(); /** @TODO: tentar tirar isto aqui depois */
 		});
 	}
 

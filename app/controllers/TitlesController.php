@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class TitlesController extends Controller {
 
@@ -12,7 +9,7 @@ class TitlesController extends Controller {
 	 */
 	public function index() {
 		$titles = Title::all();
-		return view('titles.index', compact('titles'));
+		return View::make('titles.index', compact('titles'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class TitlesController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('titles.create');
+		return View::make('titles.create');
 	}
 
 	/**
@@ -42,7 +39,7 @@ class TitlesController extends Controller {
 	 */
 	public function show($id) {
 		$title = Title::findOrFail($id);
-		return view('titles.show', compact('title'));
+		return View::make('titles.show', compact('title'));
 	}
 
 	/**
@@ -53,7 +50,7 @@ class TitlesController extends Controller {
 	 */
 	public function edit($id) {
 		$title = Title::find($id);
-		return view('titles.edit', compact('title'));
+		return View::make('titles.edit', compact('title'));
 	}
 
 	/**

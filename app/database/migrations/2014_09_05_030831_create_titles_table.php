@@ -15,9 +15,10 @@ class CreateTitlesTable extends Migration {
 		Schema::create('titles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('titleId')->nullable();
-			$table->string('name')->nullable();
-			$table->timestamps();
+			$table->integer('title_id')->unsigned()->index()->nullable();
+            $table->foreign('title_id')->references('id')->on('titles');
+			$table->string('name', 255);
+			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

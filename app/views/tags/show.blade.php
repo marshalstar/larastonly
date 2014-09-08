@@ -1,1 +1,2 @@
-D:\Users\Neo\Documents\!!workspace\larastonly/views/tags/show.blade.php
+<h1>Tag {{ $tag->name }}</h1>
+<h3>id {{ $tag->id }}</h3>

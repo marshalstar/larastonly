@@ -1,6 +1,5 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.4.0"
 use Faker\Factory as Faker;
 
 class AlternativesTableSeeder extends Seeder {
@@ -9,10 +8,11 @@ class AlternativesTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 30) as $index)
 		{
 			Alternative::create([
-
+                'name' => $faker->sentence(),
+                'type_id' => Type::all()->get(rand(0, Type::count() -1))->id,
 			]);
 		}
 	}

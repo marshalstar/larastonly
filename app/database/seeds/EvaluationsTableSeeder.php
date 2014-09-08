@@ -1,6 +1,5 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.4.0"
 use Faker\Factory as Faker;
 
 class EvaluationsTableSeeder extends Seeder {
@@ -9,10 +8,12 @@ class EvaluationsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 30) as $index)
 		{
 			Evaluation::create([
-
+                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
+                'checklist_id' => Checklist::all()->get(rand(0, Checklist::count() -1))->id,
+                'commentary' => $faker->paragraph(),
 			]);
 		}
 	}

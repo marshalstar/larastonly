@@ -1,9 +1,6 @@
-<?php namespace ;
+<?php
 
-use Illuminate\Routing\Controller;
-use Redirect, Request;
-
-class TagsController extends Controller {
+class TagsController extends BaseController {
 
 	/**
 	 * Lista tags
@@ -12,7 +9,7 @@ class TagsController extends Controller {
 	 */
 	public function index() {
 		$tags = Tag::all();
-		return view('tags.index', compact('tags'));
+		return View::make('tags.index', compact('tags'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class TagsController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('tags.create');
+		return View::make('tags.create');
 	}
 
 	/**
@@ -30,8 +27,11 @@ class TagsController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Tag::create(Request::get());
-		return Redirect::route('tags.index');
+        $tag = new Tag();
+        if ($tag->save()) {
+            return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('tags.create')->withErrors($tag->errors());
 	}
 
 	/**
@@ -42,7 +42,7 @@ class TagsController extends Controller {
 	 */
 	public function show($id) {
 		$tag = Tag::findOrFail($id);
-		return view('tags.show', compact('tag'));
+		return View::make('tags.show', compact('tag'));
 	}
 
 	/**
@@ -52,8 +52,8 @@ class TagsController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id) {
-		$tag = Tag::find($id);
-		return view('tags.edit', compact('tag'));
+        $tag = Tag::find($id);
+        return View::make('tags.edit', compact('tag'));
 	}
 
 	/**
@@ -63,9 +63,12 @@ class TagsController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$tag = Tag::findOrFail($id);
-		$tag->update(Request::get());
-		return Redirect::route('tags.index');
+        $tag = Tag::find($id);
+        $tag->fill(Input::all());
+        if ($tag->updateUniques()) {
+            return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('tags.create')->withErrors($tag->errors());
 	}
 
 	/**

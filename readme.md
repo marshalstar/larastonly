@@ -1,25 +1,40 @@
-## Laravel PHP Framework
+explicação apis:
+"laravel/framework": "4.2.*",           -> framework
+"raveren/kint": "v0.9",                 -> debug
+"fzaninotto/faker": "1.5.*@dev",        -> cria valores aleatórios para as seeds
+"barryvdh/laravel-ide-helper": "1.*",   -> ajuda a ide a não se perder
+"doctrine/dbal": "2.5.*@dev"            -> necessário para o "barryvdh/laravel-ide-helper" funcionar
+"laravelbook/ardent": "2.*"             -> junta os validadores de formulários na model (é muito simples mesmo, daria para fazer mão isto sem problemas) https://github.com/laravelbook/ardent
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+ver depois:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+mimificar o projeto:
+https://github.com/JeffreyWay/Laravel-Guard
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+dom pdf para laravel:
+https://github.com/barryvdh/laravel-dompdf
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+laravel "administrator" (acho que cria os cruds para o admin):
+https://github.com/FrozenNode/Laravel-Administrator
 
-## Official Documentation
+criar formulários mais fácil (porém fica difícil modificar o estilo):
+https://github.com/Anahkiasen/former
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+usuário pronto:
+https://github.com/zizaco/confide
 
-### Contributing To Laravel
+mimificar o html:
+https://github.com/fitztrev/laravel-html-minify
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+funções para o blade:
+https://github.com/JeffreyWay/Laravel-Guard
 
-### License
+front-end e middle-end mais fáceis:
+http://octobercms.com/features
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+ver o que é:
+
+phpdocumentor/reflection-docblock suggests installing dflydev/markdown (1.0.*)
+phpdocumentor/reflection-docblock suggests installing erusev/parsedown (~0.7)
+barryvdh/laravel-ide-helper suggests installing doctrine/dbal (Load information from the database about models for phpdocs (~2.3))
+https://github.com/patricktalmadge/bootstrapper

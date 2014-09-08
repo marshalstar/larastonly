@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class TypesController extends Controller {
 
@@ -12,7 +9,7 @@ class TypesController extends Controller {
 	 */
 	public function index() {
 		$types = Type::all();
-		return view('types.index', compact('types'));
+		return View::make('types.index', compact('types'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class TypesController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('types.create');
+		return View::make('types.create');
 	}
 
 	/**
@@ -42,7 +39,7 @@ class TypesController extends Controller {
 	 */
 	public function show($id) {
 		$type = Type::findOrFail($id);
-		return view('types.show', compact('type'));
+		return View::make('types.show', compact('type'));
 	}
 
 	/**
@@ -53,7 +50,7 @@ class TypesController extends Controller {
 	 */
 	public function edit($id) {
 		$type = Type::find($id);
-		return view('types.edit', compact('type'));
+		return View::make('types.edit', compact('type'));
 	}
 
 	/**

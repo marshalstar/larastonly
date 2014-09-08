@@ -1,6 +1,5 @@
 <?php
 
-// Composer: "fzaninotto/faker": "v1.4.0"
 use Faker\Factory as Faker;
 
 class ChecklistsTableSeeder extends Seeder {
@@ -9,10 +8,12 @@ class ChecklistsTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 30) as $index)
 		{
 			Checklist::create([
-
+                'name' => $faker->sentence(rand(1, 4)),
+                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
+                'title_id' => Title::all()->get(rand(0, Title::count() -1))->id,
 			]);
 		}
 	}

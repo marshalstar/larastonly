@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class UsersController extends Controller {
 
@@ -12,7 +9,7 @@ class UsersController extends Controller {
 	 */
 	public function index() {
 		$users = User::all();
-		return view('users.index', compact('users'));
+		return View::make('users.index', compact('users'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('users.create');
+		return View::make('users.create');
 	}
 
 	/**
@@ -30,8 +27,12 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		User::create(Request::get());
-		return Redirect::route('users.index');
+        $user = new User(Input::all());
+        $user->is_admin = Input::get('is_admin') == 'on';
+        if ($user->save()) {
+            return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
 	}
 
 	/**
@@ -41,8 +42,8 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function show($id) {
-		$user = User::findOrFail($id);
-		return view('users.show', compact('user'));
+        $user = User::findOrFail($id);
+        return View::make('users.show', compact('user'));
 	}
 
 	/**
@@ -52,8 +53,8 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id) {
-		$user = User::find($id);
-		return view('users.edit', compact('user'));
+        $user = User::find($id);
+        return View::make('users.edit', compact('user'));
 	}
 
 	/**
@@ -63,9 +64,12 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$user = User::findOrFail($id);
-		$user->update(Request::get());
-		return Redirect::route('users.index');
+        $user = User::find($id);
+        $user->fill(Input::all());
+        if ($user->updateUniques()) {
+            return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
 	}
 
 	/**
@@ -75,8 +79,8 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id) {
-		User::destroy($id);
-		return Redirect::route('users.index');
+        User::destroy($id);
+        return Redirect::route('users.index');
 	}
 
 }

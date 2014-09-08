@@ -1,7 +1,4 @@
-<?php namespace ;
-
-use Illuminate\Routing\Controller;
-use Redirect, Request;
+<?php
 
 class AlternativesController extends Controller {
 
@@ -12,7 +9,7 @@ class AlternativesController extends Controller {
 	 */
 	public function index() {
 		$alternatives = Alternative::all();
-		return view('alternatives.index', compact('alternatives'));
+		return View::make('alternatives.index', compact('alternatives'));
 	}
 
 	/**
@@ -21,7 +18,7 @@ class AlternativesController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return view('alternatives.create');
+		return View::make('alternatives.create');
 	}
 
 	/**
@@ -30,8 +27,11 @@ class AlternativesController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Alternative::create(Request::get());
-		return Redirect::route('alternatives.index');
+        $tag = new Tag();
+        if ($tag->save()) {
+            return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('tags.create')->withErrors($tag->errors());
 	}
 
 	/**
@@ -42,7 +42,7 @@ class AlternativesController extends Controller {
 	 */
 	public function show($id) {
 		$alternative = Alternative::findOrFail($id);
-		return view('alternatives.show', compact('alternative'));
+		return View::make('alternatives.show', compact('alternative'));
 	}
 
 	/**
@@ -53,7 +53,7 @@ class AlternativesController extends Controller {
 	 */
 	public function edit($id) {
 		$alternative = Alternative::find($id);
-		return view('alternatives.edit', compact('alternative'));
+		return View::make('alternatives.edit', compact('alternative'));
 	}
 
 	/**
