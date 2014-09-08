@@ -26,4 +26,8 @@ class Evaluation extends Ardent {
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
+    public static $rules = [
+        'commentary' => '',
+    ];
+
 }

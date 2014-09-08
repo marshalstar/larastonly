@@ -23,7 +23,7 @@ class Tag extends Ardent {
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
-        'name' => 'required|between:3,64',
+        'name' => 'required|between:3,64|unique:tags',
     ];
 
 }

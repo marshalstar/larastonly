@@ -27,8 +27,11 @@ class ChecklistsController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Checklist::create(Request::get());
-		return Redirect::route('checklists.index');
+        $checklist = new Checklist();
+        if ($checklist->save()) {
+            return Redirect::route('checklists.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('checklists.create')->withErrors($checklist->errors());
 	}
 
 	/**
@@ -60,9 +63,12 @@ class ChecklistsController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$checklist = Checklist::findOrFail($id);
-		$checklist->update(Request::get());
-		return Redirect::route('checklists.index');
+        $checklist = Checklist::find($id);
+        $checklist->fill(Input::all());
+        if ($checklist->updateUniques()) {
+            return Redirect::route('checklists.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('checklists.create')->withErrors($checklist->errors());
 	}
 
 	/**

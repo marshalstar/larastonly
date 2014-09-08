@@ -25,6 +25,7 @@ class Alternative extends Ardent {
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
+        'name' => 'required|unique:alternatives|between:3,64',
     ];
 
 }

@@ -18,7 +18,11 @@ class AlternativesController extends Controller {
 	 * @return Response
 	 */
 	public function create() {
-		return View::make('alternatives.create');
+        $types = [];
+        foreach (Type::all() as $type) {
+            $types[$type->id] = $type->name;
+        }
+	    return View::make('alternatives.create', compact('types'));
 	}
 
 	/**
@@ -27,11 +31,11 @@ class AlternativesController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-        $tag = new Tag();
-        if ($tag->save()) {
-            return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
+        $alternative = new Alternative();
+        if ($alternative->save()) {
+            return Redirect::route('alternatives.index')->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route('tags.create')->withErrors($tag->errors());
+        return Redirect::route('alternatives.create')->withErrors($alternative->errors());
 	}
 
 	/**
@@ -53,7 +57,11 @@ class AlternativesController extends Controller {
 	 */
 	public function edit($id) {
 		$alternative = Alternative::find($id);
-		return View::make('alternatives.edit', compact('alternative'));
+        $types = [];
+        foreach (Type::all() as $type) {
+            $types[$type->id] = $type->name;
+        }
+		return View::make('alternatives.edit', compact('alternative'), compact('types'));
 	}
 
 	/**
@@ -63,9 +71,12 @@ class AlternativesController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$alternative = Alternative::findOrFail($id);
-		$alternative->update(Request::get());
-		return Redirect::route('alternatives.index');
+        $alternative = Alternative::find($id);
+        $alternative->fill(Input::all());
+        if ($alternative->updateUniques()) {
+            return Redirect::route('alternatives.index')->with('message', Lang::get('Editado com sucesso'));
+        }
+        return Redirect::route('alternatives.create')->withErrors($alternative->errors());
 	}
 
 	/**

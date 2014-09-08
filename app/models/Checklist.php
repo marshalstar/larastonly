@@ -26,4 +26,8 @@ class Checklist extends Ardent {
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
+    public static $rules = [
+        'name' => 'required|between:3,64|unique:checklists',
+    ];
+
 }

@@ -45,10 +45,17 @@ class User extends Ardent {
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',
         'speciality' => '',
-        'is_admin' => '',
-        'gender' => 'required',
+        'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
+        'gender' => 'required|alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',
     ];
+
+    public function afterValidate() {
+        if ($this->isDirty(('is_admin'))) {
+            $this->is_admin = ($this->is_admin == 'on');
+        }
+        return true;
+    }
 
 }

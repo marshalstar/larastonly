@@ -27,8 +27,11 @@ class EvaluationsController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Evaluation::create(Request::get());
-		return Redirect::route('evaluations.index');
+        $evaluation = new Evaluation();
+        if ($evaluation->save()) {
+            return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('evaluations.create')->withErrors($evaluation->errors());
 	}
 
 	/**
@@ -60,9 +63,12 @@ class EvaluationsController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$evaluation = Evaluation::findOrFail($id);
-		$evaluation->update(Request::get());
-		return Redirect::route('evaluations.index');
+        $evaluation = Evaluation::find($id);
+        $evaluation->fill(Input::all());
+        if ($evaluation->updateUniques()) {
+            return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('evaluations.create')->withErrors($evaluation->errors());
 	}
 
 	/**

@@ -27,8 +27,11 @@ class TitlesController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Title::create(Request::get());
-		return Redirect::route('titles.index');
+        $title = new Title();
+        if ($title->save()) {
+            return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('titles.create')->withErrors($title->errors());
 	}
 
 	/**
@@ -60,9 +63,12 @@ class TitlesController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$title = Title::findOrFail($id);
-		$title->update(Request::get());
-		return Redirect::route('titles.index');
+        $title = Title::find($id);
+        $title->fill(Input::all());
+        if ($title->updateUniques()) {
+            return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('titles.create')->withErrors($title->errors());
 	}
 
 	/**

@@ -27,8 +27,11 @@ class TypesController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Type::create(Request::get());
-		return Redirect::route('types.index');
+        $type = new Type();
+        if ($type->save()) {
+            return Redirect::route('types.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('types.create')->withErrors($type->errors());
 	}
 
 	/**
@@ -60,9 +63,12 @@ class TypesController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$type = Type::findOrFail($id);
-		$type->update(Request::get());
-		return Redirect::route('types.index');
+        $type = Type::find($id);
+        $type->fill(Input::all());
+        if ($type->updateUniques()) {
+            return Redirect::route('types.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('types.create')->withErrors($type->errors());
 	}
 
 	/**

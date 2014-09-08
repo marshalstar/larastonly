@@ -26,4 +26,10 @@ class Question extends Ardent {
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
+    public static $rules = [
+        'statement' => 'required|between:3,64|unique:questions',
+        'is_about_assessable' => '',
+        'weight' => 'numeric',
+    ];
+
 }

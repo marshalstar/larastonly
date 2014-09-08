@@ -27,8 +27,11 @@ class QuestionsController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-		Question::create(Request::get());
-		return Redirect::route('questions.index');
+        $question = new Question();
+        if ($question->save()) {
+            return Redirect::route('questions.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('questions.create')->withErrors($question->errors());
 	}
 
 	/**
@@ -60,9 +63,12 @@ class QuestionsController extends Controller {
 	 * @return Response
 	 */
 	public function update($id) {
-		$question = Question::findOrFail($id);
-		$question->update(Request::get());
-		return Redirect::route('questions.index');
+        $question = Question::find($id);
+        $question->fill(Input::all());
+        if ($question->updateUniques()) {
+            return Redirect::route('questions.index')->with('message', 'Salvo com sucesso');
+        }
+        return Redirect::route('questions.create')->withErrors($question->errors());
 	}
 
 	/**

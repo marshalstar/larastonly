@@ -38,3 +38,8 @@ phpdocumentor/reflection-docblock suggests installing dflydev/markdown (1.0.*)
 phpdocumentor/reflection-docblock suggests installing erusev/parsedown (~0.7)
 barryvdh/laravel-ide-helper suggests installing doctrine/dbal (Load information from the database about models for phpdocs (~2.3))
 https://github.com/patricktalmadge/bootstrapper
+
+tarefas:
+filtar tamanho máximo de string nos campos
+
+https://github.com/marshalstar/larastonly

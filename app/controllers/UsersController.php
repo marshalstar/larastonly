@@ -27,8 +27,7 @@ class UsersController extends Controller {
 	 * @return Response
 	 */
 	public function store() {
-        $user = new User(Input::all());
-        $user->is_admin = Input::get('is_admin') == 'on';
+        $user = new User();
         if ($user->save()) {
             return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
         }
