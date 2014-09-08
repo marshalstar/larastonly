@@ -52,7 +52,8 @@ class User extends Ardent
         'picture_url' => '',
     ];
 
-    public function afterValidate() {
+    public function afterValidate()
+    {
         if ($this->isDirty(('is_admin'))) {
             $this->is_admin = ($this->is_admin == 'on');
         }

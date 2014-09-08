@@ -14,13 +14,18 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('user_id', Lang::get('Usuário')) }}
-        {{ Form::select('user_id', $users, Input::old('user_id'), ['class' => 'form-control']) }}
+        {{ Form::label('is_about_assessable', Lang::get('É sobre avaliado?')) }}
+        {{ Form::checkbox('is_about_assessable', Input::old('is_about_assessable'), false) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('checklist_id', Lang::get('Checklist')) }}
-        {{ Form::select('checklist_id', $checklists, Input::old('checklist_id'), ['class' => 'form-control']) }}
+        {{ Form::label('title_id', Lang::get('Título')) }}
+        {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('weight', Str::title(Lang::get('peso'))) }}
+        {{ Form::text('weight', Input::old('weight'), ['class' => 'form-control', 'placeholder' => Lang::get('peso')]) }}
     </div>
 
     {{ Form::submit(Lang::get('Criar Avaliação'), ['class' => 'btn btn-primary']) }}

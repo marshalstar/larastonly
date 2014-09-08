@@ -28,9 +28,23 @@ class Question extends Ardent
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
-        'statement' => 'required|between:3,64|unique:questions',
+        'statement' => 'required|between:3,255|unique:questions',
         'is_about_assessable' => '',
-        'weight' => 'numeric',
+        'weight' => 'required|numeric',
     ];
+
+    public function afterValidate()
+    {
+        if ($this->isDirty(('is_about_assessable'))) {
+
+            $is = $this->is_about_assessable;
+            if ($is == 'on') {
+                $this->is_about_assessable = true;
+            } elseif ($is != 'off' && !is_bool($is)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

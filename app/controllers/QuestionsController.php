@@ -21,7 +21,9 @@ class QuestionsController extends Controller
 	 */
 	public function create()
     {
-		return View::make('questions.create');
+        $titles = array_column(Title::all()->toArray(), 'name', 'id');
+		return View::make('questions.create')
+            ->with('titles', $titles);
 	}
 
 	/**
@@ -59,7 +61,9 @@ class QuestionsController extends Controller
 	public function edit($id)
     {
 		$question = Question::find($id);
-		return View::make('questions.edit', compact('question'));
+        $titles = array_column(Title::all()->toArray(), 'name', 'id');
+		return View::make('questions.edit', compact('question'))
+            ->with('titles', $titles);
 	}
 
 	/**
