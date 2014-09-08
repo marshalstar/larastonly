@@ -1,37 +1,31 @@
-@extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('tags')) }} @stop
+@if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
 
-@section('content')
+<a href="{{ URL::to('tags/create') }}">Nova tag</a>
 
-    @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
+<table>
 
-    <a href="{{ URL::to('tags/create') }}">{{ Lang::get('nova tag') }}</a>
+    <tr>
+        <th>id</th>
+        <th>nome</th>
+        <th>ações</th>
+    </tr>
 
-    <table>
+    @foreach ($tags as $tag)
+    <tr>
+        <td>{{ $tag->id }}</td>
+        <td>{{ $tag->name }}</td>
+        <td>
+            <a href="{{ URL::route('tags.show', $tag->id) }}">Mostrar tag</a>
+            <a href="{{ URL::route('tags.edit', $tag->id) }}">Editar tag</a>
+            {{ Form::open(array('url' => 'tags/' . $tag->id, 'class' => 'pull-right')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Deletar tag', array('class' => 'btn btn-warning')) }}
+            {{ Form::close() }}
+        </td>
+    </tr>
+    @endforeach
 
-        <tr>
-            <th>{{ Lang::get('id') }}</th>
-            <th>{{ Lang::get('nome') }}</th>
-            <th>{{ Lang::get('ações') }}</th>
-        </tr>
-
-        @foreach ($tags as $tag)
-        <tr>
-            <td>{{ $tag->id }}</td>
-            <td>{{ $tag->name }}</td>
-            <td>
-                <a href="{{ URL::route('tags.show', $tag->id) }}">{{ Lang::get('mostrar tag') }}</a>
-                <a href="{{ URL::route('tags.edit', $tag->id) }}">{{ Lang::get('editar tag') }}</a>
-                <a href="{{ URL::route('tags.destroy', $tag->id) }}" data-method="delete"
-                   rel="nofollow" data-confirm="{{ Lang::get('Tem certeza que deseja deletar?') }}">{{ Lang::get('deletar tag') }}
-                </a>
-            </td>
-        </tr>
-        @endforeach
-
-    </table>
-
-@stop
+</table>

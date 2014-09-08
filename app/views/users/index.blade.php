@@ -27,7 +27,7 @@
         <td>{{ $user->speciality }}</td>
         <td>{{ $user->is_admin? 'sim' : 'não' }}</td>
         <td>{{ $user->gender }}</td>
-        <td>{{ Str::limit($user->biography, 64) }}</td>
+        <td>{{ $user->biography }}</td>
         <td>{{ $user->picture_url }}</td>
         <td>
             <a href="{{ URL::route('users.show', $user->id) }}">Mostrar user</a>

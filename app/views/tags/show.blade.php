@@ -1,11 +1,2 @@
-@extends('templates.default')
-
-@section('title'){{ Str::title(Lang::get('tag')). ' ' .$tag->name }} @stop
-
-@section('content')
-
-    <h1>{{ Str::title(Lang::get('tag')). ': ' .$tag->name }}</h1>
-
-    <h3>{{ Lang::get('id'). ': ' .$tag->id }}</h3>
-
-@stop
+<h1>Tag {{ $tag->name }}</h1>
+<h3>id {{ $tag->id }}</h3>

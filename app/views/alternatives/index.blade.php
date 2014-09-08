@@ -1,39 +1,38 @@
-@extends('templates.default')
+@extends('layout.main')
 
-@section('title'){{ Lang::get('Alternativas') }} @stop
+@section('conteudo')
+@if (Session::has('message'))
+<div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
 
-@section('content')
+<a href="{{ URL::to('alternatives/create') }}"><button class="btn btn-success">Nova alternativa</button></a>
+<div class="panel panel-default">
+  <div class="panel-heading">Visualização das Alternativas.</div>
+<table class="table table-condensed">
 
-    @if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
+    <tr>
+        <th><label for="id">ID</label></th>
+        <th><label for="statement"></label>Statement</th>
+        <th><label for="actions"></lbel> Ações </th>
+    </tr>
 
-    <a href="{{ URL::to('alternatives/create') }}">{{ Lang::get('Nova alternativa') }}</a>
+    @foreach ($alternatives as $alternative)
+    <tr>
+        <td>{{ $alternative->id }}</td>
+        <td>{{ $alternative->statement }}</td>
+        <td>
+            <a href="{{ URL::route('alternatives.show', $alternative->id) }}">
+            <button class="btn btn-success " type="submit" value="MostarAlternativa">Mostrar Alternativa</button></a>
+            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}"><button class="btn btn-info" type ="submit" value="Editar">Editar Alternativa</button></a>
+            {{ Form::open(array('url' => 'alternatives/' . $alternative->id, 'class' => 'pull-right')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Deletar alternative', array('class' => 'btn btn-warning')) }}
+            {{ Form::close() }}
+        </td>
+    </tr>
+    @endforeach
 
-    <table>
-
-        <tr>
-            <th>{{ Lang::get('id') }}</th>
-            <th>{{ Lang::get('name') }}</th>
-            <th>{{ Lang::get('type_id') }}</th>
-            <th>{{ Lang::get('ações') }}</th>
-        </tr>
-
-        @foreach ($alternatives as $alternative)
-        <tr>
-            <td>{{ $alternative->id }}</td>
-            <td>{{ $alternative->name }}</td>
-            <td>{{ $alternative->type_id }}</td>
-            <td>
-                <a href="{{ URL::route('alternatives.show', $alternative->id) }}">{{ Lang::get('Mostrar alternativa') }}</a>
-                <a href="{{ URL::route('alternatives.edit', $alternative->id) }}">{{ Lang::get('Editar alternativa') }}</a>
-                <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}" data-method="delete"
-                   rel="nofollow" data-confirm="{{ Lang::get('Tem certeza que deseja deletar?') }}">{{ Lang::get('Destruir alternativa') }}
-                </a>
-            </td>
-        </tr>
-        @endforeach
-
-    </table>
-
+</table>
+</div>
+</div>
 @stop

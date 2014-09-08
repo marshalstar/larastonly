@@ -1,20 +1,14 @@
-@extends('templates.default')
+Editando {{ $tag->name }}
 
-@section('title'){{ Str::title(Lang::get('editar tag')) }} @stop
+{{ HTML::ul($errors->all()) }}
 
-@section('content')
-
-    {{ HTML::ul($errors->all()) }}
-
-    {{ Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'PUT']) }}
+{{ Form::model($tag, array('route' => ['tags.update', $tag->id], 'method' => 'PUT')) }}
 
     <div class="form-group">
-        {{ Form::label('name', Str::title(Lang::get('name'))) }}
+        {{ Form::label('name', 'Name') }}
         {{ Form::text('name', null, ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit(Str::title(Lang::get('editar tag')), ['class' => 'btn btn-primary']) }}
+    {{ Form::submit('Editar Tag', ['class' => 'btn btn-primary']) }}
 
-    {{ Form::close() }}
-
-@stop
+{{ Form::close() }}
