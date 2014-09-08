@@ -31,7 +31,7 @@ class CreateChecklistTagTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('checklist_tag');
+		Schema::dropIfExists('checklist_tag');
 	}
 
 }

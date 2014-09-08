@@ -31,7 +31,7 @@ class CreateAlternativeQuestionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alternative_question');
+		Schema::dropIfExists('alternative_question');
 	}
 
 }

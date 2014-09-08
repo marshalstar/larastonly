@@ -30,7 +30,7 @@ class CreateAlternativesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alternatives');
+		Schema::dropIfExists('alternatives');
 	}
 
 }

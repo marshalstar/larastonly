@@ -32,7 +32,7 @@ class CreateEvaluationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('evaluations');
+		Schema::dropIfExists('evaluations');
 	}
 
 }

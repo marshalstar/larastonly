@@ -1,12 +1,12 @@
 {{ HTML::ul($errors->all()) }}
 
-{{ Form::open(array('url' => 'tags')) }}
+{{ Form::open(['url' => 'tags']) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
-        {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+        {{ Form::text('name', Input::old('name'), ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit('Criar Tag', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Criar Tag', ['class' => 'btn btn-primary']) }}
 
 {{ Form::close() }}

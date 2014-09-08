@@ -14,6 +14,7 @@ class QuestionsTableSeeder extends Seeder {
                 'title_id' => Type::all()->get(rand(0, Type::count() -1))->id,
                 'statement' => $faker->paragraph(),
                 'is_about_assessable' => $faker->randomDigit <= 1,
+                'weight' => $faker->randomDigit,
 			]);
 		}
 	}

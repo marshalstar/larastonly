@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration {
             $table->foreign('title_id')->references('id')->on('titles');
 			$table->text('statement')->default("");
 			$table->boolean('is_about_assessable')->default(false);
+            $table->integer('weight')->default(1);
 			$table->timestamps(); /** @TODO: tentar tirar isto aqui depois */
 		});
 	}
@@ -31,7 +32,7 @@ class CreateQuestionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('questions');
+		Schema::dropIfExists('questions');
 	}
 
 }

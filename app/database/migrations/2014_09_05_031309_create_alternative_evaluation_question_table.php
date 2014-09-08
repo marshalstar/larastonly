@@ -33,7 +33,7 @@ class CreateAlternativeEvaluationQuestionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alternative_evaluation');
+		Schema::dropIfExists('alternative_evaluation_question');
 	}
 
 }

@@ -30,7 +30,7 @@ class CreateTitlesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('titles');
+		Schema::dropIfExists('titles');
 	}
 
 }
