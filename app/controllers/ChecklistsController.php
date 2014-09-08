@@ -21,7 +21,15 @@ class ChecklistsController extends Controller
 	 */
 	public function create()
     {
-		return View::make('checklists.create');
+        $users = [];
+        foreach (User::all() as $user) {
+            $users[$user->id] = $user->username;
+        }
+        $titles = [];
+        foreach (Title::all() as $title) {
+            $titles[$title->id] = $title->name;
+        }
+		return View::make('checklists.create', compact('users'), compact('titles'));
 	}
 
 	/**

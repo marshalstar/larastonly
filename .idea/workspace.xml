@@ -23,10 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.blade.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/alternatives/index.blade.php">
+      <file leaf-file-name="edit.blade.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/checklists/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="57" selection-start="1184" selection-end="1184" vertical-scroll-proportion="0.6620879" vertical-offset="28" max-vertical-offset="833">
+            <state line="10" column="28" selection-start="241" selection-end="241" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="595">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.blade.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/alternatives/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="0" selection-start="735" selection-end="735" vertical-scroll-proportion="0.4903846" vertical-offset="0" max-vertical-offset="728">
               <folding />
             </state>
           </provider>
@@ -42,9 +51,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/app/views/tags/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/evaluations/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/titles/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/types/index.blade.php" />
         <option value="$PROJECT_DIR$/app/database/migrations/2014_09_05_031030_create_questions_table.php" />
@@ -69,7 +75,6 @@
         <option value="$PROJECT_DIR$/app/views/users/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/views/templates/default.blade.php" />
         <option value="$PROJECT_DIR$/app/views/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/alternatives/create.blade.php" />
         <option value="$PROJECT_DIR$/app/controllers/AlternativesController.php" />
         <option value="$PROJECT_DIR$/app/models/Alternative.php" />
         <option value="$PROJECT_DIR$/app/models/Checklist.php" />
@@ -79,7 +84,6 @@
         <option value="$PROJECT_DIR$/app/models/Title.php" />
         <option value="$PROJECT_DIR$/app/models/Type.php" />
         <option value="$PROJECT_DIR$/app/models/User.php" />
-        <option value="$PROJECT_DIR$/app/controllers/ChecklistsController.php" />
         <option value="$PROJECT_DIR$/app/controllers/EvaluationsController.php" />
         <option value="$PROJECT_DIR$/app/controllers/QuestionsController.php" />
         <option value="$PROJECT_DIR$/app/controllers/TagsController.php" />
@@ -87,12 +91,17 @@
         <option value="$PROJECT_DIR$/app/controllers/TypesController.php" />
         <option value="$PROJECT_DIR$/app/controllers/UsersController.php" />
         <option value="$PROJECT_DIR$/app/views/templates/partials/header.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/alternatives/edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/alternatives/show.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/checklists/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/views/alternatives/index.blade.php" />
         <option value="$PROJECT_DIR$/app/views/templates/partials/footer.blade.php" />
         <option value="$PROJECT_DIR$/readme.md" />
+        <option value="$PROJECT_DIR$/app/views/checklists/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/alternatives/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/controllers/ChecklistsController.php" />
+        <option value="$PROJECT_DIR$/app/views/checklists/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/alternatives/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/alternatives/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/checklists/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/checklists/edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/views/alternatives/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -278,6 +287,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="checklists" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="larastonly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="larastonly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="alternatives" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -405,21 +436,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Collection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="405" column="20" selection-start="7564" selection-end="7564" vertical-scroll-proportion="0.3447802" vertical-offset="6498" max-vertical-offset="14178" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tags/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="9" selection-start="816" selection-end="816" vertical-scroll-proportion="0.63049453" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="45" selection-start="382" selection-end="382" vertical-scroll-proportion="0.18681319" vertical-offset="0" max-vertical-offset="728" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867" />
@@ -622,13 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/ChecklistsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="4" selection-start="1874" selection-end="1874" vertical-scroll-proportion="0.7431319" vertical-offset="938" max-vertical-offset="1683">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/EvaluationsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="94" selection-start="696" selection-end="696" vertical-scroll-proportion="0.8173077" vertical-offset="0" max-vertical-offset="1683">
@@ -671,34 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/alternatives/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="49" selection-start="80" selection-end="80" vertical-scroll-proportion="0.046703298" vertical-offset="0" max-vertical-offset="728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/alternatives/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="69" selection-start="100" selection-end="100" vertical-scroll-proportion="0.046703298" vertical-offset="0" max-vertical-offset="728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/alternatives/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="64" selection-start="95" selection-end="95" vertical-scroll-proportion="0.046703298" vertical-offset="0" max-vertical-offset="728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/checklists/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="52" selection-start="772" selection-end="772" vertical-scroll-proportion="0.5837912" vertical-offset="0" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/rails.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7684">
@@ -730,9 +711,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/ChecklistsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="9" selection-start="611" selection-end="611" vertical-scroll-proportion="0.4903846" vertical-offset="153" max-vertical-offset="1819">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/checklists/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="11" selection-start="206" selection-end="229" vertical-scroll-proportion="0.18681319" vertical-offset="0" max-vertical-offset="728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/checklists/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="26" selection-start="650" selection-end="650" vertical-scroll-proportion="-9.038462" vertical-offset="122" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/alternatives/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.32692307" vertical-offset="0" max-vertical-offset="728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/alternatives/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="57" selection-start="1184" selection-end="1184" vertical-scroll-proportion="0.6620879" vertical-offset="28" max-vertical-offset="833">
+        <state line="30" column="92" selection-start="1204" selection-end="1204" vertical-scroll-proportion="0.6730769" vertical-offset="20" max-vertical-offset="748">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/alternatives/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="38" selection-start="170" selection-end="170" vertical-scroll-proportion="0.1401099" vertical-offset="0" max-vertical-offset="728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/checklists/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="0" selection-end="941" vertical-scroll-proportion="0.5604396" vertical-offset="0" max-vertical-offset="728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/checklists/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="28" selection-start="241" selection-end="241" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="595">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/alternatives/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="735" selection-end="735" vertical-scroll-proportion="0.4903846" vertical-offset="0" max-vertical-offset="728">
           <folding />
         </state>
       </provider>
