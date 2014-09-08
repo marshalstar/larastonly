@@ -1,1 +1,0 @@
-D:\Users\Neo\Documents\!!workspace\larastonly/app/views/types/create.blade.php

@@ -1,1 +1,0 @@
-D:\Users\Neo\Documents\!!workspace\larastonly/app/views/checklists/create.blade.php
