@@ -27,7 +27,10 @@
             <td>
                 <a href="{{ URL::route('alternatives.show', $alternative->id) }}">{{ Lang::get('Mostrar alternativa') }}</a>
                 <a href="{{ URL::route('alternatives.edit', $alternative->id) }}">{{ Lang::get('Editar alternativa') }}</a>
-                <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}">{{ Lang::get('Destruir alternativa') }}</a>
+                <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}" data-method="delete" rel="nofollow"
+                    data-confirm="Quer realmente deletar?">
+                    {{ Lang::get('Destruir alternativa') }}
+                </a>
                 {{ Form::open(array('url' => 'alternatives/' . $alternative->id, 'class' => 'pull-right')) }}
                     {{ Form::hidden('_method', 'DELETE') }}
                     {{ Form::submit(Lang::get('Deletar Alternativa'), array('class' => 'btn btn-warning')) }}
