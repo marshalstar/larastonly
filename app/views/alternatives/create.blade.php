@@ -6,7 +6,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'alternatives')) }}
+    {{ Form::open(['url' => 'alternatives']) }}
 
     <div class="form-group">
         {{ Form::label('name', Lang::get('Nome')) }}
@@ -18,7 +18,7 @@
         {{ Form::select('type_id', $types, Input::old('type_id'), ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit(Lang::get('Criar Alternativa'), array('class' => 'btn btn-primary')) }}
+    {{ Form::submit(Lang::get('Criar Alternativa'), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

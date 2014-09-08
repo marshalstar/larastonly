@@ -21,11 +21,9 @@ class AlternativesController extends Controller
 	 */
 	public function create()
     {
-        $types = [];
-        foreach (Type::all() as $type) {
-            $types[$type->id] = $type->name;
-        }
-	    return View::make('alternatives.create', compact('types'));
+        $types = array_column(Type::all()->toArray(), 'name', 'id');
+	    return View::make('alternatives.create')
+            ->with('types', $types);
 	}
 
 	/**
@@ -37,9 +35,11 @@ class AlternativesController extends Controller
     {
         $alternative = new Alternative();
         if ($alternative->save()) {
-            return Redirect::route('alternatives.index')->with('message', Lang::get('Salvo com sucesso'));
+            return Redirect::route('alternatives.index')
+                ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route('alternatives.create')->withErrors($alternative->errors());
+        return Redirect::route('alternatives.create')
+            ->withErrors($alternative->errors());
 	}
 
 	/**
@@ -63,11 +63,10 @@ class AlternativesController extends Controller
 	public function edit($id)
     {
 		$alternative = Alternative::find($id);
-        $types = [];
-        foreach (Type::all() as $type) {
-            $types[$type->id] = $type->name;
-        }
-		return View::make('alternatives.edit', compact('alternative'), compact('types'));
+        $types = array_column(Type::all()->toArray(), 'name', 'id');
+		return View::make('alternatives.edit')
+            ->with('alternatives', $alternative)
+            ->with('types', $types);
 	}
 
 	/**
@@ -81,9 +80,11 @@ class AlternativesController extends Controller
         $alternative = Alternative::find($id);
         $alternative->fill(Input::all());
         if ($alternative->updateUniques()) {
-            return Redirect::route('alternatives.index')->with('message', Lang::get('Editado com sucesso'));
+            return Redirect::route('alternatives.index')
+                ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route('alternatives.create')->withErrors($alternative->errors());
+        return Redirect::route('alternatives.create')
+            ->withErrors($alternative->errors());
 	}
 
 	/**

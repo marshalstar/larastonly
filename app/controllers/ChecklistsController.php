@@ -21,15 +21,11 @@ class ChecklistsController extends Controller
 	 */
 	public function create()
     {
-        $users = [];
-        foreach (User::all() as $user) {
-            $users[$user->id] = $user->username;
-        }
-        $titles = [];
-        foreach (Title::all() as $title) {
-            $titles[$title->id] = $title->name;
-        }
-		return View::make('checklists.create', compact('users'), compact('titles'));
+        $users = array_column(User::all()->toArray(), 'username', 'id');
+        $titles = array_column(Title::all()->toArray(), 'name', 'id');
+		return View::make('checklists.create')
+            ->with('users', $users)
+            ->with('titles', $titles);
 	}
 
 	/**
@@ -41,9 +37,11 @@ class ChecklistsController extends Controller
     {
         $checklist = new Checklist();
         if ($checklist->save()) {
-            return Redirect::route('checklists.index')->with('message', Lang::get('Salvo com sucesso'));
+            return Redirect::route('checklists.index')
+                ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route('checklists.create')->withErrors($checklist->errors());
+        return Redirect::route('checklists.create')
+            ->withErrors($checklist->errors());
 	}
 
 	/**
@@ -67,7 +65,12 @@ class ChecklistsController extends Controller
 	public function edit($id)
     {
 		$checklist = Checklist::find($id);
-		return View::make('checklists.edit', compact('checklist'));
+        $users = array_column(User::all()->toArray(), 'username', 'id');
+        $titles = array_column(Title::all()->toArray(), 'name', 'id');
+		return View::make('checklists.edit')
+            ->with('checklist', $checklist)
+            ->with('users', $users)
+            ->with('titles', $titles);
 	}
 
 	/**
@@ -81,9 +84,11 @@ class ChecklistsController extends Controller
         $checklist = Checklist::find($id);
         $checklist->fill(Input::all());
         if ($checklist->updateUniques()) {
-            return Redirect::route('checklists.index')->with('message', Lang::get('Salvo com sucesso'));
+            return Redirect::route('checklists.index')
+                ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route('checklists.create')->withErrors($checklist->errors());
+        return Redirect::route('checklists.create')
+            ->withErrors($checklist->errors());
 	}
 
 	/**

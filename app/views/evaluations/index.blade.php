@@ -1,39 +1,45 @@
+@extends('templates.default')
 
-@if (Session::has('message'))
-<div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
+@section('title'){{ Lang::get('Avaliações') }} @stop
 
-<a href="{{ URL::to('evaluations/create') }}">Nova evaluation</a>
+@section('content')
 
-<table>
+    @if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
 
-    <tr>
-        <th>id</th>
-        <th>comentario</th>
-        <th>user_id</th>
-        <th>checklist_id</th>
-        <th>criado em</th>
-        <th>editado em</th>
-        <th>ações</th>
-    </tr>
+    <a href="{{ URL::to('evaluations/create') }}">{{ Lang::get('nova avaliação') }}</a>
 
-    @foreach ($evaluations as $evaluation)
-    <tr>
-        <td>{{ $evaluation->id }}</td>
-        <td>{{ $evaluation->commentary }}</td>
-        <td>{{ $evaluation->user_id }}</td>
-        <td>{{ $evaluation->checklist_id }}</td>
-        <td>{{ $evaluation->created_at }}</td>
-        <td>{{ $evaluation->updated_at }}</td>
-        <td>
-            <a href="{{ URL::route('evaluations.show', $evaluation->id) }}">Mostrar evaluation</a>
-            <a href="{{ URL::route('evaluations.edit', $evaluation->id) }}">Editar evaluation</a>
-            {{ Form::open(array('url' => 'evaluations/' . $evaluation->id, 'class' => 'pull-right')) }}
-                {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Deletar evaluation', array('class' => 'btn btn-warning')) }}
-            {{ Form::close() }}
-        </td>
-    </tr>
-    @endforeach
+    <table>
 
-</table>
+        <tr>
+            <th>{{ Lang::get('id') }}</th>
+            <th>{{ Lang::get('comentário') }}</th>
+            <th>{{ Lang::get('user_id') }}</th>
+            <th>{{ Lang::get('checklist_id') }}</th>
+            <th>{{ Lang::get('criado em') }}</th>
+            <th>{{ Lang::get('editado a') }}</th>
+            <th>{{ Lang::get('ações') }}</th>
+        </tr>
+
+        @foreach ($evaluations as $evaluation)
+        <tr>
+            <td>{{ $evaluation->id }}</td>
+            <td>{{ Str::limit($evaluation->commentary, 64) }}</td>
+            <td>{{ $evaluation->user_id }}</td>
+            <td>{{ $evaluation->checklist_id }}</td>
+            <td>{{ $evaluation->created_at->format('d/m/Y') }}</td>
+            <td>{{ $evaluation->updated_at->diffForHumans() }}</td>
+            <td>
+                <a href="{{ URL::route('evaluations.show', $evaluation->id) }}">{{ Lang::get('mostrar avaliação') }}</a>
+                <a href="{{ URL::route('evaluations.edit', $evaluation->id) }}">{{ Lang::get('editar avaliação') }}</a>
+                <a href="{{ URL::route('evaluations.destroy', $evaluation->id) }}" data-method="delete"
+                   rel="nofollow" data-confirm="{{ Lang::get('Tem certeza que deseja deletar?') }}">{{ Lang::get('deletar avaliação') }}
+                </a>
+            </td>
+        </tr>
+        @endforeach
+
+    </table>
+
+@stop

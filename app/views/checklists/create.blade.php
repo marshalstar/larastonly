@@ -6,7 +6,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::open(array('url' => 'checklists')) }}
+    {{ Form::open(['url' => 'checklists']) }}
 
     <div class="form-group">
         {{ Form::label('name', Lang::get('Nome')) }}
@@ -23,7 +23,7 @@
         {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit(Lang::get('Criar Alternativa'), array('class' => 'btn btn-primary')) }}
+    {{ Form::submit(Lang::get('Criar Checklist'), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

@@ -21,7 +21,11 @@ class EvaluationsController extends Controller
 	 */
 	public function create()
     {
-		return View::make('evaluations.create');
+        $users = array_column(User::all()->toArray(), 'username', 'id');
+        $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
+		return View::make('evaluations.create')
+            ->with('users', $users)
+            ->with('checklists', $checklists);
 	}
 
 	/**
@@ -31,7 +35,7 @@ class EvaluationsController extends Controller
 	 */
 	public function store()
     {
-        $evaluation = new Evaluation();
+        $evaluation = new Evaluation(Input::all());
         if ($evaluation->save()) {
             return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
         }
@@ -59,7 +63,11 @@ class EvaluationsController extends Controller
 	public function edit($id)
     {
 		$evaluation = Evaluation::find($id);
-		return View::make('evaluations.edit', compact('evaluation'));
+        $users = array_column(User::all()->toArray(), 'username', 'id');
+        $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
+		return View::make('evaluations.edit', compact('evaluation'))
+            ->with('users', $users)
+            ->with('checklists', $checklists);
 	}
 
 	/**
