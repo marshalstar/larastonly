@@ -5,10 +5,10 @@
 <div class="alert alert-info">{{ Session::get('message') }}</div>
 @endif
 
-<a href="{{ URL::to('alternatives/create') }}"><button class="btn btn-success">Nova alternativa</button></a>
+<a href="{{ URL::to('alternatives/create') }}"><button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Nova alternativa</button></a>
 <div class="panel panel-default">
   <div class="panel-heading">Visualização das Alternativas.</div>
-<table class="table table-condensed">
+<table class="table table-bordered">
 
     <tr>
         <th><label for="id">ID</label></th>
@@ -22,8 +22,8 @@
         <td>{{ $alternative->statement }}</td>
         <td>
             <a href="{{ URL::route('alternatives.show', $alternative->id) }}">
-            <button class="btn btn-success " type="submit" value="MostarAlternativa">Mostrar Alternativa</button></a>
-            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}"><button class="btn btn-info" type ="submit" value="Editar">Editar Alternativa</button></a>
+            <button class="btn btn-success " type="submit" value="MostarAlternativa"><span class="glyphicon glyphicon-eye-open"></span> Mostrar Alternativa</button></a>
+            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}"><button class="btn btn-info" type ="submit" value="Editar"><span class="glyphicon glyphicon-edit"></span> Editar Alternativa</button></a>
             {{ Form::open(array('url' => 'alternatives/' . $alternative->id, 'class' => 'pull-right')) }}
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Deletar alternative', array('class' => 'btn btn-warning')) }}
@@ -34,5 +34,6 @@
 
 </table>
 </div>
+
 </div>
 @stop
