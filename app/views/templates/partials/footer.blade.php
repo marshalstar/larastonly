@@ -1,3 +1,18 @@
+    <footer class="bs-docs-footer" role="contentinfo">
+        <div class="container">
+
+            <ul class="bs-docs-footer-links muted">
+                <li>Listonly</li>
+                <li>·</li>
+                <li><a href="https://github.com/marshalstar/larastonly">GitHub</a></li>
+                <li>·</li>
+                <li><a href="../getting-started/#examples">Examples</a></li>
+                <li>·</li>
+                <li>2014</li>
+            </ul>
+        </div>
+    </footer>
+
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.8/angular-route.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

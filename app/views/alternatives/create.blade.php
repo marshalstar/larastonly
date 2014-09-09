@@ -4,22 +4,32 @@
 
 @section('content')
 
-    {{ HTML::ul($errors->all()) }}
+    <div class="container theme-showcase">
 
-    {{ Form::open(['url' => 'alternatives']) }}
+        {{ HTML::ul($errors->all()) }}
 
-    <div class="form-group">
-        {{ Form::label('name', Str::title(Lang::get('nome'))) }}
-        {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
+        {{ Form::open(['url' => 'alternatives']) }}
+
+        <div class="form-group input-group">
+            {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
+            {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
+        </div>
+
+        <div class="form-group input-group">
+            {{ Form::label('type', Str::title(Lang::get('tipo')), ['class' => 'input-group-addon']) }}
+            {{ Form::select('type_id', $types, Input::old('type_id'), ['class' => 'form-control']) }}
+        </div>
+
+        {{ Form::submit(Str::title(Lang::get('nova alternativa')), ['class' => 'btn btn-primary']) }}
+
+        {{ Form::close() }}
+
+        <p> <!-- Não use <div> dentro de <p>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
+            <div class="well well-sm">
+                <a href="http://getbootstrap.com/css/#forms">ver Formulários do bootstrap</a>
+            </div>
+        </p>
+
     </div>
-
-    <div class="form-group">
-        {{ Form::label('type', Str::title(Lang::get('tipo'))) }}
-        {{ Form::select('type_id', $types, Input::old('type_id'), ['class' => 'form-control']) }}
-    </div>
-
-    {{ Form::submit(Str::title(Lang::get('nova alternativa'), ['class' => 'btn btn-primary']) }}
-
-    {{ Form::close() }}
 
 @stop

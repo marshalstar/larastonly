@@ -4,36 +4,68 @@
 
 @section('content')
 
-    @if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
+    <div class="container theme-showcase">
 
-    <a href="{{ URL::to('alternatives/create') }}">{{ Lang::get('nova alternativa') }}</a>
+        @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
-    <table>
+        <a href="{{ URL::to('alternatives/create') }}" class="btn btn-sm btn-primary">{{ Lang::get('nova alternativa') }}</a>
+        <br/> <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
+        <br/> <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
 
-        <tr>
-            <th>{{ Lang::get('id') }}</th>
-            <th>{{ Lang::get('name') }}</th>
-            <th>{{ Lang::get('type_id') }}</th>
-            <th>{{ Lang::get('ações') }}</th>
-        </tr>
+        <div>
+            <table class="table table-hover">
 
-        @foreach ($alternatives as $alternative)
-        <tr>
-            <td>{{ $alternative->id }}</td>
-            <td>{{ $alternative->name }}</td>
-            <td>{{ $alternative->type_id }}</td>
-            <td>
-                <a href="{{ URL::route('alternatives.show', $alternative->id) }}">{{ Lang::get('mostrar alternativa') }}</a>
-                <a href="{{ URL::route('alternatives.edit', $alternative->id) }}">{{ Lang::get('editar alternativa') }}</a>
-                <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}" data-method="delete"
-                   rel="nofollow" data-confirm="{{ Lang::get('Tem certeza que deseja deletar?') }}">{{ Lang::get('deletar alternativa') }}
-                </a>
-            </td>
-        </tr>
-        @endforeach
+                <tr>
+                    <th>{{ Lang::get('id') }}</th>
+                    <th>{{ Lang::get('name') }}</th>
+                    <th>{{ Lang::get('type_id') }}</th>
+                    <th>{{ Lang::get('ações') }}</th>
+                </tr>
 
-    </table>
+                @foreach ($alternatives as $alternative)
+                <tr>
+                    <td>{{ $alternative->id }}</td>
+                    <td>{{ $alternative->name }}</td>
+                    <td>{{ $alternative->type_id }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ URL::route('alternatives.show', $alternative->id) }}" class="btn btn-sm btn-info">{{ Lang::get('mostrar') }}</a>
+                            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-warning">{{ Lang::get('editar') }}</a>
+                            <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">{{ Lang::get('deletar') }}</a>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+
+            </table>
+        </div>
+    </div>
+
+    <!-- Isto deve ficar em um template separado -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Deletar</h4>
+                </div>
+                <div class="modal-body">
+                    {{ Lang::get('Tem certeza que deseja deletar?') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="{{ URL::route('alternatives.destroy', $alternative->id) }}" data-method="delete" rel="nofollow"
+                       class="btn btn-sm btn-danger" data-dismiss="modal">
+                        {{ Lang::get('deletar') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop

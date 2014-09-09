@@ -2416,7 +2416,7 @@ input[type="datetime-local"].input-lg,
 input[type="month"].input-lg {
   line-height: 46px;
 }
-.form-group {
+input-group.form-group {
   margin-bottom: 15px;
 }
 .radio,
