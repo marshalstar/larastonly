@@ -87,7 +87,7 @@ class ChecklistsController extends Controller
             return Redirect::route('checklists.index')
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route('checklists.create')
+        return Redirect::route('checklists.edit')
             ->withErrors($checklist->errors());
 	}
 

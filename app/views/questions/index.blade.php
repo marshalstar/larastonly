@@ -16,7 +16,7 @@
             <th>{{ Lang::get('id') }}</th>
             <th>{{ Lang::get('enunciado') }}</th>
             <th>{{ Lang::get('type_id') }}</th>
-            <th>{{ Lang::get('é sobre avaliado') }}?</th>
+            <th>{{ Lang::get('é sobre avaliado?') }}</th>
             <th>{{ Lang::get('peso') }}</th>
             <th>{{ Lang::get('ações') }}</th>
         </tr>

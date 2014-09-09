@@ -55,7 +55,13 @@ class User extends Ardent
     public function afterValidate()
     {
         if ($this->isDirty(('is_admin'))) {
-            $this->is_admin = ($this->is_admin == 'on');
+
+            $is = $this->is_admin;
+            if ($is == 'on') {
+                $this->is_admin = true;
+            } elseif ($is != 'off' && !is_bool($is)) {
+                return false;
+            }
         }
         return true;
     }

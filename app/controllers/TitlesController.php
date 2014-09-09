@@ -21,7 +21,9 @@ class TitlesController extends Controller
 	 */
 	public function create()
     {
-		return View::make('titles.create');
+        $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
+        return View::make('titles.create')
+            ->with('titles', $titles);
 	}
 
 	/**
@@ -59,7 +61,10 @@ class TitlesController extends Controller
 	public function edit($id)
     {
 		$title = Title::find($id);
-		return View::make('titles.edit', compact('title'));
+        $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
+		return View::make('titles.edit')
+            ->with('title', $title)
+            ->with('titles', $titles);
 	}
 
 	/**
@@ -75,7 +80,7 @@ class TitlesController extends Controller
         if ($title->updateUniques()) {
             return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
         }
-        return Redirect::route('titles.create')->withErrors($title->errors());
+        return Redirect::route('titles.edit')->withErrors($title->errors());
 	}
 
 	/**

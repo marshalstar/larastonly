@@ -75,7 +75,7 @@ class TagsController extends BaseController
         if ($tag->updateUniques()) {
             return Redirect::route('tags.index')->with('message', 'Salvo com sucesso');
         }
-        return Redirect::route('tags.create')->withErrors($tag->errors());
+        return Redirect::route('tags.edit')->withErrors($tag->errors());
 	}
 
 	/**

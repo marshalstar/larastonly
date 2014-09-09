@@ -1,10 +1,10 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Avaliação'). ' ' .$evaluation->name }} @stop
+@section('title'){{ Str::title(Lang::get('avaliação')). ' ' .$evaluation->name }} @stop
 
 @section('content')
 
-    <h1>{{ Lang::get('Avaliação'). ': ' .$evaluation->name }}</h1>
+    <h1>{{ Str::title(Lang::get('avaliação')). ': ' .$evaluation->name }}</h1>
 
     <h3>{{ Lang::get('id'). ': ' .$evaluation->id }}</h3>
     <h3>{{ Lang::get('comentário'). ': ' .$evaluation->commentary }}</h3>

@@ -71,11 +71,12 @@ class UsersController extends Controller
 	public function update($id)
     {
         $user = User::find($id);
+        $user->is_admin = Input::get('is_admin') == 'on';
         $user->fill(Input::all());
         if ($user->updateUniques()) {
             return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
         }
-        return Redirect::route('users.create')->withErrors($user->errors());
+        return Redirect::route('users.edit')->withErrors($user->errors());
 	}
 
 	/**

@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Checklists') }} @stop
+@section('title'){{ Str::title(Lang::get('checklists')) }} @stop
 
 @section('content')
 
@@ -19,7 +19,7 @@
             <th>{{ Lang::get('title_id') }}</th>
             <th>{{ Lang::get('criado em') }}</th>
             <th>{{ Lang::get('atualizado a') }}</th>
-            <th>ações</th>
+            <th>{{ Lang::get('ações') }}</th>
         </tr>
 
         @foreach ($checklists as $checklist)

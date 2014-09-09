@@ -29,4 +29,12 @@ class Title extends Ardent
         'name' => 'required|between:3,255|unique:titles',
     ];
 
+    public function afterValidate()
+    {
+        if ($this->isDirty(('title_id')) && $this->title_id == 0) {
+            $this->title_id = null;
+        }
+        return true;
+    }
+
 }

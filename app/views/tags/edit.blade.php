@@ -9,8 +9,8 @@
     {{ Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'PUT']) }}
 
     <div class="form-group">
-        {{ Form::label('name', Str::title(Lang::get('name'))) }}
-        {{ Form::text('name', null, ['class' => 'form-control']) }}
+        {{ Form::label('name', Str::title(Lang::get('nome'))) }}
+        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'nome']) }}
     </div>
 
     {{ Form::submit(Str::title(Lang::get('editar tag')), ['class' => 'btn btn-primary']) }}

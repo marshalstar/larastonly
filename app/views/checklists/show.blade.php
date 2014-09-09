@@ -1,10 +1,10 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Checklist'). ' ' .$checklist->name }} @stop
+@section('title'){{ Str::title(Lang::get('checklist')). ' ' .$checklist->name }} @stop
 
 @section('content')
 
-    <h1>{{ Lang::get('Checklist'). ': ' .$checklist->name }}</h1>
+    <h1>{{ Str::title(Lang::get('checklist')). ': ' .$checklist->name }}</h1>
 
     <h3>{{ Lang::get('id'). ': ' .$checklist->id }}</h3>
     <h3>{{ Lang::get('nome'). ': ' .$checklist->name }}</h3>

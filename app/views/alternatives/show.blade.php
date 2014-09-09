@@ -1,10 +1,10 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Alternativa'). ' ' .$alternative->name }} @stop
+@section('title'){{ Str::title(Lang::get('alternativa')). ' ' .$alternative->name }} @stop
 
 @section('content')
 
-    <h1>{{ Lang::get('Alternativa'). ' ' .$alternative->name }}</h1>
+    <h1>{{ Str::title(Lang::get('alternativa')). ' ' .$alternative->name }}</h1>
 
     <h3>{{ Lang::get('id'). ': ' .$alternative->id }}</h3>
     <h3>{{ Lang::get('nome'). ': ' .$alternative->name }}</h3>

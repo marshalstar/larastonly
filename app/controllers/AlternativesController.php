@@ -83,7 +83,7 @@ class AlternativesController extends Controller
             return Redirect::route('alternatives.index')
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route('alternatives.create')
+        return Redirect::route('alternatives.edit')
             ->withErrors($alternative->errors());
 	}
 

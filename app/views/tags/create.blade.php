@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('criar tag')) }} @stop
+@section('title'){{ Str::title(Lang::get('nova tag')) }} @stop
 
 @section('content')
 
@@ -13,7 +13,7 @@
         {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
     </div>
 
-    {{ Form::submit(Str::title(Lang::get('criar tag')), ['class' => 'btn btn-primary']) }}
+    {{ Form::submit(Str::title(Lang::get('nova tag')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Criar Avaliação') }} @stop
+@section('title'){{ Str::title(Lang::get('editar avaliação')) }} @stop
 
 @section('content')
 
@@ -9,21 +9,21 @@
     {{ Form::model($evaluation, ['route' => ['evaluations.update', $evaluation->id], 'method' => 'PUT']) }}
 
     <div class="form-group">
-        {{ Form::label('commentary', Lang::get('Comentário')) }}
+        {{ Form::label('commentary', Str::title(Lang::get('comentário'))) }}
         {{ Form::text('commentary', null, ['class' => 'form-control', 'placeholder' => Lang::get('comentário')]) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('user_id', Lang::get('Usuário')) }}
+        {{ Form::label('user_id', Str::title(Lang::get('usuário'))) }}
         {{ Form::select('user_id', $users, null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('checklist_id', Lang::get('Checklist')) }}
+        {{ Form::label('checklist_id', Str::title(Lang::get('checklist'))) }}
         {{ Form::select('checklist_id', $checklists, null, ['class' => 'form-control']) }}
     </div>
 
-    {{ Form::submit(Lang::get('Criar Avaliação'), ['class' => 'btn btn-primary']) }}
+    {{ Form::submit(Str::title(Lang::get('criar avaliação')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

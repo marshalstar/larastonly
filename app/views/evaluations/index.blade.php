@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Lang::get('Avaliações') }} @stop
+@section('title'){{ Str::title(Str::title(Lang::get('avaliações'))) }} @stop
 
 @section('content')
 

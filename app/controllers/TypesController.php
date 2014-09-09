@@ -75,7 +75,7 @@ class TypesController extends Controller
         if ($type->updateUniques()) {
             return Redirect::route('types.index')->with('message', 'Salvo com sucesso');
         }
-        return Redirect::route('types.create')->withErrors($type->errors());
+        return Redirect::route('types.edit')->withErrors($type->errors());
 	}
 
 	/**

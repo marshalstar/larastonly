@@ -83,7 +83,7 @@ class EvaluationsController extends Controller
         if ($evaluation->updateUniques()) {
             return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
         }
-        return Redirect::route('evaluations.create')->withErrors($evaluation->errors());
+        return Redirect::route('evaluations.edit')->withErrors($evaluation->errors());
 	}
 
 	/**
