@@ -28,7 +28,12 @@
         {{ Form::text('weight', Input::old('weight'), ['class' => 'form-control', 'placeholder' => Lang::get('peso')]) }}
     </div>
 
-    {{ Form::submit(Str::title(Lang::get('nova avaliação')), ['class' => 'btn btn-primary']) }}
+    <div class="form-group">
+        {{ Form::label('alternatives[]', Str::title(Lang::get('alternativas'))) }}
+        {{ Form::select('alternatives[]', array_column(Alternative::all()->toArray(), 'name', 'id'), Input::old('alternatives[]'), ['class' => 'form-control', 'placeholder' => Lang::get('alternativas'), 'multiple']) }}
+    </div>
+
+    {{ Form::submit(Str::title(Lang::get('nova questão')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}
 

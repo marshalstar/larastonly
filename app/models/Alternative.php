@@ -29,4 +29,8 @@ class Alternative extends Ardent
         'name' => 'required|unique:alternatives|between:3,255',
     ];
 
+    public function questions() {
+        return $this->belongsToMany('Question');
+    }
+
 }

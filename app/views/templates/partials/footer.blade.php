@@ -6,8 +6,6 @@
                 <li>·</li>
                 <li><a href="https://github.com/marshalstar/larastonly">GitHub</a></li>
                 <li>·</li>
-                <li><a href="../getting-started/#examples">Examples</a></li>
-                <li>·</li>
                 <li>2014</li>
             </ul>
         </div>

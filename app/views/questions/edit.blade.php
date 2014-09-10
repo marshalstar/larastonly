@@ -28,6 +28,11 @@
         {{ Form::text('weight', null, ['class' => 'form-control', 'placeholder' => Lang::get('peso')]) }}
     </div>
 
+    <div class="form-group">
+        {{ Form::label('alternatives[]', Str::title(Lang::get('alternativas'))) }}
+        {{ Form::select('alternatives[]', array_column(Alternative::all()->toArray(), 'name', 'id'), array_column($question->alternatives->toArray(), 'id', 'name'), ['class' => 'form-control', 'placeholder' => Lang::get('alternativas'), 'multiple']) }}
+    </div>
+
     {{ Form::submit(Str::title(Lang::get('editar svaliação')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}

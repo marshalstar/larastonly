@@ -31,6 +31,11 @@ class Question extends Ardent
         'statement' => 'required|between:3,255|unique:questions',
         'is_about_assessable' => '',
         'weight' => 'required|numeric',
+        'alternatives' => '',
+    ];
+
+    public static $relationsData = [
+        'alternatives' => [self::BELONGS_TO_MANY, 'Alternative', 'table' => 'alternative_question'],
     ];
 
     public function afterValidate()
@@ -44,7 +49,22 @@ class Question extends Ardent
                 return false;
             }
         }
+        if ($this->isDirty(('alternatives'))) {
+            unset($this->alternatives);
+        }
         return true;
+    }
+
+    public function afterSave()
+    {
+        foreach (Input::get('alternatives') as $alternative_id) {
+            $this->alternatives()->attach($alternative_id);
+        }
+    }
+
+    public function alternatives()
+    {
+        return $this->belongsToMany('Alternative');
     }
 
 }

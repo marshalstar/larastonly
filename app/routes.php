@@ -2,25 +2,14 @@
 
 Route::get('/', function()
 {
-//	return View::make('hello');
+    die('criar controller home ou application; a action index será a página inicial');
+});
 
-    $user = new User;
-    $user->username = 'nome';
-    $user->email = 'email2@email.com';
-    $user->password = 'password';
-    $user->password_confirmation = 'password';
-    $user->speciality = 'especialidade';
-    $user->gender = 'm';
-    $user->gender = 'm';
-    Kint::dump([$user]);
-    $user->save();
-    Kint::dump($user->errors());
-    Kint::dump([$user, $user->id]);
-
-    Kint::dump(User::all());
-
-    die;
-
+Route::get('/debug', function()
+{
+    Kint::dump(array_column(Alternative::all()->toArray(), 'name', 'id'));
+    Kint::dump(Alternative::all(['id', 'name'])->toArray());
+    die('show');
 });
 
 Route::resource('alternatives', 'AlternativesController');
