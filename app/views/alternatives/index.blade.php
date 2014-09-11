@@ -12,7 +12,7 @@
 
         <a href="{{ URL::to('alternatives/create') }}" class="btn btn-sm btn-primary">{{ Lang::get('nova alternativa') }}</a>
         <br/> <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
-        <br/> <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
+        <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
 
         <div>
             <table class="table table-hover">
