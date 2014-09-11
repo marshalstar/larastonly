@@ -3,14 +3,39 @@
 @section('title'){{ Str::title(Lang::get('checklist')). ' ' .$checklist->name }} @stop
 
 @section('content')
+	<div class = "container theme-showcase">
+		<table class = "table">
+			<tbody>
+         <tr>
+                    <td><h3>{{ Str::title(Lang::get('Checklist')) }}</h3></td>
+                    <td><h3><small>{{ $checklist->name }}</small></h3></td>
+                </tr>
 
-    <h1>{{ Str::title(Lang::get('checklist')). ': ' .$checklist->name }}</h1>
-
-    <h3>{{ Lang::get('id'). ': ' .$checklist->id }}</h3>
-    <h3>{{ Lang::get('nome'). ': ' .$checklist->name }}</h3>
-    <h3>{{ Lang::get('user_id'). ': ' .$checklist->user_id }}</h3>
-    <h3>{{ Lang::get('title_id'). ': ' .$checklist->title_id }}</h3>
-    <h3>{{ Lang::get('criado em'). ': ' .$checklist->created_at->format('d/m/Y') }}</h3>
-    <h3>{{ Lang::get('atualizado a'). ': ' .$checklist->updated_at->diffForHumans() }}</h3>
-
+        		<tr>
+                    <td><h4>{{ Str::title(Lang::get('ID')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->id }}</small></h4></td>
+                </tr>
+        <tr>
+                    <td><h4>{{ Str::title(Lang::get('Nome')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->name }}</small></h4></td>
+                </tr>
+                     <tr>
+                    <td><h4>{{ Str::title(Lang::get('Usuário que criou o checklist: ')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->user_id }}</small></h4></td>
+                </tr>
+                     <tr>
+                    <td><h4>{{ Str::title(Lang::get('Id do título: ')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->title_id }}</small></h4></td>
+                </tr>
+                     <tr>
+                    <td><h4>{{ Str::title(Lang::get('Criado em:')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->created_at->format('d/m/Y')}}</small></h4></td>
+                </tr>
+                 <tr>
+                    <td><h4>{{ Str::title(Lang::get('Atualizado a: ')) }}</h4></td>
+                    <td><h4><small>{{ $checklist->updated_at->diffForHumans()}}</small></h4></td>
+                </tr>
+</tbody>
+    </table>
+</div>
 @stop

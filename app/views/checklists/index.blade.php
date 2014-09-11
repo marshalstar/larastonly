@@ -4,42 +4,75 @@
 
 @section('content')
 
-    @if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-    @endif
+    <div class="container theme-showcase">
 
-    <a href="{{ URL::to('checklists/create') }}">{{ Lang::get('novo checklist') }}</a>
+        @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
 
-    <table>
+        <a href="{{ URL::to('checklists/create') }}" class="btn btn-sm btn-primary">{{ Lang::get('Novo Checklist') }}</a>
+        <br/> <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
+        <!-- Não use <br/>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
 
-        <tr>
-            <th>{{ Lang::get('id') }}</th>
-            <th>{{ Lang::get('nome') }}</th>
-            <th>{{ Lang::get('user_id') }}</th>
-            <th>{{ Lang::get('title_id') }}</th>
-            <th>{{ Lang::get('criado em') }}</th>
-            <th>{{ Lang::get('atualizado a') }}</th>
-            <th>{{ Lang::get('ações') }}</th>
-        </tr>
+        <div>
+            <table class="table table-hover">
 
-        @foreach ($checklists as $checklist)
-        <tr>
-            <td>{{ $checklist->id }}</td>
-            <td>{{ $checklist->name }}</td>
-            <td>{{ $checklist->user_id }}</td>
+                <tr>
+                    <th>{{ Lang::get('id') }}</th>
+                    <th>{{ Lang::get('nome') }}</th>
+                    <th>{{ Lang::get('user_id') }}</th>
+                    <th>{{ Lang::get('title_id') }}</th>
+                    <th>{{ Lang::get('criado em') }}</th>
+                    <th>{{ Lang::get('atualizado a') }}</th>
+                    <th>{{ Lang::get('ações') }}</th>
+                </tr>
+
+                @foreach ($checklists as $checklist)
+                <tr>
+                  <td>{{ $checklist->id }}</td>
+                <td>{{ $checklist->name }}</td>
+             <td>{{ $checklist->user_id }}</td>
             <td>{{ $checklist->title_id }}</td>
             <td>{{ $checklist->created_at->format('d/m/Y') }}</td>
             <td>{{ $checklist->updated_at->diffForHumans() }}</td>
-            <td>
-                <a href="{{ URL::route('checklists.show', $checklist->id) }}">{{ Lang::get('mostrar checklist') }}</a>
-                <a href="{{ URL::route('checklists.edit', $checklist->id) }}">{{ Lang::get('editar checklist') }}</a>
-                <a href="{{ URL::route('checklists.destroy', $checklist->id) }}" data-method="delete"
-                   rel="nofollow" data-confirm="{{ Lang::get('Tem certeza que deseja deletar?') }}">{{ Lang::get('deletar checklist') }}
-                </a>
-            </td>
-        </tr>
-        @endforeach
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ URL::route('checklists.show', $checklist->id) }}" class="btn btn-sm btn-info">{{ Lang::get('Mostrar') }}</a>
+                            <a href="{{ URL::route('checklists.edit', $checklist->id) }}" class="btn btn-sm btn-warning">{{ Lang::get('Editar') }}</a>
+                            <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">{{ Lang::get('deletar') }}</a>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
 
-    </table>
+            </table>
+        </div>
+    </div>
+
+    <!-- Isto deve ficar em um template separado -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Deletar</h4>
+                </div>
+                <div class="modal-body">
+                    {{ Lang::get('Tem certeza que deseja deletar?') }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="{{ URL::route('checklists.destroy', $checklist->id) }}" data-method="delete" rel="nofollow"
+                       class="btn btn-sm btn-danger" data-dismiss="modal">
+                        {{ Lang::get('deletar') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @stop
+
