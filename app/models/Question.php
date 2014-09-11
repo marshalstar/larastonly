@@ -57,8 +57,10 @@ class Question extends Ardent
 
     public function afterSave()
     {
-        foreach (Input::get('alternatives') as $alternative_id) {
-            $this->alternatives()->attach($alternative_id);
+        if ($this->isDirty(('alternatives'))) {
+            foreach (Input::get('alternatives') as $alternative_id) {
+                $this->alternatives()->attach($alternative_id);
+            }
         }
     }
 

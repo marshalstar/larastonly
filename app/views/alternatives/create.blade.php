@@ -24,12 +24,6 @@
 
         {{ Form::close() }}
 
-        <p> <!-- Não use <div> dentro de <p>! Eu peguei lá do código fonte do bootstrap. Por favor, ache uma alternativa -->
-            <div class="well well-sm">
-                <a href="http://getbootstrap.com/css/#forms">ver Formulários do bootstrap</a>
-            </div>
-        </p>
-
     </div>
 
 @stop
