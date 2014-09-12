@@ -10,11 +10,11 @@ class EvaluationsTableSeeder extends Seeder {
 
 		foreach(range(1, 30) as $index)
 		{
-			Evaluation::create([
-                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
-                'checklist_id' => Checklist::all()->get(rand(0, Checklist::count() -1))->id,
-                'commentary' => $faker->paragraph(),
-			]);
+            $evaluation = new Evaluation;
+            $evaluation->user_id = User::all()->get(rand(0, User::count() -1))->id;
+            $evaluation->checklist_id = Checklist::all()->get(rand(0, Checklist::count() -1))->id;
+            $evaluation->commentary = $faker->paragraph();
+            $evaluation->forceSave();
 		}
 	}
 

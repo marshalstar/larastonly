@@ -10,9 +10,9 @@ class TypesTableSeeder extends Seeder {
 
 		foreach(range(1, 30) as $index)
 		{
-			Type::create([
-                'name' => $faker->unique()->sentence(rand(1, 4)),
-			]);
+            $type = new Type;
+            $type->name = $faker->unique()->sentence(rand(1, 4));
+            $type->forceSave();
 		}
 	}
 

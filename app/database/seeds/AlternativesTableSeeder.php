@@ -10,10 +10,10 @@ class AlternativesTableSeeder extends Seeder {
 
 		foreach(range(1, 30) as $index)
 		{
-			Alternative::create([
-                'name' => $faker->sentence(),
-                'type_id' => Type::all()->get(rand(0, Type::count() -1))->id,
-			]);
+            $alternative = new Alternative;
+            $alternative->name = $faker->sentence();
+            $alternative->type_id = Type::all()->get(rand(0, Type::count() -1))->id;
+            $alternative->forceSave();
 		}
 	}
 

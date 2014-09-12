@@ -10,9 +10,9 @@ class TagsTableSeeder extends Seeder {
 
 		foreach(range(1, 30) as $fake)
 		{
-			Tag::create([
-                'name' => $faker->unique()->sentence(rand(1, 4)),
-			]);
+            $tag = new Tag;
+            $tag->name = $faker->unique()->sentence(rand(1, 4));
+            $tag->forceSave();
 		}
 	}
 

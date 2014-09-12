@@ -10,11 +10,11 @@ class ChecklistsTableSeeder extends Seeder {
 
 		foreach(range(1, 30) as $index)
 		{
-			Checklist::create([
-                'name' => $faker->sentence(rand(1, 4)),
-                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
-                'title_id' => Title::all()->get(rand(0, Title::count() -1))->id,
-			]);
+            $checklist = new Checklist;
+            $checklist->name = $faker->sentence(rand(1, 4));
+            $checklist->user_id = User::all()->get(rand(0, User::count() -1))->id;
+            $checklist->title_id = Title::all()->get(rand(0, Title::count() -1))->id;
+            $checklist->forceSave();
 		}
 	}
 

@@ -16,13 +16,12 @@ class UsersTableSeeder extends Seeder {
             $user->username = $faker->userName;
             $user->email = $faker->unique()->email;
             $user->password = 'password';
-            $user->password_confirmation = 'password';
             $user->speciality = $faker->sentence(rand(1, 4));
             $user->is_admin = $index == 1;
             $user->gender = ($faker->randomDigit % 2)? 'f' : 'm';
             $user->biography = $faker->paragraph();
             $user->picture_url = str_replace('.html', '', $faker->url) . 'image.png';
-            $user->save();
+            $user->forceSave();
 		}
 	}
 
