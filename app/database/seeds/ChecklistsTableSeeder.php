@@ -2,20 +2,20 @@
 
 use Faker\Factory as Faker;
 
-class ChecklistsTableSeeder extends Seeder {
+class ChecklistsTableSeeder extends Seeder
+{
 
 	public function run()
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 30) as $index)
-		{
-            $checklist = new Checklist;
-            $checklist->name = $faker->sentence(rand(1, 4));
-            $checklist->user_id = User::all()->get(rand(0, User::count() -1))->id;
-            $checklist->title_id = Title::all()->get(rand(0, Title::count() -1))->id;
-            $checklist->forceSave();
-		}
+        DB::table('checklists')->insert(array_map(function() use ($faker) {
+            return [
+                'name' => $faker->sentence(rand(1, 4)),
+                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
+                'title_id' => Title::all()->get(rand(0, Title::count() -1))->id,
+            ];
+        }, range(1, 30)));
 	}
 
 }

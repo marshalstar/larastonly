@@ -2,18 +2,18 @@
 
 use Faker\Factory as Faker;
 
-class TypesTableSeeder extends Seeder {
+class TypesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
 		$faker = Faker::create();
 
-		foreach(range(1, 30) as $index)
-		{
-            $type = new Type;
-            $type->name = $faker->unique()->sentence(rand(1, 4));
-            $type->forceSave();
-		}
+        DB::table('types')->insert(array_map(function() use ($faker) {
+            return [
+                'name' => $faker->unique()->sentence(rand(1, 4)),
+            ];
+        }, range(1, 30)));
 	}
 
 }

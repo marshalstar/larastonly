@@ -2,7 +2,8 @@
 
 use Faker\Factory as Faker;
 
-class TitlesTableSeeder extends Seeder {
+class TitlesTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -12,13 +13,12 @@ class TitlesTableSeeder extends Seeder {
             'name' => $faker->sentence(rand(1, 4)),
         ]);
 
-		foreach(range(1, 29) as $index)
-		{
-            $title = new Title;
-            $title->name = $faker->sentence(rand(1, 4));
-            $title->title_id = Title::all()->get(rand(0, Title::count() -1))->id;
-            $title->forceSave();
-		}
+        DB::table('titles')->insert(array_map(function() use ($faker) {
+            return [
+                'name' => $faker->sentence(rand(1, 4)),
+                'title_id' => Title::all()->get(rand(0, Title::count() -1))->id,
+            ];
+        }, range(1, 29)));
 	}
 
 }
