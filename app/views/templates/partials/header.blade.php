@@ -20,6 +20,7 @@
     <![endif]-->
 </head>
 <body>
+
     <div class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
@@ -49,6 +50,7 @@
                         </ul>
                     </li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
+            <!--/.nav-collapse-->
         </div>
     </div>

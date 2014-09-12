@@ -1,9 +1,9 @@
 <?php
 
-Route::get('/', function()
-{
-    die('criar controller home ou application; a action index será a página inicial');
-});
+Route::get('/', [
+    'as' => 'home',
+    'uses' => 'HomeController@index',
+]);
 
 Route::get('/debug', function()
 {
