@@ -18,10 +18,10 @@
             <table class="table table-hover">
 
                 <tr>
-                    <th>{{ Lang::get('id') }}</th>
-                    <th>{{ Lang::get('name') }}</th>
-                    <th>{{ Lang::get('type_id') }}</th>
-                    <th>{{ Lang::get('ações') }}</th>
+                    <th>{{ Lang::get('Id') }}</th>
+                    <th>{{ Lang::get('Name') }}</th>
+                    <th>{{ Lang::get('Type_id') }}</th>
+                    <th>{{ Lang::get('Ações') }}</th>
                 </tr>
 
                 @foreach ($alternatives as $alternative)
@@ -31,9 +31,9 @@
                     <td>{{ $alternative->type_id }}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="{{ URL::route('alternatives.show', $alternative->id) }}" class="btn btn-sm btn-info">{{ Lang::get('mostrar') }}</a>
-                            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-warning">{{ Lang::get('editar') }}</a>
-                            <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">{{ Lang::get('deletar') }}</a>
+                            <a href="{{ URL::route('alternatives.show', $alternative->id) }}" class="btn btn-sm btn-info">{{ Lang::get('Exibir') }}</a>
+                            <a href="{{ URL::route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-warning">{{ Lang::get('Editar') }}</a>
+                            <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">{{ Lang::get('Deletar') }}</a>
                         </div>
                     </td>
                 </tr>

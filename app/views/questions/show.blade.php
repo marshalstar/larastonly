@@ -3,13 +3,29 @@
 @section('title'){{ Str::title(Lang::get('questão')). ' ' .$question->statement }} @stop
 
 @section('content')
+<div class = "container theme-showcase">
+	<table class = "table">
+		<trbody>
+			<tr>
+    </td><h3>{{ Str::title(Lang::get('Questão')). ': ' .$question->statement }}</h3><td>
+			</tr>
 
-    <h1>{{ Str::title(Lang::get('questão')). ': ' .$question->statement }}</h1>
-
-    <h3>{{ Lang::get('id'). ': ' .$question->id }}</h3>
-    <h3>{{ Lang::get('enunciado'). ': ' .$question->statement }}</h3>
-    <h3>{{ Lang::get('title_id'). ': ' .$question->title_id }}</h3>
-    <h3>{{ Lang::get('é sobre avaliado?'). ': ' .$question->is_about_assessable? Lang::get('sim') : Lang::get('não') }}</h3>
-    <h3>{{ Lang::get('peso'). ': ' .$question->weight }}</h3>
-
+			<tr>
+    <td><h4>{{ Lang::get('ID'). ': ' .$question->id }}</h4></td>
+</tr>
+<tr>
+    <td><h4>{{ Lang::get('Enunciado'). ': ' .$question->statement }}</h4></td>
+    </tr>
+    <tr>
+    <td><h4>{{ Lang::get('Title_id'). ': ' .$question->title_id }}</h4></td>
+    </tr>
+    <tr>
+    <td><h4>{{ Lang::get('É sobre avaliado?'). ': ' .$question->is_about_assessable? Lang::get('Sim') : Lang::get('Não') }}</h4></td>
+    </tr>
+    <tr>
+    <td><h4>{{ Lang::get('Peso'). ': ' .$question->weight }}</h4></td>
+	</tr>
+	</trbody>
+</table>
+</div>
 @stop
