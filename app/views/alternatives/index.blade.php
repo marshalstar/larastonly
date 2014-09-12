@@ -7,7 +7,7 @@
     <div class="container theme-showcase">
 
         @if (Session::has('message'))
-        <div class="alert alert-info">{{ Session::get('message') }}</div>
+            <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
 
         <a href="{{ URL::to('alternatives/create') }}" class="btn btn-sm btn-primary">{{ Lang::get('nova alternativa') }}</a>

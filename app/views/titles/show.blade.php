@@ -4,10 +4,33 @@
 
 @section('content')
 
-    <h1>{{ Str::title(Lang::get('título')). ': ' .$title->name }}</h1>
+<div class="container theme-showcase">
 
-    <h3>{{ Lang::get('id'). ': ' .$title->id }}</h3>
-    <h3>{{ Lang::get('nome'). ': ' .$title->name }}</h3>
-    <h3>{{ Lang::get('title_id'). ': ' .(($pai = $title->title_id)? $pai : Lang::get('sem pai')) }}</h3>
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <td><h3>{{ Str::title(Lang::get('título')) }}</h3></td>
+                <td><h3>{{ $title->name}}</h3></td>
+            </tr>
+
+            <tr>
+                <td><h4>{{ Lang::get('id') }}</h4></td>
+                <td><h4>{{ $title->id }}</h4></td>
+            </tr>
+
+            <tr>
+                <td><h4>{{ Lang::get('nome') }}</h4></td>
+                <td><h4>{{ $title->name }}</h4></td>
+            </tr>
+
+            <tr>
+                <td><h4>{{ Lang::get('title_id') }}</h4></td>
+                <td><h4>{{ (($pai = $title->title_id)? $pai : Lang::get('sem pai')) }}</h4></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
 
 @stop

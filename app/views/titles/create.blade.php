@@ -4,22 +4,26 @@
 
 @section('content')
 
-    {{ HTML::ul($errors->all()) }}
+    <div class="container theme-showcase">
 
-    {{ Form::open(['url' => 'titles']) }}
+        {{ HTML::ul($errors->all()) }}
 
-    <div class="form-group">
-        {{ Form::label('name', Str::title(Lang::get('nome'))) }}
-        {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
+        {{ Form::open(['url' => 'titles']) }}
+
+        <div class="form-group input-group">
+            {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
+            {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
+        </div>
+
+        <div class="form-group input-group">
+            {{ Form::label('title_id', Str::title(Lang::get('título')), ['class' => 'input-group-addon']) }}
+            {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
+        </div>
+
+        {{ Form::submit(Str::title(Lang::get('novo título')), ['class' => 'btn btn-primary']) }}
+
+        {{ Form::close() }}
+
     </div>
-
-    <div class="form-group">
-        {{ Form::label('title_id', Str::title(Lang::get('título'))) }}
-        {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
-    </div>
-
-    {{ Form::submit(Str::title(Lang::get('novo título')), ['class' => 'btn btn-primary']) }}
-
-    {{ Form::close() }}
 
 @stop
