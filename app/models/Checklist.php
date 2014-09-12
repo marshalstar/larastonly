@@ -11,12 +11,12 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $title_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereTitleId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Checklist whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereTitleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereUpdatedAt($value)
  */
 class Checklist extends Ardent
 {

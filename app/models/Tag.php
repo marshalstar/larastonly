@@ -9,10 +9,10 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $name
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Tag whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Tag whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Tag whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Tag whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Tag whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Tag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value)
  */
 class Tag extends Ardent
 {

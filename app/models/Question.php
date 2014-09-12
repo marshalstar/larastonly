@@ -11,12 +11,17 @@ use \LaravelBook\Ardent\Ardent;
  * @property boolean $is_about_assessable
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Question whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereTitleId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereIsAboutAssessable($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Question whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereTitleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereIsAboutAssessable($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereUpdatedAt($value)
+ * @property string $statement
+ * @property integer $weight
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
+ * @method static \Illuminate\Database\Query\Builder|\Question whereStatement($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Question whereWeight($value) 
  */
 class Question extends Ardent
 {

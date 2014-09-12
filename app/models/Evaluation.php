@@ -11,12 +11,12 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $commentary
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereChecklistId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCommentary($value) 
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereChecklistId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCommentary($value)
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUpdatedAt($value)
  */
 class Evaluation extends Ardent
 {

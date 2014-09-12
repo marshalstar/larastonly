@@ -11,6 +11,20 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
+        $this->truncateTables();
+
+        $this->call('TagsTableSeeder');
+        $this->call('UsersTableSeeder');
+        $this->call('TitlesTableSeeder');
+        $this->call('ChecklistsTableSeeder');
+        $this->call('EvaluationsTableSeeder');
+        $this->call('TypesTableSeeder');
+        $this->call('QuestionsTableSeeder');
+        $this->call('AlternativesTableSeeder');
+	}
+
+    private function truncateTables()
+    {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Tag::truncate();
         User::truncate();
@@ -22,15 +36,6 @@ class DatabaseSeeder extends Seeder {
         Alternative::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $this->command->comment('Truncate Tables');
-
-        $this->call('TagsTableSeeder');
-        $this->call('UsersTableSeeder');
-        $this->call('TitlesTableSeeder');
-        $this->call('ChecklistsTableSeeder');
-        $this->call('EvaluationsTableSeeder');
-        $this->call('TypesTableSeeder');
-        $this->call('QuestionsTableSeeder');
-        $this->call('AlternativesTableSeeder');
-	}
+    }
 
 }

@@ -10,11 +10,11 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $name
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Title whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Title whereTitleId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Title whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Title whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Title whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Title whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Title whereTitleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Title whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Title whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Title whereUpdatedAt($value)
  */
 class Title extends Ardent
 {
