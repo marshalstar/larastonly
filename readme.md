@@ -36,6 +36,13 @@ front-end e middle-end mais fáceis:
 http://octobercms.com/features
 https://github.com/octobercms/october
 
+alert estiloso
+http://github.hubspot.com/messenger/docs/welcome/
+
+modal muito usada
+https://github.com/dimsemenov/Magnific-Popup
+http://tympanus.net/Development/ModalWindowEffects/
+
 ver o que é:
 
 phpdocumentor/reflection-docblock suggests installing dflydev/markdown (1.0.*)
