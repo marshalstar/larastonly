@@ -1,4 +1,5 @@
-@include('templates.partials.header')
+@extends('templates.default')
+@section('content')
 
     <div class="container theme-showcase">
 
@@ -15,7 +16,5 @@
             </table>
         </div>
     </div>
-
 @include('templates.partials.delete')
-
-@include('templates.partials.footer')
+@stop

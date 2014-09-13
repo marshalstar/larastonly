@@ -16,9 +16,9 @@
 
     @foreach ($alternatives as $alternative)
         <tr id="line{{ $alternative->id }}">
-                <td>{{ $alternative->id }}</td>
-                <td>{{ $alternative->name }}</td>
-                <td>{{ $alternative->type_id }}</td>
+            <td>{{ $alternative->id }}</td>
+            <td>{{ $alternative->name }}</td>
+            <td>{{ $alternative->type_id }}</td>
             <td>
                 <div class="btn-group">
                     <a href="{{ URL::route('alternatives.show', $alternative->id) }}" class="btn btn-sm btn-info">{{ Lang::get('Exibir') }}</a>
