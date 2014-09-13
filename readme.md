@@ -1,10 +1,12 @@
 
     Tarefas:
         atualizar os index de todas os cruds
-        fazer todos os relacionamentos "bidirecionais"
-        terminar relacionamento n:n
-        terminar relacionamento ternário n:n
-        criar checklist de forma mais usável e fazer ele funcionar
+        fazer todos os relacionamentos "bidirecionais" (marshal)
+        terminar relacionamento n:n (marshal)
+        terminar relacionamento ternário n:n (marshal)
+        criar checklist de forma mais usável e fazer ele funcionar (nauj)
+        fazer uma tela inicial fantástica
+        integrar login do usuário, confirmação de conta por email e recuperação de senha por email (palestina)
 
 
     Info API's usadas:
