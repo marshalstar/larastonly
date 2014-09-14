@@ -4,9 +4,29 @@
 
 @section('content')
 
-    <h1>{{ Str::title(Lang::get('tipo')). ': ' .$type->name }}</h1>
+    <div class="container theme-showcase">
 
-    <h3>{{ Lang::get('id'). ': ' .$type->id }}</h3>
-    <h3>{{ Lang::get('nome'). ': ' .$type->name }}</h3>
+        <table class="table">
+            <tbody>
+
+                <tr>
+                    <td><h3>{{ Str::title(Lang::get('tipo')) }}</h3></td>
+                    <td><h3>{{ $type->name }}</h3></td>
+                </tr>
+
+                <tr>
+                    <td><h4>{{ Lang::get('id') }}</h4></td>
+                    <td><h4>{{ $type->id }}</h4></td>
+                </tr>
+
+                <tr>
+                    <td><h4>{{ Lang::get('nome') }}</h4></td>
+                    <td><h4>{{ $type->name }}</h4></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
 
 @stop
