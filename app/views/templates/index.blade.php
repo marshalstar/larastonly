@@ -7,7 +7,7 @@
             <div class="alert alert-info">{{ Session::get('message') }}</div>
         @endif
 
-        <a href="@yield('create', '#')" class="btn btn-sm btn-primary">@yield('label-create', Lang::get('novo'))</a>
+        @yield('novo', '<a href="#" class="btn btn-sm btn-primary">'. Lang::get('novo') .'</a>')
         <br/><br/>
 
         <div>
@@ -16,5 +16,7 @@
             </table>
         </div>
     </div>
+@stop
+@section('script')
 @include('templates.partials.delete')
 @stop

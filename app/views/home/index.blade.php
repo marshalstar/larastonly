@@ -4,8 +4,6 @@
 
 @section('content')
 
-<!--http://upload.wikimedia.org/wikipedia/commons/6/60/Green_Park,_London_-_April_2007.jpg-->
-
 <style type="text/css">
     body {
         margin: 0;
@@ -25,13 +23,13 @@
         width: 100%;
     }
 </style>
-    <body>
-    <header class = "jumbotron subhead">
-        <div class = "container">
-            <h1>Listonly</h1>
-            <p>Criação de Checklists</p>
-        </div>
-    </header>
+
+<header class = "jumbotron subhead">
+    <div class = "container">
+        <h1>Listonly</h1>
+        <p>Criação de Checklists</p>
+    </div>
+</header>
 
 <div class="container">
     <div class="row">
@@ -49,7 +47,6 @@
         </aside>
     </div>
 </div>
-    </body>
 
 
 

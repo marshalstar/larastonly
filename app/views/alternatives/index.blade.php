@@ -2,8 +2,9 @@
 
 @section('title'){{ Str::title(Lang::get('alternativas')) }} @stop
 
-@section('create'){{ URL::to('alternatives/create') }} @stop
-@section('label-create'){{ Lang::get('nova alternativa') }} @stop
+@section('novo')
+<a href="{{ URL::to('alternatives/create') }}" class="btn btn-sm btn-primary">{{ Lang::get('nova alternativa') }}</a>
+@stop
 
 @section('table-data')
 

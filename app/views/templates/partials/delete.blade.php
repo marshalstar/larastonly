@@ -47,8 +47,8 @@
     });
 </script>
 
-<!-- @TODO: jogar os arquivos relacionados a modal em um arquivo de modal genérica -->
-<!-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html -->
+{{-- @TODO: jogar os arquivos relacionados a modal em um arquivo de modal genérica --}}
+{{-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
 <script>
     $(function() {
         $('.popup-with-zoom-anim').magnificPopup({
@@ -74,7 +74,7 @@
     });
 </script>
 
-<!-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html -->
+{{-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
 <style type="text/css">
 
     #destroy-dialog {
