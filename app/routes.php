@@ -5,12 +5,19 @@ Route::get('/', [
     'uses' => 'HomeController@index',
 ]);
 
-Route::get('/debug', function()
+Route::match(array('GET', 'POST'), '/debug', function()
 {
-    Kint::dump(array_column(Alternative::all()->toArray(), 'name', 'id'));
-    Kint::dump(Alternative::all(['id', 'name'])->toArray());
-    die('show');
+	dd(Input::all());
+    return 'Hello World';
 });
+
+Route::get('/debug2', function()
+{
+    return View::make('debug');
+});
+
+Route::get('/montar-lista', []);
+
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
