@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Prueba</title>
+<SCRIPT src="prueba.js"></SCRIPT>
+  
+</head>
+<body>
+
+  <script>
+  var campos = 1;
+
+function agregarCampo(idp){
+  campos = campos + 1;
+  var NvoCampo= document.createElement("div");
+  NvoCampo.id= "divcampo_"+(campos);
+  NvoCampo.innerHTML= 
+    "<table>" +
+    "   <tr>" +
+    "     <td nowrap='nowrap'>" +
+    "        <input value = '" + document.getElementById( idp ) .value + "' type='text' size='50' name='articu_" + campos + "' id='articu_" + campos + "'>" +
+    "     </td>" +
+    "     <td nowrap='nowrap'>" +
+    "        <a href='JavaScript:quitarCampo(" + campos +");'> Quitar </a>" +
+    "     </td>" +
+    "   </tr>" +
+    "</table>";
+  var contenedor= document.getElementById("contenedorcampos");
+    contenedor.appendChild(NvoCampo);
+  }
+
+function quitarCampo(iddiv){
+  var eliminar = document.getElementById("divcampo_" + iddiv);
+  var contenedor= document.getElementById("contenedorcampos");
+  contenedor.removeChild(eliminar);
+}
+
+
+
+function mudarTexto(id)
+{
+  var p = document.getElementById(id);
+  var textoOld = p.innerHTML;
+
+  p.innerHTML = "<input id = 'input_"+id+"' value = '"+textoOld+"' type = 'text' onchange = 'mudou(\""+id+"\")'> </input>";
+}
+
+function mudou(id)
+{ 
+  document.getElementById(id).innerHTML = document.getElementById("input_" + id).value;
+}
+
+
+var titulos = 1;
+function novoTitulo(id)
+{
+  titulos = titulos + 1;
+
+  var div = document.getElementById("sub_div_" + id);
+  
+  var identacao = parseInt(div.identacao);
+
+  div.innerHTML = div.innerHTML +
+            "<div id = 'div_titulo_"+titulos+"' style='text-indent: '"+(identacao+5)+"'px;'  identacao = '"+(identacao+5)+"'>" + 
+            "    <table border='0'> " +
+            "      <tr>" +
+            "        <td id = \"titulo_"+titulos+"\">titulo_"+titulos+"</td>" +
+            "        <td> | <button onclick= 'JavaScript:mudarTexto(\"titulo_"+titulos+"\")'>Mudar texto</button></td>" +
+            "      </tr> " +
+            "      <tr>" +
+            "        <td><a href = 'JavaScript:novoTitulo(\"titulo_"+titulos+"\")'>Novo titulo</a></td>" +
+            "      </tr>" +
+            "    </table>"  +
+            "    <div id = 'sub_div_titulo_"+titulos+"' style='text-indent: '"+(identacao+10)+"'px;  identacao = '"+(identacao+10)+"'>" +
+            "    </div>" +
+            "</div>";
+}
+  </script>
+
+
+
+  <div id = "div_titulo_1"  >
+
+    <table border="0"> 
+      
+      <tr>
+        <td id = "titulo_1">Teste</td>
+               
+        <td> | <a href= "JavaScript:mudarTexto('titulo_1');">Mudar texto </a></td>
+      </tr> 
+
+      <tr>
+        <td> <a href= "JavaScript:novoTitulo('titulo_1');">Novo titulo</a> </td>
+      </tr>
+
+    </table> 
+
+    <div id = "sub_div_titulo_1"  >
+    </div>
+
+  </div>
+
+<!--
+  <h3>Muestra de campos dinámicos</h3>
+  
+  <form id="formdinamico" name="formdinamico" action="prueba.php">
+  
+   <input type="text" id = "nome_checklist"></input>  
+   <a href='JavaScript:agregarCampo("nome_checklist");'> Agregar campo de captura </a>
+    
+   
+   <div id="contenedorcampos">
+   
+   </div>
+  
+   <input type="submit" value="Guardar" name="Guardar"> 
+  
+  </form>  
+-->
+
+</body>
+</html>
