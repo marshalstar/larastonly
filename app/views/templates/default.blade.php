@@ -17,12 +17,6 @@
     <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
     {{-- BOOTSTRAP --}}
 
-    <link rel="stylesheet" href="https://abs.twimg.com/a/1410478644/css/t1/twitter_core.bundle.css">
-    <link rel="stylesheet" href="https://abs.twimg.com/a/1410478644/css/t1/twitter_logged_out.bundle.css">
-    <link rel="stylesheet" href="https://abs.twimg.com/a/1410478644/css/t1/twitter_more_1.bundle.css">
-    <link rel="stylesheet" href="https://abs.twimg.com/a/1410478644/css/t1/twitter_more_2.bundle.css">
-    {{-- Nada se cria, tudo se copia (stylesheet do site do twitter, licensa do MIT) --}}
-
     <div id="bg">
         <img src="http://css-tricks.com/examples/FullPageBackgroundImage/images/bg.jpg" alt="">
     </div>
@@ -60,7 +54,7 @@
             height: 100%;
         }
         body {
-            padding-top: 46px;
+            padding-top: 57px;
         }
         .wrap {
             padding-top: 10px;
@@ -106,10 +100,6 @@
 
 <script src="http://dimsemenov.com/plugins/magnific-popup/dist/jquery.magnific-popup.min.js?v=0.9.9"></script>
 {{-- MAGNIFIC MODAL--}}
-
-<script src="js/init.bb0be1010da2f5b8da088c016003bca9ba5c3c41.js" async></script>
-<!--    <script src="http://abs.twimg.com/c/swift/pt/init.bb0be1010da2f5b8da088c016003bca9ba5c3c41.js" async></script>-->
-{{-- Nada se cria, tudo se copia (stylesheet do site do twitter, tem copyright) --}}
 
 <script src="js/anchor.js" async></script>
 {{-- nosso--}}

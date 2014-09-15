@@ -1,25 +1,33 @@
 @extends('templates.default')
 @section('content')
 
-<div class="container">
-    <div class="content-header"><div class="header-inner"></div></div>{{-- header do corpo --}}
-    <div class="stream-item js-new-items-bar-container">
+<!--<style>-->
+<!--    @import url("http://netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css");-->
+<!--    .container-shadow {-->
+<!--        margin-top: 50px;-->
+<!--        box-shadow: 0 0 30px black;-->
+<!--        padding:0 15px 0 15px;-->
+<!--    }-->
+<!--</style>-->
 
-        @if (Session::has('message'))
-            <div class="alert alert-info">{{ Session::get('message') }}</div>
-        @endif
+<!--<div class="container container-shadow" style="display: block; background-color: white; ">-->
+<div class="container" style="display: block; background-color: white;">
+    <div class="col-lg-12">
 
-        <br/>
-            @yield('novo', '<a href="#" class="btn btn-sm btn-primary">'. Lang::get('novo') .'</a>')
-        <br/><br/>
+    @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+    @endif
 
-        <table class="table table-hover">
+    <br/>
+        @yield('novo', '<a href="#" class="btn btn-sm btn-primary">'. Lang::get('novo') .'</a>')
+    <br/><br/>
+
+    <div class="table-responsive">
+        <table class="table table-hover borderless" style="table-layout: fixed; word-break: break-all;">
             @yield('table-data')
         </table>
-
     </div>
-    <div class="stream-end-inner"></div>{{-- footer do corpo --}}
-</div>
+</div></div>
 
 @stop
 @section('script')

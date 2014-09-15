@@ -3,7 +3,7 @@
 @section('title'){{ Str::title(Str::title(Lang::get('Nova questão'))) }} @stop
 
 @section('content')
-<div class = "container theme-showcase">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::open(['url' => 'questions']) }}

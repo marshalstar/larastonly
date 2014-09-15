@@ -31,7 +31,7 @@
     </div>
 </header>
 
-<div class="container">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
     <div class="row">
         <aside class="span8">
             <ul class="nav">

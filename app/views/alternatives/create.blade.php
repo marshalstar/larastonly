@@ -4,9 +4,7 @@
 
 @section('content')
 
-<div class="container">
-    <div class="content-header"><div class="header-inner"></div></div>{{-- header do corpo --}}
-    <div class="stream-item js-new-items-bar-container">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
 
         {{ HTML::ul($errors->all()) }}
 
@@ -25,9 +23,6 @@
         {{ Form::submit(Str::title(Lang::get('nova alternativa')), ['class' => 'btn btn-primary']) }}
 
         {{ Form::close() }}
-
-    </div>
-    <div class="stream-end-inner"></div>{{-- footer do corpo --}}
 </div>
 
 @stop

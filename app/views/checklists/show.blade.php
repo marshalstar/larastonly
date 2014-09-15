@@ -3,7 +3,7 @@
 @section('title'){{ Str::title(Lang::get('checklist')). ' ' .$checklist->name }} @stop
 
 @section('content')
-	<div class = "container theme-showcase">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
 		<table class = "table">
 			<tbody>
          <tr>

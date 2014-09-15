@@ -3,8 +3,8 @@
 @section('title'){{ Str::title(Lang::get('tag')). ' ' .$tag->name }} @stop
 
 @section('content')
-<div class = "container theme-showcase">
-	<table class = "table">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
+	<table class="table">
 		<trbody>
 			<tr>
     </td><h4>{{ Str::title(Lang::get('Tag')). ': ' .$tag->name }}</h4></td>

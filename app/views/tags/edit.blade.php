@@ -3,7 +3,7 @@
 @section('title'){{ Str::title(Lang::get('editar tag')) }} @stop
 
 @section('content')
-<div class = "container theme-showcase">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'PUT']) }}

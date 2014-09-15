@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container theme-showcase" style="display: block; background-color: white;">
+    <div class="container" style="display: block; background-color: white; padding: 10px;">
 
         <table class="table">
             <tbody>

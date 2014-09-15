@@ -3,7 +3,7 @@
 @section('title'){{ Str::title(Lang::get('questão')). ' ' .$question->statement }} @stop
 
 @section('content')
-<div class = "container theme-showcase">
+<div class="container" style="display: block; background-color: white; padding: 10px;">
 	<table class = "table">
 		<trbody>
 			<tr>
