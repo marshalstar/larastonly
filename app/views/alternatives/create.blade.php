@@ -4,7 +4,9 @@
 
 @section('content')
 
-    <div class="container theme-showcase">
+<div class="container">
+    <div class="content-header"><div class="header-inner"></div></div>{{-- header do corpo --}}
+    <div class="stream-item js-new-items-bar-container">
 
         {{ HTML::ul($errors->all()) }}
 
@@ -12,7 +14,7 @@
 
         <div class="form-group input-group">
             {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
-            {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
+            {{ Form::text('name', Input::old('name'), ['class' => 'form-control field', 'placeholder' => Lang::get('nome')]) }}
         </div>
 
         <div class="form-group input-group">
@@ -25,5 +27,7 @@
         {{ Form::close() }}
 
     </div>
+    <div class="stream-end-inner"></div>{{-- footer do corpo --}}
+</div>
 
 @stop
