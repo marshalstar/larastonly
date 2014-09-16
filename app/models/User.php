@@ -41,7 +41,7 @@ class User extends Ardent
     public $autoPurgeRedundantAttributes = true;
 
     public static $rules = [
-        'username' => 'required',
+        'username' => 'required|unique:users',
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',

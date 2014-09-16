@@ -22,6 +22,7 @@ class UsersController extends Controller
 	public function create()
     {
 		return View::make('users.create');
+		$code = str_random(60);
 	}
 
 	/**
@@ -33,7 +34,7 @@ class UsersController extends Controller
     {
         $user = new User();
         if ($user->save()) {
-            return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
+            return Redirect::route('users.index')->with('message', 'Salvo com sucesso, um e-mail de ativação foi enviado pa');
         }
         return Redirect::route('users.create')->withErrors($user->errors());
 	}

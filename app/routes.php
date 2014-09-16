@@ -27,3 +27,4 @@ Route::resource('tags', 'TagsController');
 Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
+

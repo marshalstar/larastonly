@@ -9,7 +9,6 @@
         {{ HTML::ul($errors->all()) }}
 
         {{ Form::open(array('url' => 'users')) }}
-
         <div class="form-group input-group">
             {{ Form::label('username', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
             {{ Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
@@ -56,9 +55,9 @@
         </div>
 
         {{ Form::submit(Str::title(Lang::get('novo usuário')), array('class' => 'btn btn-primary')) }}
-
+        
         {{ Form::close() }}
-
+        
     </div>
 
 @stop
