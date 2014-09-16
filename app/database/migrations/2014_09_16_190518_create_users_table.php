@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration {
 
@@ -23,6 +23,9 @@ class CreateUsersTable extends Migration {
 			$table->char('gender')->nullable();
 			$table->text('biography')->nullable();
 			$table->string('picture_url', 255)->nullable();
+			$table->integer('code');
+			$table->integer('active');
+			$table->string('password_temp');
 			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
@@ -37,5 +40,6 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::dropIfExists('users');
 	}
+
 
 }
