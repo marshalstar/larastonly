@@ -8,20 +8,17 @@
 
 @section('table-data')
 
-    <thead>
     <tr>
         <th class="text-center">{{ Lang::get('Id') }}</th>
         <th class="text-center">{{ Lang::get('Name') }}</th>
         <th class="text-center">{{ Lang::get('Type_id') }}</th>
         <th class="text-center">{{ Lang::get('Ações') }}</th>
     </tr>
-    </thead>
 
-    <tbody>
     @foreach ($alternatives as $alternative)
         <tr id="line{{ $alternative->id }}">
             <td class="text-center">{{ $alternative->id }}</td>
-            <td>{{ $alternative->name }}</td>
+            <td>{{ Str::limit($alternative->name, 37) }}</td>
             <td class="text-center">{{ $alternative->type_id }}</td>
             <td class="text-center">
                 <div class="list-inline">
@@ -33,6 +30,5 @@
             </td>
         </tr>
     @endforeach
-    </tbody>
 
 @stop

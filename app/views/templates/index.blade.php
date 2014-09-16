@@ -11,8 +11,8 @@
 <!--</style>-->
 
 <!--<div class="container container-shadow" style="display: block; background-color: white; ">-->
-<div class="container" style="display: block; background-color: white;">
-    <div class="col-lg-12">
+<div class="container container-main">
+<!--    <div class="col-lg-12">-->
 
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
@@ -23,10 +23,11 @@
     <br/><br/>
 
     <div class="table-responsive">
-        <table class="table table-hover borderless" style="table-layout: fixed; word-break: break-all;">
+        <table class="table table-hover">
+<!--        <table class="table table-hover borderless" style="table-layout: fixed; word-break: break-all;">-->
             @yield('table-data')
         </table>
-    </div>
+<!--    </div>-->
 </div></div>
 
 @stop

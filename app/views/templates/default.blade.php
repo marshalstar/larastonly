@@ -23,10 +23,18 @@
 
     <style>
 
-        #container {
+        @import 'bootstrap.less';
+        .container-main {
             background-color: white;
             display: block;
+            border-radius( 5px );
+
+            margin-top: 50px;
+            box-shadow: 0 0 30px black;
+            padding:10px 10px 10px 10px;
+            border:10px 10px 10px 10px;
         }
+
         #bg {
             position: fixed;
             top: -50%;
