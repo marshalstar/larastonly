@@ -19,12 +19,25 @@ class UsersController extends Controller
 	 *
 	 * @return Response
 	 */
+	public function create()
+    {
+		return View::make('users.create');
+		$code = str_random(60);
+	}
 
 	/**
 	 * Salva user espefíco no banco
 	 *
 	 * @return Response
 	 */
+	public function store()
+    {
+        $user = new User();
+        if ($user->save()) {
+            return Redirect::route('users.index')->with('message', 'Salvo com sucesso, um e-mail de ativação foi enviado pa');
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
+	}
 
 	/**
 	 * Mostra user específico.
@@ -79,56 +92,4 @@ class UsersController extends Controller
         return Redirect::route('users.index');
 	}
 
-	public function getCreate()
-	{
-		return View::make('users.create');
-	}
-
-	public function postCreate()
-	{
-		$user = new \User(\Input::all());
-		$validator = \Validator::make(\Input::all(), \User::$rules);
-		if($validator->fails()){
-			return Redirect::route('users-create')->withErrors($validator)->withInput();
-		} else{
-			$email = Input::get('email');
-			$username = Input::get('username');
-			$password = Input::get('password');
-
-			$speciality = Input::get('speciality');
-			$is_admin = Input::get('is_admin');
-			$gender = Input::get('gender');
-			$biography = Input::get('biography');
-			$picture_url = Input::get('picture_url');
-			$code = str_random(60);
-			$user = User::create(array(
-				'username' => $username,
-				'email' => $email,
-				'password' => Hash::make($password),
-				'speciality'=> $speciality,
-				'is_admin' => $is_admin,
-				'gender' => $gender,
-				'biography' => $biography,
-				'picture_url' => $picture_url,
-				'code' => $code,
-				'active' => 0
-				));
-			if($user){
-
-				Mail::send('emails.auth.activate', array('link' =>URL::route('users-activate', $code), 'username' => $username), function($message) use ($user){
-
-					$message->to($user->email, $user->username)->subject('Ative sua conta no Listonly');
-				});
-				return Redirect::route('users.index');
-			}
-		}
-	}
-	public function getActivate($code)
-	{
-		$user = User::where('code', '=', $code)->where('active', '=', 0);
-			if($user->count()){
-				$user = $user->first();
-				echo '<pre>', print_r($user), '</pre>';
-			}
-	}
 }

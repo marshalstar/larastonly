@@ -28,23 +28,3 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
-Route::group(array('before' => 'guest'), function(){
-	Route::group(array('before' => 'csrf'), function(){
-		Route::post('/users/create', array(
-			'as' => 'users-create-post',
-			'uses' => 'UsersController@postCreate'
-			));
-	});
-
-	Route::get('users/create', array(
-			'as' => 'users-create',
-			'uses' => 'UsersController@getCreate'
-
-		));
-
-	Route::get('/users/activate/{code}', array(
-		'as' => 'users-activate',
-		'uses' => 'UsersController@getActivate'
-
-		));
-});

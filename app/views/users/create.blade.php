@@ -3,30 +3,25 @@
 @section('title'){{ Str::title(Lang::get('novo usuário')) }} @stop
 
 @section('content')
-<div class="container" style="display: block; background-color: white; padding: 10px;">
-    <form action="{{URL::route('users-create-post')}}" method="post">
-           <div class="form-group input-group">
+
+    <div class="container" style="display: block; background-color: white; padding: 10px;">
+
+        {{ HTML::ul($errors->all()) }}
+
+        {{ Form::open(array('url' => 'users')) }}
+        <div class="form-group input-group">
             {{ Form::label('username', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
             {{ Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => Lang::get('nome')]) }}
-            @if($errors->has('username'))
-                {{$errors->first('username')}}
-            @endif
         </div>
 
         <div class="form-group input-group">
             {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'input-group-addon']) }}
             {{ Form::email('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => Lang::get('email@exemplo.com')]) }}
-            @if($errors->has('email'))
-                {{$errors->first('email')}}
-            @endif
         </div>
 
         <div class="form-group input-group">
             {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'input-group-addon']) }}
             {{ Form::password('password', null, ['class' => 'form-control']) }}
-            @if($errors->has('password'))
-                {{$errors->first('password')}}
-            @endif
         </div>
 
         <div class="form-group input-group">
@@ -60,8 +55,9 @@
         </div>
 
         {{ Form::submit(Str::title(Lang::get('novo usuário')), array('class' => 'btn btn-primary')) }}
-
-    {{Form::token()}}
-    </form>
+        
+        {{ Form::close() }}
+        
     </div>
+
 @stop
