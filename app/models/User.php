@@ -30,7 +30,7 @@ use \LaravelBook\Ardent\Ardent;
  */
 class User extends Ardent
 {
-    
+
     protected $table = 'users';
     protected $guarded = ['id'];
 	protected $hidden = ['password'];
@@ -44,13 +44,12 @@ class User extends Ardent
         'username' => 'required|unique:users',
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed',
-        'password_confirmation' => 'required',
+        'password_confirmation' => 'required|same:password',
         'speciality' => '',
         'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
         'gender' => 'required|alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',
-       
     ];
 
     public function afterValidate()
