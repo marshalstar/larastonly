@@ -18,21 +18,23 @@
     {{-- BOOTSTRAP --}}
 
     <div id="bg">
-        <img src="http://css-tricks.com/examples/FullPageBackgroundImage/images/bg.jpg" alt="">
+        <img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Amanecer_en_la_Torre_Eiffel_(8163660325).jpg" alt="">
     </div>
 
     <style>
 
-        @import 'bootstrap.less';
         .container-main {
             background-color: white;
             display: block;
-            border-radius( 5px );
 
             margin-top: 50px;
             box-shadow: 0 0 30px black;
             padding:10px 10px 10px 10px;
             border:10px 10px 10px 10px;
+
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
         }
 
         #bg {
