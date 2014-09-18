@@ -108,5 +108,33 @@ class UsersController extends Controller
         return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
         
     }
+    public function getLogin()
+    {
+    	return View::make('users.login');
+    }
+    
+    public function postLogin()
+    {
+    	$validator = Validator::make(Input::all(), [
+    		'email' => 'required|email',
+    		'password' => 'required'
+			]);
+    	if($validator->fails()){
+    		return Redirect::route('users-login')->withErrors($validator);
+    	} 
 
+    	else{
+
+    		$auth = Auth::attempt(array(
+    			'email' => Input::get('email'),
+    			'password' => Input::get('password'),
+    			'active' => 1
+    			));
+    		if($auth)
+    		{
+    			return Redirect::intendend('/');
+    		}
+    	}
+    	return Redirect::route('users-login')->with('message', 'Logado falhou.');
+    }
 }

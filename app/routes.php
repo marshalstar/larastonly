@@ -23,6 +23,18 @@ Route::get('/users/active/{code}', [
     'uses' => 'UsersController@getActivate',
 ]);
 
+Route::get('/users/login', 
+	[
+	'as' => 'users-login',
+	'uses' => 'UsersController@getLogin'
+
+	]);
+Route::post('/users/login', 
+	[
+	'as' => 'users-login-post',
+	'uses' => 'UsersController@postLogin'
+	]);
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
