@@ -33,7 +33,7 @@ class UsersController extends Controller
     {
         $user = new User();
         if ($user->save()) {
-            return Redirect::route('users.index')->with('message', 'Salvo com sucesso, um e-mail de ativação foi enviado pa');
+            return Redirect::route('users.index')->with('message', 'Seu perfil foi criado com sucesso, ative sua conta através do link enviado para seu e-mail!');
         }
         return Redirect::route('users.create')->withErrors($user->errors());
 	}
@@ -102,11 +102,11 @@ class UsersController extends Controller
             $user->code = '';
 
             if ($user->updateUniques()) {
-                return Redirect::route('home');
+                return Redirect::route('home')->with('message', 'Sua conta foi ativada com sucesso!');
             }
         }
-        die('pqp');
-        /** @TODO: arruma aqui gorges */
+        return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
+        
     }
 
 }

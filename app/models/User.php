@@ -90,10 +90,10 @@ class User extends Ardent
 
     public function afterSave()
     {
-        if ($this->active) {
+        if (!$this->active) {
             $user = $this;
-            Mail::send('emails.auth.activate', array('link' => URL::route('user-active', $this->code), 'username' => $user->username), function ($message) use ($user) {
-                $message->to($user->email, $user->username)->subject('ativado porra!');
+            Mail::send('emails.auth.activate', array('link' => URL::route('user-active', $this->code), 'username' => $this->username), function ($message) use ($user) {
+                $message->to($user->email, $user->username)->subject('Ative sua conta!');
             });
         }
     }
