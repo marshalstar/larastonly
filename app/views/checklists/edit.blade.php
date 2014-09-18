@@ -3,7 +3,7 @@
 @section('title'){{ Str::title(Lang::get('editar')). ' ' .$checklist->name }} @stop
 
 @section('content')
-<div class="container" style="display: block; background-color: white; padding: 10px;">
+<div class="container container-main">
     {{ HTML::ul($errors->all()) }}
 
     {{ Form::model($checklist, ['route' => ['checklists.update', $checklist->id], 'method' => 'PUT']) }}
