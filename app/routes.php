@@ -18,6 +18,10 @@ Route::get('/debug2', function()
 
 Route::get('/montar-lista', []);
 
+Route::get('/users/active/{code}', [
+    'as' => 'user-active',
+    'uses' => 'UsersController@getActivate',
+]);
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');

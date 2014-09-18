@@ -27,6 +27,12 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\User wherePictureUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereUpdatedAt($value)
+ * @property integer $active
+ * @property string $code
+ * @property string $password_temp
+ * @method static \Illuminate\Database\Query\Builder|\User whereActive($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User whereCode($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value) 
  */
 class User extends Ardent
 {
@@ -43,14 +49,22 @@ class User extends Ardent
     public static $rules = [
         'username' => 'required|unique:users',
         'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed',
-        'password_confirmation' => 'required',
+        'password' => 'required',
+        'password_confirmation' => '',
         'speciality' => '',
         'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
         'gender' => 'required|alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',
+        'code' => '',
+        'active' => '',
     ];
+
+    /* @TODO o yuri vai arrumar esta draga
+     'password' => 'required|confirmed',
+        'password_confirmation' => 'required',
+
+     */
 
     public function afterValidate()
     {
@@ -59,11 +73,29 @@ class User extends Ardent
             $is = $this->is_admin;
             if ($is == 'on') {
                 $this->is_admin = true;
-            } elseif ($is != 'off' && !is_bool($is)) {
-                return false;
             }
         }
         return true;
+    }
+
+    public function beforeSave()
+    {
+        if (!$this->active) {
+            $this->password = Hash::make($this->password);
+            $this->code = str_random(60);
+            $this->active = 0;
+        }
+        return true;
+    }
+
+    public function afterSave()
+    {
+        if ($this->active) {
+            $user = $this;
+            Mail::send('emails.auth.activate', array('link' => URL::route('user-active', $this->code), 'username' => $user->username), function ($message) use ($user) {
+                $message->to($user->email, $user->username)->subject('ativado porra!');
+            });
+        }
     }
 
 }

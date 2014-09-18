@@ -22,7 +22,6 @@ class UsersController extends Controller
 	public function create()
     {
 		return View::make('users.create');
-		$code = str_random(60);
 	}
 
 	/**
@@ -91,5 +90,23 @@ class UsersController extends Controller
         User::destroy($id);
         return Redirect::route('users.index');
 	}
+
+    public function getActivate($code)
+    {
+        $user = User::where('code', '=', $code)->where('active', '=', 0);
+
+        if ($user->count()) {
+            $user = $user->first();
+
+            $user->active = 1;
+            $user->code = '';
+
+            if ($user->updateUniques()) {
+                return Redirect::route('home');
+            }
+        }
+        die('pqp');
+        /** @TODO: arruma aqui gorges */
+    }
 
 }

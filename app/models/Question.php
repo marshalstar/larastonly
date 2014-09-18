@@ -20,8 +20,8 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $statement
  * @property integer $weight
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
- * @method static \Illuminate\Database\Query\Builder|\Question whereStatement($value) 
- * @method static \Illuminate\Database\Query\Builder|\Question whereWeight($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Question whereStatement($value)
+ * @method static \Illuminate\Database\Query\Builder|\Question whereWeight($value)
  */
 class Question extends Ardent
 {
