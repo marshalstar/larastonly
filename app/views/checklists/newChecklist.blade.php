@@ -4,32 +4,57 @@
 <script src="/js/newChecklist.js" async></script>
 @section('content')
 
-<div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">
-      
-    <table border="0"> 
-      <tr>
-        <td>
-        <h3 onclick= "JavaScript:mudarTexto('titulo_1');" id="titulo_1" onBlur="alert('oi')" >Teste</h3>
-        </td>
-        <td>
-          <div class="btn-group">
-            <button onclick= 'JavaScript:remover("div_titulo_1");'  class="btn btn-xs btn-danger">
-              Remover titulo
-            </button>
-          </div>
-        </td>
-      </tr> 
-    </table> 
-      <div class="btn-group">
-        <button onclick= "JavaScript:novoTitulo('titulo_1'); " class="btn btn-sm btn-primary">
-          Novo titulo
-        </button>
-        <button onclick= "JavaScript:novaQuestao('titulo_1');" class="btn btn-sm btn-info">
-          Nova questao
-        </button>
-      </div>
+<!-- <div style='padding:30px;width:200px;background:red'>
+  <form action='' method='post' style='width:200px;background:blue;padding:3px'>
+    <input size='' style='width:100%;margin:-3px;border:2px inset #eee' />
+    <br /><br />
+    <input size='' style='width:100%' />
+  </form>
+</div> -->
 
-    <div id = "questoes_titulo_1" style="margin: 0px 0px 0px 15px;">
+<div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">
+
+  <table class="table table-bordered"> 
+    <tr> 
+      <td>
+        <table>
+          <tr>
+            <td>
+              <h3><input id = 'titulo_1' value = 'Teste' type = 'text' style='width:700' onChange = "JavaScript:mudou('titulo_1')" /></h3>
+            </td>
+            <td>
+              <div class="btn-group">
+                <button onclick= 'JavaScript:remover("div_titulo_1");'  class="btn btn-xs btn-danger">
+                  Remover titulo
+                </button>
+              </div>
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <div class="btn-group">
+                <button onclick= "JavaScript:novoTitulo('titulo_1'); " class="btn btn-sm btn-primary">
+                  Novo titulo
+                </button>
+                <button onclick= "JavaScript:novaQuestao('titulo_1');" class="btn btn-sm btn-info">
+                  Nova questao
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <div id = "questoes_titulo_1" style="margin: 0px 0px 0px 15px;">
+        </div>
+
+        <div id = "sub_div_titulo_1" style="margin: 0px 0px 0px 15px;">
+        </div>
+
+      </td>
+    </tr>
+  </table>
+</div>
+@stop
 
     
     <!--<lu class="list-unstyled">
@@ -107,11 +132,6 @@
 
       </div> 
     </table> -->
-  </div>
-    <div id = "sub_div_titulo_1" style="margin: 0px 0px 0px 15px;">
-    </div>
-
-  </div>
-@stop
+ 
 <!--</body>
 </html> -->
