@@ -111,7 +111,8 @@
 <script src="http://dimsemenov.com/plugins/magnific-popup/dist/jquery.magnific-popup.min.js?v=0.9.9"></script>
 {{-- MAGNIFIC MODAL--}}
 
-<script src="js/anchor.js" async></script>
+<script src="/js/anchor.js" async></script>
+
 {{-- nosso--}}
 
 <script>
@@ -120,6 +121,7 @@
     });
 </script>
 {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
+
 
 @yield('script')
 
