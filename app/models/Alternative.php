@@ -17,7 +17,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Alternative whereUpdatedAt($value)
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Question[] $questions
- * @method static \Illuminate\Database\Query\Builder|\Alternative whereName($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Alternative whereName($value)
  */
 class Alternative extends Ardent
 {

@@ -3,39 +3,40 @@
 @section('title'){{ Str::title(Lang::get('checklist')). ' ' .$checklist->name }} @stop
 
 @section('content')
-<div class="container" style="display: block; background-color: white; padding: 10px;">
-		<table class = "table">
-			<tbody>
-         <tr>
-                    <td><h3>{{ Str::title(Lang::get('Checklist')) }}</h3></td>
-                    <td><h3><small>{{ $checklist->name }}</small></h3></td>
-                </tr>
+    <div class="container container-main">
 
-        		<tr>
-                    <td><h4>{{ Str::title(Lang::get('ID')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->id }}</small></h4></td>
-                </tr>
-        <tr>
-                    <td><h4>{{ Str::title(Lang::get('Nome')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->name }}</small></h4></td>
-                </tr>
-                     <tr>
-                    <td><h4>{{ Str::title(Lang::get('Usuário que criou o checklist: ')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->user_id }}</small></h4></td>
-                </tr>
-                     <tr>
-                    <td><h4>{{ Str::title(Lang::get('Id do título: ')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->title_id }}</small></h4></td>
-                </tr>
-                     <tr>
-                    <td><h4>{{ Str::title(Lang::get('Criado em:')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->created_at->format('d/m/Y')}}</small></h4></td>
-                </tr>
-                 <tr>
-                    <td><h4>{{ Str::title(Lang::get('Atualizado a: ')) }}</h4></td>
-                    <td><h4><small>{{ $checklist->updated_at->diffForHumans()}}</small></h4></td>
-                </tr>
-</tbody>
-    </table>
-</div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+
+                    <tr>
+                        <td><h3>{{ Str::title(Lang::get('Checklist')) }}</h3></td>
+                        <td><h3>{{ $checklist->name }}</h3></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>{{ Lang::get('ID') }}</h4></td>
+                        <td><h4>{{ $checklist->id }}</h4></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>{{ Lang::get('Nome') }}</h4></td>
+                        <td><h4>{{ $checklist->name }}</h4></td>
+                    </tr>
+
+                    <tr>
+                        <td><h4>{{ Lang::get('Title_id') }}</h4></td>
+                        <td><h4>{{ $checklist->title_id }}</h4></td>
+                    </tr>
+
+                    <tr>
+                        <<td><h4>{{Lang::get('User_id')}}</h4></td>
+                        <<td><h4>{{$checklist->user_id}}</h4></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 @stop

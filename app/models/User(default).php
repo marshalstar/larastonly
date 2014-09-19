@@ -30,6 +30,12 @@ use Illuminate\Auth\Reminders\RemindableInterface;
  * @method static \Illuminate\Database\Query\Builder|\User2 wherePictureUrl($value)
  * @method static \Illuminate\Database\Query\Builder|\User2 whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\User2 whereUpdatedAt($value)
+ * @property integer $active
+ * @property string $code
+ * @property string $password_temp
+ * @method static \Illuminate\Database\Query\Builder|\User2 whereActive($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User2 whereCode($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User2 wherePasswordTemp($value) 
  */
 class User2 extends Eloquent implements UserInterface, RemindableInterface {
 

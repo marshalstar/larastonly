@@ -4,33 +4,30 @@
 
 @section('content')
 
-<div class="container" style="display: block; background-color: white; padding: 10px;">
+<div class="container container-main">
 
-    <table class="table">
-        <tbody>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
 
-            <tr>
-                <td><h3>{{ Str::title(Lang::get('título')) }}</h3></td>
-                <td><h3>{{ $title->name}}</h3></td>
-            </tr>
+                    <tr>
+                        <td><h3>{{ Str::title(Lang::get('Tag')) }}</h3></td>
+                        <td><h3>{{ $title->name }}</h3></td>
+                    </tr>
 
-            <tr>
-                <td><h4>{{ Lang::get('id') }}</h4></td>
-                <td><h4>{{ $title->id }}</h4></td>
-            </tr>
+                    <tr>
+                        <td><h4>{{ Lang::get('ID') }}</h4></td>
+                        <td><h4>{{ $title->id }}</h4></td>
+                    </tr>
+        
+        <<tr>
+        <td><<h4>{{Lang::get('Title_ID')}}</h4>></td>
+        <td><<h4>{{$title->title_id}}</h4></td>
+        </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <tr>
-                <td><h4>{{ Lang::get('nome') }}</h4></td>
-                <td><h4>{{ $title->name }}</h4></td>
-            </tr>
-
-            <tr>
-                <td><h4>{{ Lang::get('title_id') }}</h4></td>
-                <td><h4>{{ (($pai = $title->title_id)? $pai : Lang::get('sem pai')) }}</h4></td>
-            </tr>
-
-        </tbody>
-    </table>
-</div>
+    </div>
 
 @stop

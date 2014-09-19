@@ -18,6 +18,22 @@ Route::get('/debug2', function()
 
 Route::get('/montar-lista', []);
 
+Route::get('/users/active/{code}', [
+    'as' => 'user-active',
+    'uses' => 'UsersController@getActivate',
+]);
+
+Route::get('/users/login', 
+	[
+	'as' => 'users-login',
+	'uses' => 'UsersController@getLogin'
+
+	]);
+Route::post('/users/login', 
+	[
+	'as' => 'users-login-post',
+	'uses' => 'UsersController@postLogin'
+	]);
 
 
 Route::resource('alternatives', 'AlternativesController');

@@ -9,15 +9,15 @@
 @section('table-data')
 
     <tr>
-        <th class="text-center">{{ Lang::get('id') }}</th>
-        <th class="text-center">{{ Lang::get('nome do usuário') }}</th>
-        <th class="text-center">{{ Lang::get('email') }}</th>
-        <th class="text-center">{{ Lang::get('especialidade') }}</th>
-        <th class="text-center">{{ Lang::get('é administrador?') }}</th>
-        <th class="text-center">{{ Lang::get('sexo') }}</th>
-        <th class="text-center">{{ Lang::get('biografia') }}</th>
-        <th class="text-center">{{ Lang::get('url do retrato') }}</th>
-        <th class="text-center">{{ Lang::get('ações') }}</th>
+        <th class="text-center">{{ Lang::get('ID') }}</th>
+        <th class="text-center">{{ Lang::get('Username') }}</th>
+        <th class="text-center">{{ Lang::get('E-Mail') }}</th>
+        <th class="text-center">{{ Lang::get('Especialidade') }}</th>
+        <th class="text-center">{{ Lang::get('É administrador?') }}</th>
+        <th class="text-center">{{ Lang::get('Sexo') }}</th>
+        <th class="text-center">{{ Lang::get('Biografia') }}</th>
+        <th class="text-center">{{ Lang::get('Url do Retrato') }}</th>
+        <th class="text-center">{{ Lang::get('Ações') }}</th>
     </tr>
 
     @foreach ($users as $user)
@@ -32,10 +32,10 @@
         <td>{{ Str::limit($user->picture_url, 48) }}</td>
         <td>
             <div class="btn-group text-center">
-                <a href="{{ URL::route('users.show', $user->id) }}" class="btn btn-sm btn-info">{{ Lang::get('mostrar usuário') }}</a>
-                <a href="{{ URL::route('users.edit', $user->id) }}" class="btn btn-sm btn-warning">{{ Lang::get('editar usuário') }}</a>
+                <a href="{{ URL::route('users.show', $user->id) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span>{{ Lang::get('Exibir') }}</a>
+                <a href="{{ URL::route('users.edit', $user->id) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>
                 <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="{{ URL::route('users.destroy', $user->id) }}"
-                   data-id="{{ $user->id }}" href="#destroy-dialog" data-effect="mfp-zoom-in">{{ Lang::get('Deletar') }}</a>
+                   data-id="{{ $user->id }}" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span>{{ Lang::get('Deletar') }}</a>
             </div>
         </td>
     </tr>

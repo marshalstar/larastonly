@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container" style="display: block; background-color: white; padding: 10px;">
+    <div class="container container-main">
 
         {{ HTML::ul($errors->all()) }}
 

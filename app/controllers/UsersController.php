@@ -22,7 +22,6 @@ class UsersController extends Controller
 	public function create()
     {
 		return View::make('users.create');
-		$code = str_random(60);
 	}
 
 	/**
@@ -34,7 +33,7 @@ class UsersController extends Controller
     {
         $user = new User();
         if ($user->save()) {
-            return Redirect::route('users.index')->with('message', 'Salvo com sucesso, um e-mail de ativação foi enviado pa');
+            return Redirect::route('users.index')->with('message', 'Seu perfil foi criado com sucesso, ative sua conta através do link enviado para seu e-mail!');
         }
         return Redirect::route('users.create')->withErrors($user->errors());
 	}
@@ -92,4 +91,50 @@ class UsersController extends Controller
         return Redirect::route('users.index');
 	}
 
+    public function getActivate($code)
+    {
+        $user = User::where('code', '=', $code)->where('active', '=', 0);
+
+        if ($user->count()) {
+            $user = $user->first();
+
+            $user->active = 1;
+            $user->code = '';
+
+            if ($user->updateUniques()) {
+                return Redirect::route('home')->with('message', 'Sua conta foi ativada com sucesso!');
+            }
+        }
+        return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
+        
+    }
+    public function getLogin()
+    {
+    	return View::make('users.login');
+    }
+    
+    public function postLogin()
+    {
+    	$validator = Validator::make(Input::all(), [
+    		'email' => 'required|email',
+    		'password' => 'required'
+			]);
+    	if($validator->fails()){
+    		return Redirect::route('users-login')->withErrors($validator);
+    	} 
+
+    	else{
+
+    		$auth = Auth::attempt(array(
+    			'email' => Input::get('email'),
+    			'password' => Input::get('password'),
+    			'active' => 1
+    			));
+    		if($auth)
+    		{
+    			return Redirect::intendend('/');
+    		}
+    	}
+    	return Redirect::route('users-login')->with('message', 'Logado falhou.');
+    }
 }

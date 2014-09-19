@@ -4,9 +4,10 @@
 
 @section('content')
 
-    <div class="container" style="display: block; background-color: white; padding: 10px;">
+    <div class="container container-main">
 
-        <table class="table">
+        <div class="table-responsive">
+            <table class="table table-hover">
             <tbody>
 
                 <tr>
@@ -19,10 +20,6 @@
                     <td><h4>{{ $type->id }}</h4></td>
                 </tr>
 
-                <tr>
-                    <td><h4>{{ Lang::get('nome') }}</h4></td>
-                    <td><h4>{{ $type->name }}</h4></td>
-                </tr>
 
             </tbody>
         </table>

@@ -43,6 +43,8 @@
             https://github.com/octobercms/october
         alert estiloso:
             http://github.hubspot.com/messenger/docs/welcome/
+        tabelas por ajax e com paginação e busca, integradas com o bootstrap e jquery e acessível:
+            http://www.jquery-bootgrid.com/Examples#data-api
 
         phpdocumentor/reflection-docblock suggests installing dflydev/markdown (1.0.*)
             (?)
