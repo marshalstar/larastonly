@@ -19,6 +19,7 @@ Route::get('/debug2', function()
 Route::get('/montar-lista', []);
 
 
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
@@ -28,3 +29,9 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
+
+
+Route::get('/checklist/new', [
+    'as' => 'checklistNew',
+    'uses' => 'ChecklistsController@newChecklist',
+]);

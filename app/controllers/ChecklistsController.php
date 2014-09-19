@@ -103,4 +103,10 @@ class ChecklistsController extends Controller
 		return Redirect::route('checklists.index');
 	}
 
+	public function newChecklist()
+	{
+		return View::make("checklists.newChecklist");
+	}
+
+
 }
