@@ -6,7 +6,7 @@
 
    <div class="container containeri-main">
 	{{HTML::ul($errors->all())}}
-	{{ Form::open(array('route'=>['users-login-post'])) }}
+	{{ Form::open(array('route'=>['users'])) }}
 	   <div class="form-group input-group">
             {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'input-group-addon']) }}
             {{ Form::email('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => Lang::get('email@exemplo.com')]) }}

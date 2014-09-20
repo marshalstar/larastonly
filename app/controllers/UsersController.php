@@ -115,6 +115,7 @@ class UsersController extends Controller
     
     public function postLogin()
     {
+
     	$validator = Validator::make(Input::all(), [
     		'email' => 'required|email',
     		'password' => 'required'
@@ -124,15 +125,16 @@ class UsersController extends Controller
     	} 
 
     	else{
+                $auth = Auth::attempt(array(
+                        'email' => Input::get('email'),
+                        'password' => Input::get('password'),
+                        'active' => 1
 
-    		$auth = Auth::attempt(array(
-    			'email' => Input::get('email'),
-    			'password' => Input::get('password'),
-    			'active' => 1
-    			));
+                    )); 
+                 		
     		if($auth)
     		{
-    			return Redirect::intendend('/');
+    			return Redirect::intendend('home')->with('message', 'Login com Sucesso.');
     		}
     	}
     	return Redirect::route('users-login')->with('message', 'Logado falhou.');

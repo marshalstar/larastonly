@@ -32,7 +32,7 @@ Route::get('/users/login',
 Route::post('/users/login', 
 	[
 	'as' => 'users-login-post',
-	'uses' => 'UsersController@postLogin'
+	'uses' => 'User@seila'
 	]);
 
 
