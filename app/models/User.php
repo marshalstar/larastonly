@@ -1,7 +1,10 @@
 <?php
 
 use \LaravelBook\Ardent\Ardent;
-
+use \Illuminate\Auth\UserTrait;
+use \Illuminate\Auth\Reminders\RemindableTrait;
+use \Illuminate\Auth\UserInterface;
+use \Illuminate\Auth\Reminders\RemindableInterface;
 /**
  * User
  *
@@ -34,7 +37,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\User whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value)
  */
-class User extends Ardent
+class User extends Ardent implements   UserInterface, RemindableInterface
 {
 
     protected $table = 'users';
@@ -79,12 +82,47 @@ class User extends Ardent
     public function afterSave()
     {
         if (!$this->active) {
-            $user->code = '';
+            $this->code='';
             $user = $this;
             Mail::send('emails.auth.activate', array('link' => URL::route('user-activate', $this->code), 'username' => $this->username), function ($message) use ($user) {
                 $message->to($user->email, $user->username)->subject('Ative sua conta!');
             });
         }
     }
+    public function getReminderEmail()
+    {
 
+    }
+
+    public function getAuthIdentifier()
+{
+
+}
+
+
+
+    public function getAuthPassword()
+{
+
+}
+
+
+    public function getRememberToken()
+{
+
+}
+
+
+    public function setRememberToken($value)
+{
+
+}
+
+
+
+
+    public function getRememberTokenName()
+{
+
+}
 }
