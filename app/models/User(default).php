@@ -33,9 +33,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
  * @property integer $active
  * @property string $code
  * @property string $password_temp
- * @method static \Illuminate\Database\Query\Builder|\User2 whereActive($value) 
- * @method static \Illuminate\Database\Query\Builder|\User2 whereCode($value) 
- * @method static \Illuminate\Database\Query\Builder|\User2 wherePasswordTemp($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User2 whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\User2 whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\User2 wherePasswordTemp($value)
  */
 class User2 extends Eloquent implements UserInterface, RemindableInterface {
 

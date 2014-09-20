@@ -30,9 +30,9 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $active
  * @property string $code
  * @property string $password_temp
- * @method static \Illuminate\Database\Query\Builder|\User whereActive($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereCode($value) 
- * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\User whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value)
  */
 class User extends Ardent
 {
@@ -61,22 +61,10 @@ class User extends Ardent
     ];
 
     /* @TODO o yuri vai arrumar esta draga
-     'password' => 'required|confirmed',
-        'password_confirmation' => 'required',
+       'password' => 'required|confirmed',
+       'password_confirmation' => 'required',
 
      */
-
-    public function afterValidate()
-    {
-        if ($this->isDirty(('is_admin'))) {
-
-            $is = $this->is_admin;
-            if ($is == 'on') {
-                $this->is_admin = true;
-            }
-        }
-        return true;
-    }
 
     public function beforeSave()
     {
@@ -91,8 +79,9 @@ class User extends Ardent
     public function afterSave()
     {
         if (!$this->active) {
+            $user->code = '';
             $user = $this;
-            Mail::send('emails.auth.activate', array('link' => URL::route('user-active', $this->code), 'username' => $this->username), function ($message) use ($user) {
+            Mail::send('emails.auth.activate', array('link' => URL::route('user-activate', $this->code), 'username' => $this->username), function ($message) use ($user) {
                 $message->to($user->email, $user->username)->subject('Ative sua conta!');
             });
         }

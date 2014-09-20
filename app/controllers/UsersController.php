@@ -32,6 +32,7 @@ class UsersController extends Controller
 	public function store()
     {
         $user = new User();
+        $user->is_admin = Input::get('is_admin') == 'on';
         if ($user->save()) {
             return Redirect::route('users.index')->with('message', 'Seu perfil foi criado com sucesso, ative sua conta através do link enviado para seu e-mail!');
         }
@@ -93,14 +94,11 @@ class UsersController extends Controller
 
     public function getActivate($code)
     {
-        $user = User::where('code', '=', $code)->where('active', '=', 0);
+        $users = User::where('code', '=', $code)->where('active', '=', 0);
 
-        if ($user->count()) {
-            $user = $user->first();
-
+        if ($users->count()) {
+            $user = $users->first();
             $user->active = 1;
-            $user->code = '';
-
             if ($user->updateUniques()) {
                 return Redirect::route('home')->with('message', 'Sua conta foi ativada com sucesso!');
             }
@@ -108,6 +106,7 @@ class UsersController extends Controller
         return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
         
     }
+
     public function getLogin()
     {
     	return View::make('users.login');
@@ -115,28 +114,30 @@ class UsersController extends Controller
     
     public function postLogin()
     {
+        $user = User::where('email', '=', Input::get('email'))->get()[0];
 
-    	$validator = Validator::make(Input::all(), [
-    		'email' => 'required|email',
-    		'password' => 'required'
-			]);
-    	if($validator->fails()){
-    		return Redirect::route('users-login')->withErrors($validator);
-    	} 
+        /* falta adicionar isto no usuário:
 
-    	else{
-                $auth = Auth::attempt(array(
-                        'email' => Input::get('email'),
-                        'password' => Input::get('password'),
-                        'active' => 1
+            class User extends Ardent implements UserInterface, RemindableInterface
+            {
 
-                    )); 
-                 		
-    		if($auth)
-    		{
-    			return Redirect::intendend('home')->with('message', 'Login com Sucesso.');
-    		}
-    	}
-    	return Redirect::route('users-login')->with('message', 'Logado falhou.');
+                use UserTrait, RemindableTrait;
+        */
+
+
+        Kint::dump(Auth::attempt([
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+        ]));
+        Kint::dump(Hash::check(Input::get('password'), $user->password));
+        Kint::dump($user);
+
+        if (Auth::attempt([
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+        ])) {
+            echo '<br/>valido';
+        }
+        echo '<br/>invalido';
     }
 }
