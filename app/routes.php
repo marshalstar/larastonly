@@ -11,6 +11,10 @@ Route::get('/debug2', function()
     return View::make('debug');
 });
 
+                ###
+
+Route::pattern('id', '[0-9]+');
+
 Route::get('/', [
     'as' => 'home',
     'uses' => 'HomeController@index',
@@ -63,10 +67,18 @@ Route::group(['prefix' => 'admin', 'before' => 'auth'], function ()
     ]);
 });
 
-Route::get('/checklist/new', [
-    'as' => 'checklistNew',
-    'uses' => 'ChecklistsController@newChecklist',
-]);
+Route::group(['prefix' => 'checklists'], function ()
+{
+    Route::get('/new', [
+        'as' => 'checklistNew',
+        'uses' => 'ChecklistsController@newChecklist',
+    ]);
+
+    Route::get('/graphics/{id}', [
+        'as' => 'checklists.graphics',
+        'uses' => 'ChecklistsController@getGraphics',
+    ]);
+});
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
