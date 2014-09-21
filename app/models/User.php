@@ -82,7 +82,6 @@ class User extends Ardent implements   UserInterface, RemindableInterface
     public function afterSave()
     {
         if (!$this->active) {
-            $this->code='';
             $user = $this;
             Mail::send('emails.auth.activate', array('link' => URL::route('user-activate', $this->code), 'username' => $this->username), function ($message) use ($user) {
                 $message->to($user->email, $user->username)->subject('Ative sua conta!');
@@ -95,34 +94,27 @@ class User extends Ardent implements   UserInterface, RemindableInterface
     }
 
     public function getAuthIdentifier()
-{
+    {
 
-}
-
-
+    }
 
     public function getAuthPassword()
-{
+    {
 
-}
-
+    }
 
     public function getRememberToken()
-{
+    {
 
-}
-
+    }
 
     public function setRememberToken($value)
-{
+    {
 
-}
-
-
-
+    }
 
     public function getRememberTokenName()
-{
+    {
 
-}
+    }
 }

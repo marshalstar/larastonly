@@ -99,12 +99,12 @@ class UsersController extends Controller
         if ($users->count()) {
             $user = $users->first();
             $user->active = 1;
+            $user->code = '';
             if ($user->updateUniques()) {
                 return Redirect::route('home')->with('message', 'Sua conta foi ativada com sucesso!');
             }
         }
         return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
-        
     }
 
     public function getLogin()
