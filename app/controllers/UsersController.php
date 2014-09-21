@@ -91,15 +91,22 @@ class UsersController extends Controller
     
     public function postLogin()
     {
-        if(Auth::attempt([
+        $remember = (Input::has('remember')) ? true : false;
+        $auth = Auth::attempt([
             'password' => Input::get('password'),
             'email' => Input::get('email'),
-        ])) {
+            'active' => 1
+        ], $remember); 
+        if($auth){
             return Redirect::route('home')->with('message', Lang::get('Login com sucesso'));
         }
-        return Redirect::route('users')
+            
+        else{
+             return Redirect::route('users')
             ->with('message', Lang::get('Login falhou'))
             ->withInput(Input::except('password'));
+        }
+       
     }
 
     public function getLogout()

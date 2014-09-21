@@ -16,6 +16,12 @@
             {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'input-group-addon']) }}
             {{ Form::password('password', null, ['class' => 'form-control']) }}
         </div>
+        <div class="fiel">
+            <input type="checkbox" name="remeber" id="remember">
+            <label for="remember">
+                Mantenha-me conectado
+            </label>
+        </div>
 
 	{{ Form::submit(Str::title(Lang::get('Entrar')), array('class' => 'btn btn-primary')) }}
         {{Form::token()}}
