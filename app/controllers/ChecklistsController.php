@@ -3,12 +3,22 @@
 class ChecklistsController extends Controller
 {
 
+	/**
+	 * Lista checklists
+	 *
+	 * @return Response
+	 */
 	public function index()
     {
 		$checklists = Checklist::all();
 		return View::make('checklists.index', compact('checklists'));
 	}
 
+	/**
+	 * Mostra formulário de cadastro espefíco de checklist
+	 *
+	 * @return Response
+	 */
 	public function create()
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
@@ -18,6 +28,11 @@ class ChecklistsController extends Controller
             ->with('titles', $titles);
 	}
 
+	/**
+	 * Salva checklist espefíco no banco
+	 *
+	 * @return Response
+	 */
 	public function store()
     {
         $checklist = new Checklist();
@@ -29,12 +44,24 @@ class ChecklistsController extends Controller
             ->withErrors($checklist->errors());
 	}
 
+	/**
+	 * Mostra checklist específico.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function show($id)
     {
 		$checklist = Checklist::findOrFail($id);
 		return View::make('checklists.show', compact('checklist'));
 	}
 
+	/**
+	 * Mostra formulário de edição espefícico de checklist.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function edit($id)
     {
 		$checklist = Checklist::find($id);
@@ -46,6 +73,12 @@ class ChecklistsController extends Controller
             ->with('titles', $titles);
 	}
 
+	/**
+	 * Atualiza checklist específico no banco
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function update($id)
     {
         $checklist = Checklist::find($id);
@@ -58,6 +91,12 @@ class ChecklistsController extends Controller
             ->withErrors($checklist->errors());
 	}
 
+	/**
+	 * Remove checklist específico do banco.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function destroy($id)
     {
 		Checklist::destroy($id);
@@ -68,5 +107,6 @@ class ChecklistsController extends Controller
 	{
 		return View::make("checklists.newChecklist");
 	}
+
 
 }
