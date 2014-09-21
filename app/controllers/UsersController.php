@@ -76,29 +76,12 @@ class UsersController extends Controller
     public function postLogin()
     {
         $user = User::where('email', '=', Input::get('email'))->get()[0];
-
-        /* falta adicionar isto no usuário:
-
-            class User extends Ardent implements UserInterface, RemindableInterface
-            {
-
-                use UserTrait, RemindableTrait;
-        */
-
-
-        Kint::dump(Auth::attempt([
-            'email' => Input::get('email'),
-            'password' => Input::get('password'),
-        ]));
-        Kint::dump(Hash::check(Input::get('password'), $user->password));
-        Kint::dump($user);
-
-        if (Auth::attempt([
-            'email' => Input::get('email'),
-            'password' => Input::get('password'),
-        ])) {
-            echo '<br/>valido';
+        if(Hash::check(Input::get('password'), $user->password)){
+            return Redirect::route('home')->with('message', 'Login com sucesso');
         }
-        echo '<br/>invalido';
+        else {
+            return Redirect::route('users')->with('message', 'Login falhou');        
+        }
+        
     }
 }
