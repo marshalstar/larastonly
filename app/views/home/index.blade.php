@@ -43,10 +43,16 @@
                 <li><a href="{{URL::route('titles.index')}}"><i class="icon-chevron-right"></i>Gerenciar Títulos </li></a>
                 <li><a href="{{URL::route('types.index')}}"><i class="icon-chevron-right"></i>Gerenciar Tipo </li></a>
                 <li><a href="{{URL::route('users.index')}}"><i class="icon-chevron-right"></i>Gerenciar Perfil</li></a>
-                <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
-                <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
-            </ul>
-            <?php Kint::dump(Auth::check()); ?>
+            @if(Auth::check())
+            <li><a href="{{URL::route('users.logout')}}"> <i class="icon-chevron-right"></i> Sair </li></a>
+            <p> Bem-vindo, {{Auth::user()->username}}</p>
+            @else 
+               <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
+               <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
+        
+            <p> Você ainda não fez seu login.</p>
+            @endif
+        </ul>
         </div>
     </div>
 </div>

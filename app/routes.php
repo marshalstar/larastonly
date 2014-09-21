@@ -88,3 +88,14 @@ Route::resource('tags', 'TagsController');
 Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
+
+/* Grupo dos Usuários autenticados */
+
+Route::group(array('before' => 'auth'), function(){
+    /*Sair */
+    Route::get('users/logout', array(
+'as' => 'logout',
+'uses' => 'UsersController@getLogout'
+        ));
+
+});
