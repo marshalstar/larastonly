@@ -69,5 +69,8 @@ class ChecklistsController extends Controller
 		return View::make("checklists.newChecklist");
 	}
 
+    public function graphics() {
+
+    }
 
 }
