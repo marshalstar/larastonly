@@ -74,7 +74,7 @@ Route::group(['prefix' => 'checklists'], function ()
         'uses' => 'ChecklistsController@newChecklist',
     ]);
 
-    Route::get('/graphics/{id}', [
+    Route::get('/graphics/{id}/{query?}', [
         'as' => 'checklists.graphics',
         'uses' => 'ChecklistsController@getGraphics',
     ]);
