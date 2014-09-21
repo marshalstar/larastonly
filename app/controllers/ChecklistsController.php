@@ -70,7 +70,12 @@ class ChecklistsController extends Controller
 	}
 
     public function getGraphics($id, $query = null) {
-        $checklist = Checklist::findOrFail($id);
+        $evaluations = Checklist::find($id)->evaluations;
+
+        Kint::dump($evaluations->toArray());
+
+        die('rato');
+        $evaluations = Evaluation::all();
         return View::make('checklists.graphics')
             ->with('checklist', $checklist);
     }

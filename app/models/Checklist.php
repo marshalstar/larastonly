@@ -31,4 +31,8 @@ class Checklist extends Ardent
         'name' => 'required|between:3,255|unique:checklists',
     ];
 
+    public function evaluations() {
+        return $this->hasMany('Evaluation');
+    }
+
 }
