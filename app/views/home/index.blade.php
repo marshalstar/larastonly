@@ -33,7 +33,7 @@
 
 <div class="container" style="display: block; background-color: white; padding: 10px;">
     <div class="row">
-        <aside class="span8">
+        <div class="span8">
             <ul class="nav">
                 <li><a href="{{URL::route('alternatives.index')}}"><i class="icon-chevron-right"></i> Gerenciar Alternativas</li></a>
                 <li><a href="{{URL::route('questions.index')}}"><i class="icon-chevron-right"></i> Gerenciar Questões</li></a>
@@ -43,10 +43,11 @@
                 <li><a href="{{URL::route('titles.index')}}"><i class="icon-chevron-right"></i>Gerenciar Títulos </li></a>
                 <li><a href="{{URL::route('types.index')}}"><i class="icon-chevron-right"></i>Gerenciar Tipo </li></a>
                 <li><a href="{{URL::route('users.index')}}"><i class="icon-chevron-right"></i>Gerenciar Perfil</li></a>
-                <li><a href="{{URL::route('user-login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
+                <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
                 <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
             </ul>
-        </aside>
+            <?php Kint::dump(Auth::check()); ?>
+        </div>
     </div>
 </div>
 

@@ -37,16 +37,17 @@ use \Illuminate\Auth\Reminders\RemindableInterface;
  * @method static \Illuminate\Database\Query\Builder|\User whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value)
  */
-class User extends Ardent implements   UserInterface, RemindableInterface
+class User extends Ardent implements UserInterface, RemindableInterface
 {
+    use UserTrait, RemindableTrait;
 
     protected $table = 'users';
+
     protected $guarded = ['id'];
-	protected $hidden = ['password'];
-
+    protected $hidden = ['password', 'remember_token'];
     public $autoHydrateEntityFromInput = true;
-    public $forceEntityHydrationFromInput = true;
 
+    public $forceEntityHydrationFromInput = true;
     public $autoPurgeRedundantAttributes = true;
 
     public static $rules = [
@@ -56,7 +57,7 @@ class User extends Ardent implements   UserInterface, RemindableInterface
         'password_confirmation' => '',
         'speciality' => '',
         'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
-        'gender' => 'required|alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
+        'gender' => 'alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',
         'code' => '',
@@ -88,33 +89,5 @@ class User extends Ardent implements   UserInterface, RemindableInterface
             });
         }
     }
-    public function getReminderEmail()
-    {
 
-    }
-
-    public function getAuthIdentifier()
-    {
-
-    }
-
-    public function getAuthPassword()
-    {
-
-    }
-
-    public function getRememberToken()
-    {
-
-    }
-
-    public function setRememberToken($value)
-    {
-
-    }
-
-    public function getRememberTokenName()
-    {
-
-    }
 }

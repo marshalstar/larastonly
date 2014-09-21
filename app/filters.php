@@ -35,14 +35,10 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest())
-	{
-		if (Request::ajax())
-		{
+	if (Auth::guest()) {
+		if (Request::ajax()) {
 			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
+		} else {
 			return Redirect::guest('login');
 		}
 	}
@@ -67,7 +63,10 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	if (Auth::check()) {
+        return Redirect::route('home')
+            ->with('flash_notice', Lang::get('Você já foi logado!'));
+    }
 });
 
 /*
@@ -83,8 +82,7 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() != Input::get('_token'))
-	{
+	if (Session::token() != Input::get('_token')) {
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });

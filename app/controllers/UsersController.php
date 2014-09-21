@@ -42,7 +42,7 @@ class UsersController extends Controller
         $user->is_admin = Input::get('is_admin') == 'on';
         $user->fill(Input::all());
         if ($user->updateUniques()) {
-            return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
+            return Redirect::route('users.index')->with('message', Lang::get('Editado com sucesso'));
         }
         return Redirect::route('users.edit')->withErrors($user->errors());
 	}
@@ -52,6 +52,22 @@ class UsersController extends Controller
         User::destroy($id);
         return Redirect::route('users.index');
 	}
+
+    public function getNew()
+    {
+        return View::make('users.new');
+    }
+
+    public function postNew()
+    {
+        $user = new User();
+        $user->is_admin = false;
+        if ($user->save()) {
+            return Redirect::route('users.index')
+                ->with('message', Lang::get('Seu perfil foi criado com sucesso. Ative sua conta através do link enviado para seu e-mail!'));
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
+    }
 
     public function getActivate($code)
     {
@@ -75,13 +91,26 @@ class UsersController extends Controller
     
     public function postLogin()
     {
-        $user = User::where('email', '=', Input::get('email'))->get()[0];
-        if(Hash::check(Input::get('password'), $user->password)){
-            return Redirect::route('home')->with('message', 'Login com sucesso');
+        if(Auth::attempt([
+            'password' => Input::get('password'),
+            'email' => Input::get('email'),
+        ])) {
+            return Redirect::route('home')->with('message', Lang::get('Login com sucesso'));
         }
-        else {
-            return Redirect::route('users')->with('message', 'Login falhou');        
-        }
+        return Redirect::route('users')
+            ->with('message', Lang::get('Login falhou'))
+            ->withInput(Input::except('password'));
         
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+        return Redirect::route('home');
+    }
+
+    public function getProfile()
+    {
+        echo 'me implementar. sou o UsersController@getProfile\n' ;
     }
 }
