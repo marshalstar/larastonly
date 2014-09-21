@@ -100,7 +100,6 @@ class UsersController extends Controller
         return Redirect::route('users')
             ->with('message', Lang::get('Login falhou'))
             ->withInput(Input::except('password'));
-        
     }
 
     public function getLogout()
