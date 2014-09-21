@@ -95,34 +95,35 @@ class User extends Ardent implements   UserInterface, RemindableInterface
     }
 
     public function getAuthIdentifier()
-{
+    {
 
-}
+    }
 
 
 
     public function getAuthPassword()
-{
+    {
 
-}
+    }
 
 
     public function getRememberToken()
-{
+    {
 
-}
+    }
 
 
     public function setRememberToken($value)
-{
+    {
 
-}
+    }
 
 
 
 
     public function getRememberTokenName()
-{
+    {
 
-}
+    }
+
 }
