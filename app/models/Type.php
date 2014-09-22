@@ -13,6 +13,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Type whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Type whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Type whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
  */
 class Type extends Ardent
 {
@@ -26,5 +27,10 @@ class Type extends Ardent
     public static $rules = [
         'name' => 'required|between:3,255|unique:types',
     ];
+
+    public function alternatives()
+    {
+        return $this->hasMany('Alternative');
+    }
 
 }

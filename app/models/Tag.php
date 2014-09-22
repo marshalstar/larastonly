@@ -13,6 +13,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Tag whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Tag whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Checklist[] $checklists
  */
 class Tag extends Ardent
 {
@@ -26,5 +27,10 @@ class Tag extends Ardent
     public static $rules = [
         'name' => 'required|between:3,255|unique:tags',
     ];
+
+    public function checklists()
+    {
+        return $this->belongsToMany('Checklist');
+    }
 
 }

@@ -16,6 +16,9 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Title whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Title whereUpdatedAt($value)
  * @property-read \Checklist $checklist
+ * @property integer $checklist_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Question[] $questions
+ * @method static \Illuminate\Database\Query\Builder|\Title whereChecklistId($value) 
  */
 class Title extends Ardent
 {
@@ -41,6 +44,11 @@ class Title extends Ardent
     public function checklist()
     {
         return $this->belongsTo('Checklist');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany('Question');
     }
 
 }

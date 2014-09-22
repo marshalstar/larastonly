@@ -13,17 +13,14 @@ class DatabaseSeeder extends Seeder {
 
         DB::disableQueryLog();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
         $this->truncateTables();
-
         $this->seederTables();
-
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         DB::enableQueryLog();
 
-        $this->command->comment('========== Vai trabalhar ==========');
-
-        foreach (range(1, 10) as $i) {
+        $this->command->comment('========== Pode ir programar ==========');
+        foreach (range(2, 30) as $i) {
+            $this->command->comment("===== ciclo $i =====");
             $this->seederTables();
         }
 	}

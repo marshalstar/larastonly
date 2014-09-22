@@ -14,7 +14,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Answer whereEvaluationId($value)
  * @method static \Illuminate\Database\Query\Builder|\Answer whereQuestionId($value)
  * @property integer $alternative_question_id
- * @method static \Illuminate\Database\Query\Builder|\Answer whereAlternativeQuestionId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Answer whereAlternativeQuestionId($value)
+ * @property-read \Evaluation $evaluation
  */
 class Answer extends Ardent
 {
@@ -26,5 +27,15 @@ class Answer extends Ardent
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [];
+
+    public function evaluation()
+    {
+        return $this->belongsTo('Evaluation');
+    }
+
+    /*public function alternative_question()
+    {
+        return $this->belongsTo('');
+    }/**/
 
 } 

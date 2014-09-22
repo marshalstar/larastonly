@@ -36,6 +36,8 @@ use \Illuminate\Auth\Reminders\RemindableInterface;
  * @method static \Illuminate\Database\Query\Builder|\User whereActive($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereCode($value)
  * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Evaluation[] $evaluations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Checklists[] $checklists
  */
 class User extends Ardent implements UserInterface, RemindableInterface
 {
@@ -88,6 +90,16 @@ class User extends Ardent implements UserInterface, RemindableInterface
                 $message->to($user->email, $user->username)->subject('Ative sua conta!');
             });
         }
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany('Evaluation');
+    }
+
+    public function checklists()
+    {
+        return $this->hasMany('Checklists');
     }
 
 }
