@@ -16,7 +16,6 @@ class CreateTypesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique();
-			$table->timestamps(); /** @TODO: tentar tirar isto aqui depois */
 		});
 	}
 

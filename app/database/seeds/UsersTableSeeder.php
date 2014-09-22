@@ -9,11 +9,13 @@ class UsersTableSeeder extends Seeder
 	public function run()
 	{
         $faker = Faker::create();
+        $count = User::count();
+        $increment = ($count > 30)? $count : '';
 
-        DB::table('users')->insert(array_map(function($index) use ($faker) {
+        DB::table('users')->insert(array_map(function($index) use ($faker, $increment) {
             return [
                 'username' => $faker->userName,
-                'email' => $faker->unique()->email,
+                'email' => $increment. ' ' .$faker->unique()->email,
                 'password' => 'password',
                 'speciality' => $faker->sentence(rand(1, 4)),
                 'is_admin' => $index == 1,

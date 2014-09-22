@@ -22,6 +22,7 @@ use \LaravelBook\Ardent\Ardent;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
  * @method static \Illuminate\Database\Query\Builder|\Question whereStatement($value)
  * @method static \Illuminate\Database\Query\Builder|\Question whereWeight($value)
+ * @property-read \Title $title
  */
 class Question extends Ardent
 {
@@ -72,6 +73,11 @@ class Question extends Ardent
     public function alternatives()
     {
         return $this->belongsToMany('Alternative');
+    }
+
+    public function title()
+    {
+        return $this->belongsTo('Title');
     }
 
 }

@@ -3,22 +3,12 @@
 class AlternativesController extends Controller
 {
 
-	/**
-	 * Lista alternativas
-	 *
-	 * @return Response
-	 */
 	public function index()
     {
 		$alternatives = Alternative::all();
 		return View::make('alternatives.index', compact('alternatives'));
 	}
 
-	/**
-	 * Mostra formulário de cadastro espefíco de alternativa
-	 *
-	 * @return Response
-	 */
 	public function create()
     {
         $types = array_column(Type::all()->toArray(), 'name', 'id');
@@ -26,11 +16,6 @@ class AlternativesController extends Controller
             ->with('types', $types);
 	}
 
-	/**
-	 * Salva alternativa espefíca no banco
-	 *
-	 * @return Response
-	 */
 	public function store()
     {
         $alternative = new Alternative();
@@ -42,24 +27,12 @@ class AlternativesController extends Controller
             ->withErrors($alternative->errors());
 	}
 
-	/**
-	 * Mostra alternativa específico.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
     {
 		$alternative = Alternative::findOrFail($id);
 		return View::make('alternatives.show', compact('alternative'));
 	}
 
-	/**
-	 * Mostra formulário de edição espefícica de alternativa.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
     {
 		$alternative = Alternative::find($id);
@@ -69,12 +42,6 @@ class AlternativesController extends Controller
             ->with('types', $types);
 	}
 
-	/**
-	 * Atualiza alternativa específica no banco
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
     {
         $alternative = Alternative::find($id);
@@ -87,12 +54,6 @@ class AlternativesController extends Controller
             ->withErrors($alternative->errors());
 	}
 
-	/**
-	 * Remove alternativa específica do banco.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
     {
 		Alternative::destroy($id);

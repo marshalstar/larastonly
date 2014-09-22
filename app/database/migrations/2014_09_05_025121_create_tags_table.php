@@ -16,7 +16,6 @@ class CreateTagsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique(); /** @TODO: unique */
-			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

@@ -18,7 +18,6 @@ class CreateAlternativesTable extends Migration {
 			$table->string('name', 255)->nullable();
 			$table->integer('type_id')->unsigned()->index();
             $table->foreign('type_id')->references('id')->on('types');
-			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

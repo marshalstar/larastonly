@@ -17,6 +17,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCommentary($value)
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUpdatedAt($value)
+ * @property-read \User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Answer[] $answers
  */
 class Evaluation extends Ardent
 {
@@ -30,5 +32,15 @@ class Evaluation extends Ardent
     public static $rules = [
         'commentary' => '',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('Answer');
+    }
 
 }

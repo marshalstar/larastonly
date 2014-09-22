@@ -8,12 +8,12 @@ class ChecklistsTableSeeder extends Seeder
 	public function run()
 	{
 		$faker = Faker::create();
+        $users = User::all();
 
-        DB::table('checklists')->insert(array_map(function() use ($faker) {
+        DB::table('checklists')->insert(array_map(function() use ($faker, $users) {
             return [
                 'name' => $faker->sentence(rand(1, 4)),
-                'user_id' => User::all()->get(rand(0, User::count() -1))->id,
-                'title_id' => Title::all()->get(rand(0, Title::count() -1))->id,
+                'user_id' => $users->get(rand(0, $users->count() -1))->id,
             ];
         }, range(1, 30)));
 	}
