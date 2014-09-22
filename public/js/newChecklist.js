@@ -15,22 +15,26 @@ function novoTitulo(id)
 	arrayTotal[("titulo_"+titulos)] = {tipo : "titulo", id : ("titulo_"+titulos), pai : id, valor : ""};
 
 	var div = document.getElementById("sub_div_" + id);
-	
-	div.innerHTML = div.innerHTML +
+	var divNova = document.createElement("div");
+	divNova.id = "div_titulo_"+titulos;
+	divNova.class = "container"
+	divNova.style = "display: block; background-color: white; padding: 10px;";
+
+	divNova.innerHTML = //div.innerHTML +
 
 
-	'<div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">'+
+	//'<div id = "div_titulo_'+titulos+'" class="container" style="display: block; background-color: white; padding: 10px;">'+
 	'  <table class="table table-bordered"> '+
 	'    <tr> '+
 	'      <td>'+
 	'        <table>'+
 	'          <tr>'+
 	'            <td>'+
-	'              <h3><input id = "titulo_'+titulos+'" value = "" type = "text" style="width:700" onChange = "JavaScript:mudou(\'titulo_'+titulos+'\')"/></h3>'+
+	'              <h3><input id = "titulo_'+titulos+'" type = "text" style="width:700" onchange = "JavaScript:mudou(\'titulo_'+titulos+'\')"/></h3>'+
 	'            </td>'+
 	'            <td>'+
 	'              <div class="btn-group">'+
-	'                <button onclick= "JavaScript:remover(\'div_titulo_'+titulos+'\');"  class="btn btn-xs btn-danger">'+
+	'                <button onClick= "JavaScript:remover(\'div_titulo_'+titulos+'\');"  class="btn btn-xs btn-danger">'+
 	'                  Remover titulo'+
 	'                </button>'+
 	'              </div>'+
@@ -55,10 +59,13 @@ function novoTitulo(id)
 	'        </div>'+
 	'      </td>'+
 	'    </tr>'+
-	'  </table>'+
-	' </div>';
+	'  </table>';//+
+	//' </div>';
+
+	div.appendChild(divNova);
 
 	mudou('titulo_'+titulos);
+
 }
 
 function remover(id)
@@ -76,9 +83,13 @@ function novaQuestao(id)
 
 	var div = document.getElementById("questoes_" + id);
 
-	div.innerHTML = div.innerHTML + 
+	var divNova = document.createElement("div");
+	divNova.id = 'div_questao_'+questoes;
+	divNova.innerHTML = 
+
+	//div.innerHTML = div.innerHTML + 
 	
-	"		<div id = 'div_questao_"+questoes+"'>"+
+	//"		<div id = 'div_questao_"+questoes+"'>"+
 	"        <table border='0'> "+
 	"          <tr>"+
 	"            <td>"+
@@ -97,10 +108,12 @@ function novaQuestao(id)
 	"        </lu>"+
 	"        <button onclick= 'JavaScript:novaAlternativa(\"questao_"+questoes+"\"); ' class='btn btn-sm btn-primary'>"+
 	"          Nova alternativa"+
-	"        </button>"+
-	"      </div>";
+	"        </button>";//+
+	//"      </div>";
 
-	mudou(("questao_"+questoes));
+	div.appendChild(divNova);
+
+	//mudou(("questao_"+questoes));
 
 }
 
@@ -114,8 +127,11 @@ function novaAlternativa(id)
 
 	var lu = document.getElementById("alternativas_" + id);
 
-	lu.innerHTML = lu.innerHTML	+
-	"<li id = 'li_alternativa_'"+alternativas+">"+
+	var liNova = document.createElement("li");
+	liNova.id = 'li_alternativa_'+alternativas;
+
+	liNova.innerHTML = //lu.innerHTML	+
+	//"<li id = 'li_alternativa_'"+alternativas+">"+
 	"	<select id = 'select_alternativa_"+alternativas+"' onChange = 'JavaScript:mudouTipoAlternativa(\""+alternativas+"\")'>"+
 	"		<option>CheckBox</option>"+
 	"		<option>RadionButton</option>"+
@@ -126,8 +142,10 @@ function novaAlternativa(id)
 	"	"+
 	"	<button class='btn btn-xs btn-danger' onClick('JavaScript:remover(\"li_alternativa_"+alternativas+"\");')>"+
 	"		Remover"+
-	"	</button>"+
-	"</li>";
+	"	</button>";//+
+	//"</li>";
+
+	lu.appendChild(liNova);
 
 	mudouTipoAlternativa(alternativas);
 }
