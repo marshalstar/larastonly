@@ -17,6 +17,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereTitleId($value)
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Evaluation[] $evaluations
  */
 class Checklist extends Ardent
 {

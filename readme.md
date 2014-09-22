@@ -14,7 +14,6 @@
         "raveren/kint": "v0.9",                 -> debug
         "fzaninotto/faker": "1.5.*@dev",        -> cria valores aleatórios para as seeds
         "barryvdh/laravel-ide-helper": "1.*",   -> ajuda a ide a não se perder
-                                                -> php artisan ide-helper:models
                                                 -> https://github.com/barryvdh/laravel-ide-helper
         "doctrine/dbal": "2.5.*@dev"            -> necessário para o "barryvdh/laravel-ide-helper" funcionar
         "laravelbook/ardent": "2.*"             -> junta os validadores de formulários na model (é muito simples mesmo, daria para fazer mão isto sem problemas) https://github.com/laravelbook/ardent
@@ -59,3 +58,9 @@
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+
+    util:
+        atualizar o autoload:
+            php artisan dump-autoload
+        ajudar a ide a não se perder
+            php artisan ide-helper:models

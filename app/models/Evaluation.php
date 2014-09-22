@@ -31,4 +31,9 @@ class Evaluation extends Ardent
         'commentary' => '',
     ];
 
+    public function alternatives()
+    {
+        return $this->hasManyThrough('Alternative', 'Question');
+    }
+
 }

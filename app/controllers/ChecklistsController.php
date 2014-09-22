@@ -69,10 +69,12 @@ class ChecklistsController extends Controller
 		return View::make("checklists.newChecklist");
 	}
 
-    public function getGraphics($id, $query = null) {
-        $evaluations = Checklist::find($id)->evaluations;
+    public function getGraphics($id, $query = null)
+    {
 
-        Kint::dump($evaluations->toArray());
+        $evaluation = Checklist::find($id)->evaluations[0];
+
+        Kint::dump($evaluation->alternatives);
 
         die('rato');
         $evaluations = Evaluation::all();
