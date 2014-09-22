@@ -30,7 +30,7 @@ function novoTitulo(id)
 	'        <table>'+
 	'          <tr>'+
 	'            <td>'+
-	'              <h3><input id = "titulo_'+titulos+'" type = "text" style="width:700" onchange = "JavaScript:mudou(\'titulo_'+titulos+'\')"/></h3>'+
+	'              <h3><input id = "titulo_'+titulos+'" type = "text" style="width:" onchange = "JavaScript:mudou(\'titulo_'+titulos+'\')"/></h3>'+
 	'            </td>'+
 	'            <td>'+
 	'              <div class="btn-group">'+

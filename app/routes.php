@@ -11,7 +11,6 @@ Route::get('/debug2', function()
     return View::make('debug');
 });
 
-                ###
 
 Route::pattern('id', '[0-9]+');
 
@@ -99,3 +98,9 @@ Route::group(array('before' => 'auth'), function(){
         ));
 
 });
+
+
+Route::get('/checklist/new', [
+ 'as' => 'checklistNew',
+ 'uses' => 'ChecklistsController@newChecklist',
+]);
