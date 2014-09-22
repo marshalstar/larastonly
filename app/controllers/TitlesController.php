@@ -3,22 +3,12 @@
 class TitlesController extends Controller
 {
 
-	/**
-	 * Lista titles
-	 *
-	 * @return Response
-	 */
 	public function index()
     {
 		$titles = Title::all();
 		return View::make('titles.index', compact('titles'));
 	}
 
-	/**
-	 * Mostra formulário de cadastro espefíco de title
-	 *
-	 * @return Response
-	 */
 	public function create()
     {
         $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
@@ -26,11 +16,6 @@ class TitlesController extends Controller
             ->with('titles', $titles);
 	}
 
-	/**
-	 * Salva title espefíco no banco
-	 *
-	 * @return Response
-	 */
 	public function store()
     {
         $title = new Title();
@@ -40,24 +25,12 @@ class TitlesController extends Controller
         return Redirect::route('titles.create')->withErrors($title->errors());
 	}
 
-	/**
-	 * Mostra title específico.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
     {
 		$title = Title::findOrFail($id);
 		return View::make('titles.show', compact('title'));
 	}
 
-	/**
-	 * Mostra formulário de edição espefícico de title.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
     {
 		$title = Title::find($id);
@@ -67,12 +40,6 @@ class TitlesController extends Controller
             ->with('titles', $titles);
 	}
 
-	/**
-	 * Atualiza title específico no banco
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
     {
         $title = Title::find($id);
@@ -83,12 +50,6 @@ class TitlesController extends Controller
         return Redirect::route('titles.edit')->withErrors($title->errors());
 	}
 
-	/**
-	 * Remove title específico do banco.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
     {
 		Title::destroy($id);

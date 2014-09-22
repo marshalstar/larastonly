@@ -18,6 +18,7 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Question[] $questions
  * @method static \Illuminate\Database\Query\Builder|\Alternative whereName($value)
+ * @property-read \Type $type
  */
 class Alternative extends Ardent
 {
@@ -34,6 +35,11 @@ class Alternative extends Ardent
 
     public function questions() {
         return $this->belongsToMany('Question');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('Type');
     }
 
 }

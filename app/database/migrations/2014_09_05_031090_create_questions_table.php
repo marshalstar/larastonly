@@ -20,7 +20,6 @@ class CreateQuestionsTable extends Migration {
 			$table->text('statement')->default("");
 			$table->boolean('is_about_assessable')->default(false);
             $table->integer('weight')->default(1);
-			$table->timestamps(); /** @TODO: tentar tirar isto aqui depois */
 		});
 	}
 

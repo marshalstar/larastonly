@@ -17,6 +17,9 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereTitleId($value)
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Checklist whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Evaluation[] $evaluations
+ * @property-read \User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Title[] $titles
  */
 class Checklist extends Ardent
 {
@@ -30,5 +33,19 @@ class Checklist extends Ardent
     public static $rules = [
         'name' => 'required|between:3,255|unique:checklists',
     ];
+
+    public function evaluations() {
+        return $this->hasMany('Evaluation');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
+    public function titles()
+    {
+        return $this->hasMany('Title');
+    }
 
 }

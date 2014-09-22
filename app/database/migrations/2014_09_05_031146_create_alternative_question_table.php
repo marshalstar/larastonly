@@ -19,7 +19,6 @@ class CreateAlternativeQuestionTable extends Migration {
 			$table->foreign('alternative_id')->references('id')->on('alternatives')->onDelete('cascade');
 			$table->integer('question_id')->unsigned()->index();
 			$table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

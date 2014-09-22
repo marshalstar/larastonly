@@ -1,7 +1,10 @@
 <?php
 
 use \LaravelBook\Ardent\Ardent;
-
+use \Illuminate\Auth\UserTrait;
+use \Illuminate\Auth\Reminders\RemindableTrait;
+use \Illuminate\Auth\UserInterface;
+use \Illuminate\Auth\Reminders\RemindableInterface;
 /**
  * User
  *
@@ -30,20 +33,23 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $active
  * @property string $code
  * @property string $password_temp
- * @method static \Illuminate\Database\Query\Builder|\User whereActive($value) 
- * @method static \Illuminate\Database\Query\Builder|\User whereCode($value) 
- * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value) 
+ * @method static \Illuminate\Database\Query\Builder|\User whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\User whereCode($value)
+ * @method static \Illuminate\Database\Query\Builder|\User wherePasswordTemp($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Evaluation[] $evaluations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Checklists[] $checklists
  */
-class User extends Ardent
+class User extends Ardent implements UserInterface, RemindableInterface
 {
+    use UserTrait, RemindableTrait;
 
     protected $table = 'users';
+
     protected $guarded = ['id'];
-	protected $hidden = ['password'];
-
+    protected $hidden = ['password', 'remember_token'];
     public $autoHydrateEntityFromInput = true;
-    public $forceEntityHydrationFromInput = true;
 
+    public $forceEntityHydrationFromInput = true;
     public $autoPurgeRedundantAttributes = true;
 
     public static $rules = [
@@ -53,7 +59,7 @@ class User extends Ardent
         'password_confirmation' => '',
         'speciality' => '',
         'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
-        'gender' => 'required|alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
+        'gender' => 'alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',
         'code' => '',
@@ -61,22 +67,10 @@ class User extends Ardent
     ];
 
     /* @TODO o yuri vai arrumar esta draga
-     'password' => 'required|confirmed',
-        'password_confirmation' => 'required',
+       'password' => 'required|confirmed',
+       'password_confirmation' => 'required',
 
      */
-
-    public function afterValidate()
-    {
-        if ($this->isDirty(('is_admin'))) {
-
-            $is = $this->is_admin;
-            if ($is == 'on') {
-                $this->is_admin = true;
-            }
-        }
-        return true;
-    }
 
     public function beforeSave()
     {
@@ -92,10 +86,20 @@ class User extends Ardent
     {
         if (!$this->active) {
             $user = $this;
-            Mail::send('emails.auth.activate', array('link' => URL::route('user-active', $this->code), 'username' => $this->username), function ($message) use ($user) {
+            Mail::send('emails.auth.activate', array('link' => URL::route('user-activate', $this->code), 'username' => $this->username), function ($message) use ($user) {
                 $message->to($user->email, $user->username)->subject('Ative sua conta!');
             });
         }
+    }
+
+    public function evaluations()
+    {
+        return $this->hasMany('Evaluation');
+    }
+
+    public function checklists()
+    {
+        return $this->hasMany('Checklists');
     }
 
 }

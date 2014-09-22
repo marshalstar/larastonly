@@ -8,11 +8,12 @@ class AlternativesTableSeeder extends Seeder
 	public function run()
 	{
 		$faker = Faker::create();
+        $types = Type::all();
 
-        DB::table('alternatives')->insert(array_map(function() use ($faker) {
+        DB::table('alternatives')->insert(array_map(function() use ($faker, $types) {
             return [
                 'name' => $faker->sentence(),
-                'type_id' => Type::all()->get(rand(0, Type::count() -1))->id,
+                'type_id' => $types->get(rand(0, $types->count() -1))->id,
             ];
         }, range(1, 30)));
 	}

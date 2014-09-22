@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration {
 			$table->char('gender')->nullable();
 			$table->text('biography')->nullable();
 			$table->string('picture_url', 255)->nullable();
-			$table->timestamps(); /** @TODO: remover esta linha mais tarde */
 		});
 	}
 

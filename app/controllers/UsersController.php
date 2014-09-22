@@ -3,111 +3,87 @@
 class UsersController extends Controller
 {
 
-	/**
-	 * Lista users
-	 *
-	 * @return Response
-	 */
 	public function index()
     {
 		$users = User::all();
 		return View::make('users.index', compact('users'));
 	}
 
-	/**
-	 * Mostra formulário de cadastro espefíco de user
-	 *
-	 * @return Response
-	 */
 	public function create()
     {
 		return View::make('users.create');
 	}
 
-	/**
-	 * Salva user espefíco no banco
-	 *
-	 * @return Response
-	 */
 	public function store()
     {
         $user = new User();
+        $user->is_admin = Input::get('is_admin') == 'on';
         if ($user->save()) {
             return Redirect::route('users.index')->with('message', 'Seu perfil foi criado com sucesso, ative sua conta através do link enviado para seu e-mail!');
         }
         return Redirect::route('users.create')->withErrors($user->errors());
 	}
 
-	/**
-	 * Mostra user específico.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function show($id)
     {
         $user = User::findOrFail($id);
         return View::make('users.show', compact('user'));
 	}
 
-	/**
-	 * Mostra formulário de edição espefícico de user.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit($id)
     {
         $user = User::find($id);
         return View::make('users.edit', compact('user'));
 	}
 
-	/**
-	 * Atualiza user específico no banco
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update($id)
     {
         $user = User::find($id);
         $user->is_admin = Input::get('is_admin') == 'on';
         $user->fill(Input::all());
         if ($user->updateUniques()) {
-            return Redirect::route('users.index')->with('message', 'Salvo com sucesso');
+            return Redirect::route('users.index')->with('message', Lang::get('Editado com sucesso'));
         }
         return Redirect::route('users.edit')->withErrors($user->errors());
 	}
 
-	/**
-	 * Remove user específico do banco.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
     {
         User::destroy($id);
         return Redirect::route('users.index');
 	}
 
+    public function getNew()
+    {
+        return View::make('users.new');
+    }
+
+    public function postNew()
+    {
+        $user = new User();
+        $user->is_admin = false;
+        if ($user->save()) {
+            return Redirect::route('users.index')
+                ->with('message', Lang::get('Seu perfil foi criado com sucesso. Ative sua conta através do link enviado para seu e-mail!'));
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
+    }
+
     public function getActivate($code)
     {
-        $user = User::where('code', '=', $code)->where('active', '=', 0);
+        $users = User::where('code', '=', $code)->where('active', '=', 0);
 
-        if ($user->count()) {
-            $user = $user->first();
-
+        if ($users->count()) {
+            $user = $users->first();
             $user->active = 1;
             $user->code = '';
-
             if ($user->updateUniques()) {
                 return Redirect::route('home')->with('message', 'Sua conta foi ativada com sucesso!');
             }
         }
         return Redirect::route('home')->with('message', 'Não foi possível ativar sua conta, tente novamente mais tarde.');
-        
     }
+
     public function getLogin()
     {
     	return View::make('users.login');
@@ -115,26 +91,32 @@ class UsersController extends Controller
     
     public function postLogin()
     {
-    	$validator = Validator::make(Input::all(), [
-    		'email' => 'required|email',
-    		'password' => 'required'
-			]);
-    	if($validator->fails()){
-    		return Redirect::route('users-login')->withErrors($validator);
-    	} 
+        $remember = (Input::has('remember')) ? true : false;
+        $auth = Auth::attempt([
+            'password' => Input::get('password'),
+            'email' => Input::get('email'),
+            'active' => 1
+        ], $remember); 
+        if($auth){
+            return Redirect::route('home')->with('message', Lang::get('Login com sucesso'));
+        }
+            
+        else{
+             return Redirect::route('users')
+            ->with('message', Lang::get('Login falhou'))
+            ->withInput(Input::except('password'));
+        }
+       
+    }
 
-    	else{
+    public function getLogout()
+    {
+        Auth::logout();
+        return Redirect::route('home');
+    }
 
-    		$auth = Auth::attempt(array(
-    			'email' => Input::get('email'),
-    			'password' => Input::get('password'),
-    			'active' => 1
-    			));
-    		if($auth)
-    		{
-    			return Redirect::intendend('/');
-    		}
-    	}
-    	return Redirect::route('users-login')->with('message', 'Logado falhou.');
+    public function getProfile()
+    {
+        echo 'me implementar. sou o UsersController@getProfile\n' ;
     }
 }
