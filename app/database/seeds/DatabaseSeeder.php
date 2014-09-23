@@ -55,4 +55,14 @@ class DatabaseSeeder extends Seeder {
         $this->call('AnswersTableSeeder');
     }
 
+    private function massiveSeeder()
+    {
+        $queryUser = "INSERT INTO 'users' ('username', 'email', 'password') VALUES ('user', 'email', 'password')";
+        foreach (range(1, 1000) as $i) {
+
+        }
+
+        DB::statement("");
+    }
+
 }
