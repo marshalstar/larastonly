@@ -25,7 +25,7 @@ class Alternative extends Ardent
 
     protected $table = 'alternatives';
     protected $guarded = ['id'];
-
+    public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 

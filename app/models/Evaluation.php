@@ -25,7 +25,7 @@ class Evaluation extends Ardent
 
     protected $table = 'evaluations';
     protected $guarded = ['id'];
-
+public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
