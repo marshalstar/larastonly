@@ -91,6 +91,12 @@ Route::resource('users', 'UsersController');
 /* Grupo dos Usuários autenticados */
 
 Route::group(array('before' => 'auth'), function(){
+        /* Mudar a senha */
+        Route::get('/users/change-password', array(
+            'as' => 'change-password',
+            'uses' => 'UsersController@getChangePassword'
+            ));
+
     /*Sair */
     Route::get('users/logout', array(
 'as' => 'logout',

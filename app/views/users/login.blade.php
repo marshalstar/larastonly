@@ -16,7 +16,7 @@
             {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'input-group-addon']) }}
             {{ Form::password('password', null, ['class' => 'form-control']) }}
         </div>
-        <div class="fiel">
+        <div class="field">
             <input type="checkbox" name="remeber" id="remember">
             <label for="remember">
                 Mantenha-me conectado
