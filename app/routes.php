@@ -79,9 +79,17 @@ Route::group(['prefix' => 'checklists'], function ()
     ]);
 });
 Route::group(array('before' => 'auth'), function(){
+        
+        Route::group(array('before'=>'csrf'), function(){
+            Route::post('/users/changepassword', array(
+                'as' => 'change-password-post',
+                'uses' => 'UsersController@postChangePassword'
+                ));
+        });
+
         /* Mudar a senha */
-        Route::get('/users/change-password', array(
-            'as' => 'change-password',
+        Route::get('/users/changepassword', array(
+            'as' => 'changepassword',
             'uses' => 'UsersController@getChangePassword'
             ));
 
@@ -106,11 +114,3 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
-/* Grupo dos Usuários autenticados */
-
-
-
-Route::get('/checklist/new', [
- 'as' => 'checklistNew',
- 'uses' => 'ChecklistsController@newChecklist',
-]);
