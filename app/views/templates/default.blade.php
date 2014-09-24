@@ -17,9 +17,16 @@
     <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
     {{-- BOOTSTRAP --}}
 
-    <div id="bg">
-        <img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Amanecer_en_la_Torre_Eiffel_(8163660325).jpg" alt="">
-    </div>
+    <style>
+        @-webkit-viewport { width: device-width; }
+        @-moz-viewport { width: device-width; }
+        @-ms-viewport { width: device-width; }
+        @-o-viewport { width: device-width; }
+        @viewport { width: device-width; }
+    </style>
+
+    <link href="/css/jquery.bootgrid.css" rel="stylesheet"/>
+    {{-- tabela por ajax com paginação --}}
 
     <style>
 
@@ -122,7 +129,13 @@
 </script>
 {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
 
+<script src="/js/jquery.bootgrid.js"></script>
+{{-- tabela com paginação por ajax (TODO: TROCAR PARA VERSÃO MIMIFICADA DEPOIS; POR ENQUANTO ESTÁ ASSIM PARA DEBUG) --}}
 
 @yield('script')
+
+<div id="bg">
+    <img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Amanecer_en_la_Torre_Eiffel_(8163660325).jpg" alt="">
+</div>
 
 </html>
