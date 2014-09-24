@@ -48,10 +48,9 @@ class User extends Ardent implements UserInterface, RemindableInterface
     protected $guarded = ['id'];
     protected $hidden = ['password', 'remember_token'];
     public $autoHydrateEntityFromInput = true;
-
     public $forceEntityHydrationFromInput = true;
     public $autoPurgeRedundantAttributes = true;
-
+    public $timestamps = false;
     public static $rules = [
         'username' => 'required|unique:users',
         'email' => 'required|email|unique:users',

@@ -78,7 +78,25 @@ Route::group(['prefix' => 'checklists'], function ()
         'uses' => 'ChecklistsController@getGraphics',
     ]);
 });
+Route::group(array('before' => 'auth'), function(){
+        /* Mudar a senha */
+        Route::get('/users/change-password', array(
+            'as' => 'change-password',
+            'uses' => 'UsersController@getChangePassword'
+            ));
 
+    /*Sair */
+    Route::get('users/logout', array(
+'as' => 'logout',
+'uses' => 'UsersController@getLogout'
+        ));
+
+});
+
+Route::get('/checklist/new', [
+ 'as' => 'checklistNew',
+ 'uses' => 'ChecklistsController@newChecklist',
+]);
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
@@ -90,14 +108,6 @@ Route::resource('users', 'UsersController');
 
 /* Grupo dos Usuários autenticados */
 
-Route::group(array('before' => 'auth'), function(){
-    /*Sair */
-    Route::get('users/logout', array(
-'as' => 'logout',
-'uses' => 'UsersController@getLogout'
-        ));
-
-});
 
 
 Route::get('/checklist/new', [

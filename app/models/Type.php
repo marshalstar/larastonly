@@ -20,7 +20,7 @@ class Type extends Ardent
 
     protected $table = 'types';
     protected $guarded = ['id'];
-
+public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 

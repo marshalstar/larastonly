@@ -114,9 +114,15 @@ class UsersController extends Controller
         Auth::logout();
         return Redirect::route('home');
     }
+    public function getChangePassword()
+    {
+        
+        return View::make('users.password');
+    }
 
     public function getProfile()
     {
         echo 'me implementar. sou o UsersController@getProfile\n' ;
     }
+
 }
