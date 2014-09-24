@@ -16,7 +16,7 @@
     </tr>
 
     @foreach ($alternatives as $alternative)
-        <tr id="line{{ $alternative->id }}">
+        <tr id="line{{ $alternative['id'] }}">
             <td class="text-center">{{ $alternative->id }}</td>
             <td>{{ Str::limit($alternative->name, 37) }}</td>
             <td class="text-center">{{ $alternative->type_id }}</td>
@@ -30,5 +30,5 @@
             </td>
         </tr>
     @endforeach
-
+    {{ $alternatives->links() }}
 @stop
