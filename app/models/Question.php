@@ -29,7 +29,7 @@ class Question extends Ardent
 
     protected $table = 'questions';
     protected $guarded = ['id'];
-
+    public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 

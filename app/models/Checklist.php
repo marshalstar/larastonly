@@ -26,7 +26,7 @@ class Checklist extends Ardent
 
     protected $table = 'checklists';
     protected $guarded = ['id'];
-
+public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 

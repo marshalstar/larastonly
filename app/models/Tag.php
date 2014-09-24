@@ -20,7 +20,7 @@ class Tag extends Ardent
 
 	protected $table = 'tags';
     protected $guarded = ['id'];
-
+public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 

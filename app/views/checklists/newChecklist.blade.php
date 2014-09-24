@@ -12,7 +12,12 @@
   </form>
 </div> -->
 
+
 <div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">
+<div class = "btn-group">
+  <button id = "controlZ" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-warning">Control Z</button>
+  <button id = "controlY" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-danger">Control Y</button>
+</div>
 
   <table class="table table-bordered"> 
     <tr> 

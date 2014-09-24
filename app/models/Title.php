@@ -25,7 +25,7 @@ class Title extends Ardent
 
     protected $table = 'titles';
     protected $guarded = ['id'];
-
+    public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
