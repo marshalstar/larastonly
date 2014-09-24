@@ -78,18 +78,6 @@ Route::group(['prefix' => 'checklists'], function ()
         'uses' => 'ChecklistsController@getGraphics',
     ]);
 });
-
-Route::resource('alternatives', 'AlternativesController');
-Route::resource('checklists', 'ChecklistsController');
-Route::resource('evaluations', 'EvaluationsController');
-Route::resource('questions', 'QuestionsController');
-Route::resource('tags', 'TagsController');
-Route::resource('titles', 'TitlesController');
-Route::resource('types', 'TypesController');
-Route::resource('users', 'UsersController');
-
-/* Grupo dos Usuários autenticados */
-
 Route::group(array('before' => 'auth'), function(){
         /* Mudar a senha */
         Route::get('/users/change-password', array(
@@ -104,6 +92,22 @@ Route::group(array('before' => 'auth'), function(){
         ));
 
 });
+
+Route::get('/checklist/new', [
+ 'as' => 'checklistNew',
+ 'uses' => 'ChecklistsController@newChecklist',
+]);
+Route::resource('alternatives', 'AlternativesController');
+Route::resource('checklists', 'ChecklistsController');
+Route::resource('evaluations', 'EvaluationsController');
+Route::resource('questions', 'QuestionsController');
+Route::resource('tags', 'TagsController');
+Route::resource('titles', 'TitlesController');
+Route::resource('types', 'TypesController');
+Route::resource('users', 'UsersController');
+
+/* Grupo dos Usuários autenticados */
+
 
 
 Route::get('/checklist/new', [

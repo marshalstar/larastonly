@@ -116,6 +116,7 @@ class UsersController extends Controller
     }
     public function getChangePassword()
     {
+        
         return View::make('users.password');
     }
 
