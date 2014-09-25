@@ -54,10 +54,6 @@ Route::get('/logout', [
     'uses' => 'UsersController@getLogout'
 ]);
 
-/*
- * É aqui GUILHERME GORGES Guilherme Gorges que você vai obrigar o josney a se logar
- * exemplo: http://localhost:8000/admin/profile
- */
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function ()
 {
     Route::get('/profile', [

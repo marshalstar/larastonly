@@ -22,7 +22,7 @@ class Answer extends Ardent
 
     protected $table = 'answers';
     protected $guarded = ['id'];
-public $timestamps = false;
+    public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
@@ -33,9 +33,9 @@ public $timestamps = false;
         return $this->belongsTo('Evaluation');
     }
 
-    /*public function alternative_question()
+    public function alternativeQuestion()
     {
-        return $this->belongsTo('');
-    }/**/
+        return $this->belongsTo('AlternativeQuestion');
+    }
 
 } 

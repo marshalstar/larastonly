@@ -72,9 +72,24 @@ class ChecklistsController extends Controller
     public function getGraphics($id, $query = null)
     {
 
-        $evaluation = Checklist::find($id)->evaluations[0];
 
-        Kint::dump($evaluation->alternatives);
+        $evaluations = Checklist::find($id)->evaluations;
+        $answers = $evaluations[0]->answers;
+        $alternativeQuestion = $answers[0]->alternativeQuestion;
+
+        $ns = DB::table('checklists')
+            ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+            ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+            ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+            ->join('questions', 'questions.id', '=', 'alternative_question.question_id')
+            ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
+            ->groupBy('alternative_question.id')
+            ->get(['alternatives.*', 'questions.*', 'alternative_question.*'])
+            ;
+
+        Kint::dump([
+            $ns
+        ]);
 
         die('rato');
         $evaluations = Evaluation::all();
