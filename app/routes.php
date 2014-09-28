@@ -101,6 +101,11 @@ Route::get('/checklist/new', [
  'as' => 'checklistNew',
  'uses' => 'ChecklistsController@newChecklist',
 ]);
+
+Route::get('/alternatives/indexAjax', [
+ 'uses' => 'AlternativesController@indexAjax',
+]);
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');

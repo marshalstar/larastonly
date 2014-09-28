@@ -19,16 +19,33 @@ class AlternativesController extends Controller
         $alternatives = Alternative::whereBetween('id', [$limit*($page-1), $limit*$page]);
 
         $results->totalItems = Alternative::count();
-        $results->items = $alternatives->get();
+        $results->items = $alternatives->get()->all();
+
+        //Kint::dump($results); die;
 
         return $results;
+    }
+
+    public function indexAjax()
+    {
+        $results = new stdClass;
+        ($results->current = Input::get('current')) || $results->current = 1;
+        ($results->rowCount = Input::get('rowCount')) || $results->rowCount = 10;
+        $results->totalItems = 0;
+
+        $alternatives = Alternative::whereBetween('id', [$results->rowCount*($results->current-1), $results->rowCount*$results->current]);
+
+        $results->rows = Alternative::count();
+        $results->total = $alternatives->get()->all();
+
+        return json_decode(json_encode($results), true); /** arrumar isto depois (perca de desempenho burra) */
     }
 
 	public function index()
     {
         $page = Input::get('page', 1);
         $data = $this->getByPage($page, 10);
-        $alternatives = Paginator::make($data->items->all(), $data->totalItems, 10);
+        $alternatives = Paginator::make($data->items, $data->totalItems, 10);
         return View::make('alternatives.index', compact('alternatives'));
 
         /*$alternatives = Alternative::all();

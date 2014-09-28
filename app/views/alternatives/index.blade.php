@@ -19,11 +19,11 @@
 
     <div class="panel panel-default">
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table id="grid-data-api" class="table table-hover" data-toggle="bootgrid" data-ajax="true" data-url="/alternatives/indexAjax">
                 <tr>
-                    <th class="text-center">{{ Lang::get('Id') }}</th>
-                    <th class="text-center">{{ Lang::get('Name') }}</th>
-                    <th class="text-center">{{ Lang::get('Type_id') }}</th>
+                    <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
+                    <th data-column-id="name" class="text-center">{{ Lang::get('Name') }}</th>
+                    <th data-column-id="type_id" class="text-center">{{ Lang::get('Type_id') }}</th>
                     <th class="text-center">{{ Lang::get('Ações') }}</th>
                 </tr>
                 @foreach ($alternatives as $alternative)
