@@ -10,12 +10,11 @@
 
     <title>@yield('title')| Listonly</title>
 
-    <link rel="stylesheet" href="http://dimsemenov.com/plugins/magnific-popup/site-assets/all.min.css?v=0.9.9"/>
-    {{--    MAGNIFIC MODAL --}}
+    <link rel="stylesheet" href="/libs/magnific-popup/0.9.9/css/all.min.css"/>
 
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
-    {{-- BOOTSTRAP --}}
+    <link href="/libs/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/libs/bootstrap/3.2.0/css/docs.min.css" rel="stylesheet">
+    <style src="/libs/bootstrap/3.2.0/css/bootstrap-theme.min.css"></style>
 
     <style>
         @-webkit-viewport { width: device-width; }
@@ -25,8 +24,7 @@
         @viewport { width: device-width; }
     </style>
 
-    <link href="/css/jquery.bootgrid.css" rel="stylesheet"/>
-    {{-- tabela por ajax com paginação --}}
+    <link href="/libs/bootgrid/1.1.1/css/jquery.bootgrid.css" rel="stylesheet"/>
 
     <style>
 
@@ -93,49 +91,41 @@
 
 </body>
 
-<!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
-{{-- BOOTSTRAP--}}
-
 <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<script src="/libs/bootstrap/3.2.0/js/ie8-responsive-file-warning.js"></script>
 <![endif]-->
-{{-- FAZ O SITE FUNCIONAR DIREITO NO INTERNET EXPLORER--}}
+<script src="/libs/bootstrap/3.2.0/js/ie-emulation-modes-warning.js"></script>
+<!--[if lt IE 9]>
+<script src="/libs/bootstrap/3.2.0/js/html5shiv.min.js"></script>
+<script src="/libs/bootstrap/3.2.0/js/respond.min.js"></script>
+<![endif]-->
 
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
-<script src="https://code.angularjs.org/1.2.8/angular-route.js"></script>
-{{-- ANGULAR--}}
+<script src="/libs/angular/1.2.8/js/angular.min.js"></script>
+<script src="/libs/angular/1.2.8/js/angular-route.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-{{-- JQUERY--}}
+<script src="/libs/jquery/1.9.1/js/jquery.min.js"></script>
 
-<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-{{-- JS BOOTSTRAP--}}
+<script src="/libs/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/libs/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="/libs/bootstrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
 
-<script src="http://dimsemenov.com/plugins/magnific-popup/dist/jquery.magnific-popup.min.js?v=0.9.9"></script>
-{{-- MAGNIFIC MODAL--}}
+<script src="/libs/magnific-popup/0.9.9/js/jquery.magnific-popup.min.js"></script>
 
 <script src="/js/anchor.js" async></script>
-
-{{-- nosso--}}
 
 <script>
     $('[data-loading-text]').on('click', function () {
         $(this).button('loading')
     });
-</script>
-{{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
+</script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
 
-<script src="/js/jquery.bootgrid.js"></script>
-{{-- tabela com paginação por ajax (TODO: TROCAR PARA VERSÃO MIMIFICADA DEPOIS; POR ENQUANTO ESTÁ ASSIM PARA DEBUG) --}}
+<script src="/libs/bootgrid/1.1.1/js/jquery.bootgrid.js"></script>
+{{-- @TODO: TROCAR PARA VERSÃO MIMIFICADA DEPOIS; POR ENQUANTO ESTÁ ASSIM PARA DEBUG --}}
 
 @yield('script')
 
 <div id="bg">
-    <img src="http://upload.wikimedia.org/wikipedia/commons/0/0d/Amanecer_en_la_Torre_Eiffel_(8163660325).jpg" alt="">
+    <img src="img/background.jpg" alt="">
 </div>
 
 </html>
