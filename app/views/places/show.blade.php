@@ -1,0 +1,1 @@
+/home/juan/Modelos/Listonly/larastonly/app/views/places/show.blade.php

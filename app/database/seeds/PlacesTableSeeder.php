@@ -1,0 +1,19 @@
+<?php
+
+use Faker\Factory as Faker;
+
+class PlacesTableSeeder extends Seeder {
+
+	public function run()
+	{
+		$faker = Faker::create();
+
+		foreach(range(1, 10) as $index)
+		{
+			Place::create([
+
+			]);
+		}
+	}
+
+}

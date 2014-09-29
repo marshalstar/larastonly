@@ -2,6 +2,8 @@ var memoZ = [];
 var memoY = [];
 var moves = -1;
 
+var teste = [{}];
+
 var arrayTotal = [];
 
 var titulos = 1;
