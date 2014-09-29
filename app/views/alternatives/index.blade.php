@@ -29,8 +29,6 @@
                     </tr>
                 </thead>
             </table>
-            <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="0"
-                data-id="0" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>
         </div>
     </div>
 
