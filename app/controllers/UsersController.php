@@ -125,4 +125,35 @@ class UsersController extends Controller
         echo 'me implementar. sou o UsersController@getProfile\n' ;
     }
 
+    public function postChangePassword()
+    {
+        $validator = Validator::make(Input::all(), array(
+            'old_password' =>'required',
+            'password' => 'required',
+            'password_again' =>'required|same:password'
+
+            ));
+
+        if($validator->fails()){
+            return Redirect::route('changepassword')->withErrors($validator);
+        }
+        else{
+            $user = User::find(Auth::user()->id);
+            $old_password = Input::get('old_password');
+            $password = Input::get('password');
+
+            if(Hash::check($old_password, $user->getAuthPassword()))
+            {
+                $user->password = Hash::make($password);
+                if($user->save()){
+                    return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
+                }
+                
+            
+           
+        }
+        }
+        
+        Kint::dump($user);
+}
 }

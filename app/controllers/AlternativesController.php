@@ -3,10 +3,38 @@
 class AlternativesController extends Controller
 {
 
+    /**
+     * @todo ler aqui: http://culttt.com/2014/02/24/working-pagination-laravel-4/
+     * - fazer cache
+     * - fazer usar o mesmo método do index() (mas só responder deste jeito a requisições ajax)
+     */
+    public function indexAjax()
+    {
+        /** @TODO validar valores */
+
+        $data = [];
+        ($data['current'] = Input::get('current')) || $data['current'] = 1;
+        ($data['rowCount'] = Input::get('rowCount')) || $data['rowCount'] = 10;
+
+        $query = Alternative::query();
+        if (Input::get('sort')) {
+            $sort = key(Input::get('sort'));
+            $query->orderBy($sort, Input::get('sort')[$sort]);
+        }
+        if ($searchPhrase = Input::get('searchPhrase')) {
+            $query->where('name', 'like', "%$searchPhrase%");
+        }
+        $data['total'] = $query->getQuery()->count('id');
+
+        $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
+        $data['rows'] = $query->get()->all();
+
+        return $data;
+    }
+
 	public function index()
     {
-		$alternatives = Alternative::all();
-		return View::make('alternatives.index', compact('alternatives'));
+        return View::make('alternatives.index');
 	}
 
 	public function create()

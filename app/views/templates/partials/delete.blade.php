@@ -1,3 +1,5 @@
+{{--DEPRECIADO--}}
+
 
 <div id="destroy-dialog" class="modal-content zoom-anim-dialog mfp-hide" aria-labelledby="titleDestroy" aria-hidden="true">
     <button type="button" class="close popup-modal-destroy" data-dismiss="modal">
@@ -22,7 +24,7 @@
 
 <script>
     $(function() {
-
+        console.log('del');
         var id;
         var url;
 
@@ -48,6 +50,7 @@
 </script>
 
 {{-- @TODO: jogar os arquivos relacionados a modal em um arquivo de modal genérica --}}
+
 {{-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
 <script>
     $(function() {

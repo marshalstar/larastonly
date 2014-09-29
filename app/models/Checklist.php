@@ -34,7 +34,8 @@ public $timestamps = false;
         'name' => 'required|between:3,255|unique:checklists',
     ];
 
-    public function evaluations() {
+    public function evaluations()
+    {
         return $this->hasMany('Evaluation');
     }
 

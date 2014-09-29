@@ -38,7 +38,7 @@
                     @if(Auth::check())
             <p> Bem-vindo, {{Auth::user()->username}}</p>
             <li><a href="{{URL::route('users.logout')}}"> <i class="icon-chevron-right"></i> Sair </li></a>
-            <li><a href="{{URL::route('change-password')}}"> Mudar minha senha </a></li>
+            <li><a href="{{URL::route('changepassword')}}"> Mudar minha senha </a></li>
             @else 
             <p> Você ainda não fez seu login.</p>
                <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
@@ -56,6 +56,16 @@
         </ul>
         </div>
     </div>
+    @section('script')
+    @stop
+    <table id="grid-data-api" class="table table-condensed table-hover table-striped" data-toggle="bootgrid" data-ajax="true" data-url="/alternatives">
+        <thead>
+        <tr>
+            <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
+            <th data-column-id="name">Name</th>
+        </tr>
+        </thead>
+    </table>
 </div>
 
 

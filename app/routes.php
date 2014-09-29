@@ -54,10 +54,6 @@ Route::get('/logout', [
     'uses' => 'UsersController@getLogout'
 ]);
 
-/*
- * É aqui GUILHERME GORGES Guilherme Gorges que você vai obrigar o josney a se logar
- * exemplo: http://localhost:8000/admin/profile
- */
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function ()
 {
     Route::get('/profile', [
@@ -79,9 +75,17 @@ Route::group(['prefix' => 'checklists'], function ()
     ]);
 });
 Route::group(array('before' => 'auth'), function(){
+        
+        Route::group(array('before'=>'csrf'), function(){
+            Route::post('/users/changepassword', array(
+                'as' => 'change-password-post',
+                'uses' => 'UsersController@postChangePassword'
+                ));
+        });
+
         /* Mudar a senha */
-        Route::get('/users/change-password', array(
-            'as' => 'change-password',
+        Route::get('/users/changepassword', array(
+            'as' => 'changepassword',
             'uses' => 'UsersController@getChangePassword'
             ));
 
@@ -97,6 +101,11 @@ Route::get('/checklist/new', [
  'as' => 'checklistNew',
  'uses' => 'ChecklistsController@newChecklist',
 ]);
+
+Route::any('/alternatives/indexAjax', [
+ 'uses' => 'AlternativesController@indexAjax',
+]);
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
@@ -106,11 +115,3 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
-/* Grupo dos Usuários autenticados */
-
-
-
-Route::get('/checklist/new', [
- 'as' => 'checklistNew',
- 'uses' => 'ChecklistsController@newChecklist',
-]);
