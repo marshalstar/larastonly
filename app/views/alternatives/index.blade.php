@@ -19,37 +19,48 @@
 
     <div class="panel panel-default">
         <div class="table-responsive">
-            <table id="grid-data-api" class="table table-hover" data-toggle="bootgrid" data-ajax="true" data-url="/alternatives/indexAjax">
-                <tr>
-                    <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
-                    <th data-column-id="name" class="text-center">{{ Lang::get('Name') }}</th>
-                    <th data-column-id="type_id" class="text-center">{{ Lang::get('Type_id') }}</th>
-                    <th class="text-center">{{ Lang::get('Ações') }}</th>
-                </tr>
-                @foreach ($alternatives as $alternative)
-                    <tr id="line{{ $alternative['id'] }}">
-                        <td class="text-center">{{ $alternative->id }}</td>
-                        <td>{{ Str::limit($alternative->name, 37) }}</td>
-                        <td class="text-center">{{ $alternative->type_id }}</td>
-                        <td class="text-center">
-                            <div class="list-inline">
-                                <a href="{{ URL::route('alternatives.show', $alternative->id) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>
-                                <a href="{{ URL::route('alternatives.edit', $alternative->id) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>
-                                <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="{{ URL::route('alternatives.destroy', $alternative->id) }}"
-                                    data-id="{{ $alternative->id }}" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>
-                            </div>
-                        </td>
+            <table id="grid-data" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-column-id="id" data-type="numeric" data-identifier="true" class="text-center">{{ Lang::get('Id') }}</th>
+                        <th data-column-id="name" class="text-center">{{ Lang::get('Name') }}</th>
+                        <th data-column-id="type_id" class="text-center">{{ Lang::get('Type_id') }}</th>
+                        <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
                     </tr>
-                @endforeach
+                </thead>
             </table>
+            <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="0"
+                data-id="0" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>
         </div>
     </div>
-
-    {{ $alternatives->links() }}
 
 </div>
 @stop
 
 @section('script')
-    @include('templates.partials.delete')
+    @include('templates.modal.destroy.effect')
+    <script>
+
+    $(function() {
+        console.log('bootgrid');
+        var grid = $("#grid-data").bootgrid({
+            ajax: true,
+            url: "/alternatives/indexAjax",
+            formatters: {
+                "commands": function(column, row) {
+                    return '<div class="list-inline">\
+                                <a href="'+ '{{ URL::route("alternatives.show", "key") }}'.replace('key', row.id) + '" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>\
+                                <a href="'+ '{{ URL::route("alternatives.edit", "key") }}'.replace('key', row.id) +'" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>\
+                                <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="'+ '{{ URL::route('alternatives.destroy', 'key') }}'.replace('key', row.id) +'"\
+                                    data-id="'+ row.id +'" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>\
+                            </div>';
+                }
+            }
+        }).on("loaded.rs.jquery.bootgrid", function() {
+            @include('templates.modal.destroy.script')
+        });
+        console.log($("#grid-data").reload);
+    });
+
+    </script>
 @stop

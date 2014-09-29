@@ -1,6 +1,3 @@
-{{--DEPRECIADO--}}
-
-
 <div id="destroy-dialog" class="modal-content zoom-anim-dialog mfp-hide" aria-labelledby="titleDestroy" aria-hidden="true">
     <button type="button" class="close popup-modal-destroy" data-dismiss="modal">
         <span aria-hidden="true">&times;</span>
@@ -23,61 +20,10 @@
 </div>
 
 <script>
-    $(function() {
-        console.log('del');
-        var id;
-        var url;
-
-        $(document).on('click', '.destroy-modal', function () {
-            id = $(this).attr('data-id');
-            url = $(this).attr('data-url');
-        });
-
-        $(document).on('click', '.destroy', function () {
-
-            if (!id || !url) {
-                return;
-            }
-
-            $('#line'+id).remove();
-
-            $.ajax({
-                url: url,
-                type:'DELETE'
-            });
-        });
-    });
+    @include('templates.modal.destroy.script')
 </script>
 
-{{-- @TODO: jogar os arquivos relacionados a modal em um arquivo de modal genérica --}}
-
-{{-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
-<script>
-    $(function() {
-        $('.popup-with-zoom-anim').magnificPopup({
-            modal: true,
-            type: 'inline',
-
-            fixedContentPos: true,
-            fixedBgPos: true,
-
-            overflowY: 'auto',
-
-            closeBtnInside: true,
-            preloader: false,
-
-            midClick: true,
-            removalDelay: 300,
-            mainClass: 'my-mfp-zoom-in'
-        });
-    });
-    $(document).on('click', '.popup-modal-destroy', function (e) {
-        e.preventDefault();
-        $.magnificPopup.close();
-    });
-</script>
-
-{{-- Isto é necessário para fazer animação usando magnific popup http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
+{{-- http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
 <style type="text/css">
 
     #destroy-dialog {

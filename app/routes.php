@@ -102,7 +102,7 @@ Route::get('/checklist/new', [
  'uses' => 'ChecklistsController@newChecklist',
 ]);
 
-Route::get('/alternatives/indexAjax', [
+Route::any('/alternatives/indexAjax', [
  'uses' => 'AlternativesController@indexAjax',
 ]);
 
