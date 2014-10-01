@@ -1,59 +1,32 @@
 <?php
 
-class TitlesController extends Controller
+class TitlesController extends BaseController
 {
 
-	public function index()
-    {
-		$titles = Title::all();
-		return View::make('titles.index', compact('titles'));
-	}
+    protected $baseSingular = 'title';
+    protected $basePlural = 'titles';
+    protected $likeAttributes = ['id'];
 
-	public function create()
+    protected function newObj()
+    {
+        return new Title();
+    }
+
+    protected function query()
+    {
+        return Title::query();
+    }
+
+    public function beforeCreate($view)
     {
         $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
-        return View::make('titles.create')
-            ->with('titles', $titles);
-	}
+        $view->with('titles', $titles);
+    }
 
-	public function store()
+    public function beforeEdit($view, $obj)
     {
-        $title = new Title();
-        if ($title->save()) {
-            return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
-        }
-        return Redirect::route('titles.create')->withErrors($title->errors());
-	}
-
-	public function show($id)
-    {
-		$title = Title::findOrFail($id);
-		return View::make('titles.show', compact('title'));
-	}
-
-	public function edit($id)
-    {
-		$title = Title::find($id);
         $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
-		return View::make('titles.edit')
-            ->with('title', $title)
-            ->with('titles', $titles);
-	}
-
-	public function update($id)
-    {
-        $title = Title::find($id);
-        $title->fill(Input::all());
-        if ($title->updateUniques()) {
-            return Redirect::route('titles.index')->with('message', 'Salvo com sucesso');
-        }
-        return Redirect::route('titles.edit')->withErrors($title->errors());
-	}
-
-	public function destroy($id)
-    {
-		Title::destroy($id);
-		return Redirect::route('titles.index');
-	}
+        $view->with('titles', $titles);
+    }
 
 }

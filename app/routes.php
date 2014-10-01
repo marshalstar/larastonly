@@ -106,6 +106,34 @@ Route::any('/alternatives/indexAjax', [
  'uses' => 'AlternativesController@indexAjax',
 ]);
 
+Route::any('/checklists/indexAjax', [
+ 'uses' => 'ChecklistsController@indexAjax',
+]);
+
+Route::any('/evaluations/indexAjax', [
+ 'uses' => 'EvaluationsController@indexAjax',
+]);
+
+Route::any('/questions/indexAjax', [
+ 'uses' => 'QuestionsController@indexAjax',
+]);
+
+Route::any('/tags/indexAjax', [
+ 'uses' => 'TagsController@indexAjax',
+]);
+
+Route::any('/titles/indexAjax', [
+ 'uses' => 'TitlesController@indexAjax',
+]);
+
+Route::any('/types/indexAjax', [
+ 'uses' => 'TypesController@indexAjax',
+]);
+
+Route::any('/users/indexAjax', [
+ 'uses' => 'UsersController@indexAjax',
+]);
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');

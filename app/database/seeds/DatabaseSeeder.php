@@ -1,6 +1,9 @@
 <?php
 
-class DatabaseSeeder extends Seeder {
+class DatabaseSeeder extends Seeder
+{
+
+    private static $NUM_CICLES = 30;
 
 	/**
 	 * Run the database seeds.
@@ -19,9 +22,14 @@ class DatabaseSeeder extends Seeder {
         DB::enableQueryLog();
 
         $this->command->comment('========== Pode ir programar ==========');
-        foreach (range(2, 30) as $i) {
-            $this->command->comment("===== ciclo $i =====");
-            $this->seederTables();
+        if (!in_array(['no', 'n'], $this->command->ask("continuar ciclos (".self::$NUM_CICLES." no total)?"))) {
+            foreach (range(2, self::$NUM_CICLES) as $i) {
+                $this->command->comment("===== ciclo $i =====");
+                $this->seederTables();
+            }
+            return;
+        } else {
+            $this->command->comment("Comando cancelado!");
         }
 	}
 

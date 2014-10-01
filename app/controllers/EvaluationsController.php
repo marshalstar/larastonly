@@ -1,62 +1,36 @@
 <?php
 
-class EvaluationsController extends Controller
+class EvaluationsController extends BaseController
 {
 
-	public function index()
-    {
-		$evaluations = Evaluation::all();
-		return View::make('evaluations.index', compact('evaluations'));
-	}
+    protected $baseSingular = 'evaluation';
+    protected $basePlural = 'evaluations';
+    protected $likeAttributes = ['id'];
 
-	public function create()
+    protected function newObj()
+    {
+        return new Evaluation();
+    }
+
+    protected function query()
+    {
+        return Evaluation::query();
+    }
+
+    public function beforeCreate($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
-		return View::make('evaluations.create')
-            ->with('users', $users)
-            ->with('checklists', $checklists);
-	}
+        $view->with('users', $users)
+             ->with('checklists', $checklists);
+    }
 
-	public function store()
+    public function beforeEdit($view, $obj)
     {
-        $evaluation = new Evaluation(Input::all());
-        if ($evaluation->save()) {
-            return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
-        }
-        return Redirect::route('evaluations.create')->withErrors($evaluation->errors());
-	}
-
-	public function show($id)
-    {
-		$evaluation = Evaluation::findOrFail($id);
-		return View::make('evaluations.show', compact('evaluation'));
-	}
-
-	public function edit($id)
-    {
-		$evaluation = Evaluation::find($id);
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
-		return View::make('evaluations.edit', compact('evaluation'))
-            ->with('users', $users)
-            ->with('checklists', $checklists);
-	}
-
-	public function update($id)
-    {
-        $evaluation = Evaluation::find($id);
-        $evaluation->fill(Input::all());
-        if ($evaluation->updateUniques()) {
-            return Redirect::route('evaluations.index')->with('message', 'Salvo com sucesso');
-        }
-        return Redirect::route('evaluations.edit')->withErrors($evaluation->errors());
-	}
-
-	public function destroy($id)
-    {
-		Evaluation::destroy($id);
-		return Redirect::route('evaluations.index');
-	}
+        $view ->with('users', $users)
+              ->with('checklists', $checklists);
+    }
 
 }

@@ -1,68 +1,33 @@
 <?php
 
-class ChecklistsController extends Controller
+class ChecklistsController extends BaseController
 {
 
-	public function index()
-    {
-		$checklists = Checklist::all();
-		return View::make('checklists.index', compact('checklists'));
-	}
+    protected $baseSingular = 'checklist';
+    protected $basePlural = 'checklists';
+    protected $likeAttributes = ['id'];
 
-	public function create()
+    public function beforeCreate($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
-        $titles = array_column(Title::all()->toArray(), 'name', 'id');
-		return View::make('checklists.create')
-            ->with('users', $users)
-            ->with('titles', $titles);
-	}
+        $view->with('users', $users);
+    }
 
-	public function store()
+    protected function newObj()
     {
-        $checklist = new Checklist();
-        if ($checklist->save()) {
-            return Redirect::route('checklists.index')
-                ->with('message', Lang::get('Salvo com sucesso'));
-        }
-        return Redirect::route('checklists.create')
-            ->withErrors($checklist->errors());
-	}
+        return new Checklist();
+    }
 
-	public function show($id)
+    protected function query()
     {
-		$checklist = Checklist::findOrFail($id);
-		return View::make('checklists.show', compact('checklist'));
-	}
+        return Checklist::query();
+    }
 
-	public function edit($id)
+    public function beforeEdit($view, $obj)
     {
-		$checklist = Checklist::find($id);
         $users = array_column(User::all()->toArray(), 'username', 'id');
-        $titles = array_column(Title::all()->toArray(), 'name', 'id');
-		return View::make('checklists.edit')
-            ->with('checklist', $checklist)
-            ->with('users', $users)
-            ->with('titles', $titles);
-	}
-
-	public function update($id)
-    {
-        $checklist = Checklist::find($id);
-        $checklist->fill(Input::all());
-        if ($checklist->updateUniques()) {
-            return Redirect::route('checklists.index')
-                ->with('message', Lang::get('Salvo com sucesso'));
-        }
-        return Redirect::route('checklists.edit')
-            ->withErrors($checklist->errors());
-	}
-
-	public function destroy($id)
-    {
-		Checklist::destroy($id);
-		return Redirect::route('checklists.index');
-	}
+        $view->with('users', $users);
+    }
 
 	public function newChecklist()
 	{
