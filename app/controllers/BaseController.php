@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Validator;
+
 abstract class BaseController extends Controller {
 
 //	/**
@@ -122,7 +124,7 @@ abstract class BaseController extends Controller {
      */
     public function show($id)
     {
-        $obj = $this->query()->findOrFail($id);
+        $obj = $this->query()->getQuery()->findOrFail($id);
         $view = View::make("{$this->basePlural}.show");
         $this->beforeShow($view, $obj, $id);
         return $view->with($this->baseSingular, $obj);
@@ -140,7 +142,7 @@ abstract class BaseController extends Controller {
      */
     public function edit($id)
     {
-        $obj = $this->query()->find($id);
+        $obj = $this->query()->getQuery()->find($id);
         $view = View::make("{$this->basePlural}.edit");
         $this->beforeEdit($view, $obj);
         return $view->with($this->baseSingular, $obj);
@@ -158,7 +160,7 @@ abstract class BaseController extends Controller {
      */
     public function update($id)
     {
-        $obj = $this->query()->find($id);
+        $obj = $this->query()->getQuery()->find($id);
         $obj->fill(Input::all());
         $this->beforeUpdate($obj, $id);
         if ($obj->updateUniques()) {
@@ -179,7 +181,7 @@ abstract class BaseController extends Controller {
     public function destroy($id)
     {
         $this->beforeDestroy($id);
-        $this->query()->delete($id);
+        $this->query()->getQuery()->delete($id);
         return Redirect::route("{$this->basePlural}.index");
     }
 

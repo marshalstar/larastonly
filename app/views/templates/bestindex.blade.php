@@ -9,7 +9,7 @@
     @endif
 
     <br/>
-        @yield('text-create-button', '<a href="#" class="btn btn-sm btn-primary">'. Lang::get('novo') .'</a>')
+        <a href="@yield('create-url')" class="btn btn-sm btn-primary">@yield('text-create-button', Lang::get('novo'))<a/>
     <br/><br/>
 
     <div class="panel panel-default">
@@ -40,9 +40,9 @@
                 @yield('formatters')
                 "commands": function(column, row) {
                     return '<div class="list-inline">\
-                                <a href="'+ '@yield('create-url-ajax')'.replace('key', row.id) + '" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>\
-                                <a href="'+ '@yield('edit-url-ajax')'.replace('key', row.id) +'" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>\
-                                <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="'+ '@yield('destroy-url-ajax')'.replace('key', row.id) +'"\
+                                <a href="'+ '@yield('show-url')'.replace('key', row.id) + '" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>\
+                                <a href="'+ '@yield('edit-url')'.replace('key', row.id) +'" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>\
+                                <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="'+ '@yield('destroy-url')'.replace('key', row.id) +'"\
                                     data-id="'+ row.id +'" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>\
                             </div>';
                 }
