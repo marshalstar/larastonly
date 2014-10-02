@@ -4,7 +4,7 @@ var moves = -1;
 
 var teste = [{}];
 
-var arrayTotal = [];
+var arrayTotal = [{}];
 
 var titulos = 1;
 
@@ -81,7 +81,7 @@ function remover(id)
 
 	memoZ[++moves] = {idobjeto : id, old : arrayTotal[id], acao : "remover"};
 
-	arrayTotal[id] = {};
+	arrayTotal[id] = null;
 }
 
 var questoes = 0;

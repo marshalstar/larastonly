@@ -69,6 +69,11 @@ class ChecklistsController extends Controller
 		return View::make("checklists.newChecklist");
 	}
 
+    public function save()
+    {
+        
+    }
+
     public function getGraphics($id, $query = null)
     {
 

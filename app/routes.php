@@ -115,3 +115,18 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
+
+Route::get('/facebook', function()
+{
+    return View::make('fbtest');
+});
+
+Route::get('/facebook/singout', function()
+{
+    return View::make('singout');
+});
+
+Route::get('/checklist/save', [
+ 'as' => 'checklistSave',
+ 'uses' => 'ChecklistsController@save',
+]);

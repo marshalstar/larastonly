@@ -10,7 +10,8 @@
         "fzaninotto/faker": "1.5.*@dev",
         "barryvdh/laravel-ide-helper": "1.*",
         "doctrine/dbal": "2.5.*@dev",
-        "laravelbook/ardent": "2.*"
+        "laravelbook/ardent": "2.*",
+        "facebook/php-sdk-v4" : "4.0.*"
 	},
 	"require-dev": {
 		"way/generators": "~3.0"
