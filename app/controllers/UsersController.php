@@ -150,26 +150,4 @@ class UsersController extends Controller
         }
         dd('6540N008');
     }
-    public function getForgotPassword()
-    {
-        return View::make('users.forgot');
-    }
-
-    public function postForgotPassword()
-    {
-        $validator = Validator::make(Input::all(), [
-            'email' => 'required|email'
-            ]);
-        if($validator->fails())
-        {
-            return Redirect::route('forgot')->withErrors($validator)->withInput();
-
-        }else
-        { 
-        $user = User::where('email', '=', Input::get('email'));
-        }
-            return Redirect::route('forgot')->with('message', 'Falhou.');
-    }
-   
 }
-
