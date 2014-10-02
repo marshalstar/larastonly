@@ -47,7 +47,17 @@ Route::group(['before' => 'guest'], function()
     Route::post('/login', [
         'uses' => 'UsersController@postLogin'
     ]);
+
+    Route::post('/users/forgot', [
+    'as' => 'forgot',
+    'uses' => 'UsersController@getForgotPassword'
+    ]);
+    
 });
+Route::get('/users/forgot', [
+    'as' => 'forgot',
+    'uses' => 'UsersController@getForgotPassword'
+    ]);
 
 Route::get('/logout', [
     'as' => 'users.logout',

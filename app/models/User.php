@@ -85,6 +85,7 @@ class User extends Ardent implements UserInterface, RemindableInterface
         return true;
     }
 
+
     public function afterSave()
     {
         if (!$this->active) {
@@ -94,6 +95,7 @@ class User extends Ardent implements UserInterface, RemindableInterface
             });
         }
     }
+
 
     public function evaluations()
     {
