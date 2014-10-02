@@ -18,8 +18,8 @@
         </div>
 
         <div class="form-group input-group">
-		{{Form::label('new_password', Str::title(Lang::get('Digite a senha novamente')), ['class' => 'input-group-addon']) }}
-		{{Form::password('password_again', null, ['class' => 'form-control'])}}
+		{{Form::label('password_confirmation', Str::title(Lang::get('Digite a senha novamente')), ['class' => 'input-group-addon']) }}
+		{{Form::password('password_confirmation', null, ['class' => 'form-control'])}}
         </div>
     
 

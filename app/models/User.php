@@ -77,9 +77,14 @@ class User extends Ardent implements UserInterface, RemindableInterface
             $this->password = Hash::make($this->password);
             $this->code = str_random(60);
             $this->active = 0;
+        } else {
+            $this->password = Hash::make($this->password);
+            unset($this->old_password);
+            unset($this->password_again);
         }
         return true;
     }
+
 
     public function afterSave()
     {
@@ -90,6 +95,7 @@ class User extends Ardent implements UserInterface, RemindableInterface
             });
         }
     }
+
 
     public function evaluations()
     {

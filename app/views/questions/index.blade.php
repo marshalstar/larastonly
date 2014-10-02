@@ -1,38 +1,19 @@
-@extends('templates.index')
+@extends('templates.bestindex')
 
 @section('title'){{ Str::title(Lang::get('questões')) }} @stop
 
-@section('novo')
-<a href="{{ URL::to('questions/create') }}" class="btn btn-sm btn-primary primary-btn" data-loading-text="{{ Lang::get('carregando').'...' }}"><span class="glyphicon glyphicon-plus"></span> {{ Lang::get('Nova Questão') }}</a>
+@section('text-create-button'){{ Lang::get('Nova Questão') }}@stop
+
+@section('table-content')
+<th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
+<th data-column-id="statement" class="text-center">{{ Lang::get('Enunciado') }}</th>
+<th data-column-id="title_id" class="text-center">{{ Lang::get('Título_id') }}</th>
+<th data-column-id="is_about_assessable" class="text-center">{{ Lang::get('É sobre avaliado?')}}
+<th data-column-id="weight" class="text-center">{{ Lang::get('Peso')}}
+<th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('table-data')
-
-    <tr>
-        <th class="text-center">{{ Lang::get('Id') }}</th>
-        <th class="text-center">{{ Lang::get('Enunciado') }}</th>
-        <th class="text-center">{{ Lang::get('Título_id') }}</th>
-        <th class="text-center">{{  Lang::get('É sobre avaliado?')}}
-        <th class="text-center">{{  Lang::get('Peso')}}
-        <th class="text-center">{{ Lang::get('Ações') }}</th>
-    </tr>
-
-    @foreach ($questions as $question)
-        <tr id="line{{ $question->id }}">
-            <td class="text-center">{{ $question->id }}</td>
-            <td>{{ Str::limit($question->statement, 37) }}</td>
-            <td class="text-center">{{ $question->title_id }}</td>
-            <td class="text-center">{{$question->is_about_assessable}}</td>
-            <td class="text-center">{{$question->weight}}</td>
-            <td class="text-center">
-                <div class="list-inline">
-                    <a href="{{ URL::route('questions.show', $question->id) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>
-                    <a href="{{ URL::route('questions.edit', $question->id) }}" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>
-                    <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="{{ URL::route('questions.destroy', $question->id) }}"
-                       data-id="{{ $question->id }}" href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>
-                </div>
-            </td>
-        </tr>
-    @endforeach
-
-@stop
+@section('data-url-ajax')/questions/indexAjax @stop
+@section('create-url-ajax'){{ URL::route("questions.show", "key") }} @stop
+@section('edit-url-ajax'){{ URL::route("questions.edit", "key") }} @stop
+@section('destroy-url-ajax'){{ URL::route('questions.destroy', 'key') }} @stop

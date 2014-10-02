@@ -20,11 +20,6 @@
             {{ Form::select('user_id', $users, Input::old('user_id'), ['class' => 'form-control']) }}
         </div>
 
-        <div class="form-group input-group">
-            {{ Form::label('title_id', Str::title(Lang::get('título')), ['class' => 'input-group-addon']) }}
-            {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
-        </div>
-
         {{ Form::submit(Str::title(Lang::get('novo checklist')), ['class' => 'btn btn-primary']) }}
 
         {{ Form::close() }}

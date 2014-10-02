@@ -47,7 +47,17 @@ Route::group(['before' => 'guest'], function()
     Route::post('/login', [
         'uses' => 'UsersController@postLogin'
     ]);
+
+    Route::post('/users/forgot', [
+    'as' => 'forgot',
+    'uses' => 'UsersController@getForgotPassword'
+    ]);
+    
 });
+Route::get('/users/forgot', [
+    'as' => 'forgot',
+    'uses' => 'UsersController@getForgotPassword'
+    ]);
 
 Route::get('/logout', [
     'as' => 'users.logout',
@@ -104,6 +114,34 @@ Route::get('/checklist/new', [
 
 Route::any('/alternatives/indexAjax', [
  'uses' => 'AlternativesController@indexAjax',
+]);
+
+Route::any('/checklists/indexAjax', [
+ 'uses' => 'ChecklistsController@indexAjax',
+]);
+
+Route::any('/evaluations/indexAjax', [
+ 'uses' => 'EvaluationsController@indexAjax',
+]);
+
+Route::any('/questions/indexAjax', [
+ 'uses' => 'QuestionsController@indexAjax',
+]);
+
+Route::any('/tags/indexAjax', [
+ 'uses' => 'TagsController@indexAjax',
+]);
+
+Route::any('/titles/indexAjax', [
+ 'uses' => 'TitlesController@indexAjax',
+]);
+
+Route::any('/types/indexAjax', [
+ 'uses' => 'TypesController@indexAjax',
+]);
+
+Route::any('/users/indexAjax', [
+ 'uses' => 'UsersController@indexAjax',
 ]);
 
 Route::resource('alternatives', 'AlternativesController');

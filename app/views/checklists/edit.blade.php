@@ -18,11 +18,6 @@
         {{ Form::select('user_id', $users, null, ['class' => 'form-control']) }}
     </div>
 
-    <div class="form-group input-group">
-        {{ Form::label('title_id', Str::title(Lang::get('título')), ['class' => 'input-group-addon']) }}
-        {{ Form::select('title_id', $titles, null, ['class' => 'form-control']) }}
-    </div>
-
     {{ Form::submit(Str::title(Lang::get('editar checklist')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}

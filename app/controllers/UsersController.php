@@ -130,30 +130,46 @@ class UsersController extends Controller
         $validator = Validator::make(Input::all(), array(
             'old_password' =>'required',
             'password' => 'required',
-            'password_again' =>'required|same:password'
+            'password_confirmation' =>'required|same:password'
 
             ));
 
         if($validator->fails()){
             return Redirect::route('changepassword')->withErrors($validator);
-        }
-        else{
+        } else{
             $user = User::find(Auth::user()->id);
             $old_password = Input::get('old_password');
-            $password = Input::get('password');
 
             if(Hash::check($old_password, $user->getAuthPassword()))
             {
-                $user->password = Hash::make($password);
-                if($user->save()){
+                $user->fill(Input::all());
+                if($user->updateUniques()){
                     return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
                 }
-                
-            
-           
+            }
         }
+        dd('6540N008');
+    }
+    public function getForgotPassword()
+    {
+        return View::make('users.forgot');
+    }
+
+    public function postForgotPassword()
+    {
+        $validator = Validator::make(Input::all(), [
+            'email' => 'required|email'
+            ]);
+        if($validator->fails())
+        {
+            return Redirect::route('forgot')->withErrors($validator)->withInput();
+
+        }else
+        { 
+        $user = User::where('email', '=', Input::get('email'));
         }
-        
-        Kint::dump($user);
+            return Redirect::route('forgot')->with('message', 'Falhou.');
+    }
+   
 }
-}
+
