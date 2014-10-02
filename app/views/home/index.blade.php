@@ -39,12 +39,7 @@
             <p> Bem-vindo, {{Auth::user()->username}}</p>
             <li><a href="{{URL::route('users.logout')}}"> <i class="icon-chevron-right"></i> Sair </li></a>
             <li><a href="{{URL::route('changepassword')}}"> Mudar minha senha </a></li>
-            @else 
-            <p> Você ainda não fez seu login.</p>
-               <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
-               <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
-            @endif
-                <li><a href="{{URL::route('alternatives.index')}}"><i class="icon-chevron-right"></i> Gerenciar Alternativas</li></a>
+            <li><a href="{{URL::route('alternatives.index')}}"><i class="icon-chevron-right"></i> Gerenciar Alternativas</li></a>
                 <li><a href="{{URL::route('questions.index')}}"><i class="icon-chevron-right"></i> Gerenciar Questões</li></a>
                 <li><a href="{{URL::route('checklists.index')}}"><i class="icon-chevron-right"></i> Gerenciar Checklist </li></a>
                 <li><a href="{{URL::route('evaluations.index')}}"><i class="icon-chevron-right"></i>Gerenciar Avaliações</li></a>
@@ -52,6 +47,11 @@
                 <li><a href="{{URL::route('titles.index')}}"><i class="icon-chevron-right"></i>Gerenciar Títulos </li></a>
                 <li><a href="{{URL::route('types.index')}}"><i class="icon-chevron-right"></i>Gerenciar Tipo </li></a>
                 <li><a href="{{URL::route('users.index')}}"><i class="icon-chevron-right"></i>Gerenciar Perfil</li></a>
+            @else 
+            <p> Você ainda não fez seu login.</p>
+               <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
+               <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
+            @endif
 
         </ul>
         </div>
