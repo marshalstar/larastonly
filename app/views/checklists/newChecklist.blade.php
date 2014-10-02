@@ -58,6 +58,9 @@
       </td>
     </tr>
   </table>
+
+  <button id = "salvarbt" onclick = "JavaScript:salvar();" class="btn btn-sm btn-primary">Salvar</button>
+
 </div>
 @stop
 

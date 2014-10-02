@@ -4,7 +4,9 @@ var moves = -1;
 
 var teste = [{}];
 
-var arrayTotal = [{}];
+var arrayTotal = {};
+
+arrayTotal["titulo_1"] = {tipo : "titulo", id : ("titulo_1"), valor : ""};
 
 var titulos = 1;
 
@@ -81,7 +83,7 @@ function remover(id)
 
 	memoZ[++moves] = {idobjeto : id, old : arrayTotal[id], acao : "remover"};
 
-	arrayTotal[id] = null;
+	arrayTotal[id] = undefined;
 }
 
 var questoes = 0;
@@ -291,4 +293,13 @@ function controlZ()
 		arrayTotal[memoZ[moves].idobjeto].valor = document.getElementById(memoZ[moves].idobjeto).value;
 	}
 	moves--;
+}
+
+function salvar()
+{
+	$.ajax({
+	url: "/checklist/save",
+	data: arrayTotal,
+	type: "POST"
+	});
 }

@@ -164,7 +164,7 @@ Route::get('/facebook/singout', function()
     return View::make('singout');
 });
 
-Route::get('/checklist/save', [
+Route::post('/checklist/save', [
  'as' => 'checklistSave',
  'uses' => 'ChecklistsController@save',
 ]);

@@ -36,6 +36,8 @@ class ChecklistsController extends BaseController
 
     public function save()
     {
+        var_dump( Input::all() );
+
         
     }
 
