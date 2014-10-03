@@ -2,6 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('tags')) }} @stop
 
+@section('create-url'){{ URL::route("tagss.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova Tag') }}@stop
 
 @section('table-content')
@@ -11,6 +12,6 @@
 @stop
 
 @section('data-url-ajax')/tags/indexAjax @stop
-@section('create-url-ajax'){{ URL::route("tags.show", "key") }} @stop
-@section('edit-url-ajax'){{ URL::route("tags.edit", "key") }} @stop
-@section('destroy-url-ajax'){{ URL::route('tags.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("tags.show", "key") }} @stop
+@section('edit-url'){{ URL::route("tags.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('tags.destroy', 'key') }} @stop

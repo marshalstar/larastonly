@@ -17,7 +17,9 @@ abstract class BaseController extends Controller {
 //		}
 //	}
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public static $validationPagination = [
         'current' => 'required|min:0',
         'rowCount' => 'required|min:0',
@@ -25,37 +27,56 @@ abstract class BaseController extends Controller {
         'searchPhrase' => '',
     ];
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $baseSingular;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $basePlural;
 
-    /** @TODO: descobrir como pegar todos atributos disponíveis de uma model */
-    /** @var array */
+    /**
+     * @TODO: descobrir como pegar todos atributos disponíveis de uma model
+     * @var array
+     */
     protected $likeAttributes = [];
 
-    /** @return \LaravelBook\Ardent\Ardent */
+    /**
+     * @return \LaravelBook\Ardent\Ardent
+     */
     protected abstract function newObj();
 
-    /** @return \Illuminate\Database\Eloquent\Builder */
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     protected abstract function query();
 
-    /** */
-    protected function beforeIndex() { }
+    /**
+     */
+    protected function beforeIndex()
+    {
 
-    /** @return \Illuminate\View\View */
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $this->beforeIndex();
         return View::make("{$this->basePlural}.index");
     }
 
+    /**
+     * @return array
+     */
     public function indexAjax()
     {
         $validator = Validator::make(Input::all(), self::$validationPagination);
         if ($validator->fails()) {
-            /** @TODO: retornar erro 404 no lugar */
+            /** @TODO: retornar erro 404 aqui quando terminar o projeto */
             return $validator->messages();
         }
 
@@ -76,7 +97,7 @@ abstract class BaseController extends Controller {
                 return $query;
             });
         }
-        $data['total'] = $query->getQuery()->count('id');
+        $data['total'] = $query->count('id');
 
         $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
         $data['rows'] = $query->get()->all();
@@ -84,10 +105,17 @@ abstract class BaseController extends Controller {
         return $data;
     }
 
-    /** @param $view \Illuminate\View\View */
-    protected function beforeCreate($view) { }
+    /**
+     * @param $view \Illuminate\View\View
+     */
+    protected function beforeCreate($view)
+    {
 
-    /** @return \Illuminate\View\View */
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         $view = View::make("{$this->basePlural}.create");
@@ -95,10 +123,17 @@ abstract class BaseController extends Controller {
         return $view;
     }
 
-    /** @param $obj \LaravelBook\Ardent\Ardent */
-    protected function beforeStore($obj) { }
+    /**
+     * @param $obj \LaravelBook\Ardent\Ardent
+     */
+    protected function beforeStore($obj)
+    {
 
-    /** @return \Illuminate\Http\RedirectResponse */
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store()
     {
         $obj = $this->newObj();
@@ -116,7 +151,10 @@ abstract class BaseController extends Controller {
      * @param $obj \LaravelBook\Ardent\Ardent
      * @param $id integer
      */
-    protected function beforeShow($view, $obj, $id) { }
+    protected function beforeShow($view, $obj, $id)
+    {
+
+    }
 
     /**
      * @param $id integer
@@ -124,7 +162,7 @@ abstract class BaseController extends Controller {
      */
     public function show($id)
     {
-        $obj = $this->query()->getQuery()->findOrFail($id);
+        $obj = $this->query()->findOrFail($id);
         $view = View::make("{$this->basePlural}.show");
         $this->beforeShow($view, $obj, $id);
         return $view->with($this->baseSingular, $obj);
@@ -134,7 +172,10 @@ abstract class BaseController extends Controller {
      * @param $view \Illuminate\View\View
      * @param $obj \LaravelBook\Ardent\Ardent
      */
-    protected function beforeEdit($view, $obj) { }
+    protected function beforeEdit($view, $obj)
+    {
+
+    }
 
     /**
      * @param $id integer
@@ -142,7 +183,7 @@ abstract class BaseController extends Controller {
      */
     public function edit($id)
     {
-        $obj = $this->query()->getQuery()->find($id);
+        $obj = $this->query()->find($id);
         $view = View::make("{$this->basePlural}.edit");
         $this->beforeEdit($view, $obj);
         return $view->with($this->baseSingular, $obj);
@@ -152,7 +193,10 @@ abstract class BaseController extends Controller {
      * @param $obj \LaravelBook\Ardent\Ardent
      * @param $id integer
      */
-    protected function beforeUpdate($obj, $id) { }
+    protected function beforeUpdate($obj, $id)
+    {
+
+    }
 
     /**
      * @param $id integer
@@ -160,7 +204,7 @@ abstract class BaseController extends Controller {
      */
     public function update($id)
     {
-        $obj = $this->query()->getQuery()->find($id);
+        $obj = $this->query()->find($id);
         $obj->fill(Input::all());
         $this->beforeUpdate($obj, $id);
         if ($obj->updateUniques()) {
@@ -171,8 +215,13 @@ abstract class BaseController extends Controller {
             ->withErrors($obj->errors());
     }
 
-    /** @param $id integer */
-    protected function beforeDestroy($id) { }
+    /**
+     * @param $id integer
+     */
+    protected function beforeDestroy($id)
+    {
+
+    }
 
     /**
      * @param $id integer

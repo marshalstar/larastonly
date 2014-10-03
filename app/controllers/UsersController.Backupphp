@@ -1,27 +1,57 @@
 <?php
 
-class UsersController extends BaseController
+class UsersController extends Controller
 {
 
-    protected $baseSingular = 'user';
-    protected $basePlural = 'users';
-    protected $likeAttributes = ['id', 'name'];
-
-    protected function newObj()
+	public function index()
     {
-        return new User();
-    }
+		$users = User::all();
+		return View::make('users.index', compact('users'));
+	}
 
-    protected function query()
+	public function create()
     {
-        return User::query();
-    }
+		return View::make('users.create');
+	}
 
-    public function beforeStore($obj)
+	public function store()
     {
-        $obj->is_admin = Input::get('is_admin') == 'on';
-    }
+        $user = new User();
+        $user->is_admin = Input::get('is_admin') == 'on';
+        if ($user->save()) {
+            return Redirect::route('users.index')->with('message', 'Seu perfil foi criado com sucesso, ative sua conta através do link enviado para seu e-mail!');
+        }
+        return Redirect::route('users.create')->withErrors($user->errors());
+	}
 
+	public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return View::make('users.show', compact('user'));
+	}
+
+	public function edit($id)
+    {
+        $user = User::find($id);
+        return View::make('users.edit', compact('user'));
+	}
+
+	public function update($id)
+    {
+        $user = User::find($id);
+        $user->is_admin = Input::get('is_admin') == 'on';
+        $user->fill(Input::all());
+        if ($user->updateUniques()) {
+            return Redirect::route('users.index')->with('message', Lang::get('Editado com sucesso'));
+        }
+        return Redirect::route('users.edit')->withErrors($user->errors());
+	}
+
+	public function destroy($id)
+    {
+        User::destroy($id);
+        return Redirect::route('users.index');
+	}
 
     public function getNew()
     {

@@ -5,7 +5,7 @@ class ChecklistsController extends BaseController
 
     protected $baseSingular = 'checklist';
     protected $basePlural = 'checklists';
-    protected $likeAttributes = ['id'];
+    protected $likeAttributes = ['id', 'name', 'user_id'];
 
     public function beforeCreate($view)
     {

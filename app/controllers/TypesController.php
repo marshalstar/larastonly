@@ -5,7 +5,7 @@ class TypesController extends BaseController
 
     protected $baseSingular = 'type';
     protected $basePlural = 'types';
-    protected $likeAttributes = ['id'];
+    protected $likeAttributes = ['id', 'name'];
 
     protected function newObj()
     {

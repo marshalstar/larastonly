@@ -2,7 +2,8 @@
 
 @section('title'){{ Str::title(Lang::get('avaliações')) }} @stop
 
-@section('text-create-button'){{ Lang::get('Novo Avaliação') }}@stop
+@section('create-url'){{ URL::route("evaluations.create") }} @stop
+@section('text-create-button'){{ Str::title(Lang::get('nova alternativa')) }} @stop
 
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
@@ -13,6 +14,6 @@
 @stop
 
 @section('data-url-ajax')/evaluations/indexAjax @stop
-@section('create-url-ajax'){{ URL::route("evaluations.show", "key") }} @stop
-@section('edit-url-ajax'){{ URL::route("evaluations.edit", "key") }} @stop
-@section('destroy-url-ajax'){{ URL::route('evaluations.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("evaluations.show", "key") }} @stop
+@section('edit-url'){{ URL::route("evaluations.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('evaluations.destroy', 'key') }} @stop

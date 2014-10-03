@@ -2,6 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('questões')) }} @stop
 
+@section('create-url'){{ URL::route("questions.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova Questão') }}@stop
 
 @section('table-content')
@@ -14,6 +15,6 @@
 @stop
 
 @section('data-url-ajax')/questions/indexAjax @stop
-@section('create-url-ajax'){{ URL::route("questions.show", "key") }} @stop
-@section('edit-url-ajax'){{ URL::route("questions.edit", "key") }} @stop
-@section('destroy-url-ajax'){{ URL::route('questions.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("questions.show", "key") }} @stop
+@section('edit-url'){{ URL::route("questions.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('questions.destroy', 'key') }} @stop

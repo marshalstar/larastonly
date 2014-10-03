@@ -4,7 +4,7 @@ class TagsController extends BaseController
 {
     protected $baseSingular = 'tag';
     protected $basePlural = 'tags';
-    protected $likeAttributes = ['id'];
+    protected $likeAttributes = ['id', 'name'];
 
     protected function newObj()
     {

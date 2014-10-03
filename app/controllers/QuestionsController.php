@@ -5,7 +5,7 @@ class QuestionsController extends BaseController
 
     protected $baseSingular = 'question';
     protected $basePlural = 'questions';
-    protected $likeAttributes = ['id'];
+    protected $likeAttributes = ['id', 'title_id', 'statement', 'weight', 'created_at', 'updated_at'];
 
     protected function newObj()
     {

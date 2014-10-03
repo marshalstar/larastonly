@@ -2,6 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('tipos')) }} @stop
 
+@section('create-url'){{ URL::route("types.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo Tipo') }}@stop
 
 @section('table-content')
@@ -11,6 +12,6 @@
 @stop
 
 @section('data-url-ajax')/types/indexAjax @stop
-@section('create-url-ajax'){{ URL::route("types.show", "key") }} @stop
-@section('edit-url-ajax'){{ URL::route("types.edit", "key") }} @stop
-@section('destroy-url-ajax'){{ URL::route('types.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("types.show", "key") }} @stop
+@section('edit-url'){{ URL::route("types.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('types.destroy', 'key') }} @stop
