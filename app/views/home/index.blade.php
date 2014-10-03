@@ -8,10 +8,6 @@
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <br/>
-        <a href="@yield('create-url')" class="btn btn-sm btn-primary">@yield('text-create-button', Lang::get('novo'))<a/>
-    <br/><br/>
-
     <h1>Listonly</h1>
 
     <div class="panel">

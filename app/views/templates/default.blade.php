@@ -29,8 +29,6 @@
         @viewport { width: device-width; }
     </style>
 
-    {{--<link href="/packages/datatables/1.10.2/css/jquery.dataTables.min.css" rel="stylesheet"/>--}}
-
     <style>
 
         .container-main {
@@ -113,7 +111,7 @@
 
 <script src="/packages/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/packages/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="/packages/bootstrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
+<script src="/packages/bootsrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
 
 <script src="/packages/magnific-popup/0.9.9/js/jquery.magnific-popup.min.js"></script>
 
@@ -124,7 +122,6 @@
         $(this).button('loading')
     });
 </script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
-{{--<script src="/packages/datatables/1.10.2/js/jquery.dataTables.min.js"></script>--}}
 
 @yield('script')
 
