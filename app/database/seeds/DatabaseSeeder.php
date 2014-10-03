@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         DB::enableQueryLog();
 
         $this->command->comment('========== Pode ir programar ==========');
-        if (!in_array(['no', 'n'], $this->command->ask("continuar ciclos (".self::$NUM_CICLES." no total)?"))) {
+        if (!in_array($this->command->ask("continuar ciclos (".self::$NUM_CICLES." no total)?"), ['no', 'n'])) {
             foreach (range(2, self::$NUM_CICLES) as $i) {
                 $this->command->comment("===== ciclo $i =====");
                 $this->seederTables();

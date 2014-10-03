@@ -1,8 +1,8 @@
-@extends('templates.bestindex')
+@extends('templates.index')
 
 @section('title'){{ Str::title(Lang::get('tags')) }} @stop
 
-@section('create-url'){{ URL::route("tagss.create") }} @stop
+@section('create-url'){{ URL::route("tags.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova Tag') }}@stop
 
 @section('table-content')

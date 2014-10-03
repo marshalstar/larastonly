@@ -1,4 +1,4 @@
-@extends('templates.bestindex')
+@extends('templates.index')
 
 @section('title'){{ Str::title(Lang::get('questões')) }} @stop
 
