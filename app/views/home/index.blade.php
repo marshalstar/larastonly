@@ -52,7 +52,12 @@
                <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</li></a>
                <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</li></a>
             @endif
-
+            @if(!empty($data))
+            Olá, {{{$data['name']}}}
+            <a href="logout"> Logout</a>
+            @else
+            <a href="/users/login/fb"> Logar com face </a>
+            @endif
         </ul>
         </div>
     </div>

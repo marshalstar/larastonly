@@ -133,7 +133,60 @@ Route::any('/types/indexAjax', [
 Route::any('/users/indexAjax', [
  'uses' => 'UsersController@indexAjax',
 ]);
+Route::get('/users/login/fb', function(){
+    $facebook = new Facebook(Config::get('facebook'));
+    $params = array(
+        'redirect_uri' => url('/users/login/fb/callback'),
+        'scope' => 'email',
+        );
+    return Redirect::to($facebook->getLoginUrl($params));
+});
 
+Route::get('/users/login/fb/callback', function(){
+    $code = Input::get('code');
+    if(strlen($code) == 0) return Redirect::to('/')->with('message', 'Erro');
+    $facebook = new Facebook(Config::get('facebook'));
+    $uid = $facebook->getUser();
+    if($uid==0) return Redirect::to('home')->with('message', 'Erro');
+    $me = $facebook->api('/me');
+    
+    $profile = Profile::whereUid($uid)->first();
+
+    if(empty($profile))
+    {
+        $user = new User;
+        $user->username = $me['first_name'].' '.$me['last_name'];
+        $user->email = $me['email'];
+        $user->gender = $me['gender'];
+
+        $user->save();
+
+        $profile = new Profile();
+        $profile->uid = $uid;
+        $profile->username = $me['id'];
+        $profile = $user->profiles()->save($profile);
+    }
+
+    $profile->access_token = $facebook->getAccessToken();
+    $profile->save();
+
+    $user = $profile->user;
+    Auth::login($user);
+    return Redirect::to('home')->with('message','Logou');
+});
+Route::get('facebook', function(){
+    $data = array();
+    if(Auth::check())
+    {
+        $data = Auth::user();
+    }
+    return View::make('home.index', array('data' => $data));
+});
+
+Route::get('logou', function() {
+    Auth::logout();
+    return Redirect::to('home');
+});
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
@@ -143,16 +196,6 @@ Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 
-
-Route::get('/facebook', function()
-{
-    return View::make('fbtest');
-});
-
-Route::get('/facebook/singout', function()
-{
-    return View::make('singout');
-});
 
 Route::post('/checklist/save', [
  'as' => 'checklistSave',
