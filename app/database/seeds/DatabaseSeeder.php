@@ -46,6 +46,9 @@ class DatabaseSeeder extends Seeder
         Answer::count() && Answer::truncate();
         DB::table('alternative_question')->count() && DB::table('alternative_question')->truncate();
         DB::table('checklist_tag')->count() && DB::table('checklist_tag')->truncate();
+        Country::count() && Country::truncate();
+        State::count() && State::truncate();
+        Place::count() && Place::truncate();
         $this->command->comment('Truncate Tables');
     }
 
@@ -61,6 +64,9 @@ class DatabaseSeeder extends Seeder
         $this->call('AlternativesTableSeeder');
         $this->call('AlternativesQuestionsTableSeeder');
         $this->call('AnswersTableSeeder');
+        $this->call('CountriesTableSeeder');
+        $this->call('StatesTableSeeder');
+        $this->call('PlacesTableSeeder');
     }
 
 }
