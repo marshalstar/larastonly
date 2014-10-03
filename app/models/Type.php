@@ -20,7 +20,7 @@ class Type extends Ardent
 
     protected $table = 'types';
     protected $guarded = ['id'];
-public $timestamps = false;
+    public $timestamps = false;
     public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
@@ -31,6 +31,11 @@ public $timestamps = false;
     public function alternatives()
     {
         return $this->hasMany('Alternative');
+    }
+
+    public function places()
+    {
+        return $this->hasMany('Place');
     }
 
 }

@@ -6,14 +6,14 @@ class $CLASS$ extends Seeder {
 
 	public function run()
 	{
-		$faker = Faker::create();
+	    $faker = Faker::create();
+        $count = $MODEL$::count();
+        $increment = ($count > 30)? $count : '';
 
-		foreach(range(1, 10) as $index)
-		{
-			$MODEL$::create([
-
-			]);
-		}
+        DB::table('$COLLECTION$')->insert(array_map(function() use ($faker, $increment) {
+            return [
+            ];
+        }, range(1, 30)));
 	}
 
 }

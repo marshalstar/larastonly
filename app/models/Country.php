@@ -2,16 +2,22 @@
 
 use \LaravelBook\Ardent\Ardent;
 
-class $NAME$ extends Ardent
+class Country extends Ardent
 {
 
-    protected $table = '$COLLECTION$';
+    protected $table = 'countries';
 	protected $guarded = ['id'];
 	public $timestamps = false;
 	public $autoHydrateEntityFromInput = true;
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
+        'name' => 'required|between:3,255',
     ];
+
+    public function states()
+    {
+        return $this->hasMany('State');
+    }
 
 }

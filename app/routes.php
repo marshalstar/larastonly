@@ -133,6 +133,18 @@ Route::any('/types/indexAjax', [
 Route::any('/users/indexAjax', [
  'uses' => 'UsersController@indexAjax',
 ]);
+
+Route::any('/countries/indexAjax', [
+ 'uses' => 'CountriesController@indexAjax',
+]);
+
+Route::any('/states/indexAjax', [
+ 'uses' => 'StatesController@indexAjax',
+]);
+
+Route::any('/places/indexAjax', [
+ 'uses' => 'PlacesController@indexAjax',
+]);
 Route::get('/users/login/fb', function(){
     $facebook = new Facebook(Config::get('facebook'));
     $params = array(
@@ -195,6 +207,9 @@ Route::resource('tags', 'TagsController');
 Route::resource('titles', 'TitlesController');
 Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
+Route::resource('countries', 'CountriesController');
+Route::resource('states', 'StatesController');
+Route::resource('places', 'PlacesController');
 
 
 Route::post('/checklist/save', [
