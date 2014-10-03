@@ -7,12 +7,6 @@ class ChecklistsController extends BaseController
     protected $basePlural = 'checklists';
     protected $likeAttributes = ['id', 'name', 'user_id'];
 
-    public function beforeCreate($view)
-    {
-        $users = array_column(User::all()->toArray(), 'username', 'id');
-        $view->with('users', $users);
-    }
-
     protected function newObj()
     {
         return new Checklist();
@@ -23,7 +17,7 @@ class ChecklistsController extends BaseController
         return Checklist::query();
     }
 
-    public function beforeEdit($view, $obj)
+    public function beforeCreateOrEdit($view, $obj)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $view->with('users', $users);

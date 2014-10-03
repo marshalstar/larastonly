@@ -108,6 +108,14 @@ abstract class BaseController extends Controller {
     /**
      * @param $view \Illuminate\View\View
      */
+    protected function beforeCreateOrEdit($view)
+    {
+
+    }
+
+    /**
+     * @param $view \Illuminate\View\View
+     */
     protected function beforeCreate($view)
     {
 
@@ -120,6 +128,7 @@ abstract class BaseController extends Controller {
     {
         $view = View::make("{$this->basePlural}.create");
         $this->beforeCreate($view);
+        $this->beforeCreateOrEdit($view);
         return $view;
     }
 
@@ -186,6 +195,7 @@ abstract class BaseController extends Controller {
         $obj = $this->query()->find($id);
         $view = View::make("{$this->basePlural}.edit");
         $this->beforeEdit($view, $obj);
+        $this->beforeCreateOrEdit($view);
         return $view->with($this->baseSingular, $obj);
     }
 

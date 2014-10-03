@@ -17,20 +17,12 @@ class EvaluationsController extends BaseController
         return Evaluation::query();
     }
 
-    public function beforeCreate($view)
+    public function beforeCreateOrEdit($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
         $view->with('users', $users)
              ->with('checklists', $checklists);
-    }
-
-    public function beforeEdit($view, $obj)
-    {
-        $users = array_column(User::all()->toArray(), 'username', 'id');
-        $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');
-        $view ->with('users', $users)
-              ->with('checklists', $checklists);
     }
 
 }

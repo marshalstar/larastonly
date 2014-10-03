@@ -13,6 +13,16 @@
         {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'nome']) }}
     </div>
 
+    <div class="form-group input-group">
+        {{ Form::label('state_id', Str::title(Lang::get('estado')), ['class' => 'input-group-addon']) }}
+        {{ Form::select('state_id', $states, null, ['class' => 'form-control']) }}
+    </div>
+
+    <div class="form-group input-group">
+        {{ Form::label('type_id', Str::title(Lang::get('tipo')), ['class' => 'input-group-addon']) }}
+        {{ Form::select('type_id', $types, null, ['class' => 'form-control']) }}
+    </div>
+
     {{ Form::submit(Str::title(Lang::get('editar lugar')), ['class' => 'btn btn-primary']) }}
 
     {{ Form::close() }}

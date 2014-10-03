@@ -17,13 +17,7 @@ class TitlesController extends BaseController
         return Title::query();
     }
 
-    public function beforeCreate($view)
-    {
-        $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
-        $view->with('titles', $titles);
-    }
-
-    public function beforeEdit($view, $obj)
+    public function beforeCreateOrEdit($view)
     {
         $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
         $view->with('titles', $titles);

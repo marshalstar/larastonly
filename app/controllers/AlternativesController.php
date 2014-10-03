@@ -17,13 +17,7 @@ class AlternativesController extends BaseController
         return Alternative::query();
     }
 
-    public function beforeCreate($view)
-    {
-        $types = array_column(Type::all()->toArray(), 'name', 'id');
-        $view->with('types', $types);
-    }
-
-    public function beforeEdit($view, $obj)
+    public function beforeCreateOrEdit($view)
     {
         $types = array_column(Type::all()->toArray(), 'name', 'id');
         $view->with('types', $types);

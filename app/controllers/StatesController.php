@@ -17,13 +17,7 @@ class StatesController extends BaseController
         return State::query();
     }
 
-    protected function beforeCreate($view)
-    {
-        $countries = array_column(Country::all()->toArray(), 'name', 'id');
-        $view->with('countries', $countries);
-    }
-
-    protected function beforeEdit($view, $obj)
+    protected function beforeCreateOrEdit($view)
     {
         $countries = array_column(Country::all()->toArray(), 'name', 'id');
         $view->with('countries', $countries);

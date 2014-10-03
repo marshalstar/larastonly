@@ -17,13 +17,7 @@ class QuestionsController extends BaseController
         return Question::query();
     }
 
-    public function beforeCreate($view)
-    {
-        $titles = array_column(Title::all()->toArray(), 'name', 'id');
-        $view->with('titles', $titles);
-    }
-
-    public function beforeEdit($view, $obj)
+    public function beforeCreateOrEdit($view)
     {
         $titles = array_column(Title::all()->toArray(), 'name', 'id');
         $view->with('titles', $titles);
