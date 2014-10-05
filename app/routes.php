@@ -147,10 +147,6 @@ Route::any('/places/indexAjax', [
 ]);
 
 
-Route::get('logou', function() {
-    Auth::logout();
-    return Redirect::to('home');
-});
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
