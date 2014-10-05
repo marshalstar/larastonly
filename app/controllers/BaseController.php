@@ -76,7 +76,7 @@ abstract class BaseController extends Controller {
     {
         $validator = Validator::make(Input::all(), self::$validationPagination);
         if ($validator->fails()) {
-            /** @TODO: retornar erro 404 aqui quando terminar o projeto */
+            /** @TODO: retornar erro 404 aqui quando terminar o projeto (App::abort(400);) */
             return $validator->messages();
         }
 
