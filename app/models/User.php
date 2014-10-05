@@ -105,4 +105,8 @@ class User extends Ardent implements UserInterface, RemindableInterface
         return $this->hasMany('Checklists');
     }
 
+    public function profiles()
+    {
+        return $this->hasMany('Profile');
+    }
 }
