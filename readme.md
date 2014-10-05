@@ -31,12 +31,8 @@
             https://github.com/barryvdh/laravel-dompdf
         laravel "administrator" (acho que cria os cruds para o admin):
             https://github.com/FrozenNode/Laravel-Administrator
-        criar formulários mais fácil (porém fica difícil modificar o estilo):
-            https://github.com/Anahkiasen/former
         funções para o blade:
             https://github.com/JeffreyWay/Laravel-Guard
-        usuário pronto:
-            https://github.com/zizaco/confide
         front-end e middle-end mais fáceis:
             http://octobercms.com/features
             https://github.com/octobercms/october
