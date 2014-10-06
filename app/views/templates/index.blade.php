@@ -9,7 +9,7 @@
     @endif
 
     <br/>
-        <a href="@yield('create-url')" class="btn btn-sm btn-primary">@yield('text-create-button', Lang::get('novo'))<a/>
+        <a href="@yield('create-url')" class="btn btn-sm btn-primary" data-loading-text="{{ Lang::get('carregando...')  }}">@yield('text-create-button', Lang::get('novo'))<a/>
     <br/><br/>
 
     <div class="panel panel-default">
