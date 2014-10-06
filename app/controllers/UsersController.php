@@ -144,6 +144,8 @@ class UsersController extends BaseController
                 $user->password = Hash::make('teste');
                 $user->save();
                 }
+                Auth::loginUsingId($user->getAuthIdentifier());
+                return Redirect::to('http://localhost:8000/');
              }
               
     else {
