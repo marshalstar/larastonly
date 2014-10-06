@@ -142,6 +142,10 @@ Route::any('/states/indexAjax', [
  'uses' => 'StatesController@indexAjax',
 ]);
 
+Route::any('/cities/indexAjax', [
+ 'uses' => 'CitiesController@indexAjax',
+]);
+
 Route::any('/places/indexAjax', [
  'uses' => 'PlacesController@indexAjax',
 ]);
@@ -157,6 +161,7 @@ Route::resource('types', 'TypesController');
 Route::resource('users', 'UsersController');
 Route::resource('countries', 'CountriesController');
 Route::resource('states', 'StatesController');
+Route::resource('cities', 'CitiesController');
 Route::resource('places', 'PlacesController');
 
 

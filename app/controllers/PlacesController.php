@@ -5,7 +5,7 @@ class PlacesController extends BaseController
 
     protected $baseSingular = 'place';
     protected $basePlural = 'places';
-    protected $likeAttributes = ['id', 'name', 'state_id', 'type_id'];
+    protected $likeAttributes = ['id', 'name', 'city_id', 'type_id'];
 
     protected function newObj()
     {
@@ -19,10 +19,10 @@ class PlacesController extends BaseController
 
     protected function beforeCreateOrEdit($view)
     {
-        $types = array_column(Type::all()->toArray(), 'name', 'id');
-        $states = array_column(State::all()->toArray(), 'name', 'id');
+        $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
+        $cities = array_column(City::all(['id', 'name'])->toArray(), 'name', 'id');
         $view->with('types', $types)
-             ->with('states', $states);
+             ->with('cities', $cities);
     }
 
 }

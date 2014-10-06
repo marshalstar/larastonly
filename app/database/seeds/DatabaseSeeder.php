@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
         DB::table('checklist_tag')->count() && DB::table('checklist_tag')->truncate();
         Country::count() && Country::truncate();
         State::count() && State::truncate();
+        City::count() && City::truncate();
         Place::count() && Place::truncate();
         $this->command->comment('Truncate Tables');
     }
@@ -66,6 +67,7 @@ class DatabaseSeeder extends Seeder
         $this->call('AnswersTableSeeder');
         $this->call('CountriesTableSeeder');
         $this->call('StatesTableSeeder');
+        $this->call('CitiesTableSeeder');
         $this->call('PlacesTableSeeder');
     }
 

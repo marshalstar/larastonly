@@ -108,7 +108,7 @@
 
 <script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
 
-<script src="/packages/bootgrid/1.1.1/js/jquery.bootgrid.js"></script>
+<script src="/packages/bootgrid/1.1.1/js/jquery.bootgrid.min.js"></script>
 
 <script src="/packages/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/packages/bootstrap/3.2.0/js/bootstrap.min.js"></script>

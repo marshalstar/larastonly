@@ -14,8 +14,8 @@
     </div>
 
     <div class="form-group input-group">
-        {{ Form::label('state_id', Str::title(Lang::get('estado')), ['class' => 'input-group-addon']) }}
-        {{ Form::select('state_id', $states, null, ['class' => 'form-control']) }}
+        {{ Form::label('city_id', Str::title(Lang::get('cidade')), ['class' => 'input-group-addon']) }}
+        {{ Form::select('city_id', $cities, null, ['class' => 'form-control']) }}
     </div>
 
     <div class="form-group input-group">

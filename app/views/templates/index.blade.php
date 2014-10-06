@@ -36,9 +36,12 @@
             ajax: true,
             url: '@yield('data-url-ajax')',
             post: function() {
-                return {
-                    current: window.location.hash.substring(1)
-                };
+                var current = window.location.hash.substring(1);
+                if (current) {
+                    return {
+                        current: current
+                    };
+                }
             },
             formatters: {
                 @yield('formatters')

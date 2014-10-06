@@ -2,10 +2,10 @@
 
 use \LaravelBook\Ardent\Ardent;
 
-class Place extends Ardent
+class City extends Ardent
 {
 
-    protected $table = 'places';
+    protected $table = 'cities';
 	protected $guarded = ['id'];
 	public $timestamps = false;
 
@@ -16,14 +16,14 @@ class Place extends Ardent
         'name' => 'required|between:3,255',
     ];
 
-    public function city()
+    public function state()
     {
-        return $this->belongsTo('City');
+        return $this->belongsTo('State');
     }
 
-    public function type()
+    public function places()
     {
-        return $this->belongsTo('Type');
+        return $this->hasMany('Place');
     }
 
 }
