@@ -145,7 +145,7 @@ class UsersController extends BaseController
                 $user->save();
                 }
                 Auth::loginUsingId($user->getAuthIdentifier());
-                return Redirect::to('http://localhost:8000/');
+                return Redirect::to('http://localhost:8000/')->with('message', Lang::get('Logado via facebook'));
              }
               
     else {
