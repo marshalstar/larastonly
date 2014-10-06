@@ -120,4 +120,30 @@ class UsersController extends BaseController
         }
         dd('6540N008');
     }
+
+    public function loginWithFacebook()
+    {
+        $code = Input::get('code');
+        $fb = OAuth::consumer('Facebook', 'http://localhost:8000/fb');
+
+        if(!empty($code)) {
+            $token = $fb->requestAccessToken($code);
+            $result = json_decode($fb->request('/me'), true);
+            $user = User::where('email', '=', $result['email'])->first();
+            if(empty($user))
+            {
+                $user = new User;
+                $user->username = $result['name'];
+                $user->email = $result['email'];
+                $user->gender = $result['gender'];
+                $user->save();
+             }
+             Kint::dump($user);
+           
+    }     
+    else {
+            $url = $fb->getAuthorizationUri();
+            return Redirect::to((string) $url);        
+        }
+}
 }

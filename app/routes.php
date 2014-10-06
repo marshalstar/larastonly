@@ -149,7 +149,10 @@ Route::any('/cities/indexAjax', [
 Route::any('/places/indexAjax', [
  'uses' => 'PlacesController@indexAjax',
 ]);
-
+Route::get('/fb', 
+    [
+    'uses' => 'UsersController@loginWithFacebook',
+    ]);
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
