@@ -19,10 +19,6 @@
 
 </div>
 
-<script>
-    @include('templates.modal.destroy.script')
-</script>
-
 {{-- http://dimsemenov.com/plugins/magnific-popup/documentation.html --}}
 <style type="text/css">
 

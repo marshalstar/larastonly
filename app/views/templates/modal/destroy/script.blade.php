@@ -1,27 +1,24 @@
-
-if (typeof id == 'undefined') {
-    var id = '';
-}
-if (typeof url == 'undefined') {
-    var url;
+if (typeof url === 'undefined') {
+    var url = '';
 }
 
-$(document).on('click', '.destroy', function () {
-
-    if (!id || !url) {
-        return;
+$(".destroy").click(function () {
+    if (url) {
+        $.ajax({
+            url: url,
+            type:'DELETE',
+            success: function() {
+                $("#grid-data").bootgrid("reload", null);
+            },
+            error: function() {
+                /* @TODO: vim aqui e fazer uma modal descente */
+                alert('opa! deu erro! voltar aqui e fazer uma modal decente!');
+            }
+        });
     }
-
-    $.ajax({
-        url: url,
-        type:'DELETE'
-    }); {{-- @TODO: mostrar erro se necessario --}}
-    {{--window.location.reload() se der certo--}}
-    {{--$('#line'+id).remove(); se der certo--}}
 });
 
 $(".destroy-modal").click(function() {
-    id = $(this).attr('data-id');
     url = $(this).attr('data-url');
 });
 

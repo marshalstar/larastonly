@@ -241,7 +241,9 @@ abstract class BaseController extends Controller {
     {
         $this->beforeDestroy($id);
         $this->query()->getQuery()->delete($id);
-        return Redirect::route("{$this->basePlural}.index");
+        if (!Request::ajax()) {
+            return Redirect::route("{$this->basePlural}.index");
+        }
     }
 
 }

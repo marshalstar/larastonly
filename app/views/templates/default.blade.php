@@ -106,12 +106,13 @@
 <script src="/packages/angular/1.2.8/js/angular.min.js"></script>
 <script src="/packages/angular/1.2.8/js/angular-route.js"></script>
 
-<script src="/packages/jquery/1.9.1/js/jquery.min.js"></script>
+<script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
+
 <script src="/packages/bootgrid/1.1.1/js/jquery.bootgrid.js"></script>
 
 <script src="/packages/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/packages/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="/packages/bootsrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
+<script src="/packages/bootstrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
 
 <script src="/packages/magnific-popup/0.9.9/js/jquery.magnific-popup.min.js"></script>
 

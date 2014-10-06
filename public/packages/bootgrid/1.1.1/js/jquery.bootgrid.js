@@ -1309,9 +1309,12 @@
      * @method reload
      * @chainable
      **/
-    Grid.prototype.reload = function()
+    Grid.prototype.reload = function(page)
     {
-        this.current = 1; // reset
+        if (page !== null) {
+            if (page == undefined) page = 1;
+            this.current = page; // reset
+        }
         loadData.call(this);
 
         return this;
