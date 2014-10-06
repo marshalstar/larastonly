@@ -123,7 +123,7 @@ class UsersController extends BaseController
 
     public function loginWithFacebook()
     {
-        $code = Input::get('code');
+       $code = Input::get('code');
         $fb = OAuth::consumer('Facebook', 'http://localhost:8000/fb');
 
         if(!empty($code)) {
@@ -132,18 +132,23 @@ class UsersController extends BaseController
             $user = User::where('email', '=', $result['email'])->first();
             if(empty($user))
             {
-                $user = new User;
+                $user = new User();
                 $user->username = $result['name'];
                 $user->email = $result['email'];
-                $user->gender = $result['gender'];
+                $user->is_admin = false;
+                $user->active = $result['verified'];
+                $user->biography = '';
+                $user->picture_url = '';
+                $user->speciality = '';
+                $user->code = '';
+                $user->password = Hash::make('teste');
                 $user->save();
+                }
              }
-             Kint::dump($user);
-           
-    }     
+              
     else {
             $url = $fb->getAuthorizationUri();
             return Redirect::to((string) $url);        
         }
-}
+    }
 }
