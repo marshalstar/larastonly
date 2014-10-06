@@ -76,8 +76,7 @@ abstract class BaseController extends Controller {
     {
         $validator = Validator::make(Input::all(), self::$validationPagination);
         if ($validator->fails()) {
-            /** @TODO: retornar erro 404 aqui quando terminar o projeto (App::abort(400);) */
-            return $validator->messages();
+            App::abort(404);
         }
 
         $data = [];
@@ -100,7 +99,9 @@ abstract class BaseController extends Controller {
         $data['total'] = $query->count('id');
 
         $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
-        $data['rows'] = $query->get()->all();
+        $data['rows'] = Cache::remember($this->basePlural.'_page_'.implode($data), 5, function() use ($query) {
+            return $query->get()->all();
+        });
 
         return $data;
     }
