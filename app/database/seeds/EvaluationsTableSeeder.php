@@ -15,6 +15,8 @@ class EvaluationsTableSeeder extends Seeder
                 'user_id' => User::all()->get(rand(0, User::count() -1))->id,
                 'checklist_id' => $checklists->get(rand(0, $checklists->count() -1))->id,
                 'commentary' => $faker->paragraph(),
+                'created_at' => $faker->dateTimeThisMonth(),
+                'updated_at' => $faker->dateTimeThisMonth(),
             ];
         }, range(1, 30)));
 	}

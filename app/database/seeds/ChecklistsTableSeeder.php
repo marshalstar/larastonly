@@ -14,6 +14,8 @@ class ChecklistsTableSeeder extends Seeder
             return [
                 'name' => $faker->sentence(rand(1, 4)),
                 'user_id' => $users->get(rand(0, $users->count() -1))->id,
+                'created_at' => $faker->dateTimeThisMonth(),
+                'updated_at' => $faker->dateTimeThisMonth(),
             ];
         }, range(1, 30)));
 	}

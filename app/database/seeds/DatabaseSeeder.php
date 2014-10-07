@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
 		Eloquent::unguard();
 
         DB::disableQueryLog();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         $this->truncateTables();
         $this->seederTables();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         DB::enableQueryLog();
 
         $this->command->comment('========== Pode ir programar ==========');
