@@ -30,9 +30,12 @@ class ChecklistsController extends BaseController
 
     public function save()
     {
+        // var_dump(Auth::user());
+
         $tudo = Input::all();
         
-        // var_dump($tudo);
+        var_dump($tudo);
+
 
         $titulos = [];
         $questoes = [];
@@ -41,44 +44,72 @@ class ChecklistsController extends BaseController
         foreach ($tudo as $key => $value) {
             if($value["tipo"] == "alternativa")
             {
-                salvarAlternativa($value);
+                $a = Alternative::where("name", "=", $value["valor"])->get();
+                $t = Type::where("name", "=", $value["tipo_alternativa"])->first();
+                if(count($a) != 0)
+                {
+
+                    $pular = false;
+                    foreach ($a as $v) 
+                        if( ($pular = ($v->type_id == $t->id) ) )
+                            break;
+                    if($pular)
+                    {
+                        $alternativaQuestao = new AlternativeQuestion;
+                        $alternativaQuestao->alternative_id = $v->id;
+                        $alternativaQuestao->question_id = $questoes[$value["pai"]]->id;
+                        $alternativaQuestao->save();
+                        continue;
+                    }
+                }
+                
+                $alternativa = new Alternative;
+                $alternativa->name = $value["valor"];
+                $alternativa->type_id = $t->id;
+
+                $alternativa->save();
+
+                $alternativaQuestao = new AlternativeQuestion;
+                $alternativaQuestao->alternative_id = $alternativa->id;
+                $alternativaQuestao->question_id = $questoes[$value["pai"]]->id;
+                $alternativaQuestao->save();
+
+                $alternativas[$value["id"]] = $alternativa;
             }
             else if($value["tipo"] == "questao")
             {
-                
+                $questao = new Question;
+                $questao->statement = $value["valor"];
+
+                $questao->title_id = $titulos[$value["pai"]]->id;
+
+                $questao->save();
+
+                $questoes[$value["id"]] = $questao;
+
+                echo $questao->statement . " ";
             }
             else if($value["tipo"] == "titulo")
             {
+                $titulo = new Title;
+                $titulo->name = $value["valor"];
+
+                if($value["id"] != "titulo_1")
+                    $titulo->title_id = $titulos[$value["pai"]]->id;
+
+                $titulo->save();
+
+                $titulos[$value["id"]] = $titulo;
 
             }
         }
 
-        // salvarTitulos();
-        // salvarQuestoes();
-        // salvarAlternativas();        
-    }
+        $checklist = new Checklist;
+        // $checklist->name = $tudo['checklist']['nome'];
+        $checklist->title_id = $titulos['titulo_1']->id;
+        $checklist->user_id = Auth::user()->id;
 
-    private function salvarAlternativa(){
-        $a = Alternative::where("name", "=", $value["valor"])->get();
-        $t = Type::where("name", "=", $value["tipo_alternativa"])->first();
-        if(count($a) != 0)
-        {
-
-            $pular = false;
-            foreach ($a as $v) 
-                if( ($pular = ($v->type_id == $t->id) ) )
-                    break;
-            if($pular)
-                return;
-        }
-        
-        $alternativa = new Alternative;
-        $alternativa->name = $value["valor"];
-        $alternativa->type_id = $t->id;
-
-        $alternativa->save();
-
-        $alternativas[$value["id"]] = $alternativa;
+        $checklist->save();
     }
 
     public function getGraphics($id, $query = null)

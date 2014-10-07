@@ -34,10 +34,10 @@ class Question extends Ardent
     public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
-        'statement' => 'required|between:3,255|unique:questions',
-        'is_about_assessable' => '',
-        'weight' => 'required|numeric',
-        'alternatives' => '',
+        // 'statement' => 'required|between:3,255|unique:questions',
+        // 'is_about_assessable' => '',
+        // 'weight' => 'required|numeric',
+        // 'alternatives' => '',
     ];
 
     public static $relationsData = [
