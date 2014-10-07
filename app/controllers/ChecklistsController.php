@@ -17,7 +17,7 @@ class ChecklistsController extends BaseController
         return Checklist::query();
     }
 
-    public function beforeCreateOrEdit($view, $obj)
+    public function beforeCreateOrEdit($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $view->with('users', $users);
@@ -30,9 +30,55 @@ class ChecklistsController extends BaseController
 
     public function save()
     {
-        var_dump( Input::all() );
-
+        $tudo = Input::all();
         
+        // var_dump($tudo);
+
+        $titulos = [];
+        $questoes = [];
+        $alternativas = [];
+
+        foreach ($tudo as $key => $value) {
+            if($value["tipo"] == "alternativa")
+            {
+                salvarAlternativa($value);
+            }
+            else if($value["tipo"] == "questao")
+            {
+                
+            }
+            else if($value["tipo"] == "titulo")
+            {
+
+            }
+        }
+
+        // salvarTitulos();
+        // salvarQuestoes();
+        // salvarAlternativas();        
+    }
+
+    private function salvarAlternativa(){
+        $a = Alternative::where("name", "=", $value["valor"])->get();
+        $t = Type::where("name", "=", $value["tipo_alternativa"])->first();
+        if(count($a) != 0)
+        {
+
+            $pular = false;
+            foreach ($a as $v) 
+                if( ($pular = ($v->type_id == $t->id) ) )
+                    break;
+            if($pular)
+                return;
+        }
+        
+        $alternativa = new Alternative;
+        $alternativa->name = $value["valor"];
+        $alternativa->type_id = $t->id;
+
+        $alternativa->save();
+
+        $alternativas[$value["id"]] = $alternativa;
     }
 
     public function getGraphics($id, $query = null)
