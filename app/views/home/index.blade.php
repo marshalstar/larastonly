@@ -15,6 +15,7 @@
         @if(Auth::check())
             <p> Bem-vindo, {{Auth::user()->username}}</p>
             <ul>
+              
             <li><a href="{{URL::route('users.logout')}}"> <i class="icon-chevron-right"></i> Sair </a></li>
             <li><a href="{{URL::route('changepassword')}}"> Mudar minha senha </a></li>
             <li><a href="{{URL::route('alternatives.index')}}"><i class="icon-chevron-right"></i> Gerenciar Alternativas</a></li>
