@@ -11,10 +11,10 @@ class AlternativesQuestionsTableSeeder extends Seeder
         DB::table('alternative_question')->insert(array_filter(array_map(function($index) use ($faker) {
             if (!rand(0, 2)) {
                 return [
-                    'alternative_id' => Alternative::all()->get($index%30)->id,
-                    'question_id' => Question::all()->get(intval($index/30))->id,
+                    'alternative_id' => Alternative::all()->get($index%DatabaseSeeder::$dimension)->id,
+                    'question_id' => Question::all()->get(intval($index/DatabaseSeeder::$dimension))->id,
                 ];
             }
-        }, range(0, 899))));
+        }, range(0, DatabaseSeeder::$dimension*DatabaseSeeder::$dimension -1))));
     }
 }

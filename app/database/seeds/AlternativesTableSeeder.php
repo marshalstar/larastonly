@@ -15,7 +15,7 @@ class AlternativesTableSeeder extends Seeder
                 'name' => $faker->sentence(),
                 'type_id' => $types->get(rand(0, $types->count() -1))->id,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

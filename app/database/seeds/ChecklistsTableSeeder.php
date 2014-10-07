@@ -17,7 +17,7 @@ class ChecklistsTableSeeder extends Seeder
                 'created_at' => $faker->dateTimeThisMonth(),
                 'updated_at' => $faker->dateTimeThisMonth(),
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

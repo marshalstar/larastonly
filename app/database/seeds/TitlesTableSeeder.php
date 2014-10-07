@@ -17,10 +17,10 @@ class TitlesTableSeeder extends Seeder
                     'checklist_id' => Checklist::all()->get($index)->id,
                 ];
             }
-        }, range(1, 29))));
+        }, range(1, DatabaseSeeder::$dimension -1))));
 
         foreach (range(1, 3) as $i) {
-            $this->newChildrenTitles(300, $faker);
+            $this->newChildrenTitles(intval(DatabaseSeeder::$dimension*DatabaseSeeder::$dimension/3), $faker);
         }
 	}
 

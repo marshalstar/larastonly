@@ -34,7 +34,7 @@ class AnswersTableSeeder extends Seeder
                 'evaluation_id' => $evaluation->id,
                 'alternative_question_id' => $alternativeQuestion->id,
             ];
-        }, range(0, $evaluations->count() *count($alternativesQuestions) -1))));
+        }, range(0, $evaluations->count()*count($alternativesQuestions) -1))));
     }
 
 } 

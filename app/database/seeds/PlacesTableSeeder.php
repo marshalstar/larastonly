@@ -16,7 +16,7 @@ class PlacesTableSeeder extends Seeder {
                 'city_id' => $cities->get(rand(0, $cities->count() -1))->id,
                 'type_id' => $types->get(rand(0, $types->count() -1))->id,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

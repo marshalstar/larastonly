@@ -14,7 +14,7 @@ class StatesTableSeeder extends Seeder {
                 'name' => $faker->sentence(rand(1, 4)),
                 'country_id' => $countries->get(rand(0, $countries->count() -1))->id,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

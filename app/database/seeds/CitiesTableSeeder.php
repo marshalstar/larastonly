@@ -14,7 +14,7 @@ class CitiesTableSeeder extends Seeder {
                 'name' => $faker->sentence(rand(1, 4)),
                 'state_id' => $states->get(rand(0, $states->count() -1))->id,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

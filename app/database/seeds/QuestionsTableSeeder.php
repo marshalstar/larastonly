@@ -19,7 +19,7 @@ class QuestionsTableSeeder extends Seeder
                 'is_about_assessable' => $faker->randomDigit <= 1,
                 'weight' => $faker->randomDigit,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

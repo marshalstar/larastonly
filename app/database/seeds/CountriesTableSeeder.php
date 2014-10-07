@@ -14,7 +14,7 @@ class CountriesTableSeeder extends Seeder {
             return [
                 'name' => $faker->unique()->sentence(rand(1, 4)). ' ' .$increment,
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }

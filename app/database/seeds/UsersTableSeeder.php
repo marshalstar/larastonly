@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder
 	{
         $faker = Faker::create();
         $count = User::count();
-        $increment = ($count > 30)? $count : '';
+        $increment = ($count > DatabaseSeeder::$dimension)? $count : '';
 
         DB::table('users')->insert(array_map(function($index) use ($faker, $increment) {
             return [
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
                 'biography' => $faker->paragraph(),
                 'picture_url' => str_replace('.html', '', $faker->url) . 'image.png',
             ];
-        }, range(1, 30)));
+        }, range(1, DatabaseSeeder::$dimension)));
 	}
 
 }
