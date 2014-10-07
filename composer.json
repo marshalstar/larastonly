@@ -12,7 +12,7 @@
         "doctrine/dbal": "2.5.*@dev",
         "laravelbook/ardent": "2.*",
         "artdarek/oauth-4-laravel": "dev-master",
-		"facebook/php-sdk": "dev-master"
+		"facebook/php-sdk-v4" : "4.0.*"
 	},
 	"require-dev": {
 		"way/generators": "~3.0"
