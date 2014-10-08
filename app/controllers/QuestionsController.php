@@ -7,9 +7,9 @@ class QuestionsController extends BaseController
     protected $basePlural = 'questions';
     protected $likeAttributes = ['id', 'title_id', 'statement', 'weight', 'created_at', 'updated_at'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Question();
+        return new Question($attributes);
     }
 
     protected function query()

@@ -7,9 +7,9 @@ class AlternativesController extends BaseController
     protected $basePlural = 'alternatives';
     protected $likeAttributes = ['id', 'name', 'type_id'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Alternative();
+        return new Alternative($attributes);
     }
 
     protected function query()

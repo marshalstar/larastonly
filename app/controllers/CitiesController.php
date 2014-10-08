@@ -7,9 +7,9 @@ class CitiesController extends BaseController
     protected $basePlural = 'cities';
     protected $likeAttributes = ['id', 'state_id'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new City();
+        return new City($attributes);
     }
 
     protected function query()

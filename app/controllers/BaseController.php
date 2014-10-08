@@ -46,7 +46,7 @@ abstract class BaseController extends Controller {
     /**
      * @return \LaravelBook\Ardent\Ardent
      */
-    protected abstract function newObj();
+    protected abstract function newObj($attributes);
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
@@ -142,13 +142,21 @@ abstract class BaseController extends Controller {
     }
 
     /**
+     * @return boolean
+     */
+    protected function logicStore()
+    {
+        $obj = $this->newObj(Input::all());
+        $this->beforeStore($obj);
+        return $obj->save();
+    }
+
+    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store()
     {
-        $obj = $this->newObj();
-        $this->beforeStore($obj);
-        if ($obj->save()) {
+        if ($obj = $this->logicStore()) {
             return Redirect::route("{$this->basePlural}.index")
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
@@ -211,14 +219,23 @@ abstract class BaseController extends Controller {
 
     /**
      * @param $id integer
-     * @return \Illuminate\Http\RedirectResponse
+     * @return boolean
      */
-    public function update($id)
+    protected function logicUpdate($id)
     {
         $obj = $this->query()->find($id);
         $obj->fill(Input::all());
         $this->beforeUpdate($obj, $id);
-        if ($obj->updateUniques()) {
+        return $obj->updateUniques();
+    }
+
+    /**
+     * @param $id integer
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        if ($this->logicUpdate($id)) {
             return Redirect::route("{$this->basePlural}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }

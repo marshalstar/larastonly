@@ -7,9 +7,9 @@ class CountriesController extends BaseController
     protected $basePlural = 'countries';
     protected $likeAttributes = ['id', 'name'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Country();
+        return new Country($attributes);
     }
 
     protected function query()

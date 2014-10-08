@@ -26,12 +26,10 @@ class Checklist extends Ardent
 
     protected $table = 'checklists';
     protected $guarded = ['id'];
-public $timestamps = false;
-    public $autoHydrateEntityFromInput = true;
-    public $forceEntityHydrationFromInput = true;
+    public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|between:3,255|unique:checklists',
+        'name' => 'required|between:3,255',
     ];
 
     public function evaluations()

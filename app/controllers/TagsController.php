@@ -6,9 +6,9 @@ class TagsController extends BaseController
     protected $basePlural = 'tags';
     protected $likeAttributes = ['id', 'name'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Tag();
+        return new Tag($attributes);
     }
 
     protected function query()

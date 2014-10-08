@@ -7,9 +7,9 @@ class EvaluationsController extends BaseController
     protected $basePlural = 'evaluations';
     protected $likeAttributes = ['id', 'user_id', 'checklist_id', 'commentary', 'created_at', 'updated_at'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Evaluation();
+        return new Evaluation($attributes);
     }
 
     protected function query()

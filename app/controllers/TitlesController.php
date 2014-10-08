@@ -7,9 +7,9 @@ class TitlesController extends BaseController
     protected $basePlural = 'titles';
     protected $likeAttributes = ['id', 'title_id', 'checklist_id', 'name'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Title();
+        return new Title($attributes);
     }
 
     protected function query()

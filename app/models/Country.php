@@ -8,8 +8,6 @@ class Country extends Ardent
     protected $table = 'countries';
 	protected $guarded = ['id'];
 	public $timestamps = false;
-	public $autoHydrateEntityFromInput = true;
-    public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
         'name' => 'required|between:3,255',

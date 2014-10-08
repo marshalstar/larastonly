@@ -7,9 +7,9 @@ class UsersController extends BaseController
     protected $basePlural = 'users';
     protected $likeAttributes = ['id', 'name'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new User();
+        return new User($attributes);
     }
 
     protected function query()

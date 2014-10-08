@@ -2,8 +2,10 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-	dd(Input::all());
-    return 'Hello World';
+	$checklist = new Checklist;
+    $checklist->name = "name";
+    $checklist->save();
+    echo "show!";
 });
 
 Route::get('/debug2', function()
@@ -168,7 +170,7 @@ Route::resource('cities', 'CitiesController');
 Route::resource('places', 'PlacesController');
 
 
-Route::post('/checklist/save', [
+Route::any('/checklist/save', [
  'as' => 'checklistSave',
  'uses' => 'ChecklistsController@save',
 ]);

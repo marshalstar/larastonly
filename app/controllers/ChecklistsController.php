@@ -7,9 +7,9 @@ class ChecklistsController extends BaseController
     protected $basePlural = 'checklists';
     protected $likeAttributes = ['id', 'name', 'user_id'];
 
-    protected function newObj()
+    protected function newObj($attributes = array())
     {
-        return new Checklist();
+        return new Checklist($attributes);
     }
 
     protected function query()
@@ -30,18 +30,15 @@ class ChecklistsController extends BaseController
 
     public function save()
     {
-        // var_dump(Auth::user());
 
         $tudo = Input::all();
-        
-        var_dump($tudo);
-
 
         $titulos = [];
         $questoes = [];
         $alternativas = [];
 
         foreach ($tudo as $key => $value) {
+
             if($value["tipo"] == "alternativa")
             {
                 $a = Alternative::where("name", "=", $value["valor"])->get();
@@ -62,7 +59,7 @@ class ChecklistsController extends BaseController
                         continue;
                     }
                 }
-                
+                    
                 $alternativa = new Alternative;
                 $alternativa->name = $value["valor"];
                 $alternativa->type_id = $t->id;
@@ -94,22 +91,22 @@ class ChecklistsController extends BaseController
                 $titulo = new Title;
                 $titulo->name = $value["valor"];
 
+                $titulo->checklist_id = 3;
+
                 if($value["id"] != "titulo_1")
                     $titulo->title_id = $titulos[$value["pai"]]->id;
 
                 $titulo->save();
+                //die('morre');
 
                 $titulos[$value["id"]] = $titulo;
 
             }
-        }
+        }/**/
 
-        $checklist = new Checklist;
-        // $checklist->name = $tudo['checklist']['nome'];
-        $checklist->title_id = $titulos['titulo_1']->id;
-        $checklist->user_id = Auth::user()->id;
-
-        $checklist->save();
+        /*$checklist->titles()->attach(array_map(function($obj) {
+            return $obj->id;
+        }, $titulos));/**/
     }
 
     public function getGraphics($id, $query = null)

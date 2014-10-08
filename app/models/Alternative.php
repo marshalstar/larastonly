@@ -26,8 +26,6 @@ class Alternative extends Ardent
     protected $table = 'alternatives';
     protected $guarded = ['id'];
     public $timestamps = false;
-    public $autoHydrateEntityFromInput = true;
-    public $forceEntityHydrationFromInput = true;
 
     public static $rules = [
         // 'name' => 'required|unique:alternatives|between:3,255',
