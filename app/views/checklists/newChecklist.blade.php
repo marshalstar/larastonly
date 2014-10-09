@@ -12,55 +12,57 @@
   </form>
 </div> -->
 
+<div id = 'main' class="container container-main">
 
-<div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">
-<div class = "btn-group">
-  <button id = "controlZ" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-warning">Control Z</button>
-  <button id = "controlY" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-danger">Control Y</button>
-</div>
+  <div id = "div_titulo_1" class="container" style="display: block; background-color: white; padding: 10px;">
+  <div class = "btn-group">
+    <button id = "controlZ" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-warning">Control Z</button>
+    <button id = "controlY" onclick = "JavaScript:controlZ();" class="btn btn-sm btn-danger">Control Y</button>
+  </div>
 
-  <table class="table table-bordered"> 
-    <tr> 
-      <td>
-        <table>
-          <tr>
-            <td>
-              <h3><input id = 'titulo_1' value = 'Teste' type = 'text' style='width:700' onChange = "JavaScript:mudou('titulo_1')" /></h3>
-            </td>
-            <td>
-              <div class="btn-group">
-                <button onclick= 'JavaScript:remover("div_titulo_1");'  class="btn btn-xs btn-danger">
-                  Remover titulo
-                </button>
-              </div>
-            </td>
-          </tr> 
-          <tr>
-            <td>
-              <div class="btn-group">
-                <button onclick= "JavaScript:novoTitulo('titulo_1'); " class="btn btn-sm btn-primary">
-                  Novo titulo
-                </button>
-                <button onclick= "JavaScript:novaQuestao('titulo_1');" class="btn btn-sm btn-info">
-                  Nova questao
-                </button>
-              </div>
-            </td>
-          </tr>
-        </table>
+    <table class="table table-bordered"> 
+      <tr> 
+        <td>
+          <table>
+            <tr>
+              <td>
+                <h3><input id = 'titulo_1' value = 'Teste' type = 'text' style='width:700' onChange = "JavaScript:mudou('titulo_1')" /></h3>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <button onclick= 'JavaScript:remover("div_titulo_1");'  class="btn btn-xs btn-danger">
+                    Remover titulo
+                  </button>
+                </div>
+              </td>
+            </tr> 
+            <tr>
+              <td>
+                <div class="btn-group">
+                  <button onclick= "JavaScript:novoTitulo('titulo_1'); " class="btn btn-sm btn-primary">
+                    Novo titulo
+                  </button>
+                  <button onclick= "JavaScript:novaQuestao('titulo_1');" class="btn btn-sm btn-info">
+                    Nova questao
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
 
-        <div id = "questoes_titulo_1" style="margin: 0px 0px 0px 15px;">
-        </div>
+          <div id = "questoes_titulo_1" style="margin: 0px 0px 0px 15px;">
+          </div>
 
-        <div id = "sub_div_titulo_1" style="margin: 0px 0px 0px 15px;">
-        </div>
+          <div id = "sub_div_titulo_1" style="margin: 0px 0px 0px 15px;">
+          </div>
 
-      </td>
-    </tr>
-  </table>
+        </td>
+      </tr>
+    </table>
 
-  <button id = "salvarbt" onclick = "JavaScript:salvar();" class="btn btn-sm btn-primary">Salvar</button>
+    <button id = "salvarbt" onclick = "JavaScript:salvar();" class="btn btn-sm btn-primary">Salvar</button>
 
+  </div>
 </div>
 @stop
 

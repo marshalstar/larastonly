@@ -91,7 +91,7 @@ class ChecklistsController extends BaseController
                 $titulo = new Title;
                 $titulo->name = $value["valor"];
 
-                $titulo->checklist_id = 3;
+                $titulo->checklist_id = 1;
 
                 if($value["id"] != "titulo_1")
                     $titulo->title_id = $titulos[$value["pai"]]->id;
@@ -135,6 +135,40 @@ class ChecklistsController extends BaseController
         $evaluations = Evaluation::all();
         return View::make('checklists.graphics')
             ->with('checklist', $checklist);
+    }
+
+    public function responder($id)
+    {
+        $checklist = Checklist::find($id);
+
+        $titulos = Title::where("checklist_id", "=", $id)->get();
+
+        $questoes = [];
+
+        $alternativas = [];
+        
+        foreach ($titulos as $value) {
+            $questoes[$value->id] = Question::where('title_id', '=', $value->id)->get();
+            
+            foreach ($questoes[$value->id] as $vv) {
+                $alternativaQuestao = AlternativeQuestion::where('question_id', '=', $vv->id)->get();
+
+                foreach ($alternativaQuestao as $v) {
+                    
+                    $alternativas[$value->id] = Alternative::where("alternative_id", '=', $v->alternative_id);
+
+                }
+            }
+        }
+
+
+
+        return View::make("checklists.responderChecklist", 
+            array("checklist" => $checklist, 
+                "titulos" => $titulos, 
+                "questoes" => $questoes
+                )
+            );
     }
 
 }

@@ -174,3 +174,8 @@ Route::any('/checklist/save', [
  'as' => 'checklistSave',
  'uses' => 'ChecklistsController@save',
 ]);
+
+Route::any('/checklist/responder/{id}', [
+ 'as' => 'checklistResponder',
+ 'uses' => 'ChecklistsController@responder',
+]);
