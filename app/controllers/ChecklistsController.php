@@ -3,19 +3,8 @@
 class ChecklistsController extends BaseController
 {
 
-    protected $baseSingular = 'checklist';
-    protected $basePlural = 'checklists';
+    protected $modelClassName = 'checklist';
     protected $likeAttributes = ['id', 'name', 'user_id'];
-
-    protected function newObj($attributes = array())
-    {
-        return new Checklist($attributes);
-    }
-
-    protected function query()
-    {
-        return Checklist::query();
-    }
 
     public function beforeCreateOrEdit($view)
     {

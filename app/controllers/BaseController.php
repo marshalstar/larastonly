@@ -25,17 +25,7 @@ abstract class BaseController extends Controller {
         'rowCount' => 'required|min:0',
     ];
 
-    protected $nameModel;
-
-    /**
-     * @var string
-     */
-    protected $baseSingular;
-
-    /**
-     * @var string
-     */
-    protected $basePlural;
+    protected $modelClassName;
 
     /**
      * @TODO: descobrir como pegar todos atributos disponíveis de uma model
@@ -44,14 +34,30 @@ abstract class BaseController extends Controller {
     protected $likeAttributes = [];
 
     /**
+     * @param $attributes array
      * @return \LaravelBook\Ardent\Ardent
      */
-    protected abstract function newObj($attributes);
+    protected function newObj($attributes)
+    {
+        $reflection = new ReflectionClass($this->modelClassName);
+        return $reflection->newInstance($attributes);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected abstract function query();
+    protected function query()
+    {
+        return call_user_func_array("{$this->modelClassName}::query", []);
+    }
+
+    /**
+     * @return string
+     */
+    private function getViewBaseName()
+    {
+        return str_plural($this->modelClassName);
+    }
 
     /**
      */
@@ -66,7 +72,7 @@ abstract class BaseController extends Controller {
     public function index()
     {
         $this->beforeIndex();
-        return View::make("{$this->basePlural}.index");
+        return View::make("{$this->getViewBaseName()}.index");
     }
 
     /**
@@ -130,7 +136,7 @@ abstract class BaseController extends Controller {
      */
     public function create()
     {
-        $view = View::make("{$this->basePlural}.create");
+        $view = View::make("{$this->getViewBaseName()}.create");
         $this->beforeCreate($view);
         $this->beforeCreateOrEdit($view);
         return $view;
@@ -160,10 +166,10 @@ abstract class BaseController extends Controller {
     public function store()
     {
         if ($obj = $this->logicStore()) {
-            return Redirect::route("{$this->basePlural}.index")
+            return Redirect::route("{$this->getViewBaseName()}.index")
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route("{$this->basePlural}.create")
+        return Redirect::route("{$this->getViewBaseName()}.create")
             ->withErrors($obj->errors());
     }
 
@@ -184,9 +190,9 @@ abstract class BaseController extends Controller {
     public function show($id)
     {
         $obj = $this->query()->findOrFail($id);
-        $view = View::make("{$this->basePlural}.show");
+        $view = View::make("{$this->getViewBaseName()}.show");
         $this->beforeShow($view, $obj, $id);
-        return $view->with($this->baseSingular, $obj);
+        return $view->with($this->modelClassName, $obj);
     }
 
     /**
@@ -205,10 +211,10 @@ abstract class BaseController extends Controller {
     public function edit($id)
     {
         $obj = $this->query()->find($id);
-        $view = View::make("{$this->basePlural}.edit");
+        $view = View::make("{$this->getViewBaseName()}.edit");
         $this->beforeEdit($view, $obj);
         $this->beforeCreateOrEdit($view);
-        return $view->with($this->baseSingular, $obj);
+        return $view->with($this->modelClassName, $obj);
     }
 
     /**
@@ -241,10 +247,10 @@ abstract class BaseController extends Controller {
     public function update($id)
     {
         if ($obj = $this->logicUpdate($id)) {
-            return Redirect::route("{$this->basePlural}.index")
+            return Redirect::route("{$this->getViewBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route("{$this->basePlural}.edit")
+        return Redirect::route("{$this->getViewBaseName()}.edit")
             ->withErrors($obj->errors());
     }
 
@@ -265,7 +271,7 @@ abstract class BaseController extends Controller {
         $this->beforeDestroy($id);
         $this->query()->getQuery()->delete($id);
         if (!Request::ajax()) {
-            return Redirect::route("{$this->basePlural}.index");
+            return Redirect::route("{$this->getViewBaseName()}.index");
         }
     }
 

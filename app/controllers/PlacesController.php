@@ -3,19 +3,8 @@
 class PlacesController extends BaseController
 {
 
-    protected $baseSingular = 'place';
-    protected $basePlural = 'places';
+    protected $modelClassName = 'place';
     protected $likeAttributes = ['id', 'name', 'city_id', 'type_id'];
-
-    protected function newObj($attributes = array())
-    {
-        return new Place($attributes);
-    }
-
-    protected function query()
-    {
-        return Place::query();
-    }
 
     protected function beforeCreateOrEdit($view)
     {

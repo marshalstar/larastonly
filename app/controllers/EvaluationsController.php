@@ -3,19 +3,8 @@
 class EvaluationsController extends BaseController
 {
 
-    protected $baseSingular = 'evaluation';
-    protected $basePlural = 'evaluations';
+    protected $modelClassName = 'evaluation';
     protected $likeAttributes = ['id', 'user_id', 'checklist_id', 'commentary', 'created_at', 'updated_at'];
-
-    protected function newObj($attributes = array())
-    {
-        return new Evaluation($attributes);
-    }
-
-    protected function query()
-    {
-        return Evaluation::query();
-    }
 
     public function beforeCreateOrEdit($view)
     {
