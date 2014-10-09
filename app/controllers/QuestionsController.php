@@ -3,19 +3,8 @@
 class QuestionsController extends BaseController
 {
 
-    protected $baseSingular = 'question';
-    protected $basePlural = 'questions';
+    protected $modelClassName = 'question';
     protected $likeAttributes = ['id', 'title_id', 'statement', 'weight', 'created_at', 'updated_at'];
-
-    protected function newObj($attributes = array())
-    {
-        return new Question($attributes);
-    }
-
-    protected function query()
-    {
-        return Question::query();
-    }
 
     public function beforeCreateOrEdit($view)
     {
