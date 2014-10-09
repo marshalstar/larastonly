@@ -23,9 +23,9 @@ abstract class BaseController extends Controller {
     public static $validationPagination = [
         'current' => 'required|min:0',
         'rowCount' => 'required|min:0',
-        'sort' => 'alpha',
-        'searchPhrase' => '',
     ];
+
+    protected $nameModel;
 
     /**
      * @var string
@@ -74,7 +74,7 @@ abstract class BaseController extends Controller {
      */
     public function indexAjax()
     {
-        $validator = Validator::make(Input::all(), self::$validationPagination);
+        $validator = Validator::make(Input::all(['current', 'rowCount']), self::$validationPagination);
         if ($validator->fails()) {
             App::abort(404);
         }
@@ -99,9 +99,12 @@ abstract class BaseController extends Controller {
         $data['total'] = $query->count('id');
 
         $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
-        $data['rows'] = Cache::remember($this->basePlural.'_page_'.implode($data), 5, function() use ($query) {
+
+        /* @TODO: arrumar isto mais tarde
+        $data['rows'] = Cache::remember($this->basePlural.http_build_query($data), .1 , function() use ($query) {
             return $query->get()->all();
-        });
+        });*/
+        $data['rows'] = $query->get()->all();
 
         return $data;
     }
@@ -218,15 +221,17 @@ abstract class BaseController extends Controller {
     }
 
     /**
-     * @param $id integer
-     * @return boolean
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Model|null|static
      */
     protected function logicUpdate($id)
     {
         $obj = $this->query()->find($id);
         $obj->fill(Input::all());
         $this->beforeUpdate($obj, $id);
-        return $obj->updateUniques();
+        if ($obj->updateUniques()) {
+            return $obj;
+        }
     }
 
     /**
@@ -235,7 +240,7 @@ abstract class BaseController extends Controller {
      */
     public function update($id)
     {
-        if ($this->logicUpdate($id)) {
+        if ($obj = $this->logicUpdate($id)) {
             return Redirect::route("{$this->basePlural}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
