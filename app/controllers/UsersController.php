@@ -3,19 +3,8 @@
 class UsersController extends BaseController
 {
 
-    protected $baseSingular = 'user';
-    protected $basePlural = 'users';
+    protected $modelClassName = 'user';
     protected $likeAttributes = ['id', 'name'];
-
-    protected function newObj($attributes = array())
-    {
-        return new User($attributes);
-    }
-
-    protected function query()
-    {
-        return User::query();
-    }
 
     public function beforeStore($obj)
     {

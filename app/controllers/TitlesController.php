@@ -3,19 +3,8 @@
 class TitlesController extends BaseController
 {
 
-    protected $baseSingular = 'title';
-    protected $basePlural = 'titles';
+    protected $modelClassName = 'title';
     protected $likeAttributes = ['id', 'title_id', 'checklist_id', 'name'];
-
-    protected function newObj($attributes = array())
-    {
-        return new Title($attributes);
-    }
-
-    protected function query()
-    {
-        return Title::query();
-    }
 
     public function beforeCreateOrEdit($view)
     {

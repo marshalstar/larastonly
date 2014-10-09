@@ -37,7 +37,10 @@
             url: '@yield('data-url-ajax')',
             post: function() {
                 var current = window.location.hash.substring(1);
-                if (current) {
+                if (current &&
+                    typeof current == 'number' &&
+                    isFinite(current) &&
+                    current%1 == 0) {
                     return {
                         current: current
                     };
@@ -57,7 +60,6 @@
         }).on("loaded.rs.jquery.bootgrid", function() {
             @include('templates.modal.destroy.script')
         });
-        console.log($("#grid-data").reload);
     });
 
     </script>
