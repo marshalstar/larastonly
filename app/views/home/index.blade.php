@@ -33,6 +33,8 @@
            <li><a href="{{URL::route('users.login')}}"><i class="icon-chevron-right"></i>Faça seu Login</a></li>
            <li><a href="{{URL::route('users.create')}}"><i class="icon-chevron-right"></i>Ainda não está cadastrado? Crie sua conta.</a></li>
            <li><a href="/fb"><i class="icon-chevron-right"></i> Login via Facebook </a></li>
+           <li><a href="{{URL::route('forgot')}}"><i class="icon-chevron-right"></i> Recuperar Conta</a></li>
+
            </ul>
         @endif
 

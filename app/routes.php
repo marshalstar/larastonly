@@ -41,6 +41,23 @@ Route::group(['before' => 'guest'], function()
         ]);
     });
 
+    Route::get('/forgot', [
+        'as' => 'forgot',
+        'uses' => 'UsersController@getForgotPassword'
+        ]);
+
+     Route::post('/forgot', 
+        [
+        'as' => 'forgot',
+        'uses' => 'UsersController@postForgotPassword'
+        ]);
+
+     Route::get('/recover/{code}', array(
+        'as' => 'recover',
+        'uses' => 'UsersController@getRecover'
+        ));
+
+
     Route::get('/login', [
         'as' => 'users.login',
         'uses' => 'UsersController@getLogin'

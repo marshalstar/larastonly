@@ -61,7 +61,7 @@ class UsersController extends BaseController
         }
             
         else{
-             return Redirect::route('users')
+             return Redirect::route('users.login')
             ->with('message', Lang::get('Login falhou'))
             ->withInput(Input::except('password'));
         }
@@ -142,4 +142,51 @@ class UsersController extends BaseController
             return Redirect::to((string) $url);        
         }
     }
+    public function getForgotPassword()
+    {
+        return View::make('users.forgot');
+    }
+
+    public function postForgotPassword()
+    {
+        $validator = Validator::make(Input::all(), [
+            'email' => 'required|email'
+        ]);
+        if($validator->fails()){
+            return Redirect::to('forgot')->withErrors($validator);
+
+        }  else{
+            $user = User::where('email', '=', Input::get('email'));
+            if($user->count())
+            {
+                $user = $user->first();
+                $code = str_random(60);
+                $password = str_random(10);
+                $user->code = $code;
+                $user->password_temp = Hash::make($password);
+                if($user->updateUniques()){
+                    Mail::send('emails.auth.forgot', array('link' => URL::route('recover', $code), 'username' => $user->username, 'password' => $password), function($message) use ($user){
+                        $message->to($user->email, $user->username)->subject('Recuperação de Conta');
+                    });
+                    return Redirect::route('home')->with('message', Lang::get('Sucesso'));
+                }
+            }
+        } 
+    }
+public function getRecover($code){
+    $user = User::where('code' ,'=', $code);
+    if($user->count())
+    {
+        $user = $user->first();
+        $user->password = $user->password_temp;
+        $user->password_temp = '';
+        $user->code = '';
+        if($user->updateUniques()){
+           return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode fazer login.'));
+        }
+        else{
+            dd('Vaca Puta');
+        }
+    }
+}
 }
