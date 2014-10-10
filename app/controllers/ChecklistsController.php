@@ -98,6 +98,11 @@ class ChecklistsController extends BaseController
         }, $titulos));/**/
     }
 
+    public function nyw()
+    {
+        return View::make('checklists.nyw');
+    }
+
     public function getGraphics($id, $query = null)
     {
 
