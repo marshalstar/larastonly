@@ -31,6 +31,10 @@
                                                                   <div class='questions'></div>\
                                                                   <div class='titles'></div>\
                                                               </div>");
+                $.ajax({
+                    url: "{{ URL::route("titles.create") }}",
+                    data: {name:'title'}
+                });
             });
 
             $(document).on('click', '.btn-new-question', function() {
