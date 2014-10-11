@@ -76,46 +76,6 @@ abstract class BaseController extends Controller {
     }
 
     /**
-     * @return array
-     */
-    public function indexAjax()
-    {
-        $validator = Validator::make(Input::all(['current', 'rowCount']), self::$validationPagination);
-        if ($validator->fails()) {
-            App::abort(404);
-        }
-
-        $data = [];
-        ($data['current'] = Input::get('current')) || $data['current'] = 1;
-        ($data['rowCount'] = Input::get('rowCount')) || $data['rowCount'] = 10;
-
-        $query = $this->query();
-        if (Input::get('sort')) {
-            $sort = key(Input::get('sort'));
-            $query->orderBy($sort, Input::get('sort')[$sort]);
-        }
-        if (Input::get('searchPhrase') && count($this->likeAttributes)) {
-            $query->where(function($query) {
-                foreach($this->likeAttributes as $attr) {
-                    $query->orWhere($attr, 'like', '%'.Input::get('searchPhrase').'%');
-                }
-                return $query;
-            });
-        }
-        $data['total'] = $query->count('id');
-
-        $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
-
-        /* @TODO: arrumar isto mais tarde
-        $data['rows'] = Cache::remember($this->basePlural.http_build_query($data), .1 , function() use ($query) {
-            return $query->get()->all();
-        });*/
-        $data['rows'] = $query->get()->all();
-
-        return $data;
-    }
-
-    /**
      * @param $view \Illuminate\View\View
      */
     protected function beforeCreateOrEdit($view)
@@ -151,13 +111,15 @@ abstract class BaseController extends Controller {
     }
 
     /**
-     * @return boolean
+     * @return \LaravelBook\Ardent\Ardent
      */
     protected function logicStore()
     {
         $obj = $this->newObj(Input::all());
         $this->beforeStore($obj);
-        return $obj->save();
+        if ($obj->save()) {
+            return $obj;
+        }
     }
 
     /**
@@ -273,6 +235,47 @@ abstract class BaseController extends Controller {
         if (!Request::ajax()) {
             return Redirect::route("{$this->getViewBaseName()}.index");
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function indexAjax()
+    {
+        /** @TODO: verificar se é por ajax */
+        $validator = Validator::make(Input::all(['current', 'rowCount']), self::$validationPagination);
+        if ($validator->fails()) {
+            App::abort(404);
+        }
+
+        $data = [];
+        ($data['current'] = Input::get('current')) || $data['current'] = 1;
+        ($data['rowCount'] = Input::get('rowCount')) || $data['rowCount'] = 10;
+
+        $query = $this->query();
+        if (Input::get('sort')) {
+            $sort = key(Input::get('sort'));
+            $query->orderBy($sort, Input::get('sort')[$sort]);
+        }
+        if (Input::get('searchPhrase') && count($this->likeAttributes)) {
+            $query->where(function($query) {
+                foreach($this->likeAttributes as $attr) {
+                    $query->orWhere($attr, 'like', '%'.Input::get('searchPhrase').'%');
+                }
+                return $query;
+            });
+        }
+        $data['total'] = $query->count('id');
+
+        $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
+
+        /* @TODO: arrumar isto mais tarde
+        $data['rows'] = Cache::remember($this->basePlural.http_build_query($data), .1 , function() use ($query) {
+        return $query->get()->all();
+        });*/
+        $data['rows'] = $query->get()->all();
+
+        return $data;
     }
 
 }

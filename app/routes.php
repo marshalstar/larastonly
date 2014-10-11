@@ -178,6 +178,21 @@ Route::any('/checklists/nyw', [
     'uses' => 'ChecklistsController@nyw',
 ]);
 
+Route::any('/titles/storeAjax', [
+    'as' => 'titles.storeAjax',
+    'uses' => 'TitlesController@logicStore',
+])->before('ajax');
+
+Route::any('/questions/storeAjax', [
+    'as' => 'questions.storeAjax',
+    'uses' => 'QuestionsController@logicStore',
+])->before('ajax');
+
+Route::any('/alternatives/storeAjax', [
+    'as' => 'alternatives.storeAjax',
+    'uses' => 'AlternativesController@logicStore',
+])->before('ajax');
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');

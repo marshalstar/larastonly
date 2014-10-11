@@ -100,7 +100,19 @@ class ChecklistsController extends BaseController
 
     public function nyw()
     {
-        return View::make('checklists.nyw');
+        $checklist = Checklist::firstOrCreate([
+            'user_id' => 1,
+            'name' => 'checklist',
+        ]);
+        $titleRoot = Title::firstOrCreate([
+            'checklist_id' => $checklist->id,
+            'name' => 'root',
+        ]);
+        $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
+        return View::make('checklists.nyw')
+            ->with('checklist', $checklist)
+            ->with('titleRoot', $titleRoot)
+            ->with('types', $types);
     }
 
     public function getGraphics($id, $query = null)
