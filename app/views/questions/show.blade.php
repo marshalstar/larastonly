@@ -23,11 +23,6 @@
                         <td><h4>{{ Lang::get('Enunciad') }}</h4></td>
                         <td><h4>{{ $question->statement }}</h4></td>
                     </tr>
-
-                    <tr>
-                        <td><h4>{{ Lang::get('É sobre avaliado?') }}</h4></td>
-                        <td><h4>{{ $question->is_about_assessable}}</h4></td>
-                    </tr>
     
                      <tr>
                         <td><h4>{{ Lang::get('Title_id') }}</h4></td>

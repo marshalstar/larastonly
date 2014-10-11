@@ -44,15 +44,6 @@ class Question extends Ardent
 
     public function afterValidate()
     {
-        if ($this->isDirty(('is_about_assessable'))) {
-
-            $is = $this->is_about_assessable;
-            if ($is == 'on') {
-                $this->is_about_assessable = true;
-            } elseif ($is != 'off' && !is_bool($is)) {
-                return false;
-            }
-        }
         if ($this->isDirty(('alternatives'))) {
             unset($this->alternatives);
         }

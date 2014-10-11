@@ -5,7 +5,8 @@ function renderTitle($title, $types) {
         <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $t->id }}">
             <a href="javascript:void(0)" class="btn btn-default btn-new-title">novo title</a>
             <a href="javascript:void(0)" class="btn btn-default btn-new-question">nova question</a>
-            <input type="text" value="{{ Lang::get('título') }}">
+            <a href="javascript:void(0)" class="btn btn-default btn-del-title">destroy title</a>
+            <input class="input-title" type="text" value="{{ $t->name }}">
             <div class="questions">
                 <?php renderQuestion($t, $types); ?>
             </div>
@@ -20,7 +21,8 @@ function renderQuestion($title, $types) {
     foreach($title->questions as $q): ?>
         <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $q->id  }}">
             <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">nova alternative</a>
-            <input type="text" value="{{ Lang::get('questão')  }}">
+            <a href="javascript:void(0)" class="btn btn-default btn-del-question">destroy question</a>
+            <input class="input-question" type="text" value="{{ $q->statement }}">
             <div class="alternatives">
                 <?php renderAlternative($q, $types); ?>
             </div>
@@ -31,8 +33,9 @@ function renderQuestion($title, $types) {
 function renderAlternative($question, $types) {
     foreach($question->alternatives as $a): ?>
         <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $a->id }}">
+            <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">destroy alternative</a>
             {{ Form::select(null, $types, null) }}
-            <input type="text" value="{{ Lang::get('alternativa')  }}">
+            <input class="input-alternative" type="text" value="{{ $a->name }}">
         </div>
     <?php endforeach;
 }
@@ -67,6 +70,7 @@ function renderAlternative($question, $types) {
 @stop
 
 @section('script')
+    {{-- @TODO: depois o Yuri deve por isto em um arquivo separado (vai se virar sozinho) --}}
     <script>
         $(function() {
 
@@ -84,7 +88,8 @@ function renderAlternative($question, $types) {
                         title.children('.titles').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
                                                               <a href="javascript:void(0)" class="btn btn-default btn-new-title">novo title</a>\
                                                               <a href="javascript:void(0)" class="btn btn-default btn-new-question">nova question</a>\
-                                                              <input type="text" value="{{ Lang::get('título') }}">\
+                                                              <a href="javascript:void(0)" class="btn btn-default btn-del-title">destroy title</a>\
+                                                              <input class="input-title" type="text" value="{{ Lang::get('título') }}">\
                                                               <div class="questions"></div>\
                                                               <div class="titles"></div>\
                                                           </div>');
@@ -108,7 +113,8 @@ function renderAlternative($question, $types) {
                     success: function(e) {
                         title.children('.questions').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
                                                                  <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">nova alternative</a>\
-                                                                 <input type="text" value="{{ Lang::get('questão')  }}">\
+                                                                 <a href="javascript:void(0)" class="btn btn-default btn-del-question">destroy question</a>\
+                                                                 <input class="input-question" type="text" value="{{ Lang::get('questão')  }}">\
                                                                  <div class="alternatives"></div>\
                                                              </div>');
                     },
@@ -130,10 +136,95 @@ function renderAlternative($question, $types) {
                     },
                     success: function(e) {
                         question.children('.alternatives').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
+                                                                      <a href="javascript:void(0)" class="btn btn-default btn-del-alternative">destroy alternative</a>\
                                                                       {{ Form::select(null, $types, null) }}\
-                                                                      <input type="text" value="{{ Lang::get('alternativa')  }}">\
+                                                                      <input class="input-alternative" type="text" value="{{ Lang::get('alternativa')  }}">\
                                                                    </div>');
                     },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('click', '.btn-del-title', function () {
+                var title = $(this).parent();
+                $.ajax({
+                    url: "{{ URL::route("titles.destroyCascadeAjax", 'key') }}".replace('key', title.attr("data-id")),
+                    method: "DELETE",
+                    success: function(e) {
+                        title.remove();
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('click', '.btn-del-question', function () {
+                var question = $(this).parent();
+                $.ajax({
+                    url: "{{ URL::route("questions.destroy", 'key') }}".replace('key', question.attr("data-id")),
+                    method: "DELETE",
+                    success: function(e) {
+                        question.remove();
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('click', '.btn-del-alternative', function () {
+                var alternative = $(this).parent();
+                $.ajax({
+                    url: "{{ URL::route("alternatives.destroy", 'key') }}".replace('key', alternative.attr("data-id")),
+                    method: "DELETE",
+                    success: function(e) {
+                        alternative.remove();
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('change', '.input-title', function () {
+                var title = $(this).parent();
+                var input = $(this);
+                $.ajax({
+                    url: '{{ URL::route('titles.updateAjax', 'key')  }}'.replace('key', title.attr('data-id')),
+                    method: 'POST',
+                    data: {name: input.val()},
+                    success: function(e) {},
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('change', '.input-question', function () {
+                var question = $(this).parent();
+                var input = $(this);
+                $.ajax({
+                    url: '{{ URL::route('questions.updateAjax', 'key')  }}'.replace('key', question.attr('data-id')),
+                    method: 'POST',
+                    data: {statement: input.val()},
+                    success: function(e) {},
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('change', '.input-alternative', function () {
+                var alternative = $(this).parent();
+                var input = $(this);
+                $.ajax({
+                    url: '{{ URL::route('alternatives.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
+                    method: 'POST',
+                    data: {name: input.val()},
+                    success: function(e) {},
                     error: function(e) {
                         console.log(e);
                     }

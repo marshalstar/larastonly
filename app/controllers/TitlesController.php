@@ -12,4 +12,21 @@ class TitlesController extends BaseController
         $view->with('titles', $titles);
     }
 
+    public function destroyCascadeAjax($id)
+    {
+        $title = Title::findOrFail($id);
+        $this->destroyTitle($title);
+    }
+
+    private function destroyTitle($title) {
+        foreach($title->children as $t) {
+            $this->destroyTitle($t);
+        }
+        foreach($title->questions as $q) {
+            $q->alternatives()->delete();
+            $q->delete();
+        }
+        $title->delete();
+    }
+
 }

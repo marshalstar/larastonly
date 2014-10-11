@@ -16,7 +16,6 @@ class QuestionsTableSeeder extends Seeder
             return [
                 'title_id' => $titles->get(rand(0, $titles->count() -1))->id,
                 'statement' => $faker->unique()->paragraph(). ' ' .$increment,
-                'is_about_assessable' => $faker->randomDigit <= 1,
                 'weight' => $faker->randomDigit,
             ];
         }, range(1, DatabaseSeeder::$dimension)));

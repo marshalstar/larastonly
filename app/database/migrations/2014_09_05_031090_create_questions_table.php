@@ -18,7 +18,6 @@ class CreateQuestionsTable extends Migration {
 			$table->integer('title_id')->unsigned()->index();
             $table->foreign('title_id')->references('id')->on('titles');
 			$table->text('statement')->default("");
-			$table->boolean('is_about_assessable')->default(false);
             $table->integer('weight')->default(1);
 		});
 	}

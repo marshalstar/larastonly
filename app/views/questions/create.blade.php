@@ -14,11 +14,6 @@
     </div>
 
     <div class="form-group input-group">
-        {{ Form::label('is_about_assessable', Str::title(Lang::get('é sobre avaliado?')), ['class' => 'input-group-addon']) }}
-        {{ Form::checkbox('is_about_assessable', Input::old('is_about_assessable'), false) }}
-    </div>
-
-    <div class="form-group input-group">
         {{ Form::label('title_id', Str::title(Lang::get('título')), ['class' => 'input-group-addon']) }}
         {{ Form::select('title_id', $titles, Input::old('title_id'), ['class' => 'form-control']) }}
     </div>

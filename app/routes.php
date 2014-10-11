@@ -193,6 +193,31 @@ Route::any('/alternatives/storeAjax', [
     'uses' => 'AlternativesController@logicStore',
 ])->before('ajax');
 
+Route::any('/titles/updateAjax/{id}', [
+    'as' => 'titles.updateAjax',
+    'uses' => 'TitlesController@logicUpdate',
+])->before('ajax');
+
+Route::any('/questions/updateAjax/{id}', [
+    'as' => 'questions.updateAjax',
+    'uses' => 'QuestionsController@logicUpdate',
+])->before('ajax');
+
+Route::any('/alternatives/updateAjax/{id}', [
+    'as' => 'alternatives.updateAjax',
+    'uses' => 'AlternativesController@logicUpdate',
+])->before('ajax');
+
+Route::delete('/titles/destroyCascadeAjax/{id}', [
+    'as' => 'titles.destroyCascadeAjax',
+    'uses' => 'TitlesController@destroyCascadeAjax',
+])->before('ajax');
+
+    Route::delete('/questions/destroyCascadeAjax/{id}', [
+    'as' => 'questions.destroyCascadeAjax',
+    'uses' => 'QuestionsController@destroyCascadeAjax',
+])->before('ajax');
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');

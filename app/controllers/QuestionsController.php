@@ -12,9 +12,11 @@ class QuestionsController extends BaseController
         $view->with('titles', $titles);
     }
 
-    public function beforeUpdate($obj, $id)
+    public function destroyCascadeAjax($id)
     {
-        $obj->is_about_assessable = Input::get('is_about_assessable') == 'on';
+        $question = Question::findOrFail($id);
+        $question->alternatives()->delete();
+        $question->delete();
     }
 
 }

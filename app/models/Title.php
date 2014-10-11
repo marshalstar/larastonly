@@ -49,4 +49,14 @@ class Title extends Ardent
         return $this->hasMany('Question');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('Title', 'title_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('Title', 'title_id');
+    }
+
 }
