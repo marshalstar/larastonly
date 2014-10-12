@@ -14,21 +14,25 @@ class DatabaseSeeder extends Seeder
 	public function run()
 	{
 		Eloquent::unguard();
-
         DB::disableQueryLog();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        $driver = DB::connection()->getConfig('driver');
+        stripos($driver, 'mysql') !== false && DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         $this->truncateTables();
         $this->seederTables();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        stripos($driver, 'mysql') !== false && DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         DB::enableQueryLog();
 
         $this->command->comment('========== Pode ir programar ==========');
-        if (!in_array($this->command->ask("continuar ciclos (".self::$NUM_CICLES." no total)?"), ['no', 'n'])) {
+
+        $option = $this->command->ask("continuar ciclos (".self::$NUM_CICLES." no total)?");
+        if (!in_array($option, ['no', 'n'])) {
             foreach (range(2, self::$NUM_CICLES) as $i) {
                 $this->command->comment("===== ciclo $i =====");
                 $this->seederTables();
             }
-            return;
         } else {
             $this->command->comment("Comando cancelado!");
         }

@@ -90,9 +90,10 @@ Route::group(['prefix' => 'checklists'], function ()
 
     Route::get('/graphics/{id}/{query?}', [
         'as' => 'checklists.graphics',
-        'uses' => 'ChecklistsController@getGraphics',
+        'uses' => 'ChecklistsController@graphics',
     ]);
 });
+
 Route::group(array('before' => 'auth'), function(){
         
         Route::group(array('before'=>'csrf'), function(){
@@ -213,10 +214,15 @@ Route::delete('/titles/destroyCascadeAjax/{id}', [
     'uses' => 'TitlesController@destroyCascadeAjax',
 ])->before('ajax');
 
-    Route::delete('/questions/destroyCascadeAjax/{id}', [
+Route::delete('/questions/destroyCascadeAjax/{id}', [
     'as' => 'questions.destroyCascadeAjax',
     'uses' => 'QuestionsController@destroyCascadeAjax',
 ])->before('ajax');
+
+Route::any('/checklists/dataGraphics/{checklistId}/{questionId}', [
+    'as' => 'checklists.dataGraphicsAjax',
+    'uses' => 'ChecklistsController@dataGraphicsAjax',
+]);//->before('ajax');
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');

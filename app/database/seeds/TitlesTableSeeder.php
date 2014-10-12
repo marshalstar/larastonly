@@ -9,18 +9,19 @@ class TitlesTableSeeder extends Seeder
 	{
 
         $faker = Faker::create();
+        $checklists = Checklist::all(['id']);
+
+        $number = intval(DatabaseSeeder::$dimension/3) +1;
 
         DB::table('titles')->insert(array_filter(array_map(function($index) use ($faker) {
-            if (rand(0, 1)) {
-                return [
-                    'name' => $faker->sentence(rand(1, 4)),
-                    'checklist_id' => Checklist::all()->get($index)->id,
-                ];
-            }
-        }, range(1, DatabaseSeeder::$dimension -1))));
+            return [
+                'name' => $faker->sentence(rand(1, 4)),
+                'checklist_id' => $index,
+            ];
+        }, array_column($checklists->toArray(), 'id'))));
 
         foreach (range(1, 3) as $i) {
-            $this->newChildrenTitles(intval(DatabaseSeeder::$dimension*DatabaseSeeder::$dimension/3), $faker);
+            $this->newChildrenTitles($number, $faker);
         }
 	}
 
@@ -29,7 +30,7 @@ class TitlesTableSeeder extends Seeder
         if ($count > 0 && $faker) {
             $titles = Title::all();
             DB::table('titles')->insert(array_map(function() use ($count, $titles, $faker) {
-                $title = $titles->get(rand(0, $titles->count() -1));
+                $title = $titles->get(mt_rand(0, $titles->count() -1));
                 return [
                     'name' => $faker->sentence(rand(1, 4)),
                     'title_id' => $title->id,

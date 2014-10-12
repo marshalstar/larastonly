@@ -104,6 +104,7 @@ class ChecklistsController extends BaseController
             'user_id' => 1,
             'name' => 'checklist',
         ]);
+        /** @TODO: mandar o Yuri parar de ser preguiçoso e tirar este titulo root daqui! */
         $titleRoot = Title::firstOrCreate([
             'checklist_id' => $checklist->id,
             'name' => 'root',
@@ -115,32 +116,30 @@ class ChecklistsController extends BaseController
             ->with('types', $types);
     }
 
-    public function getGraphics($id, $query = null)
+    public function dataGraphicsAjax($checklistId, $questionId)
     {
+        $stdData = DB::table('checklists')
+                    ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+                    ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+                    ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+                    ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
+                    ->where('checklists.id', '=', $checklistId)
+                    ->where('alternative_question.question_id', '=', $questionId)
+                    ->groupBy('alternative_question.alternative_id')
+                    ->get([
+                        'alternatives.name as name',
+                        DB::raw('COUNT(alternative_question.alternative_id) as total'),
+                    ]);
+        $arrayData = json_decode(json_encode($stdData), true);
 
+        return array_map(function ($a) {
+            return array_values($a);
+        }, $arrayData);
+    }
 
-        $evaluations = Checklist::find($id)->evaluations;
-        $answers = $evaluations[0]->answers;
-        $alternativeQuestion = $answers[0]->alternativeQuestion;
-
-        $ns = DB::table('checklists')
-            ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
-            ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
-            ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
-            ->join('questions', 'questions.id', '=', 'alternative_question.question_id')
-            ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
-            ->groupBy('alternative_question.id')
-            ->get(['alternatives.*', 'questions.*', 'alternative_question.*'])
-            ;
-
-        Kint::dump([
-            $ns
-        ]);
-
-        die('rato');
-        $evaluations = Evaluation::all();
-        return View::make('checklists.graphics')
-            ->with('checklist', $checklist);
+    public function graphics($id, $query = null)
+    {
+        return View::make('checklists.graphics');
     }
 
     public function responder($id)

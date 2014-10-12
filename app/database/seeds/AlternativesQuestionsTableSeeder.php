@@ -7,14 +7,23 @@ class AlternativesQuestionsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $alternatives = Alternative::all();
+        $questions = Question::all();
 
-        DB::table('alternative_question')->insert(array_filter(array_map(function($index) use ($faker) {
-            if (!rand(0, 2)) {
-                return [
-                    'alternative_id' => Alternative::all()->get($index%DatabaseSeeder::$dimension)->id,
-                    'question_id' => Question::all()->get(intval($index/DatabaseSeeder::$dimension))->id,
-                ];
+        $alterternativeQuestions = [];
+        foreach($questions as $question) {
+            foreach($alternatives as $alternative) {
+                foreach(range(0, Evaluation::all()->count()) as $i) {
+                    if (mt_rand(0, 1)) {
+                        $alterternativeQuestions[] = [
+                            'alternative_id' => $alternative->id,
+                            'question_id' => $question->id,
+                        ];
+                    }
+                }
             }
-        }, range(0, DatabaseSeeder::$dimension*DatabaseSeeder::$dimension -1))));
+        }
+
+        DB::table('alternative_question')->insert($alterternativeQuestions);
     }
 }

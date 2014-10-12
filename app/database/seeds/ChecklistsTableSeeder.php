@@ -10,6 +10,7 @@ class ChecklistsTableSeeder extends Seeder
 		$faker = Faker::create();
         $users = User::all();
 
+        $number = intval(DatabaseSeeder::$dimension/10) +1;
         DB::table('checklists')->insert(array_map(function() use ($faker, $users) {
             return [
                 'name' => $faker->sentence(rand(1, 4)),
@@ -17,7 +18,7 @@ class ChecklistsTableSeeder extends Seeder
                 'created_at' => $faker->dateTimeThisMonth(),
                 'updated_at' => $faker->dateTimeThisMonth(),
             ];
-        }, range(1, DatabaseSeeder::$dimension)));
+        }, range(1, $number)));
 	}
 
 }
