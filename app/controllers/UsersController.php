@@ -165,10 +165,10 @@ class UsersController extends BaseController
                 $user->code = $code;
                 $user->password_temp = Hash::make($password);
                 if($user->updateUniques()){
-                    Mail::send('emails.auth.forgot', array('link' => URL::route('recover', $code), 'username' => $user->username, 'password' => $password), function($message) use ($user){
-                        $message->to($user->email, $user->username)->subject('Recuperação de Conta');
-                    });
-                    return Redirect::route('home')->with('message', Lang::get('Sucesso'));
+                
+                   dd('salvou');
+                }else{
+                    Kint::dump($user);
                 }
             }
         } 
@@ -182,10 +182,10 @@ public function getRecover($code){
         $user->password_temp = '';
         $user->code = '';
         if($user->updateUniques()){
-           return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode fazer login.'));
+          Kint::dump($user);
         }
         else{
-            dd('Vaca Puta');
+            dd('Rato');
         }
     }
 }
