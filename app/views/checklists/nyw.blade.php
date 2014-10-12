@@ -1,17 +1,24 @@
 <?php
 
-function renderTitle($title, $types) {
-    foreach($title->children as $t): ?>
-        <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $t->id }}">
-            <a href="javascript:void(0)" class="btn btn-default btn-new-title">novo title</a>
-            <a href="javascript:void(0)" class="btn btn-default btn-new-question">nova question</a>
-            <a href="javascript:void(0)" class="btn btn-default btn-del-title">destroy title</a>
-            <input class="input-title" type="text" value="{{ $t->name }}">
-            <div class="questions">
-                <?php renderQuestion($t, $types); ?>
+function renderTitle($titles, $types) {
+    foreach($titles as $t): ?>
+        <div class="media title" data-id="{{ $t->id }}">
+            <div class="pull-left">
+                <h5 class="media-object">título</h5>
             </div>
-            <div class="titles">
-                <?php renderTitle($t, $types); ?>
+            <div class="media-body">
+                <ul class="nav nav-pills">
+                    <li><input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/></li>
+                    <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a></li>
+                    <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> nova question</a></li>
+                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> destroy title</a></li>
+                </ul>
+                <div class="questions">
+                    <?php renderQuestion($t, $types); ?>
+                </div>
+                <div class="titles">
+                    <?php renderTitle($t->children, $types); ?>
+                </div>
             </div>
         </div>
     <?php endforeach;
@@ -19,12 +26,19 @@ function renderTitle($title, $types) {
 
 function renderQuestion($title, $types) {
     foreach($title->questions as $q): ?>
-        <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $q->id  }}">
-            <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">nova alternative</a>
-            <a href="javascript:void(0)" class="btn btn-default btn-del-question">destroy question</a>
-            <input class="input-question" type="text" value="{{ $q->statement }}">
-            <div class="alternatives">
-                <?php renderAlternative($q, $types); ?>
+        <div class="media question" data-id="{{ $q->id  }}">
+            <div class="pull-left">
+                <h5 class="media-object">questão</h5>
+            </div>
+            <div class="media-body">
+                <ul class="nav nav-pills">
+                    <li><input class="form-control input-title" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
+                    <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>
+                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>
+                </ul>
+                <div class="alternatives list-group">
+                    <?php renderAlternative($q, $types); ?>
+                </div>
             </div>
         </div>
     <?php endforeach;
@@ -32,10 +46,12 @@ function renderQuestion($title, $types) {
 
 function renderAlternative($question, $types) {
     foreach($question->alternatives as $a): ?>
-        <div style="padding: 20px;border:1px solid #e7e7e7;" data-id="{{ $a->id }}">
-            <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">destroy alternative</a>
-            {{ Form::select(null, $types, null) }}
-            <input class="input-alternative" type="text" value="{{ $a->name }}">
+        <div class="list-group-item alternative" data-id="{{ $a->id }}">
+            <ul class="nav nav-pills">
+                <li><input class="input-title form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
+                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>
+                <li>{{ Form::select(null, $types, null) }}</li>
+            </ul>
         </div>
     <?php endforeach;
 }
@@ -55,13 +71,25 @@ function renderAlternative($question, $types) {
     @endif
 
     <div class="panel">
-        <input type="text" value="{{ $checklist->name }}">
+
     </div>
 
-    <div class="panel" data-id="{{ $titleRoot->id }}">
-        <a href="javascript:void(0)" class="btn btn-default btn-new-title">novo title</a>
-        <div class="titles">
-            <?php renderTitle($titleRoot, $types); ?>
+    <div class="title panel" data-id="{{ $titleRoot->id }}">
+        <div class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand">checklist</span>
+                </div>
+                <div class="navbar-form navbar-left">
+                    <input class="form-control" type="text" value="{{ $checklist->name }}" placeholder="Checklist"/>
+                    <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a>
+                </div>
+            </div>
+        </div>
+        <div class="media-list">
+            <div class="titles">
+                <?php renderTitle($titleRoot->children, $types); ?>
+            </div>
         </div>
     </div>
 
@@ -75,7 +103,7 @@ function renderAlternative($question, $types) {
         $(function() {
 
             $(document).on('click', '.btn-new-title', function() {
-                var title = $(this).parent();
+                var title = $(this).closest('div.title');
                 $.ajax({
                     url: "{{ URL::route("titles.storeAjax") }}",
                     method: "POST",
@@ -85,14 +113,21 @@ function renderAlternative($question, $types) {
                         title_id: title.attr('data-id')
                     },
                     success: function(e) {
-                        title.children('.titles').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
-                                                              <a href="javascript:void(0)" class="btn btn-default btn-new-title">novo title</a>\
-                                                              <a href="javascript:void(0)" class="btn btn-default btn-new-question">nova question</a>\
-                                                              <a href="javascript:void(0)" class="btn btn-default btn-del-title">destroy title</a>\
-                                                              <input class="input-title" type="text" value="{{ Lang::get('título') }}">\
-                                                              <div class="questions"></div>\
-                                                              <div class="titles"></div>\
-                                                          </div>');
+                        title.children().find('.titles').first().append('<div class="media title" data-id="'+ e.id +'">\
+                                                                             <div class="pull-left">\
+                                                                                 <h5 class="media-object">título</h5>\
+                                                                             </div>\
+                                                                             <div class="media-body">\
+                                                                                 <ul class="nav nav-pills">\
+                                                                                     <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Titulo"/></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> nova question</a></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> destroy title</a></li>\
+                                                                                 </ul>\
+                                                                                 <div class="questions"></div>\
+                                                                                 <div class="titles"></div>\
+                                                                             </div>\
+                                                                         </div>');
                     },
                     error: function(e) {
                         console.log(e);
@@ -102,7 +137,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('click', '.btn-new-question', function() {
-                var title = $(this).parent();
+                var title = $(this).closest('div.title');
                 $.ajax({
                     url: "{{ URL::route("questions.storeAjax") }}",
                     method: "POST",
@@ -111,12 +146,19 @@ function renderAlternative($question, $types) {
                         title_id: title.attr('data-id')
                     },
                     success: function(e) {
-                        title.children('.questions').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
-                                                                 <a href="javascript:void(0)" class="btn btn-default btn-new-alternative">nova alternative</a>\
-                                                                 <a href="javascript:void(0)" class="btn btn-default btn-del-question">destroy question</a>\
-                                                                 <input class="input-question" type="text" value="{{ Lang::get('questão')  }}">\
-                                                                 <div class="alternatives"></div>\
-                                                             </div>');
+                        title.children().find('.questions').first().append('<div class="media question" data-id="'+ e.id +'">\
+                                                                                <div class="pull-left">\
+                                                                                    <h5 class="media-object">questão</h5>\
+                                                                                </div>\
+                                                                                <div class="media-body">\
+                                                                                    <ul class="nav nav-pills">\
+                                                                                        <li><input class="form-control input-title" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
+                                                                                        <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>\
+                                                                                        <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>\
+                                                                                    </ul>\
+                                                                                    <div class="alternatives list-group"></div>\
+                                                                                </div>\
+                                                                            </div>');
                     },
                     error: function(e) {
                         console.log(e);
@@ -125,7 +167,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('click', '.btn-new-alternative', function () {
-                var question = $(this).parent();
+                var question = $(this).closest('div.question');
                 $.ajax({
                     url: "{{ URL::route("alternatives.storeAjax") }}",
                     method: "POST",
@@ -135,11 +177,13 @@ function renderAlternative($question, $types) {
                         question_id: question.attr('data-id')
                     },
                     success: function(e) {
-                        question.children('.alternatives').append('<div style="padding: 20px;border:1px solid #e7e7e7;" data-id="'+ e.id +'">\
-                                                                      <a href="javascript:void(0)" class="btn btn-default btn-del-alternative">destroy alternative</a>\
-                                                                      {{ Form::select(null, $types, null) }}\
-                                                                      <input class="input-alternative" type="text" value="{{ Lang::get('alternativa')  }}">\
-                                                                   </div>');
+                        question.children().find('.alternatives').first().append('<div class="list-group-item alternative" data-id="'+ e.id +'">\
+                                                                                      <ul class="nav nav-pills">\
+                                                                                          <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
+                                                                                          <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>\
+                                                                                          <li>{{ Form::select(null, $types, null) }}</li>\
+                                                                                      </ul>\
+                                                                                  </div>');
                     },
                     error: function(e) {
                         console.log(e);
@@ -148,7 +192,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('click', '.btn-del-title', function () {
-                var title = $(this).parent();
+                var title = $(this).closest('div.title');
                 $.ajax({
                     url: "{{ URL::route("titles.destroyCascadeAjax", 'key') }}".replace('key', title.attr("data-id")),
                     method: "DELETE",
@@ -162,7 +206,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('click', '.btn-del-question', function () {
-                var question = $(this).parent();
+                var question = $(this).closest('div.question');
                 $.ajax({
                     url: "{{ URL::route("questions.destroy", 'key') }}".replace('key', question.attr("data-id")),
                     method: "DELETE",
@@ -176,7 +220,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('click', '.btn-del-alternative', function () {
-                var alternative = $(this).parent();
+                var alternative = $(this).closest('div.alternative');
                 $.ajax({
                     url: "{{ URL::route("alternatives.destroy", 'key') }}".replace('key', alternative.attr("data-id")),
                     method: "DELETE",
@@ -190,7 +234,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('change', '.input-title', function () {
-                var title = $(this).parent();
+                var title = $(this).closest('div.title');
                 var input = $(this);
                 $.ajax({
                     url: '{{ URL::route('titles.updateAjax', 'key')  }}'.replace('key', title.attr('data-id')),
@@ -204,7 +248,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('change', '.input-question', function () {
-                var question = $(this).parent();
+                var question = $(this).closest('div.question');
                 var input = $(this);
                 $.ajax({
                     url: '{{ URL::route('questions.updateAjax', 'key')  }}'.replace('key', question.attr('data-id')),
@@ -218,7 +262,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('change', '.input-alternative', function () {
-                var alternative = $(this).parent();
+                var alternative = $(this).closest('div.alternative');
                 var input = $(this);
                 $.ajax({
                     url: '{{ URL::route('alternatives.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
