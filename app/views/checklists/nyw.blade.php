@@ -32,7 +32,7 @@ function renderQuestion($title, $types) {
             </div>
             <div class="media-body">
                 <ul class="nav nav-pills">
-                    <li><input class="form-control input-title" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
+                    <li><input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
                     <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>
                     <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>
                 </ul>
@@ -48,7 +48,7 @@ function renderAlternative($question, $types) {
     foreach($question->alternatives as $a): ?>
         <div class="list-group-item alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
-                <li><input class="input-title form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
+                <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
                 <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>
                 <li>{{ Form::select(null, $types, null) }}</li>
             </ul>
@@ -148,7 +148,7 @@ function renderAlternative($question, $types) {
                                                                                 </div>\
                                                                                 <div class="media-body">\
                                                                                     <ul class="nav nav-pills">\
-                                                                                        <li><input class="form-control input-title" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
+                                                                                        <li><input class="form-control input-question" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
                                                                                         <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>\
                                                                                         <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>\
                                                                                     </ul>\
@@ -175,7 +175,7 @@ function renderAlternative($question, $types) {
                     success: function(e) {
                         question.children().find('.alternatives').first().append('<div class="list-group-item alternative" data-id="'+ e.id +'">\
                                                                                       <ul class="nav nav-pills">\
-                                                                                          <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
+                                                                                          <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
                                                                                           <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>\
                                                                                           <li>{{ Form::select(null, $types, null) }}</li>\
                                                                                       </ul>\
@@ -232,6 +232,7 @@ function renderAlternative($question, $types) {
             $(document).on('change', '.input-title', function () {
                 var title = $(this).closest('div.title');
                 var input = $(this);
+                console.log('sim');
                 $.ajax({
                     url: '{{ URL::route('titles.updateAjax', 'key')  }}'.replace('key', title.attr('data-id')),
                     method: 'POST',
