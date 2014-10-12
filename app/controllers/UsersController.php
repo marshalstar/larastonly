@@ -182,10 +182,10 @@ public function getRecover($code){
         $user->password_temp = '';
         $user->code = '';
         if($user->updateUniques()){
-           return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode fazer login.'));
+           dd($user);
         }
         else{
-            dd('Vaca Puta');
+            dd('Rato');
         }
     }
 }
