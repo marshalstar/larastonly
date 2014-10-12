@@ -70,10 +70,6 @@ function renderAlternative($question, $types) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <div class="panel">
-
-    </div>
-
     <div class="title panel" data-id="{{ $titleRoot->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
