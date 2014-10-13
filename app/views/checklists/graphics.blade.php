@@ -5,112 +5,56 @@
 @section('content')
 
     <div class="container container-main">
-        <h4>É nois que voa Santos Dumont</h4>
-        <h4>É Nois que é a lenda Will Smith</h4>
-        <h4>É nóis que toma café Pelé</h4>
 
-        <div id="graphics"></div>
-
+        @foreach($checklist->questions as $question)
+            <div id="graphics-{{ $question->id }}" class="container"></div>
+        @endforeach
     </div>
 
 @stop
 
 @section('script')
     {{ HTML::script('/packages/highcharts/4.0.4/js/highcharts.js') }}
+    {{ HTML::script('/packages/highcharts/4.0.4/js/modules/exporting.js') }}
+    @extends('templates.partials.basicPieGraphic')
     <script>
-//        $(document).ready(function() {
-//            var options = {
-//                chart: {
-//                    renderTo: 'graphics',
-//                    plotBackgroundColor: null,
-//                    plotBorderWidth: null,
-//                    plotShadow: false
-//                },
-//                title: {
-//                    text: 'Web Sales & Marketing Efforts'
-//                },
-//                tooltip: {
-//                    formatter: function() {
-//                        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-//                    }
-//                },
-//                plotOptions: {
-//                    pie: {
-//                        allowPointSelect: true,
-//                        cursor: 'pointer',
-//                        dataLabels: {
-//                            enabled: true,
-//                            color: '#000000',
-//                            connectorColor: '#000000',
-//                            formatter: function() {
-//                                return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-//                            }
-//                        }
-//                    }
-//                },
-//                series: [{
-//                    type: 'pie',
-//                    name: 'Browser share',
-//                    data: []
-//                }]
-//            }
-//
-//            $.getJSON("/checklists/dataGraphics/2/3", function(json) {
-//                options.series[0].data = json;
-//                chart = new Highcharts.Chart(options);
-//            });
-//
-//
-//
-//        });
-          $(document).ready(function() {
+        $.ajax({
+            url: "/checklists/dataGraphics/{{ $checklist->id }}/0",
+            success: function(e) {
+                Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                    return {
+                        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                        stops: [
+                            [0, color],
+                            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                        ]
+                    };
+                });
 
-            var optionsDefault = {
-                chart: {
-                    renderTo: '#',
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false
+                for(i in e) {
+                    basicPieGraphic.series[0].data = e[i]['data'];
+                    basicPieGraphic.chart.renderTo = 'graphics-' + i;
+                    basicPieGraphic.title.text = e[i]['name'];
+                    new Highcharts.Chart(basicPieGraphic);
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+        {{-- @foreach($checklist->questions as $question)
+            $.ajax({
+                url: "/checklists/dataGraphics/{{ $checklist->id }}/{{ $question->id  }}",
+                success: function(e) {
+                    basicPieGraphic.series[0].data = e;
+                    basicPieGraphic.chart.renderTo = 'graphics-{{ $question->id }}';
+                    basicPieGraphic.title.text = '{{ $question->statement }}';
+                    new Highcharts.Chart(basicPieGraphic);
                 },
-                title: {
-                    text: '#'
-                },
-                tooltip: {
-                    formatter: function() {
-                        return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
-                    }
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            color: '#000000',
-                            connectorColor: '#000000',
-                            formatter: function() {
-                                return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Browser share',
-                    data: []
-                }]
-            };
-
-            $.getJSON("/checklists/dataGraphics/2/3", function(json) {
-                optionsDefault.series[0].data = json;
-                optionsDefault.chart.renderTo = 'graphics';
-                optionsDefault.title.text = 'título';
-                chart = new Highcharts.Chart(optionsDefault);
+                error: function(e) {
+                    console.log(e);
+                }
             });
-
-
-
-
-          });
+        @endforeach --}}
     </script>
 @stop

@@ -47,4 +47,9 @@ class Checklist extends Ardent
         return $this->hasMany('Title');
     }
 
+    public function questions()
+    {
+        return $this->hasManyThrough('Question', 'Title');
+    }
+
 }

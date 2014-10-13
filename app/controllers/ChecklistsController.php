@@ -123,6 +123,37 @@ class ChecklistsController extends BaseController
                     ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
                     ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
                     ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
+                    ->join('questions', 'questions.id', '=', 'alternative_question.question_id')
+                    ->join('titles', 'titles.id', '=', 'questions.title_id')
+                    ->where('titles.checklist_id', '=', $checklistId)
+                    ->where('checklists.id', '=', $checklistId)
+                    ->groupBy('alternative_question.question_id')
+                    ->groupBy('alternative_question.alternative_id')
+                    ->get([
+                        'alternatives.name as alternativeName',
+                        'alternative_question.question_id as questionId',
+                        'questions.statement as questionStatement',
+                        DB::raw('COUNT(alternative_question.alternative_id) as total'),
+                    ]);
+        $arrayData = json_decode(json_encode($stdData), true);
+        $ns = [];
+        foreach($arrayData as $arr) {
+            $ns[$arr['questionId']]['data'][] = [
+                Str::limit($arr['alternativeName'], 15),
+                Str::limit($arr['total'], 15),
+            ];
+            $ns[$arr['questionId']]['name'] = Str::limit($arr['questionStatement'], 15);
+        }
+        return $ns;
+        #Kint::dump($arrayData);
+        #Kint::dump($ns);
+        #Kint::dump(Checklist::findOrFail($checklistId)->questions->toArray());
+        #die('isto eh um teste');
+        /*$stdData = DB::table('checklists')
+                    ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+                    ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+                    ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+                    ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
                     ->where('checklists.id', '=', $checklistId)
                     ->where('alternative_question.question_id', '=', $questionId)
                     ->groupBy('alternative_question.alternative_id')
@@ -134,12 +165,14 @@ class ChecklistsController extends BaseController
 
         return array_map(function ($a) {
             return array_values($a);
-        }, $arrayData);
+        }, $arrayData);/**/
     }
 
     public function graphics($id, $query = null)
     {
-        return View::make('checklists.graphics');
+        $checklist = Checklist::findOrFail($id);
+        return View::make('checklists.graphics')
+            ->with('checklist', $checklist);
     }
 
     public function responder($id)
