@@ -219,7 +219,7 @@ Route::delete('/questions/destroyCascadeAjax/{id}', [
     'uses' => 'QuestionsController@destroyCascadeAjax',
 ])->before('ajax');
 
-Route::any('/checklists/dataGraphics/{checklistId}/{questionId}', [
+Route::any('/checklists/dataGraphics/{checklistId}', [
     'as' => 'checklists.dataGraphicsAjax',
     'uses' => 'ChecklistsController@dataGraphicsAjax',
 ]);//->before('ajax');

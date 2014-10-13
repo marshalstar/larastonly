@@ -116,7 +116,7 @@ class ChecklistsController extends BaseController
             ->with('types', $types);
     }
 
-    public function dataGraphicsAjax($checklistId, $questionId)
+    public function dataGraphicsAjax($checklistId)
     {
         $stdData = DB::table('checklists')
                     ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
@@ -127,6 +127,10 @@ class ChecklistsController extends BaseController
                     ->join('titles', 'titles.id', '=', 'questions.title_id')
                     ->where('titles.checklist_id', '=', $checklistId)
                     ->where('checklists.id', '=', $checklistId)
+                    ->whereIn('evaluations.id', function($query) {
+                        $query->select('evaluations.id')
+                            ->from('evaluations');
+                    })
                     ->groupBy('alternative_question.question_id')
                     ->groupBy('alternative_question.alternative_id')
                     ->get([
