@@ -7,8 +7,15 @@
     <div class="container container-main">
 
         @foreach($checklist->questions as $question)
-            <div id="graphics-{{ $question->id }}" class="container"></div>
-            <div id="table-{{ $question->id }}" class="table"></div>
+            <div class="container container-fluid">
+                <div class="row">
+                    <div class="col-md-8" id="graphics-{{ $question->id }}"></div>
+                    <div class="col-md-4">
+                        <table class="table table-responsive table-hover question-table" data-id="{{ $question->id }}"></table>
+                    </div>
+                </div>
+            </div>
+            <hr/>
         @endforeach
     </div>
 
@@ -19,22 +26,11 @@
     {{ HTML::script('/packages/highcharts/4.0.4/js/modules/exporting.js') }}
     @extends('templates.partials.basicPieGraphic')
     <script>
+
         $.ajax({
             url: "/checklists/dataGraphics/{{ $checklist->id }}",
             success: function(e) {
-                for(i in e) {
-                    var data = e[i]['data'];
-                    for(d in data) {
-                        if (data[d][0] !== undefined) {
-                            $('#table-'+i).append('<tr><td>' + data[d][0] + '</td><td>' + data[d][1] + '</td></tr>');
-                        }
-                    }
-                }
-            }
-        });
-        $.ajax({
-            url: "/checklists/dataGraphics/{{ $checklist->id }}",
-            success: function(e) {
+
                 Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
                     return {
                         radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
@@ -46,15 +42,67 @@
                 });
 
                 for(i in e) {
-                    basicPieGraphic.series[0].data = e[i]['data'];
+                    var data = e[i]['data'];
+                    for(d in data) {
+                        if (data[d][0] !== undefined) {
+                            $('.question-table[data-id='+i+']').append('<tr>\
+                                                                            <td>' + data[d][0] + '</td>\
+                                                                            <td>' + data[d][1] + '</td>\
+                                                                            <td><input type="button" class="btn btn-primary toggle-remove" data-id="'+ data[d][2] +'" value="remover"></td>\
+                                                                        </tr>');
+                        }
+                    }
+                    basicPieGraphic.series[0].data = data;
                     basicPieGraphic.chart.renderTo = 'graphics-' + i;
                     basicPieGraphic.title.text = e[i]['name'];
                     new Highcharts.Chart(basicPieGraphic);
                 }
-            },
-            error: function(e) {
-                console.log(e);
             }
         });
+
+        var where = [];
+
+        function reloadGraphics() {
+            $.ajax({
+                url: "/checklists/dataGraphics/{{ $checklist->id }}",
+                method: "POST",
+                data: {'where': where},
+                success: function(e) {
+                    $('.toggle-remove').prop('disabled', false);
+                    for(i in e) {
+                        basicPieGraphic.series[0].data = e[i]['data'];
+                        basicPieGraphic.chart.renderTo = 'graphics-' + i;
+                        basicPieGraphic.title.text = e[i]['name'];
+                        new Highcharts.Chart(basicPieGraphic);
+                    }
+                }
+            });
+        }
+        reloadGraphics();
+
+        $(document).on('click', '.toggle-remove', function() {
+
+            var questionId = $(this).closest('.question-table').attr('data-id');
+            var alternativeId = $(this).attr('data-id');
+            for(var i in where) {
+                if (where[i]['alternative_question.question_id'] == questionId &&
+                    where[i]['alternative_question.alternative_id'] == alternativeId) {
+                    $(this).val('remover');
+                    $(this).prop('disabled', true);
+                    where.splice(i, 1);
+                    reloadGraphics();
+                    return;
+                }
+            }
+
+            $(this).val('adicionar');
+            $(this).prop('disabled', true);
+            where.push({
+                'alternative_question.question_id': questionId,
+                'alternative_question.alternative_id': alternativeId
+            });
+            reloadGraphics();
+        });
+
     </script>
 @stop

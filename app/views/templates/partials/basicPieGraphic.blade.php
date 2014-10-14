@@ -1,13 +1,13 @@
 <script>
     var basicPieGraphic = {
         chart: {
-            renderTo: '#',
+            renderTo: '',
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false
         },
         title: {
-            text: '#'
+            text: ''
         },
         tooltip: {
             formatter: function() {
@@ -29,10 +29,11 @@
                         return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
                     }
                 }, --}}
-                showInLegend: true
+                {{-- showInLegend: true --}}
+                showInLegend: false
             }
         },
-        legend: {
+        {{-- legend: {
             title: {
                 text: 'Legenda <span style="font-size: 9px; color: #666; font-weight: normal">(Clique para esconder)</span>',
                 style: {
@@ -43,7 +44,7 @@
                 verticalAlign: 'top',
                 shadow: true
             }
-        },
+        }, --}}
         series: [{
             type: 'pie',
             name: 'SeriesName',

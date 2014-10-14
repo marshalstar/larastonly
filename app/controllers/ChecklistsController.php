@@ -118,7 +118,7 @@ class ChecklistsController extends BaseController
 
     public function dataGraphicsAjax($checklistId)
     {
-        $stdData = DB::table('checklists')
+        $query = DB::table('checklists')
                     ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
                     ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
                     ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
@@ -127,49 +127,38 @@ class ChecklistsController extends BaseController
                     ->join('titles', 'titles.id', '=', 'questions.title_id')
                     ->where('titles.checklist_id', '=', $checklistId)
                     ->where('checklists.id', '=', $checklistId)
-                    ->whereIn('evaluations.id', function($query) {
-                        $query->select('evaluations.id')
-                            ->from('evaluations');
-                    })
                     ->groupBy('alternative_question.question_id')
                     ->groupBy('alternative_question.alternative_id')
-                    ->get([
+                    ->orderBy('total', 'desc');
+
+        if (is_array(Input::get('where'))) {
+            foreach (Input::get('where') as $w) {
+                $query->where(function ($q) use ($w) {
+                    $q->where('answers.alternative_question_id', '!=', $w['alternative_question.question_id'])
+                        ->where('alternative_question.alternative_id', '!=', $w['alternative_question.alternative_id']);
+                });
+            }
+        }
+
+        $stdData = $query->get([
                         'alternatives.name as alternativeName',
+                        'alternatives.id as alternativeId',
                         'alternative_question.question_id as questionId',
                         'questions.statement as questionStatement',
                         DB::raw('COUNT(alternative_question.alternative_id) as total'),
                     ]);
+        /** @TODO: manda o Yuri parar de ser babaca e parar de fazer esta conversão de stdClass para array inútil */
         $arrayData = json_decode(json_encode($stdData), true);
         $ns = [];
         foreach($arrayData as $arr) {
             $ns[$arr['questionId']]['data'][] = [
                 Str::limit($arr['alternativeName'], 15),
                 Str::limit($arr['total'], 15),
+                Str::limit($arr['alternativeId'], 15),
             ];
             $ns[$arr['questionId']]['name'] = Str::limit($arr['questionStatement'], 15);
         }
         return $ns;
-        #Kint::dump($arrayData);
-        #Kint::dump($ns);
-        #Kint::dump(Checklist::findOrFail($checklistId)->questions->toArray());
-        #die('isto eh um teste');
-        /*$stdData = DB::table('checklists')
-                    ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
-                    ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
-                    ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
-                    ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
-                    ->where('checklists.id', '=', $checklistId)
-                    ->where('alternative_question.question_id', '=', $questionId)
-                    ->groupBy('alternative_question.alternative_id')
-                    ->get([
-                        'alternatives.name as name',
-                        DB::raw('COUNT(alternative_question.alternative_id) as total'),
-                    ]);
-        $arrayData = json_decode(json_encode($stdData), true);
-
-        return array_map(function ($a) {
-            return array_values($a);
-        }, $arrayData);/**/
     }
 
     public function graphics($id, $query = null)
