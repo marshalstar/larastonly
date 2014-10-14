@@ -4,7 +4,7 @@ class DatabaseSeeder extends Seeder
 {
 
     private static $NUM_CICLES = 30;
-    public static $dimension = 10;
+    public static $dimension = 3;
 
 	/**
 	 * Run the database seeds.

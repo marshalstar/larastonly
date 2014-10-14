@@ -29,6 +29,7 @@
 
         $.ajax({
             url: "/checklists/dataGraphics/{{ $checklist->id }}",
+            method: "POST",
             success: function(e) {
 
                 Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
@@ -50,11 +51,13 @@
                                                                             <td>' + data[d][1] + '</td>\
                                                                             <td><input type="button" class="btn btn-primary toggle-remove" data-id="'+ data[d][2] +'" value="remover"></td>\
                                                                         </tr>');
+                            data[d][0] = parseInt(data[d][0]);
+                            data[d][1] = parseInt(data[d][1]);
                         }
                     }
                     basicPieGraphic.series[0].data = data;
                     basicPieGraphic.chart.renderTo = 'graphics-' + i;
-                    basicPieGraphic.title.text = e[i]['name'];
+                    basicPieGraphic.title.text = data['name'];
                     new Highcharts.Chart(basicPieGraphic);
                 }
             }
@@ -70,7 +73,12 @@
                 success: function(e) {
                     $('.toggle-remove').prop('disabled', false);
                     for(i in e) {
-                        basicPieGraphic.series[0].data = e[i]['data'];
+                        var data = e[i]['data'];
+                        for (d in data) {
+                            data[d][0] = parseInt(data[d][0]);
+                            data[d][1] = parseInt(data[d][1]);
+                        }
+                        basicPieGraphic.series[0].data = data;
                         basicPieGraphic.chart.renderTo = 'graphics-' + i;
                         basicPieGraphic.title.text = e[i]['name'];
                         new Highcharts.Chart(basicPieGraphic);
@@ -78,7 +86,6 @@
                 }
             });
         }
-        reloadGraphics();
 
         $(document).on('click', '.toggle-remove', function() {
 
