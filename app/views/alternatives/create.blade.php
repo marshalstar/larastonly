@@ -8,19 +8,28 @@
 
         {{ HTML::ul($errors->all()) }}
 
-        {{ Form::open(['url' => 'alternatives']) }}
+        {{ Form::open(['url' => 'alternatives', 'class' => 'form-horizontal']) }}
 
-        <div class="form-group input-group">
-            {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'input-group-addon']) }}
-            {{ Form::text('name', Input::old('name'), ['class' => 'form-control field', 'placeholder' => Lang::get('nome')]) }}
+        <div class="form-group required">
+            {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+            <div class="col-lg-10 col-sm-8">
+                {{ Form::text('name', Input::old('name'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('nome')]) }}
+            </div>
         </div>
 
-        <div class="form-group input-group">
-            {{ Form::label('type', Str::title(Lang::get('tipo')), ['class' => 'input-group-addon']) }}
-            {{ Form::select('type_id', $types, Input::old('type_id'), ['class' => 'form-control']) }}
+        <div class="form-group">
+            {{ Form::label('type', Str::title(Lang::get('tipo')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+            <div class="col-lg-10 col-sm-8">
+                {{ Form::select('type_id', $types, Input::old('type_id'), ['class' => 'form-control']) }}
+            </div>
         </div>
 
-        {{ Form::submit(Str::title(Lang::get('nova alternativa')), ['class' => 'btn btn-primary']) }}
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
+                {{ Form::submit(Str::title(Lang::get('nova lugar')), ['class' => 'btn btn-primary']) }}
+                {{ Form::reset(Str::title(Lang::get('resetar')), ['class' => 'btn btn-inverse']) }}
+            </div>
+        </div>
 
         {{ Form::close() }}
 </div>
