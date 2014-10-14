@@ -51,8 +51,8 @@
                                                                             <td>' + data[d][1] + '</td>\
                                                                             <td><input type="button" class="btn btn-primary toggle-remove" data-id="'+ data[d][2] +'" value="remover"></td>\
                                                                         </tr>');
-                            data[d][0] = parseInt(data[d][0]);
                             data[d][1] = parseInt(data[d][1]);
+
                         }
                     }
                     basicPieGraphic.series[0].data = data;
@@ -75,7 +75,6 @@
                     for(i in e) {
                         var data = e[i]['data'];
                         for (d in data) {
-                            data[d][0] = parseInt(data[d][0]);
                             data[d][1] = parseInt(data[d][1]);
                         }
                         basicPieGraphic.series[0].data = data;

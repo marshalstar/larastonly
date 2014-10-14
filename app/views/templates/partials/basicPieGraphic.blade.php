@@ -47,7 +47,7 @@
         }, --}}
         series: [{
             type: 'pie',
-            name: '',
+            name: 'as',
             data: []
         }]
     };
