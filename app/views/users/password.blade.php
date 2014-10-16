@@ -8,9 +8,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($user))
-        {{ Form::model($user, ['route' => ['forgot'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($user, ['route' => ['changepassword'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(array('url' => 'users', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('route' => 'changepassword', 'class' => 'form-horizontal')) }}
     @endif
 <div class="form-group required">
         {{ Form::label('old_password', Str::title(Lang::get('Senha Atual')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
