@@ -102,6 +102,9 @@ class UsersController extends BaseController
             if(Hash::check($old_password, $user->getAuthPassword()))
             {
                 $user->fill(Input::all());
+                $user->password = Hash::make($user->password);
+                unset($user->old_password);
+                unset($user->password_again);
                 if($user->updateUniques()){
                     return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
                 }
@@ -168,7 +171,7 @@ class UsersController extends BaseController
                   Mail::send('emails.auth.forgot', array('link' => URL::route('recover', $code), 'username' => $user->username, 'password' => $password), function($message) use ($user){
                     $message->to($user->email, $user->username)->subject('Recuperação de Conta');
                   });
-                  return Redirect::route('home')->with('message', Lang::get('Sua nova senha foi enviada por e-mail, você poderá redefini-la após efetuar o login'));
+                  return Redirect::route('home')->with('message', Lang::get('Sua nova senha foi enviada por e-mail, utilize ela para efetuar o login novamente.'));
                 }
             }
         } 

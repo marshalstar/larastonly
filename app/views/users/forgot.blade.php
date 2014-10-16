@@ -21,7 +21,7 @@
     </div>
 
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('Login')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Enviar')])
 
     {{ Form::close() }}
 
