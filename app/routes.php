@@ -2,9 +2,7 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-	$checklist = new Checklist;
-    $checklist->name = "name";
-    $checklist->save();
+	Kint::dump(Title::limit(1)->get());
     echo "show!";
 });
 

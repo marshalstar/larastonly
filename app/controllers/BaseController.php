@@ -39,7 +39,7 @@ abstract class BaseController extends Controller {
      */
     protected function newObj($attributes)
     {
-        $reflection = new ReflectionClass($this->modelClassName);
+        $reflection = new ReflectionClass(studly_case($this->modelClassName));
         return $reflection->newInstance($attributes);
     }
 
@@ -48,7 +48,7 @@ abstract class BaseController extends Controller {
      */
     protected function query()
     {
-        return call_user_func_array("{$this->modelClassName}::query", []);
+        return call_user_func_array(studly_case($this->modelClassName)."::query", []);
     }
 
     /**
