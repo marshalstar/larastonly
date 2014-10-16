@@ -147,7 +147,7 @@ class UsersController extends BaseController
         return View::make('users.forgot');
     }
 
-    public function postForgotPassword()
+ public function postForgotPassword()
     {
         $validator = Validator::make(Input::all(), [
             'email' => 'required|email'
@@ -165,10 +165,10 @@ class UsersController extends BaseController
                 $user->code = $code;
                 $user->password_temp = Hash::make($password);
                 if($user->updateUniques()){
-                
-                   dd('salvou');
-                }else{
-                    Kint::dump($user);
+                  Mail::send('emails.auth.forgot', array('link' => URL::route('recover', $code), 'username' => $user->username, 'password' => $password), function($message) use ($user){
+                    $message->to($user->email, $user->username)->subject('Recuperação de Conta');
+                  });
+                  return Redirect::route('home')->with('message', Lang::get('Sua nova senha foi enviada por e-mail, você poderá redefini-la após efetuar o login'));
                 }
             }
         } 
@@ -182,11 +182,9 @@ public function getRecover($code){
         $user->password_temp = '';
         $user->code = '';
         if($user->updateUniques()){
-          Kint::dump($user);
+          return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode efetuar seu login.'));
         }
-        else{
-            dd('Rato');
-        }
+        return Redirect::route('home')->with('message', Lang::get('Falha ao recuperar a conta.'));
     }
 }
 }
