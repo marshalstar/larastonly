@@ -1,26 +1,31 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('Recuperar Conta')) }} @stop
+@section('title'){{ Str::title(Lang::get('novo usuário')) }} @stop
 
 @section('content')
+<div class="container container-main">
 
-    <div class="container container-main">
+    {{ HTML::ul($errors->all()) }}
 
-        {{ HTML::ul($errors->all()) }}
+    @if (isset($user))
+        {{ Form::model($user, ['route' => ['forgot'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+    @else
+        {{ Form::open(array('url' => 'users', 'class' => 'form-horizontal')) }}
+    @endif
 
-        {{ Form::open(array('url' => 'forgot')) }}
-      
-        <div class="form-group input-group">
-            {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'input-group-addon']) }}
-            {{ Form::email('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => Lang::get('email@exemplo.com')]) }}
+    <div class="form-group required">
+        {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        <div class="col-lg-10 col-sm-8">
+            {{ Form::email('email', isset($user)? null : Input::old('email'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('email@exemplo.com')]) }}
         </div>
-
-        
-
-        {{ Form::submit(Str::title(Lang::get('Enviar')), array('class' => 'btn btn-primary')) }}
-        
-        {{ Form::close() }}
-        
     </div>
+
+
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Login')])
+
+    {{ Form::close() }}
+
+</div>
+
 
 @stop
