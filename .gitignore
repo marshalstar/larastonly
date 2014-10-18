@@ -1,4 +1,4 @@
-/database/
+/database/larastonly
 /bootstrap/compiled.php
 /vendor
 composer.phar
