@@ -8,7 +8,7 @@
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
 <th data-column-id="name" class="text-center">{{ Lang::get('Nome') }}</th>
-<th data-column-id="type_id" class="text-center">{{ Lang::get('type_id') }}</th>
+<th data-column-id="tag_id" class="text-center">{{ Lang::get('tag_id') }}</th>
 <th data-column-id="city_id" class="text-center">{{ Lang::get('city_id') }}</th>
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
