@@ -6,7 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"raveren/kint": "v0.9",
+		"raveren/kint": "1.0.*@dev",
         "fzaninotto/faker": "1.5.*@dev",
         "barryvdh/laravel-ide-helper": "1.*",
         "doctrine/dbal": "2.5.*@dev",
