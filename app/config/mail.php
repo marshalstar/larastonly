@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'listonlytcc@gmail.com', 'name' => 'Equipe de produção do Listonly'),
+	'from' => array('address' => 'listonlytcc@gmail.com', 'name' => 'Listonly - Criação de listas de avaliação.'),
 
 	/*
 	|--------------------------------------------------------------------------

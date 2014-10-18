@@ -55,7 +55,7 @@
         @else
            <p> Você ainda não fez seu login.</p>
            <ul>
-          <li><a href="{{URL::route('users.login')}}"><i class="fa fa-sign-in"></i> Faça seu Login </a></li> ou <li><a href="{{URL::route('users.create')}}"><i class="fa fa-check-square-o"></i> Login via Facebook </a></li>
+          <li><a href="{{URL::route('users.login')}}"><i class="fa fa-sign-in"></i> Faça seu Login </a> ou <a href="/fb"><i class="fa fa-facebook-square"></i> Login Via Facebook </a>
            
 
            </ul>

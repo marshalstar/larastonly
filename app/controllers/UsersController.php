@@ -21,8 +21,8 @@ class UsersController extends BaseController
         $user = new User();
         $user->is_admin = false;
         if ($user->save()) {
-            return Redirect::route('users.index')
-                ->with('message', Lang::get('Seu perfil foi criado com sucesso. Ative sua conta através do link enviado para seu e-mail!'));
+            return Redirect::route('home')
+                ->with('message', Lang::get('Um link de ativação foi enviado para seu e-mail, por favor, confirme sua conta através deste link.'));
         }
         return Redirect::route('users.create')->withErrors($user->errors());
     }
