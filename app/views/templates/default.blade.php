@@ -15,7 +15,7 @@
     </div>
 
     <link rel="stylesheet" href="/packages/magnific-popup/0.9.9/css/all.min.css"/>
-
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/packages/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="/packages/bootstrap/3.2.0/css/docs.min.css" rel="stylesheet">
     <style src="/packages/bootstrap/3.2.0/css/bootstrap-theme.min.css"></style>

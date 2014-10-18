@@ -1,9 +1,12 @@
 Olá, {{$username}} <br>
 
-Parece que você esqueceu sua conta e precisa de uma nova senha, por favor, utilize o seguinte link para recuperar sua conta. 
+Você requisitou uma nova senha de acesso ao Listonly, por favor, utilize a senha disponibilizada no e-mail para efetuar o login após clicar no link de ativação.<br>
+	
+
 	Nova senha: {{$password}} <br><br>
 	--------- <br>
 	{{$link}} <br>
 	---------- <br>
-	Após recuperar sua conta, você pode alterar sua senha.
+
+	Após efetuar seu login, você pode alterar sua senha.<br><br>
 Caso você não tenha requisitado esta ação, ignore este e-mail. 
