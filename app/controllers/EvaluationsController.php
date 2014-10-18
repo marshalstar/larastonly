@@ -4,7 +4,6 @@ class EvaluationsController extends BaseController
 {
 
     protected $modelClassName = 'evaluation';
-    protected $likeAttributes = ['id', 'user_id', 'checklist_id', 'commentary', 'created_at', 'updated_at'];
 
     public function beforeCreateOrEdit($view)
     {

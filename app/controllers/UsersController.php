@@ -4,7 +4,6 @@ class UsersController extends BaseController
 {
 
     protected $modelClassName = 'user';
-    protected $likeAttributes = ['id', 'name'];
 
     public function beforeStore($obj)
     {

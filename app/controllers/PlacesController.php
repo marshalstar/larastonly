@@ -4,7 +4,6 @@ class PlacesController extends BaseController
 {
 
     protected $modelClassName = 'place';
-    protected $likeAttributes = ['id', 'name', 'city_id', 'type_id'];
 
     protected function beforeCreateOrEdit($view)
     {
