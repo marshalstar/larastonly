@@ -1,12 +1,29 @@
 
     Tarefas:
-        atualizar os index de todas os cruds
-        fazer todos os relacionamentos "bidirecionais" (marshal)
-        terminar relacionamento n:n (marshal)
-        terminar relacionamento ternário n:n (marshal)
-        criar checklist de forma mais usável e fazer ele funcionar (nauj)
-        fazer uma tela inicial fantástica
-        integrar login do usuário, confirmação de conta por email e recuperação de senha por email (palestina)
+        fazer peso das questões
+        botão de cadastre-se no login
+        login e login com facebook devem estar juntos
+        ajuda do que é especialidade
+        usar asterísco
+        criar conta com nome, email e senha apenas
+        trocar retrato por imagem
+        arrumar redirect
+        nos botões de crud, trocar "novo blablabla" por "finalizar"
+        trocar "Resetar" por "Limpar"
+        nos label's, apenas a primeira letra deve ser maiúscula
+        trocar "Biografia" por "Sobre você"
+        diminuir label nos formulários pela metade (de 15, mudar para 7 ou 8)
+        email: nome da mensagem deve começar com "Listonly"
+        email: fazer ser oo mais clear possível
+        sair é última opção
+        agrupar funcionalidades por tipo
+        links rápidos (criar checklist, responder checklist, pesquisar, [editar perfil, senha, sair])
+        copiar forms do google
+        fazer opções no título e checklist
+        fazer opção na questão
+        [{Yuri: local e arrumar graphics (where) },
+        {Juan: arrumar criação checklist e respondessação},
+        {Gorges: fazer a pagina home ficar bonita e fazer a navegação entre paginas fazer sentido e funcionar}]
 
 
     Info API's usadas:

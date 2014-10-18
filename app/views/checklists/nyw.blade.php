@@ -64,6 +64,13 @@ function renderAlternative($question, $types) {
 
 @section('content')
 
+<style>
+    .question {
+        border-left: 1px solid #010101;
+        padding-left: 5px;
+    }
+</style>
+
 <div class="container container-main">
 
     @if (Session::has('message'))

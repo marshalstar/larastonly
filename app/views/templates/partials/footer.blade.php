@@ -1,4 +1,4 @@
-<footer class="bs-docs-footer" role="contentinfo" style="background-color: white; display: block;">
+<footer class="bs-docs-footer footer" role="contentinfo">
     <div class="container">
 
         <ul class="bs-docs-footer-links muted">
