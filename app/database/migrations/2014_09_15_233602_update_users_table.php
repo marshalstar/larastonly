@@ -12,7 +12,7 @@ class UpdateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function($t){
+		Schema::table('users', function(Blueprint $t){
 			$t->integer('active')->default('0');
 			$t->string('code')->nullable();
 			$t->string('password_temp')->nullable();
