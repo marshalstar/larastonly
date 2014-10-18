@@ -2,7 +2,6 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-	Kint::dump(\DB::connection()->getSchemaBuilder()->getColumnListing("users"));
     echo "show!";
 });
 
