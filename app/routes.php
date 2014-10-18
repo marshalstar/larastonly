@@ -247,3 +247,8 @@ Route::any('/checklist/responder/{id}', [
  'as' => 'checklistResponder',
  'uses' => 'ChecklistsController@responder',
 ]);
+
+Route::post('/checklist/responder/respondeu', [
+ 'as' => 'checklistRespondeu',
+ 'uses' => 'ChecklistsController@respondeu',
+]);

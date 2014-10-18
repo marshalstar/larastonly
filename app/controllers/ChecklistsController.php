@@ -172,34 +172,40 @@ class ChecklistsController extends BaseController
     {
         $checklist = Checklist::find($id);
 
-        $titulos = Title::where("checklist_id", "=", $id)->get();
+        // $title = $checklist->titles()->first();
 
-        $questoes = [];
+        // $title->titles = Title::where("title_id", "=", $title->id)->get();
 
-        $alternativas = [];
-        
-        foreach ($titulos as $value) {
-            $questoes[$value->id] = Question::where('title_id', '=', $value->id)->get();
-            
-            foreach ($questoes[$value->id] as $vv) {
-                $alternativaQuestao = AlternativeQuestion::where('question_id', '=', $vv->id)->get();
+        // $this->renderTitle($title);
+       
+        return View::make("checklists.responderChecklist", array("checklist" => $checklist) );
+    }
 
-                foreach ($alternativaQuestao as $v) {
-                    
-                    $alternativas[$value->id] = Alternative::where("alternative_id", '=', $v->alternative_id);
+    public function respondeu()
+    {
+        // Kint::dump(Input::all());
 
-                }
-            }
+        $evaluation = new Evaluation;
+
+        $evaluation->user_id = 1;
+        foreach (Input::all() as $key => $value) {
+            $evaluation->checklist_id = Question::find($key)->title->checklist->id;
+            break;
+        }
+        $evaluation->save();
+
+        foreach (Input::all() as $key => $value) {
+            $alternativeQuestion = AlternativeQuestion::
+                where("alternative_id", "=", $value)->
+                    where("question_id", "=", $key)->first();
+                // dd($alternativeQuestion);
+            $answer = new Answer;
+            $answer->alternative_question_id = $alternativeQuestion->id;
+            $answer->evaluation_id = $evaluation->id;
+            $answer->save();
         }
 
-
-
-        return View::make("checklists.responderChecklist", 
-            array("checklist" => $checklist, 
-                "titulos" => $titulos, 
-                "questoes" => $questoes
-                )
-            );
     }
+
 
 }
