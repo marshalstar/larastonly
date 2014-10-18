@@ -7,11 +7,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Listonly</a>
+            <a class="navbar-brand" href="/"> <i class="fa fa-home"> Listonly</a></i>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#"> Home </a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li class="dropdown">
@@ -24,8 +24,16 @@
                         <li class="dropdown-header">Nav header</li>
                         <li><a href="#">Separated link</a></li>
                         <li><a href="#">One more separated link</a></li>
+                        
                     </ul>
+
                 </li>
+                <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                <input type="text" class="form-control" placeholder="Pesquisar">
+                </div>
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"> </i></button>
+                </form>
             </ul>
         </div>
         <!--/.nav-collapse-->

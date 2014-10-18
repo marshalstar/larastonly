@@ -8,7 +8,7 @@
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <h1><i class="fa fa-home"> Listonly</i></h1>
+    <h1>Listonly</i></h1>
 
     <div class="panel">
 
