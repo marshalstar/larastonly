@@ -4,7 +4,6 @@ class QuestionsController extends BaseController
 {
 
     protected $modelClassName = 'question';
-    protected $likeAttributes = ['id', 'title_id', 'statement', 'weight', 'created_at', 'updated_at'];
 
     public function beforeCreateOrEdit($view)
     {

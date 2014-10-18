@@ -28,10 +28,11 @@ abstract class BaseController extends Controller {
     protected $modelClassName;
 
     /**
-     * @TODO: descobrir como pegar todos atributos disponíveis de uma model
-     * @var array
+     * @return array
      */
-    protected $likeAttributes = [];
+    protected function getLikedAttributes() {
+        return \DB::connection()->getSchemaBuilder()->getColumnListing(str_plural($this->modelClassName));
+    }
 
     /**
      * @param $attributes array
@@ -257,9 +258,9 @@ abstract class BaseController extends Controller {
             $sort = key(Input::get('sort'));
             $query->orderBy($sort, Input::get('sort')[$sort]);
         }
-        if (Input::get('searchPhrase') && count($this->likeAttributes)) {
+        if (Input::get('searchPhrase') && count($this->getLikedAttributes())) {
             $query->where(function($query) {
-                foreach($this->likeAttributes as $attr) {
+                foreach($this->getLikedAttributes() as $attr) {
                     $query->orWhere($attr, 'like', '%'.Input::get('searchPhrase').'%');
                 }
                 return $query;

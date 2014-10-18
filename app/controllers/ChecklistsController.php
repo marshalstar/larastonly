@@ -4,7 +4,6 @@ class ChecklistsController extends BaseController
 {
 
     protected $modelClassName = 'checklist';
-    protected $likeAttributes = ['id', 'name', 'user_id'];
 
     public function beforeCreateOrEdit($view)
     {

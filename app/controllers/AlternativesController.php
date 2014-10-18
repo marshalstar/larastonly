@@ -4,7 +4,6 @@ class AlternativesController extends BaseController
 {
 
     protected $modelClassName = 'alternative';
-    protected $likeAttributes = ['id', 'name', 'type_id'];
 
     public function beforeCreateOrEdit($view)
     {

@@ -23,8 +23,8 @@
                         <td><h4>{{ $place->city_id }}</h4></td>
 
                     <tr>
-                        <td><h4>{{ Lang::get('type_id') }}</h4></td>
-                        <td><h4>{{ $place->type_id }}</h4></td>
+                        <td><h4>{{ Lang::get('tag_id') }}</h4></td>
+                        <td><h4>{{ $place->tag_id }}</h4></td>
                     </tr>
 
                 </tbody>

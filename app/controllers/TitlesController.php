@@ -4,7 +4,6 @@ class TitlesController extends BaseController
 {
 
     protected $modelClassName = 'title';
-    protected $likeAttributes = ['id', 'title_id', 'checklist_id', 'name'];
 
     public function beforeCreateOrEdit($view)
     {

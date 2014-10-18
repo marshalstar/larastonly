@@ -12,7 +12,7 @@
     @if (isset($user))
         {{ Form::model($user, ['route' => ['users.login'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(array('url' => 'users', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('route' => 'users.login', 'class' => 'form-horizontal')) }}
     @endif
 
     <div class="form-group required">

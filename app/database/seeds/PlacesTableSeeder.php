@@ -8,13 +8,13 @@ class PlacesTableSeeder extends Seeder {
 	{
 	    $faker = Faker::create();
         $cities = City::all();
-        $types = Type::all();
+        $tags = Tag::all();
 
-        DB::table('places')->insert(array_map(function() use ($faker, $cities, $types) {
+        DB::table('places')->insert(array_map(function() use ($faker, $cities, $tags) {
             return [
                 'name' => $faker->sentence(rand(1, 4)),
                 'city_id' => $cities->get(rand(0, $cities->count() -1))->id,
-                'type_id' => $types->get(rand(0, $types->count() -1))->id,
+                'tag_id' => $tags->get(rand(0, $tags->count() -1))->id,
             ];
         }, range(1, DatabaseSeeder::$dimension)));
 	}

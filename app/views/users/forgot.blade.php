@@ -10,7 +10,7 @@
     @if (isset($user))
         {{ Form::model($user, ['route' => ['forgot'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(array('url' => 'users', 'class' => 'form-horizontal')) }}
+        {{ Form::open(array('route' => 'forgot', 'class' => 'form-horizontal')) }}
     @endif
 
     <div class="form-group required">
@@ -21,7 +21,7 @@
     </div>
 
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('Login')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Enviar')])
 
     {{ Form::close() }}
 

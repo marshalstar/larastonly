@@ -2,7 +2,7 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-	Kint::dump(Title::limit(1)->get());
+    ddd('rato');
     echo "show!";
 });
 
@@ -221,9 +221,7 @@ Route::any('/checklists/dataGraphics/{checklistId}', [
     'as' => 'checklists.dataGraphicsAjax',
     'uses' => 'ChecklistsController@dataGraphicsAjax',
 ]);//->before('ajax');
-Route::get('/pdf', [
-    'as' => 'imprimir',
-    'uses' => 'PDFController@imprimir']);
+
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');
 Route::resource('evaluations', 'EvaluationsController');
