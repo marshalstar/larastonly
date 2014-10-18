@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('novo usuário')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Cadastrar')])
 
     {{ Form::close() }}
 

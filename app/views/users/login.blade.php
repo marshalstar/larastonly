@@ -1,5 +1,3 @@
-
-
 @extends('templates.default')
 
 @section('title'){{ Str::title(Lang::get('novo usuário')) }} @stop
@@ -26,10 +24,19 @@
         {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('senha')]) }}
+              <a href="{{URL::route('forgot')}}"><i class="fa fa-refresh"></i> Esqueci minha senha</a>
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('Login')])
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
+            <a href="{{URL::route('users.create')}}"><i class="fa fa-check-square-o"></i> Não possui uma conta? Cadastre-se.</a>
+        </div>
+    </div>
+
+
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Login')]) 
+
 
     {{ Form::close() }}
 
