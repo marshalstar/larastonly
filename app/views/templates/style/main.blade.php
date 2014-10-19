@@ -13,8 +13,28 @@
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-    }
 
+    }
+#breadCrumb{
+    background: #428bca;
+font-size: 0.75em;
+color: #FFFFFF;
+padding: 6px 20px;
+width: 900px;
+position: absolute;
+top: 78px;
+}
+
+#breadCrumb a{
+    color: #fff;
+    text-decoration: none;
+}
+
+#breadCrumb a:hover,
+#breadCrumb a:focus
+{
+    text-decoration: underline;
+}
     #bg {
         position: fixed;
         top: -50%;

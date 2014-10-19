@@ -4,7 +4,12 @@
 
 @section('create-url'){{ URL::route("users.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo usuário') }}@stop
-
+ <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Gerenciar Perfis.
+            
+          </p>
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('ID') }}</th>
 <th data-column-id="username" class="text-center">{{ Lang::get('Username') }}</th>

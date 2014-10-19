@@ -3,7 +3,10 @@
 @section('content')
 
 <div class="container container-main">
-
+      <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+          </p>
     @if (Session::has('message'))
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
@@ -53,9 +56,6 @@
   </div>
 </div>
         @else
-        <ol class="breadcrumb">
-          Você está em: <li class="active"> <a href="{{URL::route('home')}}"> Página Inicial </a><li>
-        </ol>
            <p> Você ainda não fez seu login.</p>
            <ul>
           <li><a href="{{URL::route('users.login')}}"><i class="fa fa-sign-in"></i> Faça seu Login </a> ou <a href="/fb"><i class="fa fa-facebook-square"></i> Login Via Facebook </a>
@@ -65,6 +65,5 @@
         @endif
 
     </div>
-
 </div>
 @stop

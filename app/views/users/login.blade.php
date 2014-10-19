@@ -4,7 +4,11 @@
 
 @section('content')
 <div class="container container-main">
-
+     <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Login 
+          </p>
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($user))
