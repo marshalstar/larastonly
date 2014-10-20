@@ -1,7 +1,14 @@
 @extends('templates.index')
 
 @section('title'){{ Str::title(Lang::get('tags')) }} @stop
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Gerenciar Tag. 
 
+			
+            
+          </p>
 @section('create-url'){{ URL::route("tags.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova Tag') }}@stop
 

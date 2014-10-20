@@ -1,5 +1,12 @@
 @extends('templates.default')
-
+<p id="breadCrumb">
+     Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+                <a href="{{URL::route('evaluations.index')}}" title= "Volta a página de gerenciar avaliação."> Gerenciar Avaliação.</a>
+            / Visualizar Avaliação.
+            
+          </p>
 @section('title'){{ Str::title(Lang::get('avaliação')). ' ' .$evaluation->name }} @stop
 
 @section('content')

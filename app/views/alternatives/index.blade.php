@@ -1,5 +1,12 @@
 @extends('templates.index')
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Gerenciar Alternativa. 
 
+			
+            
+          </p>
 @section('title'){{ Str::title(Lang::get('alternativas')) }} @stop
 
 @section('create-url'){{ URL::route("alternatives.create") }} @stop

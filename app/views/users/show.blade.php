@@ -3,7 +3,14 @@
 @section('title'){{ Str::title(Lang::get('user')). ' ' .$user->name }} @stop
 
 @section('content')
-
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+                <a href="{{URL::route('users.index')}}" title= "Volta a página de gerenciar perfis."> Gerenciar Perfis </a>
+            / Visualizar perfil.
+            
+          </p>
     <div class="container" style="display: block; background-color: white; padding: 10px;">
 
         <table class="table">

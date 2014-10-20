@@ -1,3 +1,11 @@
+    <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+            <a href="{{URL::route('questions.index')}}" title= "Volta a página gerenciar questão."> Gerenciar Questão </a>
+            / Criar nova questão.
+            
+          </p>
 <div class="container container-main">
     {{ HTML::ul($errors->all()) }}
 

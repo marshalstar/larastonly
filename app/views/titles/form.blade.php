@@ -1,3 +1,11 @@
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+            <a href="{{URL::route('types.index')}}" title= "Volta a página gerenciar títulos"> Gerenciar Títulos </a>
+            / Criar novo título.
+            
+          </p>
 <div class="container container-main">
 
     {{ HTML::ul($errors->all()) }}

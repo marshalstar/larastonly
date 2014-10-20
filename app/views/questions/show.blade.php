@@ -3,6 +3,14 @@
 @section('title'){{ Str::title(Lang::get('questão')). ' ' .$question->statement }} @stop
 
 @section('content')
+ <p id="breadCrumb">
+     Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+                <a href="{{URL::route('questions.index')}}" title= "Volta a página de gerenciar questão"> Gerenciar Questão.</a>
+            / Visualizar Questão.
+            
+          </p>
 <div class="container container-main">
 
         <div class="table-responsive">

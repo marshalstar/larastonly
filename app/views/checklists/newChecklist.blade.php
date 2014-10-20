@@ -1,5 +1,12 @@
 @extends('templates.default')
-
+       <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+            <a href="{{URL::route('checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
+            / Criar novo checklist.
+            
+          </p>
 @section('title'){{ Str::title(Lang::get('Novo Checklist')) }} @stop
 <script src="/js/newChecklist.js" async></script>
 @section('content')

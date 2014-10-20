@@ -7,9 +7,8 @@
      <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
-            / 
-            <a href="{{URL::route('login')}}" title = "Voltar a página de login"> Login </a>
-            / Esqueci minha senha.
+            / Mudar minha senha.
+            
           </p>
     {{ HTML::ul($errors->all()) }}
 
