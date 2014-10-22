@@ -1,26 +1,26 @@
 
     Tarefas:
         fazer peso das questões
-        botão de cadastre-se no login
-        login e login com facebook devem estar juntos
-        ajuda do que é especialidade
-        usar asterísco
-        criar conta com nome, email e senha apenas
-        trocar retrato por imagem
-        arrumar redirect
+        botão de cadastre-se no login Done
+        login e login com facebook devem estar juntos - Done
+        ajuda do que é especialidade -  Done.
+        usar asterísco -  Done(+-).
+        criar conta com nome, email e senha apenas - Done
+        trocar retrato por imagem - To be Done.
+        arrumar redirect - To be Done
         nos botões de crud, trocar "novo blablabla" por "finalizar"
-        trocar "Resetar" por "Limpar"
-        nos label's, apenas a primeira letra deve ser maiúscula
-        trocar "Biografia" por "Sobre você"
+        trocar "Resetar" por "Limpar" 0 To be Done
+        nos label's, apenas a primeira letra deve ser maiúscula - To be done.
+        trocar "Biografia" por "Sobre você" -  done.
         diminuir label nos formulários pela metade (de 15, mudar para 7 ou 8)
-        email: nome da mensagem deve começar com "Listonly"
-        email: fazer ser oo mais clear possível
-        sair é última opção
-        agrupar funcionalidades por tipo
+        email: nome da mensagem deve começar com "Listonly" - Done
+        email: fazer ser oo mais clear possível   - Done
+        sair é última opção - Done
+        agrupar funcionalidades por tipo - Done
         links rápidos (criar checklist, responder checklist, pesquisar, [editar perfil, senha, sair])
-        copiar forms do google
-        fazer opções no título e checklist
-        fazer opção na questão
+        copiar forms do google - To be Done
+        fazer opções no título e checklist - To be Done
+        fazer opção na questão - To Bone Done
         [{Yuri: local e arrumar graphics (where) },
         {Juan: arrumar criação checklist e respondessação},
         {Gorges: fazer a pagina home ficar bonita e fazer a navegação entre paginas fazer sentido e funcionar}]

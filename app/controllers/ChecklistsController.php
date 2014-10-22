@@ -206,5 +206,18 @@ class ChecklistsController extends BaseController
 
     }
 
+    public function getResults($keyword)
+    {
+        return View::make('checklists.results')->with('title', 'Resultados da busca.')->with('checklists', Checklist::search($keyword));
+
+    }
+    public function postResults()
+    {
+        $keyword = Input::get('keyword');
+        if(empty($keyword)){
+            return Redirect::route('home')->with('message', Lang::get('Sua busca não encontrou resultados.'));
+        }
+        return Redirect::to('results/'.$keyword);
+    }
 
 }

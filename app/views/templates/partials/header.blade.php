@@ -27,13 +27,13 @@
                     </ul>
 
                 </li>
-                <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                <input type="text" class="form-control" placeholder="Pesquisar">
-                </div>
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"> </i></button>
-                </form>
-  
+        {{ Form::open(array('route' => 'search', 'class' => 'navbar-form navbar-left')) }}
+        <div class="form-group">
+
+        {{Form::text('keyword', 'Pesquisar', array('id' => 'keyword'))}}
+         <button type="submit"><i class="fa fa-search"></i></button>
+          </div> 
+          {{Form::close()}} 
             </ul>
         </div>
         <!--/.nav-collapse-->

@@ -52,4 +52,9 @@ class Checklist extends Ardent
         return $this->hasManyThrough('Question', 'Title');
     }
 
+    public static function search($keyword)
+    {
+        return static::where('name', 'LIKE', '%'.$keyword.'%')->paginate(3);
+    }
+
 }

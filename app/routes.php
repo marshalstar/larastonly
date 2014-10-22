@@ -114,6 +114,14 @@ Route::group(array('before' => 'auth'), function(){
         ));
 
 });
+Route::post('/search', [
+    'as' => 'search',
+    'uses' =>'Checklist@search'
+
+    ]);
+Route::get('results/(:all)', [
+    'uses' => 'checklists@results'
+    ]);
 
 Route::get('/checklist/new', [
  'as' => 'checklistNew',
