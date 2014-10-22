@@ -12,8 +12,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#"> Home </a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{URL::route('users.login')}}">Login</a></li>
+                <li><a href="{{URL::route('users.create')}}">Crie sua conta</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -24,7 +24,6 @@
                         <li class="dropdown-header">Nav header</li>
                         <li><a href="#">Separated link</a></li>
                         <li><a href="#">One more separated link</a></li>
-                        
                     </ul>
 
                 </li>
@@ -34,6 +33,7 @@
                 </div>
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"> </i></button>
                 </form>
+  
             </ul>
         </div>
         <!--/.nav-collapse-->

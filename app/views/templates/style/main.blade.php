@@ -24,7 +24,10 @@ width: 900px;
 position: absolute;
 top: 78px;
 }
-
+.Required {
+color: red;
+font-weight: bold;
+}
 #breadCrumb a{
     color: #fff;
     text-decoration: none;
