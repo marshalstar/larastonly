@@ -35,6 +35,7 @@ function renderQuestion($title, $types) {
                     <li><input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
                     <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>
                     <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>
+                    <li><input class="input-weight form-control" type="number" value="{{ $q->weight }}" placeholder="1"/></li>
                 </ul>
                 <div class="alternatives list-group">
                     <?php renderAlternative($q, $types); ?>
@@ -158,6 +159,7 @@ function renderAlternative($question, $types) {
                                                                                         <li><input class="form-control input-question" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
                                                                                         <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>\
                                                                                         <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>\
+                                                                                        <li><input class="input-weight form-control" type="number" value="'+ e.weight +'" placeholder="1"/></li>\
                                                                                     </ul>\
                                                                                     <div class="alternatives list-group"></div>\
                                                                                 </div>\
@@ -272,6 +274,20 @@ function renderAlternative($question, $types) {
                     url: '{{ URL::route('alternatives.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
+                    success: function(e) {},
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+            });
+
+            $(document).on('change', '.input-weight', function () {
+                var question = $(this).closest('div.question');
+                var input = $(this);
+                $.ajax({
+                    url: '{{ URL::route('questions.updateAjax', 'key')  }}'.replace('key', question.attr('data-id')),
+                    method: 'POST',
+                    data: {weight: input.val()},
                     success: function(e) {},
                     error: function(e) {
                         console.log(e);
