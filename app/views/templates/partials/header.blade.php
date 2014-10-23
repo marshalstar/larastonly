@@ -13,7 +13,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#"> Home </a></li>
                 <li><a href="{{URL::route('users.login')}}">Login</a></li>
-                <li><a href="{{URL::route('users.create')}}">Crie sua conta</a></li>
+                <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

@@ -21,7 +21,6 @@ font-size: 0.75em;
 color: #FFFFFF;
 padding: 6px 20px;
 width: 900px;
-position: absolute;
 top: 78px;
 }
 .Required {

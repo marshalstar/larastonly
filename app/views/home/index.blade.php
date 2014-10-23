@@ -15,8 +15,8 @@
 
     <div class="panel">
 
-        @if(Auth::check())
-            <p> Bem-vindo, {{Auth::user()->username}}</p>
+        @if(Auth::check() && Auth::user()->is_admin)
+            <p> Bem-vindo(a), {{Auth::user()->username}}</p>
            <div class="panel-group" id="gerenciarTudo">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -55,6 +55,26 @@
     </div>
   </div>
 </div>
+        @elseif(Auth::check())
+        <p> Bem-vindo(a), {{Auth::user()->username}}</p>
+                  <div class="panel-group" id="gerenciarTudo">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarPerfil">
+          Gerenciar Perfil
+        </a>
+      </h4>
+    </div>
+    <div id="gerenciarPerfil" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <li><a href="{{URL::route('editUser',Auth::user()->id)}}"><i class="fa fa-pencil-square-o"></i> Editar Perfil</a></li>
+       <li><a href="{{URL::route('changepassword')}}"> <i class="fa fa-pencil-square-o"></i> Mudar minha senha </a></li>
+       <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out"></i> Sair </a></li>
+      </div>
+    </div>
+  </div>
+
         @else
            <p> Você ainda não fez seu login.</p>
            <ul>

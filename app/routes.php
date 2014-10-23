@@ -114,6 +114,17 @@ Route::group(array('before' => 'auth'), function(){
         ));
 
 });
+Route::get('/editUser/{id}', [
+    'as' => 'editUser',
+    'uses' => 'UsersController@getEditUser'
+
+    ]);
+
+Route::post('/editUser/{id}',[
+    'as' => 'editUser',
+    'uses' => 'UsersController@postEditUser'
+
+    ]);
 Route::post('/search', [
     'as' => 'search',
     'uses' =>'Checklist@search'
