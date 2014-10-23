@@ -57,7 +57,7 @@
                             $('.question-table[data-id='+i+']').append('<tr>\
                                                                             <td>' + data[d][0] + '</td>\
                                                                             <td>' + data[d][1] + '</td>\
-                                                                            <td><input type="button" class="btn btn-primary toggle-remove" data-id="'+ data[d][2] +'" value="remover"></td>\
+                                                                            <td><input type="button" class="btn btn-primary toggle-remove btn-danger" data-id="'+ data[d][2] +'" value="remover"></td>\
                                                                         </tr>');
                             data[d][1] = parseInt(data[d][1]);
 
@@ -102,6 +102,8 @@
                 if (where[i]['alternative_question.question_id'] == questionId &&
                     where[i]['alternative_question.alternative_id'] == alternativeId) {
                     $(this).val('remover');
+                    $(this).removeClass('btn-success');
+                    $(this).addClass('btn-danger');
                     $(this).prop('disabled', true);
                     where.splice(i, 1);
                     reloadGraphics();
@@ -110,6 +112,8 @@
             }
 
             $(this).val('adicionar');
+            $(this).removeClass('btn-danger');
+            $(this).addClass('btn-success');
             $(this).prop('disabled', true);
             where.push({
                 'alternative_question.question_id': questionId,
