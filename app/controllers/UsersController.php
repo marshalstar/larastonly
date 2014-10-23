@@ -26,6 +26,20 @@ class UsersController extends BaseController
         }
         return Redirect::route('users.create')->withErrors($user->errors());
     }
+     public function getEditUser($id)
+    {
+        $user = User::find($id);
+        return View::make('users.editUser')
+            ->with('user', $user);
+    }
+    public function postEditUser($id)
+    {
+        $user = User::find($id);
+        $user->fill(Input::except('is_admin'));
+        $user->updateUniques();
+        return Redirect::route('home')->with('message', Lang::get('Perfil Editado com Sucesso'));
+
+    }
 
     public function getActivate($code)
     {

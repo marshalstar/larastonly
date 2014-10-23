@@ -34,7 +34,7 @@
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
-            <a href="{{URL::route('users.create')}}"><i class="fa fa-check-square-o"></i> Não possui uma conta? Cadastre-se.</a>
+            <a href="{{URL::route('users.new')}}"><i class="fa fa-check-square-o"></i> Não possui uma conta? Cadastre-se.</a>
         </div>
     </div>
 
