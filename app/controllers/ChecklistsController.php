@@ -35,7 +35,7 @@ class ChecklistsController extends BaseController
                 {
 
                     $pular = false;
-                    foreach ($a as $v) 
+                    foreach ($a as $v)
                         if( ($pular = ($v->type_id == $t->id) ) )
                             break;
                     if($pular)
@@ -47,7 +47,7 @@ class ChecklistsController extends BaseController
                         continue;
                     }
                 }
-                    
+
                 $alternativa = new Alternative;
                 $alternativa->name = $value["valor"];
                 $alternativa->type_id = $t->id;
@@ -131,12 +131,20 @@ class ChecklistsController extends BaseController
                     ->orderBy('total', 'desc');
 
         if (is_array(Input::get('where'))) {
-            foreach (Input::get('where') as $w) {
-                $query->where(function ($q) use ($w) {
-                    $q->where('answers.alternative_question_id', '!=', $w['alternative_question.question_id'])
-                        ->where('alternative_question.alternative_id', '!=', $w['alternative_question.alternative_id']);
-                });
-            }
+            $query->whereIn('evaluations.id', function($subQuery) use($checklistId) {
+                $subQuery->select('evaluations.id')
+                    ->from('evaluations')
+                    ->join('checklists', 'checklists.id', '=', 'evaluations.checklist_id')
+                    ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+                    ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+                    ->where('checklists.id', '=', $checklistId);
+                foreach (Input::get('where') as $w) {
+                    $subQuery->where(function ($q) use ($w) {
+                        $q->where('alternative_question.question_id', '=', $w['alternative_question.question_id'])
+                            ->where('alternative_question.alternative_id', '!=', $w['alternative_question.alternative_id']);
+                    });
+                }
+            });
         }
 
         $stdData = $query->get([
@@ -145,7 +153,7 @@ class ChecklistsController extends BaseController
                         'alternative_question.question_id as questionId',
                         'questions.statement as questionStatement',
                         DB::raw('COUNT(alternative_question.alternative_id) as total'),
-                    ]);
+                    ]);/**/
         /** @TODO: manda o Yuri parar de ser babaca e parar de fazer esta conversão de stdClass para array inútil */
         $arrayData = json_decode(json_encode($stdData), true);
         $ns = [];
@@ -176,7 +184,7 @@ class ChecklistsController extends BaseController
         // $title->titles = Title::where("title_id", "=", $title->id)->get();
 
         // $this->renderTitle($title);
-       
+
         return View::make("checklists.responderChecklist", array("checklist" => $checklist) );
     }
 
