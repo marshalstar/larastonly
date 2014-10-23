@@ -2,10 +2,10 @@
        <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
-            / 
+            /
             <a href="{{URL::route('checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
             / Visualizar Gráfico.
-            
+
           </p>
 @section('title'){{ Str::title(Lang::get('Novo Checklist')) }} @stop
 
@@ -15,6 +15,7 @@
 
         @foreach($checklist->questions as $question)
             <div class="container container-fluid">
+                <h4>{{ $question->statement }}</h4>
                 <div class="row">
                     <div class="col-md-8" id="graphics-{{ $question->id }}"></div>
                     <div class="col-md-4">

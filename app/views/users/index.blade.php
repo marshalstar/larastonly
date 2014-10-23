@@ -8,7 +8,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / Gerenciar Perfis.
-            
+
           </p>
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('ID') }}</th>
