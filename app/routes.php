@@ -1,7 +1,5 @@
 <?php
 
-/* github maldito */
-
 Route::match(array('GET', 'POST'), '/debug', function()
 {
     ddd('rato');
@@ -193,7 +191,7 @@ Route::get('/fb', [
 'uses' => 'UsersController@loginWithFacebook',
 ]);
 
-Route::any('/checklists/nyw', [
+Route::any('/checklists/nyw/{id?}', [
     'as' => 'nyw',
     'uses' => 'ChecklistsController@nyw',
 ]);
@@ -211,6 +209,11 @@ Route::any('/questions/storeAjax', [
 Route::any('/alternatives/storeAjax', [
     'as' => 'alternatives.storeAjax',
     'uses' => 'AlternativesController@logicStore',
+])->before('ajax');
+
+Route::any('/checklists/updateAjax/{id}', [
+    'as' => 'checklists.updateAjax',
+    'uses' => 'ChecklistsController@logicUpdate',
 ])->before('ajax');
 
 Route::any('/titles/updateAjax/{id}', [
@@ -241,7 +244,7 @@ Route::delete('/questions/destroyCascadeAjax/{id}', [
 Route::any('/checklists/dataGraphics/{checklistId}', [
     'as' => 'checklists.dataGraphicsAjax',
     'uses' => 'ChecklistsController@dataGraphicsAjax',
-]);//->before('ajax');
+])->before('ajax');
 
 Route::resource('alternatives', 'AlternativesController');
 Route::resource('checklists', 'ChecklistsController');

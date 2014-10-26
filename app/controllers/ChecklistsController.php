@@ -97,21 +97,22 @@ class ChecklistsController extends BaseController
         }, $titulos));/**/
     }
 
-    public function nyw()
+    public function nyw($id = null)
     {
-        $checklist = Checklist::firstOrCreate([
-            'user_id' => 1,
-            'name' => 'checklist',
-        ]);
-        /** @TODO: mandar o Yuri parar de ser preguiçoso e tirar este titulo root daqui! */
-        $titleRoot = Title::firstOrCreate([
-            'checklist_id' => $checklist->id,
-            'name' => 'root',
-        ]);
+        if ($id) {
+            /** @TODO: autenticar aqui */
+            $checklist = Checklist::findOrFail($id);
+
+        } else {
+            $checklist = Checklist::firstOrCreate([
+                'user_id' => Auth::user()->id,
+                'name' => 'checklist',
+            ]);
+        }
+
         $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
         return View::make('checklists.nyw')
             ->with('checklist', $checklist)
-            ->with('titleRoot', $titleRoot)
             ->with('types', $types);
     }
 

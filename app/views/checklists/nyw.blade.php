@@ -9,9 +9,9 @@ function renderTitle($titles, $types) {
             <div class="media-body">
                 <ul class="nav nav-pills">
                     <li><input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/></li>
-                    <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a></li>
-                    <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> nova question</a></li>
-                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> destroy title</a></li>
+                    <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a></li>
+                    <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> question</a></li>
+                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> title</a></li>
                 </ul>
                 <div class="questions">
                     <?php renderQuestion($t, $types); ?>
@@ -33,8 +33,8 @@ function renderQuestion($title, $types) {
             <div class="media-body">
                 <ul class="nav nav-pills">
                     <li><input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
-                    <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>
-                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>
+                    <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a></li>
+                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> question</a></li>
                     <li><input class="input-weight form-control" type="number" value="{{ $q->weight }}" placeholder="1"/></li>
                 </ul>
                 <div class="alternatives list-group">
@@ -50,7 +50,7 @@ function renderAlternative($question, $types) {
         <div class="list-group-item alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
                 <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
-                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>
+                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span> alternative</a></h8></div></li>
                 <li>{{ Form::select(null, $types, null) }}</li>
             </ul>
         </div>
@@ -67,7 +67,7 @@ function renderAlternative($question, $types) {
 
 <style>
     .question {
-        border-left: 1px solid #010101;
+        border-left: 1px solid #616161;
         padding-left: 5px;
     }
 </style>
@@ -78,21 +78,22 @@ function renderAlternative($question, $types) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    <div class="title panel" data-id="{{ $titleRoot->id }}">
+
+    <div class="checklist title" data-id="{{ $checklist->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <span class="navbar-brand">checklist</span>
                 </div>
                 <div class="navbar-form navbar-left">
-                    <input class="form-control" type="text" value="{{ $checklist->name }}" placeholder="Checklist"/>
-                    <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a>
+                    <input class="input-checklist form-control" type="text" value="{{ $checklist->name }}" placeholder="Checklist"/>
+                    <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
                 </div>
             </div>
         </div>
         <div class="media-list">
             <div class="titles">
-                <?php renderTitle($titleRoot->children, $types); ?>
+                <?php renderTitle($checklist->titles, $types); ?>
             </div>
         </div>
     </div>
@@ -124,9 +125,9 @@ function renderAlternative($question, $types) {
                                                                              <div class="media-body">\
                                                                                  <ul class="nav nav-pills">\
                                                                                      <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Titulo"/></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> novo title</a></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> nova question</a></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> destroy title</a></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> question</a></li>\
+                                                                                     <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> title</a></li>\
                                                                                  </ul>\
                                                                                  <div class="questions"></div>\
                                                                                  <div class="titles"></div>\
@@ -134,7 +135,7 @@ function renderAlternative($question, $types) {
                                                                          </div>');
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
 
@@ -166,7 +167,7 @@ function renderAlternative($question, $types) {
                                                                             </div>');
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -191,7 +192,7 @@ function renderAlternative($question, $types) {
                                                                                   </div>');
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -205,7 +206,7 @@ function renderAlternative($question, $types) {
                         title.remove();
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -219,7 +220,7 @@ function renderAlternative($question, $types) {
                         question.remove();
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -233,7 +234,21 @@ function renderAlternative($question, $types) {
                         alternative.remove();
                     },
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
+                    }
+                });
+            });
+
+            $(document).on('change', '.input-checklist', function () {
+                var alternative = $(this).closest('div.checklist');
+                var input = $(this);
+                $.ajax({
+                    url: '{{ URL::route('checklists.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
+                    method: 'POST',
+                    data: {name: input.val()},
+                    success: function(e) {},
+                    error: function(e) {
+                        console.error(e);
                     }
                 });
             });
@@ -248,7 +263,7 @@ function renderAlternative($question, $types) {
                     data: {name: input.val()},
                     success: function(e) {},
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -262,7 +277,7 @@ function renderAlternative($question, $types) {
                     data: {statement: input.val()},
                     success: function(e) {},
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -276,7 +291,7 @@ function renderAlternative($question, $types) {
                     data: {name: input.val()},
                     success: function(e) {},
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });
@@ -290,7 +305,7 @@ function renderAlternative($question, $types) {
                     data: {weight: input.val()},
                     success: function(e) {},
                     error: function(e) {
-                        console.log(e);
+                        console.error(e);
                     }
                 });
             });

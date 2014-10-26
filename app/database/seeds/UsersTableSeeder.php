@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert(array_map(function($index) use ($faker, $increment) {
             return [
-                'username' => $faker->userName,
+                'username' => $faker->unique()->name,
                 'email' => $increment. ' ' .$faker->unique()->email,
-                'password' => 'password',
+                'password' => Hash::make('password'),
                 'speciality' => $faker->sentence(rand(1, 4)),
                 'is_admin' => $index == 1,
                 'gender' => ($faker->randomDigit % 2)? 'f' : 'm',
@@ -24,6 +24,20 @@ class UsersTableSeeder extends Seeder
                 'picture_url' => str_replace('.html', '', $faker->url) . 'image.png',
             ];
         }, range(1, DatabaseSeeder::$dimension)));
+
+        if ($count == 0) {
+            DB::table('users')->insert([
+                'username' => 'joço',
+                'email' => 'joco@mail.com',
+                'password' => Hash::make('asd'),
+                'speciality' => 'boss',
+                'is_admin' => 1,
+                'gender' => 'm',
+                'biography' => 'venceu do chuck noris.',
+                'picture_url' => '',
+                'active' => 1,
+            ]);
+        }
 	}
 
 }
