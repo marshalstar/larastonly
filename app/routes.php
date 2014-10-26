@@ -2,7 +2,6 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-    ddd('rato');
     echo "show!";
 });
 
