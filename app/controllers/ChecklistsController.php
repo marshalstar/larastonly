@@ -195,10 +195,15 @@ class ChecklistsController extends BaseController
 
         $evaluation = new Evaluation;
 
+
         $country = Country::firstOrCreate(['name' => Input::get('country')]);
+        $country->save();
         $state = State::firstOrCreate(['name' => Input::get('state'), 'country_id' => $country->id]);
+        $state->save();
         $city = City::firstOrCreate(['name' => Input::get('city'), 'state_id' => $state->id]);
-        Place::firstOrCreate(['name' => Input::get('place'), 'city' => $city->id]);
+        $city->save();
+        $place = Place::firstOrCreate(['name' => Input::get('place'), 'city_id' => $city->id]);
+        $place->save();
 
         $evaluation->user_id = 1;
         foreach (Input::except(['place', 'city', 'state', 'country']) as $key => $value) {
@@ -207,7 +212,7 @@ class ChecklistsController extends BaseController
         }
         $evaluation->save();
 
-        foreach (Input::all() as $key => $value) {
+        foreach (Input::except(['place', 'city', 'state', 'country']) as $key => $value) {
             $alternativeQuestion = AlternativeQuestion::
                 where("alternative_id", "=", $value)->
                     where("question_id", "=", $key)->first();
