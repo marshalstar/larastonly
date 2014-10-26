@@ -1,5 +1,7 @@
 <?php
 
+/* github maldito */
+
 Route::match(array('GET', 'POST'), '/debug', function()
 {
     ddd('rato');
