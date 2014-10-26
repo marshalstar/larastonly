@@ -7,8 +7,10 @@ class TitlesController extends BaseController
 
     public function beforeCreateOrEdit($view)
     {
-        $titles = [null => Lang::get('sem pai')] + array_column(Title::all()->toArray(), 'name', 'id');
-        $view->with('titles', $titles);
+        $titles = [null => Lang::get('sem pai')] + array_column(Title::all(['id', 'name'])->toArray(), 'name', 'id');
+        $checklists = array_column(Checklist::all(['id', 'name'])->toArray(), 'name', 'id');
+        $view->with('titles', $titles)
+             ->with('checklists', $checklists);
     }
 
     public function destroyCascadeAjax($id)

@@ -21,6 +21,6 @@
 @stop
 
 @section('data-url-ajax')/questions/indexAjax @stop
-@section('show-url'){{ URL::route("questions.show", "key") }} @stop
-@section('edit-url'){{ URL::route("questions.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('questions.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.questions.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.questions.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.questions.destroy', 'key') }} @stop

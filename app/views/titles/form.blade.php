@@ -30,6 +30,13 @@
         </div>
     </div>
 
+     <div class="form-group">
+        {{ Form::label('checklist_id', Str::title(Lang::get('checklist')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        <div class="col-lg-10 col-sm-8">
+            {{ Form::select('checklist_id', $checklists, isset($title)? null : Input::old('checklist_id'), ['class' => 'form-control']) }}
+        </div>
+    </div>
+
     @include('templates.partials.formSubmit', ['msg' => Lang::get('nova lugar')])
 
     {{ Form::close() }}

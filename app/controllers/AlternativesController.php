@@ -11,7 +11,7 @@ class AlternativesController extends BaseController
         $view->with('types', $types);
     }
 
-    protected function logicStore()
+    /*protected function logicStore()
     {
         $alternative = Alternative::firstOrCreate(Input::except('question_id'));
         //$alternative = $this->newObj();
@@ -22,6 +22,6 @@ class AlternativesController extends BaseController
             }
             return $alternative;
         }
-    }
+    }/**/
 
 }

@@ -14,6 +14,6 @@
 @stop
 
 @section('data-url-ajax')/places/indexAjax @stop
-@section('show-url'){{ URL::route("places.show", "key") }} @stop
-@section('edit-url'){{ URL::route("places.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('places.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.places.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.places.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.places.destroy', 'key') }} @stop

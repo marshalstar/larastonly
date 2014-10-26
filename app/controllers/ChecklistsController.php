@@ -99,21 +99,23 @@ class ChecklistsController extends BaseController
 
     public function nyw($id = null)
     {
+
         if ($id) {
             /** @TODO: autenticar aqui */
             $checklist = Checklist::findOrFail($id);
+            $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
+            return View::make('checklists.nyw')
+                    ->with('checklist', $checklist)
+                    ->with('types', $types);
 
         } else {
-            $checklist = Checklist::firstOrCreate([
-                'user_id' => Auth::user()->id,
-                'name' => 'checklist',
-            ]);
+            $checklist = new Checklist;
+            $checklist->user_id = Auth::user()->id;
+            $checklist->name = 'checklist';
+            $checklist->save();
+            return Redirect::route('nyw', [$checklist->id]);
         }
 
-        $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
-        return View::make('checklists.nyw')
-            ->with('checklist', $checklist)
-            ->with('types', $types);
     }
 
     public function dataGraphicsAjax($checklistId)
