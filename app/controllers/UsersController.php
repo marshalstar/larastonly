@@ -19,12 +19,13 @@ class UsersController extends BaseController
     public function postNew()
     {
         $user = new User();
+        $user->fill(Input::all());
         $user->is_admin = false;
         if ($user->save()) {
             return Redirect::route('home')
                 ->with('message', Lang::get('Um link de ativação foi enviado para seu e-mail, por favor, confirme sua conta através deste link.'));
         }
-        return Redirect::route('users.create')->withErrors($user->errors());
+        return Redirect::route('users.new')->withErrors($user->errors());
     }
      public function getEditUser($id)
     {
