@@ -1,7 +1,5 @@
 <?php
 
-$titleRoot = $checklist->titles()->first();
-
 // function renderTitle($titles)
 // {
 //     foreach ($titles as $t) {
@@ -83,6 +81,12 @@ function renderAlternative($question) {
 
     <div class="title panel" data-id="{{ $checklist->id }}">
         <form name="checklist<?= $checklist->id ?>" action="respondeu" method="POST">
+
+            <input type="text" name="place"/>{{ Lang::get('lugar') }}
+            <input type="text" name="city"/>{{ Lang::get('cidade') }}
+            <input type="text" name="state"/>{{ Lang::get('estado') }}
+            <input type="text" name="country"/>{{ Lang::get('pais') }}
+
             <div class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -95,12 +99,13 @@ function renderAlternative($question) {
             </div>
             <div class="media-list">
                 <div class="titles">
-                        <?php renderTitle($titleRoot->children); ?>
+                        <?php renderTitle($checklist->titles); ?>
                 </div>
             </div>
             Comentarios:
             <textarea class="form-control" rows="3" id = "coment"></textarea>
             <!-- <input type="text" value = "" id="coment"> -->
+
             <input type="submit" value = "Salvar Resposta">
         </form>
     </div>

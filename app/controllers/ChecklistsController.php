@@ -195,8 +195,13 @@ class ChecklistsController extends BaseController
 
         $evaluation = new Evaluation;
 
+        $country = Country::firstOrCreate(['name' => Input::get('country')]);
+        $state = State::firstOrCreate(['name' => Input::get('state'), 'country_id' => $country->id]);
+        $city = City::firstOrCreate(['name' => Input::get('city'), 'state_id' => $state->id]);
+        Place::firstOrCreate(['name' => Input::get('place'), 'city' => $city->id]);
+
         $evaluation->user_id = 1;
-        foreach (Input::all() as $key => $value) {
+        foreach (Input::except(['place', 'city', 'state', 'country']) as $key => $value) {
             $evaluation->checklist_id = Question::find($key)->title->checklist->id;
             break;
         }
