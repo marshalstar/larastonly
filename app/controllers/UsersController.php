@@ -158,20 +158,13 @@ class UsersController extends BaseController
             return Redirect::to((string) $url);        
         }
     }
-    public function getForgot($id = null)
+    public function getForgot()
     {
-        if ($id) {
-            $user = User::findOrFail($id);
-        }
-        return View::make('users.forgot')
-                ->with('user', $user);
+        return View::make('users.forgot');
     }
 
     public function postForgot()
     {
-        if ($id = Input::get('id')) {
-            $user = User::findOrFail($id);
-        }
         $validator = Validator::make(Input::all(), [
             'email' => 'required|email'
         ]);
@@ -179,7 +172,7 @@ class UsersController extends BaseController
             return Redirect::to('forgot')->withErrors($validator);
 
         }  else{
-            isset($user) || $user = User::where('email', '=', Input::get('email'));
+            $user = User::where('email', '=', Input::get('email'));
             if($user->count())
             {
                 $user = $user->first();
