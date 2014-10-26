@@ -2,7 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('places')) }} @stop
 
-@section('create-url'){{ URL::route("places.create") }} @stop
+@section('create-url'){{ URL::route("admin.places.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova place') }}@stop
 
 @section('table-content')

@@ -129,10 +129,10 @@ abstract class BaseController extends Controller {
     public function store()
     {
         if ($obj = $this->logicStore()) {
-            return Redirect::route("{$this->getViewBaseName()}.index")
+            return Redirect::route("admin.{$this->getViewBaseName()}.index")
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route("{$this->getViewBaseName()}.create")
+        return Redirect::route("admin.{$this->getViewBaseName()}.create")
             ->withErrors($obj->errors());
     }
 
@@ -210,10 +210,10 @@ abstract class BaseController extends Controller {
     public function update($id)
     {
         if ($obj = $this->logicUpdate($id)) {
-            return Redirect::route("{$this->getViewBaseName()}.index")
+            return Redirect::route("admin.{$this->getViewBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route("{$this->getViewBaseName()}.edit")
+        return Redirect::route("admin.{$this->getViewBaseName()}.edit")
             ->withErrors($obj->errors());
     }
 
@@ -234,7 +234,7 @@ abstract class BaseController extends Controller {
         $this->beforeDestroy($id);
         $this->query()->getQuery()->delete($id);
         if (!Request::ajax()) {
-            return Redirect::route("{$this->getViewBaseName()}.index");
+            return Redirect::route("admin.{$this->getViewBaseName()}.index");
         }
     }
 

@@ -9,7 +9,7 @@
 			
             
           </p>
-@section('create-url'){{ URL::route("types.create") }} @stop
+@section('create-url'){{ URL::route("admin.types.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo Tipo') }}@stop
 
 @section('table-content')
@@ -19,6 +19,6 @@
 @stop
 
 @section('data-url-ajax')/types/indexAjax @stop
-@section('show-url'){{ URL::route("types.show", "key") }} @stop
-@section('edit-url'){{ URL::route("types.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('types.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.types.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.types.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.types.destroy', 'key') }} @stop

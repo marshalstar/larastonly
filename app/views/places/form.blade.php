@@ -3,9 +3,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($place))
-        {{ Form::model($place, ['route' => ['places.update', $place->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($place, ['route' => ['admin.places.update', $place->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'places', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/places', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

@@ -2,7 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('usuários')) }} @stop
 
-@section('create-url'){{ URL::route("users.create") }} @stop
+@section('create-url'){{ URL::route("admin.users.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo usuário') }}@stop
  <p id="breadCrumb">
             Você está em:
@@ -23,6 +23,6 @@
 @stop
 
 @section('data-url-ajax')/users/indexAjax @stop
-@section('show-url'){{ URL::route("users.show", "key") }} @stop
-@section('edit-url'){{ URL::route("users.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('users.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.users.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.users.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.users.destroy', 'key') }} @stop

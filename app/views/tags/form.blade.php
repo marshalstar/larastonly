@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('tags.index')}}" title= "Volta a página gerenciar tags"> Gerenciar Tags </a>
+            <a href="{{URL::route('admin.tags.index')}}" title= "Volta a página gerenciar tags"> Gerenciar Tags </a>
             / Criar nova tag.
             
           </p>
@@ -10,9 +10,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($tag))
-        {{ Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($tag, ['route' => ['admin.tags.update', $tag->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'tags', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/tags', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

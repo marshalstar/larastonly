@@ -3,7 +3,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             /
-            <a href="{{URL::route('checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
+            <a href="{{URL::route('admin.checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
             / Visualizar Gráfico.
 
           </p>

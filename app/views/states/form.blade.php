@@ -2,9 +2,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($state))
-        {{ Form::model($state, ['route' => ['states.update', $state->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($state, ['route' => ['admin.states.update', $state->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'states', 'class' => 'form-horizontal', 'role' => 'form']) }}
+        {{ Form::open(['url' => 'admin/states', 'class' => 'form-horizontal', 'role' => 'form']) }}
     @endif
 
     <div class="form-group required">

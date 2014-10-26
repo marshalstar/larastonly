@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('questions.index')}}" title= "Volta a página gerenciar questão."> Gerenciar Questão </a>
+            <a href="{{URL::route('admin.questions.index')}}" title= "Volta a página gerenciar questão."> Gerenciar Questão </a>
             / Criar nova questão.
             
           </p>
@@ -10,9 +10,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if(isset($question))
-        {{ Form::model($question, ['route' => ['questions.update', $question->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($question, ['route' => ['admin.questions.update', $question->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'questions', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/questions', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

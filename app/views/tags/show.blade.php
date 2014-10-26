@@ -7,7 +7,7 @@
      Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-                <a href="{{URL::route('tags.index')}}" title= "Volta a página de gerenciar tag"> Gerenciar Tag</a>
+                <a href="{{URL::route('admin.tags.index')}}" title= "Volta a página de gerenciar tag"> Gerenciar Tag</a>
             / Visualizar Tag.
             
           </p>

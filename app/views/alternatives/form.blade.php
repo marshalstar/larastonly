@@ -3,16 +3,16 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('alternatives.index')}}" title= "Volta a página gerenciar alternativa."> Gerenciar Alternativa. </a>
+            <a href="{{URL::route('admin.alternatives.index')}}" title= "Volta a página gerenciar alternativa."> Gerenciar Alternativa. </a>
             / Criar nova alternativa.
             
           </p>
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($alternative))
-        {{ Form::model($alternative, ['route' => ['alternatives.update', $alternative->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($alternative, ['route' => ['admin.alternatives.update', $alternative->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'alternatives', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/alternatives', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

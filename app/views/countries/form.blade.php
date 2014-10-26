@@ -3,9 +3,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($country))
-        {{ Form::model($country, ['route' => ['countries.update', $country->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($country, ['route' => ['admin.countries.update', $country->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'countries', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/countries', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

@@ -9,7 +9,7 @@
           </p>
 @section('title'){{ Str::title(Lang::get('avaliações')) }} @stop
 
-@section('create-url'){{ URL::route("evaluations.create") }} @stop
+@section('create-url'){{ URL::route("admin.evaluations.create") }} @stop
 @section('text-create-button'){{ Str::title(Lang::get('nova alternativa')) }} @stop
 
 @section('table-content')
@@ -21,6 +21,6 @@
 @stop
 
 @section('data-url-ajax')/evaluations/indexAjax @stop
-@section('show-url'){{ URL::route("evaluations.show", "key") }} @stop
-@section('edit-url'){{ URL::route("evaluations.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('evaluations.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.evaluations.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.evaluations.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.evaluations.destroy', 'key') }} @stop

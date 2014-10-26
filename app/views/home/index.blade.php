@@ -44,13 +44,13 @@
     </div>
     <div id="gerenciarChecklist" class="panel-collapse collapse">
       <div class="panel-body">
-            <li><a href="{{URL::route('checklists.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Checklist </a></li>
-            <li><a href="{{URL::route('alternatives.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Alternativas</a></li>
-            <li><a href="{{URL::route('questions.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Questões</a></li>
-            <li><a href="{{URL::route('evaluations.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Avaliações</a></li>
-            <li><a href="{{URL::route('tags.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tags </a></li>
-            <li><a href="{{URL::route('titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
-            <li><a href="{{URL::route('types.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
+            <li><a href="{{URL::route('admin.checklists.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Checklist </a></li>
+            <li><a href="{{URL::route('admin.alternatives.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Alternativas</a></li>
+            <li><a href="{{URL::route('admin.questions.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Questões</a></li>
+            <li><a href="{{URL::route('admin.evaluations.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Avaliações</a></li>
+            <li><a href="{{URL::route('admin.tags.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tags </a></li>
+            <li><a href="{{URL::route('admin.titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
+            <li><a href="{{URL::route('admin.types.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
       </div>
     </div>
   </div>

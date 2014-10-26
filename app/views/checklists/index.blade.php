@@ -9,7 +9,7 @@
           </p>
 @section('title'){{ Str::title(Lang::get('checklists')) }} @stop
 
-@section('create-url'){{ URL::route("checklists.create") }} @stop
+@section('create-url'){{ URL::route("admin.checklists.create") }} @stop
 @section('text-create-button'){{ Str::title(Lang::get('novo checklist')) }} @stop
 
 @section('table-content')
@@ -21,6 +21,6 @@
 @stop
 
 @section('data-url-ajax')/checklists/indexAjax @stop
-@section('show-url'){{ URL::route("checklists.show", "key") }} @stop
-@section('edit-url'){{ URL::route("checklists.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('checklists.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.checklists.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.checklists.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.checklists.destroy', 'key') }} @stop

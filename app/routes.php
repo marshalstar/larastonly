@@ -245,19 +245,33 @@ Route::any('/checklists/dataGraphics/{checklistId}', [
     'uses' => 'ChecklistsController@dataGraphicsAjax',
 ])->before('ajax');
 
-Route::resource('alternatives', 'AlternativesController');
-Route::resource('checklists', 'ChecklistsController');
-Route::resource('evaluations', 'EvaluationsController');
-Route::resource('questions', 'QuestionsController');
-Route::resource('tags', 'TagsController');
-Route::resource('titles', 'TitlesController');
-Route::resource('types', 'TypesController');
-Route::resource('users', 'UsersController');
-Route::resource('countries', 'CountriesController');
-Route::resource('states', 'StatesController');
-Route::resource('cities', 'CitiesController');
-Route::resource('places', 'PlacesController');
+Route::group(['prefix' => 'admin'], function() {
+    Route::resource('alternatives', 'AlternativesController');
+    Route::resource('checklists', 'ChecklistsController');
+    Route::resource('evaluations', 'EvaluationsController');
+    Route::resource('questions', 'QuestionsController');
+    Route::resource('tags', 'TagsController');
+    Route::resource('titles', 'TitlesController');
+    Route::resource('types', 'TypesController');
+    Route::resource('users', 'UsersController');
+    Route::resource('countries', 'CountriesController');
+    Route::resource('states', 'StatesController');
+    Route::resource('cities', 'CitiesController');
+    Route::resource('places', 'PlacesController');
+});
 
+//Route::resource('alternatives', 'AlternativesController');
+//Route::resource('checklists', 'ChecklistsController');
+//Route::resource('evaluations', 'EvaluationsController');
+//Route::resource('questions', 'QuestionsController');
+//Route::resource('tags', 'TagsController');
+//Route::resource('titles', 'TitlesController');
+//Route::resource('types', 'TypesController');
+//Route::resource('users', 'UsersController');
+//Route::resource('countries', 'CountriesController');
+//Route::resource('states', 'StatesController');
+//Route::resource('cities', 'CitiesController');
+//Route::resource('places', 'PlacesController');
 
 Route::any('/checklist/save', [
  'as' => 'checklistSave',

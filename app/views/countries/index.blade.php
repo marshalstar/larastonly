@@ -2,7 +2,7 @@
 
 @section('title'){{ Str::title(Lang::get('países')) }} @stop
 
-@section('create-url'){{ URL::route("countries.create") }} @stop
+@section('create-url'){{ URL::route("admin.countries.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova country') }}@stop
 
 @section('table-content')
@@ -12,6 +12,6 @@
 @stop
 
 @section('data-url-ajax')/countries/indexAjax @stop
-@section('show-url'){{ URL::route("countries.show", "key") }} @stop
-@section('edit-url'){{ URL::route("countries.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('countries.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("admin.countries.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.countries.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.countries.destroy', 'key') }} @stop

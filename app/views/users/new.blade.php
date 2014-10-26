@@ -7,7 +7,7 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($user))
-        {{ Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($user, ['route' => ['admin.users.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
         {{ Form::open(array('route' => 'users.new', 'class' => 'form-horizontal')) }}
     @endif

@@ -7,7 +7,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-                <a href="{{URL::route('users.index')}}" title= "Volta a página de gerenciar perfis."> Gerenciar Perfis </a>
+                <a href="{{URL::route('admin.users.index')}}" title= "Volta a página de gerenciar perfis."> Gerenciar Perfis </a>
             / Visualizar perfil.
             
           </p>

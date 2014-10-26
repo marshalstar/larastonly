@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('evaluations.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Avaliação. </a>
+            <a href="{{URL::route('admin.evaluations.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Avaliação. </a>
             / Criar nova avaliação.
             
           </p>
@@ -10,9 +10,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($evaluation))
-        {{ Form::model($evaluation, ['route' => ['evaluations.update', $evaluation->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($evaluation, ['route' => ['admin.evaluations.update', $evaluation->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'evaluations', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/evaluations', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

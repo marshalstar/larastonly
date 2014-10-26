@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
+            <a href="{{URL::route('admin.checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
             / Criar novo checklist.
             
           </p>
@@ -10,9 +10,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($checklist))
-        {{ Form::model($checklist, ['route' => ['checklists.update', $checklist->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($checklist, ['route' => ['admin.checklists.update', $checklist->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'checklists', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/checklists', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

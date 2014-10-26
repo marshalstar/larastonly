@@ -9,7 +9,7 @@
 			
             
           </p>
-@section('create-url'){{ URL::route("titles.create") }} @stop
+@section('create-url'){{ URL::route("admin.titles.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo Título') }}@stop
 
 @section('table-content')

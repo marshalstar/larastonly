@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('types.index')}}" title= "Volta a página gerenciar tipos"> Gerenciar Tipos </a>
+            <a href="{{URL::route('admin.types.index')}}" title= "Volta a página gerenciar tipos"> Gerenciar Tipos </a>
             / Criar novo tipo.
             
           </p>
@@ -11,9 +11,9 @@
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($type))
-        {{ Form::model($type, ['route' => ['types.update', $type->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        {{ Form::model($type, ['route' => ['admin.types.update', $type->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'types', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['url' => 'admin/types', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">
