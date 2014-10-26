@@ -21,25 +21,27 @@
         <span class="Required FormFieldRequired" style="visibility: visible">*</span>
         {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-           {{ Form::email('email', isset($user)? null : Input::old('email'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('email@exemplo.com')]) }}  
+           {{ Form::email('email', isset($user)? null : Input::old('email'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('email@exemplo.com')]) }}
         </div>
     </div>
 
-    <div class="form-group required">
-        <span class="Required FormFieldRequired" style="visibility: visible">*</span>
-        {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
-        <div class="col-lg-10 col-sm-8">
-            {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('senha')]) }}
+    @unless(isset($user))
+        <div class="form-group required">
+            <span class="Required FormFieldRequired" style="visibility: visible">*</span>
+            {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+            <div class="col-lg-10 col-sm-8">
+                {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('senha')]) }}
+            </div>
         </div>
-    </div>
 
-    <div class="form-group required">
-        <span class="Required FormFieldRequired" style="visibility: visible">*</span>
-        {{ Form::label('password_confirmation', Str::title(Lang::get('confirmação de senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
-        <div class="col-lg-10 col-sm-8">
-            {{ Form::password('password_confirmation', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('confirmação da senha')]) }}
+        <div class="form-group required">
+            <span class="Required FormFieldRequired" style="visibility: visible">*</span>
+            {{ Form::label('password_confirmation', Str::title(Lang::get('confirmação de senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+            <div class="col-lg-10 col-sm-8">
+                {{ Form::password('password_confirmation', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('confirmação da senha')]) }}
+            </div>
         </div>
-    </div>
+    @endunless
 
     <div class="form-group">
         {{ Form::label('speciality', Str::title(Lang::get('Conte-nos sua especialidade(profissão)')), ['class' => 'control-label col-lg-2 col-sm-4']) }}

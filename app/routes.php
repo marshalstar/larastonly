@@ -38,22 +38,20 @@ Route::group(['before' => 'guest'], function()
         ]);
     });
 
-    Route::get('/forgot', [
+    Route::get('/forgot/{id?}', [
         'as' => 'forgot',
-        'uses' => 'UsersController@getForgotPassword'
-        ]);
+        'uses' => 'UsersController@getForgot'
+    ]);
 
-     Route::post('/forgot', 
-        [
+    Route::post('/forgot', [
         'as' => 'forgot',
-        'uses' => 'UsersController@postForgotPassword'
-        ]);
+        'uses' => 'UsersController@postForgot'
+    ]);
 
-     Route::get('/recover/{code}', array(
+    Route::get('/recover/{code}', array(
         'as' => 'recover',
         'uses' => 'UsersController@getRecover'
-        ));
-
+    ));
 
     Route::get('/login', [
         'as' => 'users.login',

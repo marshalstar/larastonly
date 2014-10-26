@@ -28,7 +28,7 @@
     </div>
     <div id="gerenciarPerfil" class="panel-collapse collapse in">
       <div class="panel-body">
-        <li><a href="{{URL::route('users.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Perfis </a></li>
+        <li><a href="{{URL::route('admin.users.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Perfis </a></li>
        <li><a href="{{URL::route('changepassword')}}"> <i class="fa fa-pencil-square-o"></i> Mudar minha senha </a></li>
        <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out"></i> Sair </a></li>
       </div>

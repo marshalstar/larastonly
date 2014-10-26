@@ -158,13 +158,20 @@ class UsersController extends BaseController
             return Redirect::to((string) $url);        
         }
     }
-    public function getForgotPassword()
+    public function getForgot($id = null)
     {
-        return View::make('users.forgot');
+        if ($id) {
+            $user = User::findOrFail($id);
+        }
+        return View::make('users.forgot')
+                ->with('user', $user);
     }
 
- public function postForgotPassword()
+    public function postForgot()
     {
+        if ($id = Input::get('id')) {
+            $user = User::findOrFail($id);
+        }
         $validator = Validator::make(Input::all(), [
             'email' => 'required|email'
         ]);
@@ -172,7 +179,7 @@ class UsersController extends BaseController
             return Redirect::to('forgot')->withErrors($validator);
 
         }  else{
-            $user = User::where('email', '=', Input::get('email'));
+            isset($user) || $user = User::where('email', '=', Input::get('email'));
             if($user->count())
             {
                 $user = $user->first();
@@ -189,18 +196,19 @@ class UsersController extends BaseController
             }
         } 
     }
-public function getRecover($code){
-    $user = User::where('code' ,'=', $code);
-    if($user->count())
-    {
-        $user = $user->first();
-        $user->password = $user->password_temp;
-        $user->password_temp = '';
-        $user->code = '';
-        if($user->updateUniques()){
-          return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode efetuar seu login.'));
+
+    public function getRecover($code){
+        $user = User::where('code' ,'=', $code);
+        if($user->count())
+        {
+            $user = $user->first();
+            $user->password = $user->password_temp;
+            $user->password_temp = '';
+            $user->code = '';
+            if($user->updateUniques()){
+              return Redirect::route('home')->with('message', Lang::get('Conta recuperada com sucesso, você já pode efetuar seu login.'));
+            }
+            return Redirect::route('home')->with('message', Lang::get('Falha ao recuperar a conta.'));
         }
-        return Redirect::route('home')->with('message', Lang::get('Falha ao recuperar a conta.'));
     }
-}
-}
+    }
