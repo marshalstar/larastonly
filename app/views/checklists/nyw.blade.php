@@ -214,7 +214,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-del-question', function () {
                 var question = $(this).closest('div.question');
                 $.ajax({
-                    url: "{{ URL::route("questions.destroy", 'key') }}".replace('key', question.attr("data-id")),
+                    url: "{{ URL::route("admin.questions.destroy", 'key') }}".replace('key', question.attr("data-id")),
                     method: "DELETE",
                     success: function(e) {
                         question.remove();
@@ -228,7 +228,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-del-alternative', function () {
                 var alternative = $(this).closest('div.alternative');
                 $.ajax({
-                    url: "{{ URL::route("alternatives.destroy", 'key') }}".replace('key', alternative.attr("data-id")),
+                    url: "{{ URL::route("admin.alternatives.destroy", 'key') }}".replace('key', alternative.attr("data-id")),
                     method: "DELETE",
                     success: function(e) {
                         alternative.remove();

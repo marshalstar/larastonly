@@ -13,7 +13,8 @@ class AlternativesController extends BaseController
 
     protected function logicStore()
     {
-        $alternative = $this->newObj(Input::except('question_id'));
+        $alternative = Alternative::firstOrCreate(Input::except('question_id'));
+        //$alternative = $this->newObj();
         $this->beforeStore($alternative);
         if ($alternative->save()) {
             if ($question_id = Input::get('question_id')) {
