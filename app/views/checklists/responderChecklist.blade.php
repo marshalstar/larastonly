@@ -82,11 +82,6 @@ function renderAlternative($question) {
     <div class="title panel" data-id="{{ $checklist->id }}">
         <form name="checklist<?= $checklist->id ?>" action="respondeu" method="POST">
 
-            <input type="text" name="place"/>{{ Lang::get('lugar') }}
-            <input type="text" name="city"/>{{ Lang::get('cidade') }}
-            <input type="text" name="state"/>{{ Lang::get('estado') }}
-            <input type="text" name="country"/>{{ Lang::get('pais') }}
-
             <div class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -102,6 +97,35 @@ function renderAlternative($question) {
                         <?php renderTitle($checklist->titles); ?>
                 </div>
             </div>
+
+            <div class="form-group required">
+                <label for="place" class="control-label col-lg-2 col-sm-4">{{ Lang::get('lugar') }}</label>
+                <div class="col-lg-10 col-sm-8">
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('lugar') }}" name="place" type="text" id="place"/>
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <label for="city" class="control-label col-lg-2 col-sm-4">{{ Lang::get('cidade') }}</label>
+                <div class="col-lg-10 col-sm-8">
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('cidade') }}" name="city" type="text" id="city"/>
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <label for="state" class="control-label col-lg-2 col-sm-4">{{ Lang::get('estado') }}</label>
+                <div class="col-lg-10 col-sm-8">
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('estado') }}" name="state" type="text" id="state"/>
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <label for="country" class="control-label col-lg-2 col-sm-4">{{ Lang::get('país') }}</label>
+                <div class="col-lg-10 col-sm-8">
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('país') }}" name="country" type="text" id="country"/>
+                </div>
+            </div>
+
             Comentarios:
             <textarea class="form-control" rows="3" id = "coment"></textarea>
             <!-- <input type="text" value = "" id="coment"> -->
