@@ -111,25 +111,23 @@ class ChecklistsController extends AdminBaseController
         }, $titulos));/**/
     }
 
-    public function nyw($id = null)
+    public function create()
     {
+        $checklist = new Checklist;
+        $checklist->user_id = Auth::user()->id;
+        $checklist->name = 'checklist';
+        $checklist->save();
+        return Redirect::route('checklists.edit', [$checklist->id]);
+    }
 
-        if ($id) {
-            /** @TODO: autenticar aqui */
-            $checklist = Checklist::findOrFail($id);
-            $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
-            return View::make('checklists.nyw')
-                    ->with('checklist', $checklist)
-                    ->with('types', $types);
-
-        } else {
-            $checklist = new Checklist;
-            $checklist->user_id = Auth::user()->id;
-            $checklist->name = 'checklist';
-            $checklist->save();
-            return Redirect::route('nyw', [$checklist->id]);
-        }
-
+    public function edit($id)
+    {
+        /** @TODO: autenticar aqui */
+        $checklist = Checklist::findOrFail($id);
+        $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
+        return View::make('checklists.edit')
+            ->with('checklist', $checklist)
+            ->with('types', $types);
     }
 
     public function dataGraphicsAjax($checklistId)

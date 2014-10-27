@@ -11,6 +11,14 @@ class QuestionsController extends AdminBaseController
         $view->with('titles', $titles);
     }
 
+    public function storeAjax()
+    {
+        $question = new Question(Input::all());
+        if ($question->save()) {
+            return $question;
+        }
+    }
+
     public function updateAjax($id)
     {
         $question = Question::find($id);

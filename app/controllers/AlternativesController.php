@@ -31,4 +31,10 @@ class AlternativesController extends AdminBaseController
         }
     }
 
+    public function destroyAjax($id)
+    {
+        $alternative = Alternative::findOrFail($id);
+        $alternative->delete();
+    }
+
 }

@@ -8,12 +8,14 @@ class Rounting {
      * @param \Closure $callback
      */
     public static function eachController($attributes, $models, $callback) {
-        Route::group(['prefix' => 'admin'], function() use($models, $callback)
+        Route::group($attributes, function() use($models, $callback)
         {
             foreach($models as $model) {
-                $routeName = Str::plural($model);
-                $controllerName = Str::studly($routeName)."Controller";
-                $callback($routeName, $controllerName);
+                $plural = Str::plural($model);
+                $routeName = Str::camel($plural);
+                $urlName = Str::slug($plural);
+                $controllerName = Str::studly($plural)."Controller";
+                $callback($urlName, $routeName, $controllerName);
             }
         });
     }

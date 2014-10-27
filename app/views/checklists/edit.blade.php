@@ -79,7 +79,7 @@ function renderAlternative($question, $types) {
     @endif
 
 
-    <div class="checklist title" data-id="{{ $checklist->id }}">
+    <div class="checklist" data-id="{{ $checklist->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -93,7 +93,7 @@ function renderAlternative($question, $types) {
         </div>
         <div class="media-list">
             <div class="titles">
-                <?php renderTitle($checklist->titles, $types); ?>
+                <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $types); ?>
             </div>
         </div>
     </div>
@@ -108,17 +108,22 @@ function renderAlternative($question, $types) {
         $(function() {
 
             $(document).on('click', '.btn-new-title', function() {
-                var title = $(this).closest('div.title');
+                var data = {
+                    name: '{{ Lang::get('título') }}',
+                    checklist_id: '{{ $checklist->id }}'
+                };
+                var titleOrChecklist = $(this).closest('div.title');
+                if (titleOrChecklist.length == 0) {
+                    titleOrChecklist = $(this).closest('div.checklist');
+                } else {
+                    data['title_id'] = titleOrChecklist.attr('data-id');
+                }
                 $.ajax({
-                    url: "{{ URL::route("titles.storeAjax") }}",
+                    url: "{{ URL::route("titles.store.ajax") }}",
                     method: "POST",
-                    data: {
-                        name: '{{ Lang::get('título') }}',
-                        checklist_id: '{{ $checklist->id }}',
-                        title_id: title.attr('data-id')
-                    },
+                    data: data,
                     success: function(e) {
-                        title.children().find('.titles').first().append('<div class="media title" data-id="'+ e.id +'">\
+                        titleOrChecklist.children().find('.titles').first().append('<div class="media title" data-id="'+ e.id +'">\
                                                                              <div class="pull-left">\
                                                                                  <h5 class="media-object">título</h5>\
                                                                              </div>\
@@ -144,7 +149,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-new-question', function() {
                 var title = $(this).closest('div.title');
                 $.ajax({
-                    url: "{{ URL::route("questions.storeAjax") }}",
+                    url: "{{ URL::route("questions.store.ajax") }}",
                     method: "POST",
                     data: {
                         statement: '{{ Lang::get('questão') }}',
@@ -175,7 +180,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-new-alternative', function () {
                 var question = $(this).closest('div.question');
                 $.ajax({
-                    url: "{{ URL::route("alternatives.storeAjax") }}",
+                    url: "{{ URL::route("alternatives.store.ajax") }}",
                     method: "POST",
                     data: {
                         name: '{{ Lang::get('alternativa') }}',
@@ -200,7 +205,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-del-title', function () {
                 var title = $(this).closest('div.title');
                 $.ajax({
-                    url: "{{ URL::route("titles.destroyCascadeAjax", 'key') }}".replace('key', title.attr("data-id")),
+                    url: "{{ URL::route("titles.destroy.ajax", 'key') }}".replace('key', title.attr("data-id")),
                     method: "DELETE",
                     success: function(e) {
                         title.remove();
@@ -214,7 +219,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-del-question', function () {
                 var question = $(this).closest('div.question');
                 $.ajax({
-                    url: "{{ URL::route("admin.questions.destroy", 'key') }}".replace('key', question.attr("data-id")),
+                    url: "{{ URL::route("questions.destroy.ajax", 'key') }}".replace('key', question.attr("data-id")),
                     method: "DELETE",
                     success: function(e) {
                         question.remove();
@@ -228,7 +233,7 @@ function renderAlternative($question, $types) {
             $(document).on('click', '.btn-del-alternative', function () {
                 var alternative = $(this).closest('div.alternative');
                 $.ajax({
-                    url: "{{ URL::route("admin.alternatives.destroy", 'key') }}".replace('key', alternative.attr("data-id")),
+                    url: "{{ URL::route("alternatives.destroy.ajax", 'key') }}".replace('key', alternative.attr("data-id")),
                     method: "DELETE",
                     success: function(e) {
                         alternative.remove();
@@ -243,7 +248,7 @@ function renderAlternative($question, $types) {
                 var alternative = $(this).closest('div.checklist');
                 var input = $(this);
                 $.ajax({
-                    url: '{{ URL::route('checklists.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
+                    url: '{{ URL::route('checklists.update.ajax', 'key')  }}'.replace('key', alternative.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
                     success: function(e) {},
@@ -258,7 +263,7 @@ function renderAlternative($question, $types) {
                 var input = $(this);
                 console.log('sim');
                 $.ajax({
-                    url: '{{ URL::route('titles.updateAjax', 'key')  }}'.replace('key', title.attr('data-id')),
+                    url: '{{ URL::route('titles.update.ajax', 'key')  }}'.replace('key', title.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
                     success: function(e) {},
@@ -272,7 +277,7 @@ function renderAlternative($question, $types) {
                 var question = $(this).closest('div.question');
                 var input = $(this);
                 $.ajax({
-                    url: '{{ URL::route('questions.updateAjax', 'key')  }}'.replace('key', question.attr('data-id')),
+                    url: '{{ URL::route('questions.update.ajax', 'key')  }}'.replace('key', question.attr('data-id')),
                     method: 'POST',
                     data: {statement: input.val()},
                     success: function(e) {},
@@ -286,7 +291,7 @@ function renderAlternative($question, $types) {
                 var alternative = $(this).closest('div.alternative');
                 var input = $(this);
                 $.ajax({
-                    url: '{{ URL::route('alternatives.updateAjax', 'key')  }}'.replace('key', alternative.attr('data-id')),
+                    url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', alternative.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
                     success: function(e) {},
@@ -300,7 +305,7 @@ function renderAlternative($question, $types) {
                 var question = $(this).closest('div.question');
                 var input = $(this);
                 $.ajax({
-                    url: '{{ URL::route('questions.updateAjax', 'key')  }}'.replace('key', question.attr('data-id')),
+                    url: '{{ URL::route('questions.update.ajax', 'key')  }}'.replace('key', question.attr('data-id')),
                     method: 'POST',
                     data: {weight: input.val()},
                     success: function(e) {},

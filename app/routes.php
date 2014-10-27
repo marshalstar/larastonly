@@ -68,6 +68,10 @@ Route::group(['prefix' => 'checklists'], function ()
     Route::get('/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
 
     Route::get('/graphics/{id}/{query?}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
+
+    Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
+
+    Route::any('/edit/{id}', ['as' => 'checklists.edit', 'uses' => 'ChecklistsController@edit']);
 });
 
 Route::group(array('before' => 'auth'), function()
@@ -99,32 +103,16 @@ Route::get('/checklist/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsContr
 
 Route::get('/fb', ['uses' => 'UsersController@loginWithFacebook']);
 
-Route::any('/checklists/nyw/{id?}', ['as' => 'nyw', 'uses' => 'ChecklistsController@nyw']);
-
-//Route::any('/titles/storeAjax', ['as' => 'titles.storeAjax', 'uses' => 'TitlesController@logicStore'])->before('ajax');
-
-//Route::any('/questions/storeAjax', ['as' => 'questions.storeAjax', 'uses' => 'QuestionsController@logicStore'])->before('ajax');
-
-//Route::any('/alternatives/storeAjax', ['as' => 'alternatives.storeAjax', 'uses' => 'AlternativesController@logicStore'])->before('ajax');
-
-//Route::any('/checklists/updateAjax/{id}', ['as' => 'checklists.updateAjax', 'uses' => 'ChecklistsController@logicUpdate'])->before('ajax');
-
-//Route::any('/titles/updateAjax/{id}', ['as' => 'titles.updateAjax', 'uses' => 'TitlesController@logicUpdate'])->before('ajax');
-
-//Route::any('/questions/updateAjax/{id}', ['as' => 'questions.updateAjax', 'uses' => 'QuestionsController@logicUpdate'])->before('ajax');
-
-//Route::any('/alternatives/updateAjax/{id}', ['as' => 'alternatives.updateAjax', 'uses' => 'AlternativesController@logicUpdate'])->before('ajax');
-
-Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'alternative'], function($route, $controller) {
-    Route::any("/$route/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
+Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'question', 'alternative'], function($url, $route, $controller) {
+    Route::any("/$url/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
 });
 
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($route, $controller) {
-    Route::any("/$route/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
+Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
+    Route::any("/$url/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
 });
 
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question'], function($route, $controller) {
-    Route::delete("/$route/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
+Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
+    Route::delete("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
 });
 
 $cruds = [
@@ -141,17 +129,17 @@ $cruds = [
     'type',
     'user',
 ];
-Rounting::eachController(['prefix' => 'admin'], $cruds, function($route, $controller) {
-    Route::get("/$route", ["as" => "admin.$route.index", "uses" => "$controller@adminIndex"]);
-    Route::get("/$route/create", ["as" => "admin.$route.create", "uses" => "$controller@adminCreate"]);
-    Route::post("/$route", ["as" => "admin.$route.store", "uses" => "$controller@adminStore"]);
-    Route::get("/$route/{id}", ["as" => "admin.$route.show", "uses" => "$controller@adminShow"]);
-    Route::get("/$route/{id}/edit", ["as" => "admin.$route.edit", "uses" => "$controller@adminEdit"]);
-    Route::put("/$route/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
-    Route::patch("/$route/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
-    Route::delete("/$route/{id}", ["as" => "admin.$route.destroy", "uses" => "$controller@adminDestroy"]);
+Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $controller) {
+    Route::get("/$url", ["as" => "admin.$route.index", "uses" => "$controller@adminIndex"]);
+    Route::get("/$url/create", ["as" => "admin.$route.create", "uses" => "$controller@adminCreate"]);
+    Route::post("/$url", ["as" => "admin.$route.store", "uses" => "$controller@adminStore"]);
+    Route::get("/$url/{id}", ["as" => "admin.$route.show", "uses" => "$controller@adminShow"]);
+    Route::get("/$url/{id}/edit", ["as" => "admin.$route.edit", "uses" => "$controller@adminEdit"]);
+    Route::put("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
+    Route::patch("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
+    Route::delete("/$url/{id}", ["as" => "admin.$route.destroy", "uses" => "$controller@adminDestroy"]);
 
-    Route::any("/$route/index/ajax", ["as" => "admin.$route.index.ajax", "uses" => "$controller@adminIndexAjax"])
+    Route::any("/$url/index/ajax", ["as" => "admin.$route.index.ajax", "uses" => "$controller@adminIndexAjax"])
         ->before('ajax');
 });
 
