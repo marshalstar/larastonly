@@ -1,6 +1,5 @@
 
     Tarefas:
-        nos label's, apenas a primeira letra deve ser maiúscula - To be done.
         diminuir label nos formulários pela metade (de 15, mudar para 7 ou 8)
         links rápidos (criar checklist, responder checklist, pesquisar, [editar perfil, senha, sair])
         copiar forms do google - To be Done
