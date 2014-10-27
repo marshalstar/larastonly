@@ -3,8 +3,6 @@
 @section('title'){{ Str::title(Lang::get('editar tag')) }} @stop
 
 @section('content')
-
-@include('tags.form')
 <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
@@ -13,4 +11,5 @@
 			/ Editar Tag
             
           </p>
+@include('tags.form')
 @stop

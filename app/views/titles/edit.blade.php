@@ -3,8 +3,6 @@
 @section('title'){{ Str::title(Lang::get('novo título')) }} @stop
 
 @section('content')
-
-@include('titles.form')
 <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
@@ -13,4 +11,6 @@
 			/ Editar Título.
             
           </p>
+@include('titles.form')
+
 @stop

@@ -3,6 +3,14 @@
 @section('title'){{ Str::title(Lang::get('place')). ' ' .$place->name }} @stop
 
 @section('content')
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / 
+                <a href="{{URL::route('admin.states.index')}}" title= "Volta a página de gerenciar título."> Gerenciar Estados </a>
+            / Visualizar Estado.
+            
+          </p>
 <div class="container container-main">
 
         <div class="table-responsive">
