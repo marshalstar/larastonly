@@ -1,12 +1,4 @@
 <div class="container container-main">
-       <p id="breadCrumb">
-            Você está em:
-            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
-            / 
-            <a href="{{URL::route('admin.alternatives.index')}}" title= "Volta a página gerenciar alternativa."> Gerenciar Alternativa. </a>
-            / Criar nova alternativa.
-            
-          </p>
     {{ HTML::ul($errors->all()) }}
 
     @if (isset($alternative))
@@ -29,7 +21,7 @@
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('nova alternativa')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Cadastrar')])
 
     {{ Form::close() }}
 </div>

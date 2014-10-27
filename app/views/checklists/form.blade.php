@@ -1,11 +1,4 @@
-       <p id="breadCrumb">
-            Você está em:
-            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
-            / 
-            <a href="{{URL::route('admin.checklists.index')}}" title= "Volta a página gerenciar avaliação."> Gerenciar Checklist. </a>
-            / Criar novo checklist.
-            
-          </p>
+
 <div class="container container-main">
     {{ HTML::ul($errors->all()) }}
 
@@ -29,7 +22,7 @@
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('novo checklist')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Cadastrar')])
 
     {{ Form::close() }}
 </div>

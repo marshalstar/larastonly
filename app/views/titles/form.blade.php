@@ -1,11 +1,4 @@
-<p id="breadCrumb">
-            Você está em:
-            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
-            / 
-            <a href="{{URL::route('admin.types.index')}}" title= "Volta a página gerenciar títulos"> Gerenciar Títulos </a>
-            / Criar novo título.
-            
-          </p>
+
 <div class="container container-main">
 
     {{ HTML::ul($errors->all()) }}
@@ -37,7 +30,7 @@
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('nova lugar')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Cadastrar')])
 
     {{ Form::close() }}
 

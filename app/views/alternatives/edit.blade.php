@@ -3,8 +3,6 @@
 @section('title'){{ Str::title(Lang::get('editar')). ' ' .$alternative->name }} @stop
 
 @section('content')
-
-@include('alternatives.form')
 <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
@@ -13,4 +11,6 @@
 			/ Editar Alternativa.
             
           </p>
+@include('alternatives.form')
+
 @stop

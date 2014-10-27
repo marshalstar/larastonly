@@ -55,6 +55,24 @@
     </div>
   </div>
 </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarLocais">
+          Gerenciar Locais
+        </a>
+      </h4>
+    </div>
+    <div id="gerenciarLocais" class="panel-collapse collapse">
+      <div class="panel-body">
+            <li><a href="{{URL::route('admin.states.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Estados </a></li>
+            <li><a href="{{URL::route('admin.cities.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Cidades</a></li>
+            <li><a href="{{URL::route('admin.places.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Locais</a></li>
+            <li><a href="{{URL::route('admin.countries.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Países</a></li>
+      </div>
+    </div>
+  </div>
+</div>
         @elseif(Auth::check())
         <p> Bem-vindo(a), {{Auth::user()->username}}</p>
                   <div class="panel-group" id="gerenciarTudo">
