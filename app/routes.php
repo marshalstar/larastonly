@@ -38,7 +38,7 @@ Route::group(['before' => 'guest'], function()
         ]);
     });
 
-    Route::get('/forgot/{id?}', [
+    Route::get('/forgot', [
         'as' => 'forgot',
         'uses' => 'UsersController@getForgot'
     ]);
