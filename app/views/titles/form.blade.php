@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    @include('templates.partials.formSubmit', ['msg' => Lang::get('nova lugar')])
+    @include('templates.partials.formSubmit', ['msg' => Lang::get('Cadastrar')])
 
     {{ Form::close() }}
 
