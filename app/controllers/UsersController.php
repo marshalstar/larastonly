@@ -87,10 +87,14 @@ class UsersController extends BaseController
         Auth::logout();
         return Redirect::route('home');
     }
-    public function getChangePassword()
+    public function getChangePassword($id = null)
     {
-        
-        return View::make('users.password');
+        $user = null;
+        if ($id) {
+            $user = User::findOrFail($id);
+        }
+        return View::make('users.password')
+                    ->with('user', $user);
     }
 
     public function getProfile()
@@ -100,6 +104,10 @@ class UsersController extends BaseController
 
     public function postChangePassword()
     {
+        $user = null;
+        if ($id = Input::get('id')) {
+            $user = User::findOrFail($id);
+        }
         $validator = Validator::make(Input::all(), array(
             'old_password' =>'required',
             'password' => 'required',
@@ -110,7 +118,7 @@ class UsersController extends BaseController
         if($validator->fails()){
             return Redirect::route('changepassword')->withErrors($validator);
         } else{
-            $user = User::find(Auth::user()->id);
+            isset($user) || $user = User::find(Auth::user()->id);
             $old_password = Input::get('old_password');
 
             if(Hash::check($old_password, $user->getAuthPassword()))
@@ -152,13 +160,13 @@ class UsersController extends BaseController
                 }
                 Auth::loginUsingId($user->getAuthIdentifier());
                 return Redirect::to('http://localhost:8000/')->with('message', Lang::get('Logado via facebook'));
-             }
-              
-    else {
+        }
+        else {
             $url = $fb->getAuthorizationUri();
             return Redirect::to((string) $url);        
         }
     }
+
     public function getForgot()
     {
         return View::make('users.forgot');
@@ -169,7 +177,7 @@ class UsersController extends BaseController
         $validator = Validator::make(Input::all(), [
             'email' => 'required|email'
         ]);
-        if($validator->fails()){
+        if($validator->fails()) {
             return Redirect::to('forgot')->withErrors($validator);
 
         }  else{
@@ -188,6 +196,7 @@ class UsersController extends BaseController
                   return Redirect::route('home')->with('message', Lang::get('Sua nova senha foi enviada por e-mail, utilize ela para efetuar o login novamente.'));
                 }
             }
+            return Redirect::to('forgot')->with('message', Lang::get('Email inválido.'));
         } 
     }
 

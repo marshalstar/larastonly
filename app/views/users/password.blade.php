@@ -17,7 +17,8 @@
     @else
         {{ Form::open(array('route' => 'changepassword', 'class' => 'form-horizontal')) }}
     @endif
-<div class="form-group required">
+
+    <div class="form-group required">
         {{ Form::label('old_password', Str::title(Lang::get('Senha Atual')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('old_password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('Senha Atual')]) }}

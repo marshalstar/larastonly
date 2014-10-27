@@ -91,18 +91,27 @@ Route::group(['prefix' => 'checklists'], function ()
 
 Route::group(array('before' => 'auth'), function(){
         
-        Route::group(array('before'=>'csrf'), function(){
+        Route::group(array('before'=>'csrf'), function() {
             Route::post('/users/changepassword', array(
                 'as' => 'change-password-post',
                 'uses' => 'UsersController@postChangePassword'
-                ));
+            ));
+
+            Route::post('/admin/users/changepassword/{id}', array(
+                'as' => 'change-password-post',
+                'uses' => 'UsersController@postChangePassword'
+            ));
         });
 
-        /* Mudar a senha */
         Route::get('/users/changepassword', array(
             'as' => 'changepassword',
             'uses' => 'UsersController@getChangePassword'
-            ));
+        ));
+
+        Route::get('/admin/users/changepassword/{id}', array(
+            'as' => 'changepassword',
+            'uses' => 'UsersController@getChangePassword'
+        ));
 
     /*Sair */
     Route::get('users/logout', array(
