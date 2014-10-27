@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
                 'gender' => ($faker->randomDigit % 2)? 'f' : 'm',
                 'biography' => $faker->paragraph(),
                 'picture_url' => str_replace('.html', '', $faker->url) . 'image.png',
+                'active' => ($faker->randomDigit % 8) != 1,
             ];
         }, range(1, DatabaseSeeder::$dimension)));
 

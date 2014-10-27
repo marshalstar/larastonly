@@ -25,7 +25,13 @@
         </div>
     </div>
 
-    @unless(isset($user))
+    @if(isset($user))
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
+                <a href="{{ URL::route('admin.password.edit', $user->id) }}" class="btn btn-primary">{{ Lang::get("trocar senha") }}</a>
+            </div>
+        </div>
+    @else
         <div class="form-group required">
             <span class="Required FormFieldRequired" style="visibility: visible">*</span>
             {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
@@ -41,7 +47,7 @@
                 {{ Form::password('password_confirmation', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('confirmação da senha')]) }}
             </div>
         </div>
-    @endunless
+    @endif
 
     <div class="form-group">
         {{ Form::label('speciality', Str::title(Lang::get('Conte-nos sua especialidade(profissão)')), ['class' => 'control-label col-lg-2 col-sm-4']) }}

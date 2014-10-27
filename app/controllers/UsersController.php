@@ -87,52 +87,67 @@ class UsersController extends BaseController
         Auth::logout();
         return Redirect::route('home');
     }
-    public function getChangePassword($id = null)
-    {
-        $user = null;
-        if ($id) {
-            $user = User::findOrFail($id);
-        }
-        return View::make('users.password')
-                    ->with('user', $user);
-    }
 
     public function getProfile()
     {
         echo 'me implementar. sou o UsersController@getProfile\n' ;
     }
 
-    public function postChangePassword()
+    public function passwordEdit()
     {
-        $user = null;
-        if ($id = Input::get('id')) {
-            $user = User::findOrFail($id);
-        }
+        return View::make('users.password');
+    }
+
+    public function adminPasswordEdit($id)
+    {
+        $user = User::findOrFail($id);
+        return View::make('users.password')
+            ->with('user', $user);
+    }
+
+    public function passwordUpdate()
+    {
         $validator = Validator::make(Input::all(), array(
-            'old_password' =>'required',
+            'oldPassword' =>'required',
             'password' => 'required',
-            'password_confirmation' =>'required|same:password'
+            'passwordConfirmation' =>'required|same:password'
+        ));
 
-            ));
+        if($validator->fails()) {
+            return Redirect::route('password.edit')->withErrors($validator);
+        }
 
-        if($validator->fails()){
-            return Redirect::route('changepassword')->withErrors($validator);
-        } else{
-            isset($user) || $user = User::find(Auth::user()->id);
-            $old_password = Input::get('old_password');
+        $user = User::find(Auth::user()->id);
+        $oldPassword = Input::get('oldPassword');
 
-            if(Hash::check($old_password, $user->getAuthPassword()))
-            {
-                $user->fill(Input::all());
-                $user->password = Hash::make($user->password);
-                unset($user->old_password);
-                unset($user->password_again);
-                if($user->updateUniques()){
-                    return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
-                }
+        if(Hash::check($oldPassword, $user->getAuthPassword())) {
+            $user->fill(Input::except(['oldPassword', 'passwordConfirmation']));
+            $user->password = Hash::make($user->password);
+            if($user->updateUniques()){
+                return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
             }
         }
-        dd('6540N008');
+        return Redirect::route('password.edit')->withErrors($user->errors());
+    }
+
+    public function adminPasswordUpdate($id)
+    {
+        $user = User::findOrFail($id);
+        $validator = Validator::make(Input::all(), array(
+            'password' => 'required',
+            'passwordConfirmation' =>'required|same:password'
+        ));
+
+        if($validator->fails()) {
+            return Redirect::route('admin.password.edit', [$user->id])->withErrors($validator);
+        }
+
+        $user->fill(Input::except(['passwordConfirmation']));
+        $user->password = Hash::make($user->password);
+        if($user->updateUniques()){
+            return Redirect::route('home')->with('message', Lang::get('Senha Alterada com sucesso.'));
+        }
+        return Redirect::route('admin.password.edit', [$user->id])->withErrors($user->errors());
     }
 
     public function loginWithFacebook()

@@ -92,25 +92,25 @@ Route::group(['prefix' => 'checklists'], function ()
 Route::group(array('before' => 'auth'), function(){
         
         Route::group(array('before'=>'csrf'), function() {
-            Route::post('/users/changepassword', array(
-                'as' => 'change-password-post',
-                'uses' => 'UsersController@postChangePassword'
+            Route::put('/users/password', array(
+                'as' => 'password.update',
+                'uses' => 'UsersController@passwordUpdate'
             ));
 
-            Route::post('/admin/users/changepassword/{id}', array(
-                'as' => 'change-password-post',
-                'uses' => 'UsersController@postChangePassword'
+            Route::put('/admin/users/password/{id}', array(
+                'as' => 'admin.password.update',
+                'uses' => 'UsersController@adminPasswordUpdate'
             ));
         });
 
-        Route::get('/users/changepassword', array(
-            'as' => 'changepassword',
-            'uses' => 'UsersController@getChangePassword'
+        Route::get('/users/password', array(
+            'as' => 'password.edit',
+            'uses' => 'UsersController@passwordEdit'
         ));
 
-        Route::get('/admin/users/changepassword/{id}', array(
-            'as' => 'changepassword',
-            'uses' => 'UsersController@getChangePassword'
+        Route::get('/admin/users/password/{id}', array(
+            'as' => 'admin.password.edit',
+            'uses' => 'UsersController@adminPasswordEdit'
         ));
 
     /*Sair */
