@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('nova avaliação')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('nova avaliação')) }} @stop
 
 @section('content')
 

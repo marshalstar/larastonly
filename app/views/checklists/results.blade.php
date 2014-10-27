@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('Resultados da Busca')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('Resultados da Busca')) }} @stop
 
 @section('content')
 <h1>Resultados da Busca</h1>

@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('novo título')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('novo título')) }} @stop
 
 @section('content')
 <p id="breadCrumb">

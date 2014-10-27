@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('questão')). ' ' .$question->statement }} @stop
+@section('title'){{ String::capitalize(Lang::get('questão')). ' ' .$question->statement }} @stop
 
 @section('content')
  <p id="breadCrumb">
@@ -18,7 +18,7 @@
                 <tbody>
 
                     <tr>
-                        <td><h3>{{ Str::title(Lang::get('Enunciado')) }}</h3></td>
+                        <td><h3>{{ String::capitalize(Lang::get('Enunciado')) }}</h3></td>
                         <td><h3>{{ $question->statement}}</h3></td>
                     </tr>
 

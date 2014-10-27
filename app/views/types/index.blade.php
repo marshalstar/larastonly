@@ -1,6 +1,6 @@
 @extends('templates.index')
 
-@section('title'){{ Str::title(Lang::get('tipos')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('tipos')) }} @stop
 <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>

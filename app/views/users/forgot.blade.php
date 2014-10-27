@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('novo usuário')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('novo usuário')) }} @stop
 
 @section('content')
 <div class="container container-main">
@@ -16,7 +16,7 @@
     {{ Form::open(array('route' => 'forgot', 'class' => 'form-horizontal')) }}
 
     <div class="form-group required">
-        {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('email', String::capitalize(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::email('email', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('email@exemplo.com')]) }}
         </div>

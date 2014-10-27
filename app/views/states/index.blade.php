@@ -4,7 +4,7 @@
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
           	/ Gerenciar Estados
           </p>
-@section('title'){{ Str::title(Lang::get('states')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('states')) }} @stop
 
 @section('create-url'){{ URL::route("admin.states.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova state') }}@stop

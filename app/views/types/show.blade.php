@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('tipo')). ' ' .$type->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('tipo')). ' ' .$type->name }} @stop
 
 @section('content')
 
@@ -19,7 +19,7 @@
             <tbody>
 
                 <tr>
-                    <td><h3>{{ Str::title(Lang::get('tipo')) }}</h3></td>
+                    <td><h3>{{ String::capitalize(Lang::get('tipo')) }}</h3></td>
                     <td><h3>{{ $type->name }}</h3></td>
                 </tr>
 

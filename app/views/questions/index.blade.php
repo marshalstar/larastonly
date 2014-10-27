@@ -7,7 +7,7 @@
 			
             
           </p>
-@section('title'){{ Str::title(Lang::get('questões')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('questões')) }} @stop
 
 @section('create-url'){{ URL::route("admin.questions.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova Questão') }}@stop

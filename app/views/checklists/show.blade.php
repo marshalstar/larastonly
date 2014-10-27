@@ -7,7 +7,7 @@
             / Visualizar Checklist.
             
           </p>
-@section('title'){{ Str::title(Lang::get('checklist')). ' ' .$checklist->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('checklist')). ' ' .$checklist->name }} @stop
 
 @section('content')
     <div class="container container-main">
@@ -17,7 +17,7 @@
                 <tbody>
 
                     <tr>
-                        <td><h3>{{ Str::title(Lang::get('Checklist')) }}</h3></td>
+                        <td><h3>{{ String::capitalize(Lang::get('Checklist')) }}</h3></td>
                         <td><h3>{{ $checklist->name }}</h3></td>
                     </tr>
 

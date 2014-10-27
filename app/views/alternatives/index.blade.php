@@ -7,10 +7,10 @@
 			
             
           </p>
-@section('title'){{ Str::title(Lang::get('alternativas')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('alternativas')) }} @stop
 
 @section('create-url'){{ URL::route("admin.alternatives.create") }} @stop
-@section('text-create-button'){{ Str::title(Lang::get('nova alternativa')) }} @stop
+@section('text-create-button'){{ String::capitalize(Lang::get('nova alternativa')) }} @stop
 
 @section('table-content')
 <th data-column-id="id" data-type="numeric" data-identifier="true" class="text-center">{{ Lang::get('Id') }}</th>

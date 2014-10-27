@@ -5,7 +5,7 @@
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
           	/ Gerenciar Cidades
           </p>
-@section('title'){{ Str::title(Lang::get('cities')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('cities')) }} @stop
 
 @section('create-url'){{ URL::route("admin.cities.create") }} @stop
 @section('text-create-button'){{ Lang::get('Nova cidade') }}@stop

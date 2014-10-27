@@ -14,6 +14,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Type whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Type whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
  */
 class Type extends Ardent
 {

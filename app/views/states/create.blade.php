@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('nova state')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('nova state')) }} @stop
 
 @section('content')
 <p id="breadCrumb">

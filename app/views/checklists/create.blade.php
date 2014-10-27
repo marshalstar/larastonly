@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('Novo Checklist')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('novo checklist')) }} @stop
 
 @section('content')
 

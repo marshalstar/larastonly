@@ -7,7 +7,7 @@
             / Visualizar Gráfico.
 
           </p>
-@section('title'){{ Str::title(Lang::get('Novo Checklist')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
 
 @section('content')
 

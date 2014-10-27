@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('novo usuário')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('novo usuário')) }} @stop
 
 @section('content')
 <div class="container container-main">
@@ -18,14 +18,14 @@
     @endif
 
     <div class="form-group required">
-        {{ Form::label('email', Str::title(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('email', String::capitalize(Lang::get('email')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::email('email', isset($user)? null : Input::old('email'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('email@exemplo.com')]) }}
         </div>
     </div>
 
     <div class="form-group required">
-        {{ Form::label('password', Str::title(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('password', String::capitalize(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('senha')]) }}
               <a href="{{URL::route('forgot')}}"><i class="fa fa-refresh"></i> Esqueci minha senha</a>

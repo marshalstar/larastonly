@@ -7,7 +7,7 @@
             / Visualizar Avaliação.
             
           </p>
-@section('title'){{ Str::title(Lang::get('avaliação')). ' ' .$evaluation->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('avaliação')). ' ' .$evaluation->name }} @stop
 
 @section('content')
  <div class="container container-main">
@@ -17,7 +17,7 @@
                 <tbody>
 
                     <tr>
-                        <td><h3>{{ Str::title(Lang::get('Avaliação')) }}</h3></td>
+                        <td><h3>{{ String::capitalize(Lang::get('Avaliação')) }}</h3></td>
                         <td><h3>{{ $evaluation->commentary }}</h3></td>
                     </tr>
 

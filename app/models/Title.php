@@ -18,7 +18,9 @@ use \LaravelBook\Ardent\Ardent;
  * @property-read \Checklist $checklist
  * @property integer $checklist_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\Question[] $questions
- * @method static \Illuminate\Database\Query\Builder|\Title whereChecklistId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Title whereChecklistId($value)
+ * @property-read \Title $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Title[] $children
  */
 class Title extends Ardent
 {

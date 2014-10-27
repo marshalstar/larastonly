@@ -1,6 +1,6 @@
 @extends('templates.index')
 
-@section('title'){{ Str::title(Lang::get('usuários')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('usuários')) }} @stop
 
 @section('create-url'){{ URL::route("admin.users.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo usuário') }}@stop

@@ -7,7 +7,7 @@
             / Visualizar Alternativa.
             
           </p>
-@section('title'){{ Str::title(Lang::get('alternativa')). ' ' .$alternative->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('alternativa')). ' ' .$alternative->name }} @stop
 
 @section('content')
 
@@ -18,7 +18,7 @@
                 <tbody>
 
                     <tr>
-                        <td><h3>{{ Str::title(Lang::get('alternativa')) }}</h3></td>
+                        <td><h3>{{ String::capitalize(Lang::get('alternativa')) }}</h3></td>
                         <td><h3>{{ $alternative->name }}</h3></td>
                     </tr>
 

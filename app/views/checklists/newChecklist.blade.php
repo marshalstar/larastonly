@@ -7,7 +7,7 @@
             / Criar novo checklist.
             
           </p>
-@section('title'){{ Str::title(Lang::get('Novo Checklist')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
 <script src="/js/newChecklist.js" async></script>
 @section('content')
 

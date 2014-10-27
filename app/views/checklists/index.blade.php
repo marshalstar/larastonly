@@ -7,10 +7,10 @@
 			
             
           </p>
-@section('title'){{ Str::title(Lang::get('checklists')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('checklists')) }} @stop
 
 @section('create-url'){{ URL::route("admin.checklists.create") }} @stop
-@section('text-create-button'){{ Str::title(Lang::get('novo checklist')) }} @stop
+@section('text-create-button'){{ String::capitalize(Lang::get('novo checklist')) }} @stop
 
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>

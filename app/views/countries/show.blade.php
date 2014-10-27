@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('country')). ' ' .$country->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('country')). ' ' .$country->name }} @stop
 
 @section('content')
 <p id="breadCrumb">
@@ -18,7 +18,7 @@
                 <tbody>
 
                     <tr>
-                        <td><h3>{{ Str::title(Lang::get('country')) }}</h3></td>
+                        <td><h3>{{ String::capitalize(Lang::get('country')) }}</h3></td>
                         <td><h3>{{ $country->name }}</h3></td>
                     </tr>
 

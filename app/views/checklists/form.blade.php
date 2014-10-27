@@ -9,14 +9,14 @@
     @endif
 
     <div class="form-group required">
-        {{ Form::label('name', Str::title(Lang::get('nome')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('name', String::capitalize(Lang::get('nome')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::text('name', isset($checklist)? null : Input::old('name'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('nome')]) }}
         </div>
     </div>
 
     <div class="form-group">
-        {{ Form::label('user_id', Str::title(Lang::get('usuário')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('user_id', String::capitalize(Lang::get('usuário')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::select('user_id', $users, isset($checklist)? null : Input::old('user_id'), ['class' => 'form-control']) }}
         </div>

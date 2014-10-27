@@ -2,6 +2,17 @@
 
 use \LaravelBook\Ardent\Ardent;
 
+/**
+ * State
+ *
+ * @property integer $id
+ * @property string $name
+ * @property integer $country_id
+ * @property-read \Country $country
+ * @method static \Illuminate\Database\Query\Builder|\State whereId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\State whereName($value) 
+ * @method static \Illuminate\Database\Query\Builder|\State whereCountryId($value) 
+ */
 class State extends Ardent
 {
 

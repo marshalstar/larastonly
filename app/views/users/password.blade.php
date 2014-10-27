@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('Alterar senha')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('Alterar senha')) }} @stop
 
 @section('content')
 <div class="container container-main">
@@ -15,7 +15,7 @@
         {{ Form::open(array('route' => 'password.update', 'method' => 'PUT', 'class' => 'form-horizontal')) }}
 
         <div class="form-group required">
-            {{ Form::label('oldPassword', Str::title(Lang::get('Senha Atual')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+            {{ Form::label('oldPassword', String::capitalize(Lang::get('Senha Atual')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
             <div class="col-lg-10 col-sm-8">
                 {{ Form::password('oldPassword', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('Senha Atual')]) }}
             </div>
@@ -23,13 +23,13 @@
     @endif
 
     <div class="form-group required">
-        {{ Form::label('password', Str::title(Lang::get('Nova Senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('password', String::capitalize(Lang::get('Nova Senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('Nova Senha')]) }}
         </div>
     </div>
         <div class="form-group required">
-        {{ Form::label('passwordConfirmation', Str::title(Lang::get('Confirmação de  Senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('passwordConfirmation', String::capitalize(Lang::get('Confirmação de  Senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('passwordConfirmation', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('Confirmação de Senha')]) }}
         </div>

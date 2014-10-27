@@ -16,6 +16,7 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $alternative_question_id
  * @method static \Illuminate\Database\Query\Builder|\Answer whereAlternativeQuestionId($value)
  * @property-read \Evaluation $evaluation
+ * @property-read \AlternativeQuestion $alternativeQuestion
  */
 class Answer extends Ardent
 {

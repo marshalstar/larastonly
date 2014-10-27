@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ Str::title(Lang::get('editar')). ' ' .$checklist->name }} @stop
+@section('title'){{ String::capitalize(Lang::get('editar')). ' ' .$checklist->name }} @stop
 
 @section('content')
 <p id="breadCrumb">
