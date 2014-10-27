@@ -1,6 +1,5 @@
 
     Tarefas:
-        diminuir label nos formulários pela metade (de 15, mudar para 7 ou 8)
         links rápidos (criar checklist, responder checklist, pesquisar, [editar perfil, senha, sair])
         copiar forms do google - To be Done
         fazer opções no título e checklist - To be Done

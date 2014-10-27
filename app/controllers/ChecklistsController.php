@@ -1,14 +1,28 @@
 <?php
 
-class ChecklistsController extends BaseController
+class ChecklistsController extends AdminBaseController
 {
 
     protected $modelClassName = 'checklist';
 
-    public function beforeCreateOrEdit($view)
+    public function beforeAdminCreateOrEdit($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $view->with('users', $users);
+    }
+
+    public function updateAjax($id)
+    {
+        $checklist = Checklist::findOrFail($id);
+        $checklist->fill(Input::all());
+        if ($checklist->updateUniques()) {
+            return $checklist;
+        }
+    }
+
+    public function destroyAjax($id)
+    {
+        Checklist::destroy($id);
     }
 
 	public function newChecklist()

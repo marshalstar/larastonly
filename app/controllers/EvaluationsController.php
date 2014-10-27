@@ -1,11 +1,11 @@
 <?php
 
-class EvaluationsController extends BaseController
+class EvaluationsController extends AdminBaseController
 {
 
     protected $modelClassName = 'evaluation';
 
-    public function beforeCreateOrEdit($view)
+    public function beforeAdminCreateOrEdit($view)
     {
         $users = array_column(User::all()->toArray(), 'username', 'id');
         $checklists = array_column(Checklist::all()->toArray(), 'name', 'id');

@@ -1,27 +1,34 @@
 <?php
 
-class AlternativesController extends BaseController
+class AlternativesController extends AdminBaseController
 {
 
     protected $modelClassName = 'alternative';
 
-    public function beforeCreateOrEdit($view)
+    public function beforeAdminCreateOrEdit($view)
     {
         $types = array_column(Type::all()->toArray(), 'name', 'id');
         $view->with('types', $types);
     }
 
-    /*protected function logicStore()
+    public function storeAjax()
     {
-        $alternative = Alternative::firstOrCreate(Input::except('question_id'));
-        //$alternative = $this->newObj();
-        $this->beforeStore($alternative);
+        $alternative = new Alternative(Input::except('question_id'));
         if ($alternative->save()) {
             if ($question_id = Input::get('question_id')) {
                 $alternative->questions()->attach($question_id);
             }
             return $alternative;
         }
-    }/**/
+    }
+
+    public function updateAjax($id)
+    {
+        $alternative = Alternative::find($id);
+        $alternative->fill(Input::except('question_id'));
+        if ($alternative->updateUniques()) {
+            return $alternative;
+        }
+    }
 
 }

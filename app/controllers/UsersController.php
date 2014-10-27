@@ -1,11 +1,11 @@
 <?php
 
-class UsersController extends BaseController
+class UsersController extends AdminBaseController
 {
 
     protected $modelClassName = 'user';
 
-    public function beforeStore($obj)
+    public function beforeAdminStore($obj)
     {
         $obj->is_admin = Input::get('is_admin') == 'on';
     }

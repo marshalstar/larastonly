@@ -20,7 +20,7 @@
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('data-url-ajax')/checklists/indexAjax @stop
+@section('data-url-ajax'){{ URL::route("admin.checklists.index.ajax") }} @stop
 @section('show-url'){{ URL::route("admin.checklists.show", "key") }} @stop
 @section('edit-url'){{ URL::route("admin.checklists.edit", "key") }} @stop
 @section('destroy-url'){{ URL::route('admin.checklists.destroy', 'key') }} @stop

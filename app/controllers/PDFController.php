@@ -1,5 +1,5 @@
 <?php
-class PDFController extends BaseController
+class PDFController
 {
 	public function imprimir()
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class TagsController extends BaseController
+class TagsController extends AdminBaseController
 {
     protected $modelClassName = 'tag';
 

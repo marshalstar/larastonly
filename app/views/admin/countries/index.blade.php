@@ -15,7 +15,7 @@
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('data-url-ajax')/countries/indexAjax @stop
+@section('data-url-ajax'){{ URL::route("admin.countries.index.ajax") }} @stop
 @section('show-url'){{ URL::route("admin.countries.show", "key") }} @stop
 @section('edit-url'){{ URL::route("admin.countries.edit", "key") }} @stop
 @section('destroy-url'){{ URL::route('admin.countries.destroy', 'key') }} @stop

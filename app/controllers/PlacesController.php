@@ -1,11 +1,11 @@
 <?php
 
-class PlacesController extends BaseController
+class PlacesController extends AdminBaseController
 {
 
     protected $modelClassName = 'place';
 
-    protected function beforeCreateOrEdit($view)
+    protected function beforeAdminCreateOrEdit($view)
     {
         $tags = array_column(Tag::all(['id', 'name'])->toArray(), 'name', 'id');
         $cities = array_column(City::all(['id', 'name'])->toArray(), 'name', 'id');

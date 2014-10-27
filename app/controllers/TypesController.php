@@ -1,6 +1,6 @@
 <?php
 
-class TypesController extends BaseController
+class TypesController extends AdminBaseController
 {
 
     protected $modelClassName = 'type';

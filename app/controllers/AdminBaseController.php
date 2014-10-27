@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Validator;
 
-abstract class BaseController extends Controller {
+abstract class AdminBaseController extends Controller {
 
 //	/**
 //	 * Setup the layout used by the controller.
@@ -16,14 +16,6 @@ abstract class BaseController extends Controller {
 //			$this->layout = View::make($this->layout);
 //		}
 //	}
-
-    /**
-     * @var array
-     */
-    public static $validationPagination = [
-        'current' => 'required|min:0',
-        'rowCount' => 'required|min:0',
-    ];
 
     protected $modelClassName;
 
@@ -55,39 +47,14 @@ abstract class BaseController extends Controller {
     /**
      * @return string
      */
-    private function getViewBaseName()
+    private function getViewAdminBaseName()
     {
-        return str_plural($this->modelClassName);
+        return 'admin.'. str_plural($this->modelClassName);
     }
 
     /**
      */
-    protected function beforeIndex()
-    {
-
-    }
-
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function index()
-    {
-        $this->beforeIndex();
-        return View::make("{$this->getViewBaseName()}.index");
-    }
-
-    /**
-     * @param $view \Illuminate\View\View
-     */
-    protected function beforeCreateOrEdit($view)
-    {
-
-    }
-
-    /**
-     * @param $view \Illuminate\View\View
-     */
-    protected function beforeCreate($view)
+    protected function beforeAdminIndex()
     {
 
     }
@@ -95,18 +62,43 @@ abstract class BaseController extends Controller {
     /**
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function adminIndex()
     {
-        $view = View::make("{$this->getViewBaseName()}.create");
-        $this->beforeCreate($view);
-        $this->beforeCreateOrEdit($view);
+        $this->beforeAdminIndex();
+        return View::make("{$this->getViewAdminBaseName()}.index");
+    }
+
+    /**
+     * @param $view \Illuminate\View\View
+     */
+    protected function beforeAdminCreateOrEdit($view)
+    {
+
+    }
+
+    /**
+     * @param $view \Illuminate\View\View
+     */
+    protected function beforeAdminCreate($view)
+    {
+
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function adminCreate()
+    {
+        $view = View::make("{$this->getViewAdminBaseName()}.create");
+        $this->beforeAdminCreate($view);
+        $this->beforeAdminCreateOrEdit($view);
         return $view;
     }
 
     /**
      * @param $obj \LaravelBook\Ardent\Ardent
      */
-    protected function beforeStore($obj)
+    protected function beforeAdminStore($obj)
     {
 
     }
@@ -114,10 +106,10 @@ abstract class BaseController extends Controller {
     /**
      * @return \LaravelBook\Ardent\Ardent
      */
-    protected function logicStore()
+    protected function logicAdminStore()
     {
         $obj = $this->newObj(Input::all());
-        $this->beforeStore($obj);
+        $this->beforeAdminStore($obj);
         if ($obj->save()) {
             return $obj;
         }
@@ -126,13 +118,13 @@ abstract class BaseController extends Controller {
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store()
+    public function adminStore()
     {
-        if ($obj = $this->logicStore()) {
-            return Redirect::route("admin.{$this->getViewBaseName()}.index")
+        if ($obj = $this->logicAdminStore()) {
+            return Redirect::route("admin.{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
-        return Redirect::route("admin.{$this->getViewBaseName()}.create")
+        return Redirect::route("admin.{$this->getViewAdminBaseName()}.create")
             ->withErrors($obj->errors());
     }
 
@@ -141,7 +133,7 @@ abstract class BaseController extends Controller {
      * @param $obj \LaravelBook\Ardent\Ardent
      * @param $id integer
      */
-    protected function beforeShow($view, $obj, $id)
+    protected function beforeAdminShow($view, $obj, $id)
     {
 
     }
@@ -150,11 +142,11 @@ abstract class BaseController extends Controller {
      * @param $id integer
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function adminShow($id)
     {
         $obj = $this->query()->findOrFail($id);
-        $view = View::make("{$this->getViewBaseName()}.show");
-        $this->beforeShow($view, $obj, $id);
+        $view = View::make("{$this->getViewAdminBaseName()}.show");
+        $this->beforeAdminShow($view, $obj, $id);
         return $view->with($this->modelClassName, $obj);
     }
 
@@ -162,7 +154,7 @@ abstract class BaseController extends Controller {
      * @param $view \Illuminate\View\View
      * @param $obj \LaravelBook\Ardent\Ardent
      */
-    protected function beforeEdit($view, $obj)
+    protected function beforeAdminEdit($view, $obj)
     {
 
     }
@@ -171,12 +163,12 @@ abstract class BaseController extends Controller {
      * @param $id integer
      * @return \Illuminate\View\View
      */
-    public function edit($id)
+    public function adminEdit($id)
     {
         $obj = $this->query()->find($id);
-        $view = View::make("{$this->getViewBaseName()}.edit");
-        $this->beforeEdit($view, $obj);
-        $this->beforeCreateOrEdit($view);
+        $view = View::make("{$this->getViewAdminBaseName()}.edit");
+        $this->beforeAdminEdit($view, $obj);
+        $this->beforeAdminCreateOrEdit($view);
         return $view->with($this->modelClassName, $obj);
     }
 
@@ -184,7 +176,7 @@ abstract class BaseController extends Controller {
      * @param $obj \LaravelBook\Ardent\Ardent
      * @param $id integer
      */
-    protected function beforeUpdate($obj, $id)
+    protected function beforeAdminUpdate($obj, $id)
     {
 
     }
@@ -193,11 +185,11 @@ abstract class BaseController extends Controller {
      * @param $id
      * @return \Illuminate\Database\Eloquent\Model|null|static
      */
-    protected function logicUpdate($id)
+    protected function logicAdminUpdate($id)
     {
         $obj = $this->query()->find($id);
         $obj->fill(Input::all());
-        $this->beforeUpdate($obj, $id);
+        $this->beforeAdminUpdate($obj, $id);
         if ($obj->updateUniques()) {
             return $obj;
         }
@@ -207,20 +199,20 @@ abstract class BaseController extends Controller {
      * @param $id integer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function adminUpdate($id)
     {
-        if ($obj = $this->logicUpdate($id)) {
-            return Redirect::route("admin.{$this->getViewBaseName()}.index")
+        if ($obj = $this->logicAdminUpdate($id)) {
+            return Redirect::route("admin.{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route("admin.{$this->getViewBaseName()}.edit")
+        return Redirect::route("admin.{$this->getViewAdminBaseName()}.edit")
             ->withErrors($obj->errors());
     }
 
     /**
      * @param $id integer
      */
-    protected function beforeDestroy($id)
+    protected function beforeAdminDestroy($id)
     {
 
     }
@@ -229,21 +221,26 @@ abstract class BaseController extends Controller {
      * @param $id integer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function adminDestroy($id)
     {
-        $this->beforeDestroy($id);
+        $this->beforeAdminDestroy($id);
         $this->query()->getQuery()->delete($id);
-        if (!Request::ajax()) {
-            return Redirect::route("admin.{$this->getViewBaseName()}.index");
-        }
+        return Redirect::route("admin.{$this->getViewAdminBaseName()}.index");
     }
+
+    /**
+     * @var array
+     */
+    private static $validationPagination = [
+        'current' => 'required|min:0',
+        'rowCount' => 'required|min:0',
+    ];
 
     /**
      * @return array
      */
-    public function indexAjax()
+    public function adminIndexAjax()
     {
-        /** @TODO: verificar se é por ajax */
         $validator = Validator::make(Input::all(['current', 'rowCount']), self::$validationPagination);
         if ($validator->fails()) {
             App::abort(404);

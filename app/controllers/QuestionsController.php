@@ -1,17 +1,26 @@
 <?php
 
-class QuestionsController extends BaseController
+class QuestionsController extends AdminBaseController
 {
 
     protected $modelClassName = 'question';
 
-    public function beforeCreateOrEdit($view)
+    public function beforeAdminCreateOrEdit($view)
     {
         $titles = array_column(Title::all()->toArray(), 'name', 'id');
         $view->with('titles', $titles);
     }
 
-    public function destroyCascadeAjax($id)
+    public function updateAjax($id)
+    {
+        $question = Question::find($id);
+        $question->fill(Input::all());
+        if ($question->updateUniques()) {
+            return $question;
+        }
+    }
+
+    public function destroyAjax($id)
     {
         $question = Question::findOrFail($id);
         $question->alternatives()->delete();

@@ -20,7 +20,7 @@
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('data-url-ajax')/evaluations/indexAjax @stop
+@section('data-url-ajax'){{ URL::route("admin.evaluations.index.ajax") }} @stop
 @section('show-url'){{ URL::route("admin.evaluations.show", "key") }} @stop
 @section('edit-url'){{ URL::route("admin.evaluations.edit", "key") }} @stop
 @section('destroy-url'){{ URL::route('admin.evaluations.destroy', 'key') }} @stop

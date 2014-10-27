@@ -18,7 +18,7 @@
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('data-url-ajax')/tags/indexAjax @stop
+@section('data-url-ajax'){{ URL::route("admin.tags.index.ajax") }} @stop
 @section('show-url'){{ URL::route("admin.tags.show", "key") }} @stop
 @section('edit-url'){{ URL::route("admin.tags.edit", "key") }} @stop
 @section('destroy-url'){{ URL::route('admin.tags.destroy', 'key') }} @stop
