@@ -9,16 +9,18 @@ function renderTitle($titles, $types) {
             <div class="media-body">
                 <ul class="nav nav-pills">
                     <li><input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/></li>
-                    <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a></li>
-                    <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> question</a></li>
-                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> title</a></li>
+                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a></li>
                 </ul>
-                <div class="questions">
-                    <?php renderQuestion($t, $types); ?>
+                <div class="list-group">
+                    <div class="questions">
+                        <?php renderQuestion($t, $types); ?>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
                 </div>
                 <div class="titles">
                     <?php renderTitle($t->children, $types); ?>
                 </div>
+                <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>
             </div>
         </div>
     <?php endforeach;
@@ -26,20 +28,23 @@ function renderTitle($titles, $types) {
 
 function renderQuestion($title, $types) {
     foreach($title->questions as $q): ?>
-        <div class="media question" data-id="{{ $q->id  }}">
+        <div class="list-group-item question" data-id="{{ $q->id  }}">
             <div class="pull-left">
                 <h5 class="media-object">questão</h5>
             </div>
             <div class="media-body">
                 <ul class="nav nav-pills">
                     <li><input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
-                    <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a></li>
-                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> question</a></li>
-                    <li><input class="input-weight form-control" type="number" value="{{ $q->weight }}" placeholder="1"/></li>
+
+                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a></li>
+                    <div class="form-group col-lg-1 col-md-1 col-sm-1">
+                        <li><input class="input-weight form-control" type="number" value="{{ $q->weight }}" placeholder="1"/></li>
+                    </div>
                 </ul>
-                <div class="alternatives list-group">
+                <div class="alternatives">
                     <?php renderAlternative($q, $types); ?>
                 </div>
+                <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a>
             </div>
         </div>
     <?php endforeach;
@@ -47,10 +52,10 @@ function renderQuestion($title, $types) {
 
 function renderAlternative($question, $types) {
     foreach($question->alternatives as $a): ?>
-        <div class="list-group-item alternative" data-id="{{ $a->id }}">
+        <div class="alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
                 <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
-                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span> alternative</a></h8></div></li>
+                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>
                 <li>{{ Form::select(null, $types, null) }}</li>
             </ul>
         </div>
@@ -64,13 +69,6 @@ function renderAlternative($question, $types) {
 @section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
 
 @section('content')
-
-<style>
-    .question {
-        border-left: 1px solid #616161;
-        padding-left: 5px;
-    }
-</style>
 
 <div class="container container-main">
 
@@ -87,7 +85,7 @@ function renderAlternative($question, $types) {
                 </div>
                 <div class="navbar-form navbar-left">
                     <input class="input-checklist form-control" type="text" value="{{ $checklist->name }}" placeholder="Checklist"/>
-                    <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
+
                 </div>
             </div>
         </div>
@@ -96,6 +94,7 @@ function renderAlternative($question, $types) {
                 <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $types); ?>
             </div>
         </div>
+        <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
     </div>
 
 </div>
@@ -124,20 +123,24 @@ function renderAlternative($question, $types) {
                     data: data,
                     success: function(e) {
                         titleOrChecklist.children().find('.titles').first().append('<div class="media title" data-id="'+ e.id +'">\
-                                                                             <div class="pull-left">\
-                                                                                 <h5 class="media-object">título</h5>\
-                                                                             </div>\
-                                                                             <div class="media-body">\
-                                                                                 <ul class="nav nav-pills">\
-                                                                                     <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Titulo"/></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-new-question"><span class="glyphicon glyphicon-plus"></span> question</a></li>\
-                                                                                     <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span> title</a></li>\
-                                                                                 </ul>\
-                                                                                 <div class="questions"></div>\
-                                                                                 <div class="titles"></div>\
-                                                                             </div>\
-                                                                         </div>');
+                                                                                        <div class="pull-left">\
+                                                                                            <h5 class="media-object">título</h5>\
+                                                                                        </div>\
+                                                                                        <div class="media-body">\
+                                                                                            <ul class="nav nav-pills">\
+                                                                                                <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Titulo"/></li>\
+                                                                                                <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a></li>\
+                                                                                            </ul>\
+                                                                                            <div class="list-group">\
+                                                                                                <div class="questions">\
+                                                                                                </div>\
+                                                                                                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>\
+                                                                                            </div>\
+                                                                                            <div class="titles">\
+                                                                                            </div>\
+                                                                                            <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>\
+                                                                                        </div>\
+                                                                                    </div>');
                     },
                     error: function(e) {
                         console.error(e);
@@ -156,18 +159,21 @@ function renderAlternative($question, $types) {
                         title_id: title.attr('data-id')
                     },
                     success: function(e) {
-                        title.children().find('.questions').first().append('<div class="media question" data-id="'+ e.id +'">\
+                        title.children().find('.questions').first().append('<div class="list-group-item question" data-id="'+ e.id +'">\
                                                                                 <div class="pull-left">\
                                                                                     <h5 class="media-object">questão</h5>\
                                                                                 </div>\
                                                                                 <div class="media-body">\
                                                                                     <ul class="nav nav-pills">\
                                                                                         <li><input class="form-control input-question" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
-                                                                                        <li><a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> nova alternative</a></li>\
-                                                                                        <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span> destroy question</a></li>\
-                                                                                        <li><input class="input-weight form-control" type="number" value="'+ e.weight +'" placeholder="1"/></li>\
+                                                                                        <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a></li>\
+                                                                                        <div class="form-group col-lg-1 col-md-1 col-sm-1">\
+                                                                                            <li><input class="input-weight form-control" type="number" value="'+ e.weight +'" placeholder="1"/></li>\
+                                                                                        </div>\
                                                                                     </ul>\
-                                                                                    <div class="alternatives list-group"></div>\
+                                                                                    <div class="alternatives">\
+                                                                                    </div>\
+                                                                                    <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a>\
                                                                                 </div>\
                                                                             </div>');
                     },
@@ -188,10 +194,10 @@ function renderAlternative($question, $types) {
                         question_id: question.attr('data-id')
                     },
                     success: function(e) {
-                        question.children().find('.alternatives').first().append('<div class="list-group-item alternative" data-id="'+ e.id +'">\
+                        question.children().find('.alternatives').first().append('<div class="alternative" data-id="'+ e.id +'">\
                                                                                       <ul class="nav nav-pills">\
                                                                                           <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
-                                                                                          <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative">destroy alternative</a></h8></div></li>\
+                                                                                          <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>\
                                                                                           <li>{{ Form::select(null, $types, null) }}</li>\
                                                                                       </ul>\
                                                                                   </div>');
