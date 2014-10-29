@@ -253,4 +253,10 @@ class ChecklistsController extends AdminBaseController
         return Redirect::to('results/'.$keyword);
     }
 
+    public function displayChecklist(){
+        $result = DB::table('checklists')->where('name' ,'!=' ,'')->orderBy('name', 'DESC');
+        return View::make('home')->with('result', $result);
+
+    }
+
 }
