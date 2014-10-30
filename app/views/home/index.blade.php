@@ -51,6 +51,7 @@
             <li><a href="{{URL::route('admin.tags.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tags </a></li>
             <li><a href="{{URL::route('admin.titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
             <li><a href="{{URL::route('admin.types.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
+            <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
       </div>
     </div>
   </div>
@@ -92,12 +93,28 @@
       </div>
     </div>
   </div>
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarLocais">
+          Montar Checklist
+        </a>
+      </h4>
+    </div>
+    <div id="gerenciarLocais" class="panel-collapse collapse">
+      <div class="panel-body">
+            <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
+            
+      </div>
+    </div>
+  </div>
+</div>
 
         @else
            <p> Você ainda não fez seu login.</p>
            <ul>
           <li><a href="{{URL::route('users.login')}}"><i class="fa fa-sign-in"></i> Faça seu Login </a> ou <a href="/fb"><i class="fa fa-facebook-square"></i> Login Via Facebook </a>
-        
+          
            </ul>
         @endif
 
