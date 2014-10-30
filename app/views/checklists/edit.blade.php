@@ -2,24 +2,26 @@
 
 function renderTitle($titles, $types) {
     foreach($titles as $t): ?>
-        <div class="media title" data-id="{{ $t->id }}">
-            <div class="pull-left">
-                <h5 class="media-object">título</h5>
-            </div>
-            <div class="media-body">
-                <ul class="nav nav-pills">
-                    <li><input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/></li>
-                    <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a></li>
-                </ul>
-                <div class="list-group">
-                    <div class="questions">
-                        <?php renderQuestion($t, $types); ?>
+        <div class="panel panel-default title" data-id="{{ $t->id }}">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <label for="title" class="control-label col-lg-2 col-sm-4">título</label>
+                    <div class="col-lg-10 col-sm-8">
+                        <input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/>
+                        <a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
-                    <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
                 </div>
-                <div class="titles">
-                    <?php renderTitle($t->children, $types); ?>
+            </div>
+            <div class="list-group">
+                <div class="questions">
+                    <?php renderQuestion($t, $types); ?>
                 </div>
+                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
+            </div>
+            <div class="titles">
+                <?php renderTitle($t->children, $types); ?>
+            </div>
+            <div class="panel-footer">
                 <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>
             </div>
         </div>
@@ -29,23 +31,15 @@ function renderTitle($titles, $types) {
 function renderQuestion($title, $types) {
     foreach($title->questions as $q): ?>
         <div class="list-group-item question" data-id="{{ $q->id  }}">
-            <div class="pull-left">
-                <h5 class="media-object">questão</h5>
+            <h5>Título da questao</h5>
+            <input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/>
+            <a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a>
+            <h5>Tipo de pergunta</h5>
+            {{ Form::select(null, $types, null) }}
+            <div class="alternatives">
+                <?php renderAlternative($q, $types); ?>
             </div>
-            <div class="media-body">
-                <ul class="nav nav-pills">
-                    <li><input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/></li>
-
-                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a></li>
-                    <div class="form-group col-lg-1 col-md-1 col-sm-1">
-                        <li><input class="input-weight form-control" type="number" value="{{ $q->weight }}" placeholder="1"/></li>
-                    </div>
-                </ul>
-                <div class="alternatives">
-                    <?php renderAlternative($q, $types); ?>
-                </div>
-                <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a>
-            </div>
+            <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> Adicionar alternativa</a>
         </div>
     <?php endforeach;
 }
@@ -56,7 +50,6 @@ function renderAlternative($question, $types) {
             <ul class="nav nav-pills">
                 <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
                 <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>
-                <li>{{ Form::select(null, $types, null) }}</li>
             </ul>
         </div>
     <?php endforeach;
@@ -89,10 +82,8 @@ function renderAlternative($question, $types) {
                 </div>
             </div>
         </div>
-        <div class="media-list">
-            <div class="titles">
-                <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $types); ?>
-            </div>
+        <div class="titles">
+            <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $types); ?>
         </div>
         <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
     </div>
