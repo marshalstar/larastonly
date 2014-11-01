@@ -8,7 +8,7 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    {{ Form::model($user, ['route' => ['editUser', $user->id], 'method' => 'POST', 'class' => 'form-horizontal']) }}
+    {{ Form::model($user, ['files'=>true, 'route' => ['editUser', $user->id], 'method' => 'POST', 'class' => 'form-horizontal']) }}
   
 
     <div class="form-group required">
@@ -52,9 +52,9 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('picture_url', String::capitalize(Lang::get('URL da imagem')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('image', String::capitalize(Lang::get('Imagem')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-            {{ Form::text('picture_url', isset($user)? null : Input::old('picture_url'), ['class' => 'form-control', 'placeholder' => Lang::get('url da imagem')]) }}
+            {{ Form::file('image','',array('id'=>'','class'=>'')) }}
         </div>
     </div>
 

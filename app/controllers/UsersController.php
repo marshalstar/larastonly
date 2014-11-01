@@ -36,7 +36,15 @@ class UsersController extends AdminBaseController
     public function postEditUser($id)
     {
         $user = User::find($id);
-        $user->fill(Input::except('is_admin'));
+        $user->fill(Input::except('is_admin', 'image'));
+
+        $file = Input::file('image');
+
+        if($file != null){
+            $file->move('public/img/user_'.$user->id);
+            $user->picture_url = "public/img/user_".$user->id."/".$file->getFilename();
+        }
+        
         $user->updateUniques();
         return Redirect::route('home')->with('message', Lang::get('Perfil Editado com Sucesso'));
 
