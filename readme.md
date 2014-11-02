@@ -48,6 +48,8 @@
             (?)
         https://github.com/patricktalmadge/bootstrapper
             (?)
+        "super-validador" de formulários
+            https://github.com/nghuuphuoc/bootstrapvalidator/
 
     PSR's (PHP STANDARD RULES):
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md

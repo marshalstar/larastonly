@@ -1,26 +1,36 @@
 <?php
 
-function renderTitle($titles, $types) {
+function renderTitle($titles, $types, $layer = 3) {
     foreach($titles as $t): ?>
-        <div class="panel panel-default title" data-id="{{ $t->id }}">
-            <div class="panel-heading">
+        <div class="panel panel-default title" data-id="{{ $t->id }}" data-layer="{{ $layer }}" style="border: 10px solid #ddd;">
+
+            <div class="panel-heading clearfix" style="background-color: #DDD;" >
                 <div class="form-group">
-                    <label for="title" class="control-label col-lg-2 col-sm-4">título</label>
-                    <div class="col-lg-10 col-sm-8">
-                        <input class="input-title form-control" type="text" value="{{ $t->name }}" placeholder="Titulo"/>
-                        <a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a>
+                    <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                        <h{{ $layer }}>{{ String::capitalize(Lang::get("título")) }}</h{{ $layer }}>
+                    </label>
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
+                        <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}"></textarea>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                        <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                 </div>
             </div>
+
             <div class="list-group">
                 <div class="questions">
                     <?php renderQuestion($t, $types); ?>
                 </div>
                 <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
             </div>
-            <div class="titles">
-                <?php renderTitle($t->children, $types); ?>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="row titles">
+                    <?php renderTitle($t->children, $types, ++$layer); ?>
             </div>
+            </div>
+
             <div class="panel-footer">
                 <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>
             </div>
@@ -31,15 +41,37 @@ function renderTitle($titles, $types) {
 function renderQuestion($title, $types) {
     foreach($title->questions as $q): ?>
         <div class="list-group-item question" data-id="{{ $q->id  }}">
-            <h5>Título da questao</h5>
-            <input class="form-control input-question" type="text" value="{{ $q->statement }}" placeholder="Questão"/>
-            <a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a>
-            <h5>Tipo de pergunta</h5>
-            {{ Form::select(null, $types, null) }}
-            <div class="alternatives">
-                <?php renderAlternative($q, $types); ?>
+
+            <div class="row form-group">
+                <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                    {{ String::capitalize(Lang::get("questão")) }}
+                </label>
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
+                    <textarea class="input-title form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}"></textarea>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
             </div>
-            <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> Adicionar alternativa</a>
+
+            <div class="row form-group">
+                <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
+                <div class="col-lg-11 col-md-11 col-sm-10 col-xs-12">
+                    {{ Form::select(null, $types, null, ['class' => 'form-control']) }}
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row alternatives">
+                    <?php renderAlternative($q, $types); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <a href="javascript:void(0)" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="glyphicon glyphicon-plus"></span> Adicionar alternativa
+                </a>
+            </div>
         </div>
     <?php endforeach;
 }
