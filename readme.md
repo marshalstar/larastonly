@@ -1,11 +1,44 @@
+    _________ _______  _______  _______  _______  _______  _______
+    \__   __/(  ___  )(  ____ )(  ____ \(  ____ \(  ___  )(  ____ \
+       ) (   | (   ) || (    )|| (    \/| (    \/| (   ) || (    \/ _
+       | |   | (___) || (____)|| (__    | (__    | (___) || (_____ (_)
+       | |   |  ___  ||     __)|  __)   |  __)   |  ___  |(_____  )
+       | |   | (   ) || (\ (   | (      | (      | (   ) |      ) | _
+       | |   | )   ( || ) \ \__| (____/\| )      | )   ( |/\____) |(_)
+       )_(   |/     \||/   \__/(_______/|/       |/     \|\_______)
 
-    Tarefas:
-        links rápidos (criar checklist, responder checklist, pesquisar, [editar perfil, senha, sair])
-        copiar forms do google - To be Done
-        fazer opções no título e checklist - To be Done
-        fazer opção na questão - To Bone Done
-        {Juan: arrumar criação checklist e respondessação},
-        {Gorges: fazer a pagina home ficar bonita e fazer a navegação entre paginas fazer sentido e funcionar}]
+        OBRIGATÓRIAS:
+        ** fazer compartilhar no facebook [JUAN]
+        ** fazer imprimir pdf [GORGES]
+        ** fazer pesquisar
+        arrumar javascript no criar checklist [YURI] {
+            ** criar questões com alternativas padrões
+            ** fazer tipo da alternativa ser trocado na questão
+        }
+        ** fazer responder checklist corresponder ao criar checklist [YURI]
+        ** fazer as autenticações funcionarem (alguém só editar o checklist que criou, o admin só pode ser acessado por admin, etc)
+        ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
+        ** revisar navegação no site [GORGES]
+        * desrelacionar 'checklists' com com 'tags' e renomear para 'typePlace'
+        **** tornar o site AAA no WCAG
+
+        FORTEMENTE RECOMENDADAS:
+        +++ usar google maps no responder checklist
+        ++ fazer usuário se logar automaticamente no sistema ao acessar um link compartilhado
+        + adicionar porcentagem na tabela na tela de criar checklist
+
+        EXTRAS RECOMENDADOS:
+        --- corrigir footer quando a página não tem nenhum conteúdo
+        --- corrigir css da tabela do usuário
+        deixar janela de gráficos mais usável {
+            --- alternar entre gráficos de colunas e pizza
+            --- gerar tabela dos dados mais respondidos nas perguntas
+        }
+        ----- tornar o site AAA no W3C
+
+    ################################################################################################################################
+    ################################################################################################################################
+    ################################################################################################################################
 
 
     Info API's usadas:
