@@ -7,9 +7,9 @@ class PlacesController extends AdminBaseController
 
     protected function beforeAdminCreateOrEdit($view)
     {
-        $tags = array_column(Tag::all(['id', 'name'])->toArray(), 'name', 'id');
+        $typePlaces = array_column(TypePlace::all(['id', 'name'])->toArray(), 'name', 'id');
         $cities = array_column(City::all(['id', 'name'])->toArray(), 'name', 'id');
-        $view->with('tags', $tags)
+        $view->with('typePlaces', $typePlaces)
              ->with('cities', $cities);
     }
 

@@ -11,5 +11,5 @@
 			/ Editar Tag
             
           </p>
-@include('tags.form')
+@include('admin.typePlaces.form')
 @stop

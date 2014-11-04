@@ -15,20 +15,15 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Checklist[] $checklists
  */
-class Tag extends Ardent
+class TypePlace extends Ardent
 {
 
-	protected $table = 'tags';
+	protected $table = 'typePlaces';
     protected $guarded = ['id'];
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|between:3,255|unique:tags',
+        'name' => 'required|between:3,255|unique:typePlaces',
     ];
-
-    public function checklists()
-    {
-        return $this->belongsToMany('Checklist');
-    }
 
 }

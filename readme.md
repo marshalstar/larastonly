@@ -19,7 +19,6 @@
         ** fazer as autenticações funcionarem (alguém só editar o checklist que criou, o admin só pode ser acessado por admin, etc)
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
-        * desrelacionar 'checklists' com com 'tags' e renomear para 'typePlace'
         **** tornar o site AAA no WCAG
 
         FORTEMENTE RECOMENDADAS:

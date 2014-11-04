@@ -12,14 +12,14 @@ class CreateChecklistTagTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('checklist_tag', function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->integer('checklist_id')->unsigned()->index();
-			$table->foreign('checklist_id')->references('id')->on('checklists')->onDelete('cascade');
-			$table->integer('tag_id')->unsigned()->index();
-			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
-		});
+//		Schema::create('checklist_tag', function(Blueprint $table)
+//		{
+//			$table->increments('id');
+//			$table->integer('checklist_id')->unsigned()->index();
+//			$table->foreign('checklist_id')->references('id')->on('checklists')->onDelete('cascade');
+//			$table->integer('tag_id')->unsigned()->index();
+//			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+//		});
 	}
 
 

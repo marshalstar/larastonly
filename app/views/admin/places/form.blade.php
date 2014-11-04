@@ -25,7 +25,7 @@
     <div class="form-group required">
         {{ Form::label('tag_id', String::capitalize(Lang::get('tipo')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-            {{ Form::select('tag_id', $tags, isset($place)? null : Input::old('tag_id'), ['class' => 'form-control', 'required' => 'true']) }}
+            {{ Form::select('typePlace_id', $typesPlace, isset($place)? null : Input::old('tag_id'), ['class' => 'form-control', 'required' => 'true']) }}
         </div>
     </div>
 

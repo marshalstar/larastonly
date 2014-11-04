@@ -124,7 +124,7 @@ $cruds = [
     'place',
     'question',
     'state',
-    'tag',
+    'typePlace',
     'title',
     'type',
     'user',

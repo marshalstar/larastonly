@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTagsTable extends Migration {
+class CreateTypePlaceTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreateTagsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tags', function(Blueprint $table)
+		Schema::create('typePlaces', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name', 255)->unique(); /** @TODO: unique */
+			$table->string('name', 255)->unique();
 		});
 	}
 
@@ -27,7 +27,7 @@ class CreateTagsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('tags');
+		Schema::dropIfExists('typePlaces');
 	}
 
 }
