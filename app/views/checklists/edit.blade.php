@@ -101,7 +101,6 @@ function renderAlternative($question, $types) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-
     <div class="checklist" data-id="{{ $checklist->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
@@ -276,13 +275,17 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('change', '.input-checklist', function () {
-                var alternative = $(this).closest('div.checklist');
+                var checklist = $(this).closest('div.checklist');
                 var input = $(this);
                 $.ajax({
-                    url: '{{ URL::route('checklists.update.ajax', 'key')  }}'.replace('key', alternative.attr('data-id')),
+                    url: '{{ URL::route('checklists.update.ajax', 'key')  }}'.replace('key', checklist.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
-                    success: function(e) {},
+                    success: function(e) {
+                        if (e.id !== undefined) {
+                            checklist.attr('data-id', e.id);
+                        }
+                    },
                     error: function(e) {
                         console.error(e);
                     }
@@ -297,7 +300,11 @@ function renderAlternative($question, $types) {
                     url: '{{ URL::route('titles.update.ajax', 'key')  }}'.replace('key', title.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
-                    success: function(e) {},
+                    success: function(e) {
+                        if (e.id !== undefined) {
+                            title.attr('data-id', e.id);
+                        }
+                    },
                     error: function(e) {
                         console.error(e);
                     }
@@ -311,7 +318,11 @@ function renderAlternative($question, $types) {
                     url: '{{ URL::route('questions.update.ajax', 'key')  }}'.replace('key', question.attr('data-id')),
                     method: 'POST',
                     data: {statement: input.val()},
-                    success: function(e) {},
+                    success: function(e) {
+                        if (e.id !== undefined) {
+                            question.attr('data-id', e.id);
+                        }
+                    },
                     error: function(e) {
                         console.error(e);
                     }
@@ -325,7 +336,11 @@ function renderAlternative($question, $types) {
                     url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', alternative.attr('data-id')),
                     method: 'POST',
                     data: {name: input.val()},
-                    success: function(e) {},
+                    success: function(e) {
+                        if (e.id !== undefined) {
+                            alternative.attr('data-id', e.id);
+                        }
+                    },
                     error: function(e) {
                         console.error(e);
                     }
@@ -347,6 +362,7 @@ function renderAlternative($question, $types) {
             });
 
             $(document).on('change', '.input-type-alternative', function() {
+                var alternative = $(this);
                 var typeId = $(this).val();
                 var question = $(this).closest('div.question');
                 question.children().find('.alternative').each(function() {
@@ -354,7 +370,11 @@ function renderAlternative($question, $types) {
                         url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', $(this).attr('data-id')),
                         method: 'POST',
                         data: {type_id: typeId},
-                        success: function(e) {},
+                        success: function(e) {
+                            if (e.id !== undefined) {
+                                alternative.attr('data-id', e.id);
+                            }
+                        },
                         error: function(e) {
                             console.error(e);
                         }

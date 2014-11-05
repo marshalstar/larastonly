@@ -17,6 +17,8 @@ class QuestionsTableSeeder extends Seeder
                 'title_id' => $titles->get(rand(0, $titles->count() -1))->id,
                 'statement' => $faker->unique()->paragraph(). ' ' .$increment,
                 'weight' => $faker->randomDigit,
+                'created_at' => $faker->dateTimeThisYear,
+                'updated_at' => $faker->dateTimeThisMonth,
             ];
         }, range(1, DatabaseSeeder::$dimension)));
 	}

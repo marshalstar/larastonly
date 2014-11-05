@@ -29,7 +29,7 @@ class Question extends Ardent
 
     protected $table = 'questions';
     protected $guarded = ['id'];
-    public $timestamps = false;
+    //public $timestamps = false;
 
     public static $rules = [
         // 'statement' => 'required|between:3,255|unique:questions',
