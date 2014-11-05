@@ -57,7 +57,7 @@ function renderQuestion($title, $types) {
             <div class="row form-group">
                 <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
                 <div class="col-lg-11 col-md-11 col-sm-10 col-xs-12">
-                    {{ Form::select(null, $types, null, ['class' => 'form-control']) }}
+                    {{ Form::select(null, $types, null, ['class' => 'form-control input-type-alternative']) }}
                 </div>
             </div>
 
@@ -127,6 +127,8 @@ function renderAlternative($question, $types) {
 @section('script')
     {{-- @TODO: depois o Yuri deve por isto em um arquivo separado (vai se virar sozinho) --}}
     <script>
+    var question;
+    var alternatives;
         $(function() {
 
             $(document).on('click', '.btn-new-title', function() {
@@ -341,6 +343,22 @@ function renderAlternative($question, $types) {
                     error: function(e) {
                         console.error(e);
                     }
+                });
+            });
+
+            $(document).on('change', '.input-type-alternative', function() {
+                var typeId = $(this).val();
+                var question = $(this).closest('div.question');
+                question.children().find('.alternative').each(function() {
+                    $.ajax({
+                        url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', $(this).attr('data-id')),
+                        method: 'POST',
+                        data: {type_id: typeId},
+                        success: function(e) {},
+                        error: function(e) {
+                            console.error(e);
+                        }
+                    });
                 });
             });
 

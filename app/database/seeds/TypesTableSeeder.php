@@ -7,6 +7,7 @@ class TypesTableSeeder extends Seeder
 
 	public function run()
 	{
+        /* old code (random names)
 		$faker = Faker::create();
         $count = Type::count();
         $increment = ($count > DatabaseSeeder::$dimension)? $count : '';
@@ -15,7 +16,13 @@ class TypesTableSeeder extends Seeder
             return [
                 'name' => $faker->unique()->sentence(rand(1, 4)). ' ' .$increment,
             ];
-        }, range(1, DatabaseSeeder::$dimension)));
+        }, range(1, DatabaseSeeder::$dimension)));/**/
+        DB::table('types')->insert([[
+                'name' => 'radio',
+            ], [
+                'name' => 'checkbox',
+            ]
+        ]);
 	}
 
 }
