@@ -24,7 +24,7 @@ class AlternativesController extends AdminBaseController
 
     public function updateAjax($id)
     {
-        $alternative = Alternative::find($id);
+        $alternative = Alternative::findOrFail($id);
         $alternative->fill(Input::except('question_id'));
         if ($alternative->updateUniques()) {
             return $alternative;

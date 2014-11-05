@@ -110,9 +110,7 @@ abstract class AdminBaseController extends Controller {
     {
         $obj = $this->newObj(Input::all());
         $this->beforeAdminStore($obj);
-        if ($obj->save()) {
-            return $obj;
-        }
+        return $obj;
     }
 
     /**
@@ -120,12 +118,14 @@ abstract class AdminBaseController extends Controller {
      */
     public function adminStore()
     {
-        if ($obj = $this->logicAdminStore()) {
-            return Redirect::route("admin.{$this->getViewAdminBaseName()}.index")
-                ->with('message', Lang::get('Salvo com sucesso'));
+        $obj = $this->logicAdminStore();
+        if ($obj->errors()->count()) {
+            return Redirect::route("{$this->getViewAdminBaseName()}.create")
+                ->withErrors($obj->errors());
         }
-        return Redirect::route("admin.{$this->getViewAdminBaseName()}.create")
-            ->withErrors($obj->errors());
+        return Redirect::route("{$this->getViewAdminBaseName()}.index")
+            ->with('message', Lang::get('Salvo com sucesso'));
+
     }
 
     /**
@@ -202,10 +202,10 @@ abstract class AdminBaseController extends Controller {
     public function adminUpdate($id)
     {
         if ($obj = $this->logicAdminUpdate($id)) {
-            return Redirect::route("admin.{$this->getViewAdminBaseName()}.index")
+            return Redirect::route("{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route("admin.{$this->getViewAdminBaseName()}.edit")
+        return Redirect::route("{$this->getViewAdminBaseName()}.edit")
             ->withErrors($obj->errors());
     }
 

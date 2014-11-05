@@ -18,8 +18,8 @@ class CreatePlacesTable extends Migration {
 			$table->string('name');
             $table->integer('city_id')->unsigned()->index();
             $table->foreign('city_id')->references('id')->on('cities');
-            $table->integer('tag_id')->unsigned()->index()->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->integer('typePlace_id')->unsigned()->index()->nullable();
+            $table->foreign('typePlace_id')->references('id')->on('typePlaces');
 		});
 	}
 

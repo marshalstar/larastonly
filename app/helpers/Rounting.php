@@ -13,7 +13,7 @@ class Rounting {
             foreach($models as $model) {
                 $plural = Str::plural($model);
                 $routeName = Str::camel($plural);
-                $urlName = Str::slug($plural);
+                $urlName = String::slug($plural);
                 $controllerName = Str::studly($plural)."Controller";
                 $callback($urlName, $routeName, $controllerName);
             }

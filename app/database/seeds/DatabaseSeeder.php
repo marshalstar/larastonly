@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
 
     private function truncateTables()
     {
-        Tag::count() && Tag::truncate();
+        TypePlace::count() && TypePlace::truncate();
         User::count() && User::truncate();
         Checklist::count() && Checklist::truncate();
         Title::count() && Title::truncate();
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         Alternative::count() && Alternative::truncate();
         Answer::count() && Answer::truncate();
         DB::table('alternative_question')->count() && DB::table('alternative_question')->truncate();
-        DB::table('checklist_tag')->count() && DB::table('checklist_tag')->truncate();
+        //DB::table('checklist_typePlace')->count() && DB::table('checklist_typePlace')->truncate();
         Country::count() && Country::truncate();
         State::count() && State::truncate();
         City::count() && City::truncate();
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
 
     private function seederTables()
     {
-        $this->call('TagsTableSeeder');
+        $this->call('TypePlacesTableSeeder');
         $this->call('UsersTableSeeder');
         $this->call('ChecklistsTableSeeder');
         $this->call('TitlesTableSeeder');
