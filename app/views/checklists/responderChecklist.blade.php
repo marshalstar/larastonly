@@ -72,7 +72,7 @@ function renderAlternative($question) {
 @section('title'){{ Str::title(Lang::get('Responder Checklist')) }} @stop
 
 @section('content')
-
+  <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print" />
 <div class="container container-main">
 
     @if (Session::has('message'))
@@ -131,6 +131,8 @@ function renderAlternative($question) {
             <!-- <input type="text" value = "" id="coment"> -->
 
             <input type="submit" value = "Salvar Resposta">
+            <input type="button" value = "Imprimir" onclick="window.print()" style="views/style/print.css">
+
         </form>
     </div>
 
