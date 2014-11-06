@@ -34,7 +34,7 @@ class Place extends Ardent
 
     public function type()
     {
-        return $this->belongsTo('Type');
+        return $this->belongsTo('TypePlace');
     }
 
 }

@@ -11,6 +11,6 @@
 			/ Criar Estado.
             
           </p>
-@include('states.form')
+@include('admin.states.form')
 
 @stop

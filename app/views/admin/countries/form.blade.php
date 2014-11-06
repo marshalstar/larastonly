@@ -5,7 +5,7 @@
     @if (isset($country))
         {{ Form::model($country, ['route' => ['admin.countries.update', $country->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'admin/countries', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.countries.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

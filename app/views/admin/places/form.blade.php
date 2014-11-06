@@ -5,7 +5,7 @@
     @if (isset($place))
         {{ Form::model($place, ['route' => ['admin.places.update', $place->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'admin/places', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.places.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">
@@ -25,7 +25,7 @@
     <div class="form-group required">
         {{ Form::label('tag_id', String::capitalize(Lang::get('tipo')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-            {{ Form::select('typePlace_id', $typesPlace, isset($place)? null : Input::old('tag_id'), ['class' => 'form-control', 'required' => 'true']) }}
+            {{ Form::select('typePlace_id', $typePlaces, isset($place)? null : Input::old('typePlace_id'), ['class' => 'form-control', 'required' => 'true']) }}
         </div>
     </div>
 

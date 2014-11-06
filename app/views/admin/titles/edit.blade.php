@@ -11,6 +11,6 @@
 			/ Editar Título.
             
           </p>
-@include('titles.form')
+@include('admin.titles.form')
 
 @stop

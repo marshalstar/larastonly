@@ -11,6 +11,6 @@
 			/ Criar País.
             
           </p>
-@include('countries.form')
+@include('admin.countries.form')
 
 @stop

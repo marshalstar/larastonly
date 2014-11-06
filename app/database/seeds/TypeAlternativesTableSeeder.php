@@ -2,7 +2,7 @@
 
 use Faker\Factory as Faker;
 
-class TypesTableSeeder extends Seeder
+class TypeAlternativesTableSeeder extends Seeder
 {
 
 	public function run()
@@ -17,7 +17,7 @@ class TypesTableSeeder extends Seeder
                 'name' => $faker->unique()->sentence(rand(1, 4)). ' ' .$increment,
             ];
         }, range(1, DatabaseSeeder::$dimension)));/**/
-        DB::table('types')->insert([[
+        DB::table('typeAlternatives')->insert([[
                 'name' => 'radio',
             ], [
                 'name' => 'checkbox',

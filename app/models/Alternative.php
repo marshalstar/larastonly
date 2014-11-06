@@ -37,7 +37,7 @@ class Alternative extends Ardent
 
     public function type()
     {
-        return $this->belongsTo('Type');
+        return $this->belongsTo('TypeAlternative');
     }
 
 }

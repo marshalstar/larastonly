@@ -11,6 +11,6 @@
 			/ Editar Perfil.
             
           </p>
-@include('users.form')
+@include('admin.users.form')
 
 @stop

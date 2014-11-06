@@ -11,6 +11,6 @@
 			/ Editar Questão.
             
           </p>
-@include('questions.form')
+@include('admin.questions.form')
 
 @stop

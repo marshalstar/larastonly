@@ -16,15 +16,15 @@ use \LaravelBook\Ardent\Ardent;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
  * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
  */
-class Type extends Ardent
+class TypeAlternative extends Ardent
 {
 
-    protected $table = 'types';
+    protected $table = 'typeAlternatives';
     protected $guarded = ['id'];
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|between:3,255|unique:types',
+        'name' => 'required|between:3,255|unique:typeAlternatives',
     ];
 
     public function alternatives()

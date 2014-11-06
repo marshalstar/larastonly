@@ -11,6 +11,6 @@
 			/ Criar Alternativa.
             
           </p>
-@include('alternatives.form')
+@include('admin.alternatives.form')
 
 @stop

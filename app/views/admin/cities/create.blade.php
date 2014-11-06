@@ -11,6 +11,6 @@
 			/ Criar Cidade.
             
           </p>
-@include('cities.form')
+@include('admin.cities.form')
 
 @stop

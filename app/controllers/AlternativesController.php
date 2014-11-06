@@ -7,8 +7,8 @@ class AlternativesController extends AdminBaseController
 
     public function beforeAdminCreateOrEdit($view)
     {
-        $types = array_column(Type::all()->toArray(), 'name', 'id');
-        $view->with('types', $types);
+        $typeAlternatives = array_column(TypeAlternative::all()->toArray(), 'name', 'id');
+        $view->with('typeAlternatives', $typeAlternatives);
     }
 
     public function storeAjax()

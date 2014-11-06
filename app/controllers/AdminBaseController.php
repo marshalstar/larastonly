@@ -123,8 +123,11 @@ abstract class AdminBaseController extends Controller {
             return Redirect::route("{$this->getViewAdminBaseName()}.create")
                 ->withErrors($obj->errors());
         }
-        return Redirect::route("{$this->getViewAdminBaseName()}.index")
-            ->with('message', Lang::get('Salvo com sucesso'));
+        if ($obj->save()) {
+            return Redirect::route("{$this->getViewAdminBaseName()}.index")
+                ->with('message', Lang::get('Salvo com sucesso'));
+        }
+        /** @TODO: não deu para salvar. mostrar erro para o admin */
 
     }
 
@@ -190,9 +193,7 @@ abstract class AdminBaseController extends Controller {
         $obj = $this->query()->find($id);
         $obj->fill(Input::all());
         $this->beforeAdminUpdate($obj, $id);
-        if ($obj->updateUniques()) {
-            return $obj;
-        }
+        return $obj;
     }
 
     /**
@@ -201,12 +202,17 @@ abstract class AdminBaseController extends Controller {
      */
     public function adminUpdate($id)
     {
-        if ($obj = $this->logicAdminUpdate($id)) {
+        $obj = $this->logicAdminUpdate($id);
+        if ($obj->errors()->count()) {
+            return Redirect::route("{$this->getViewAdminBaseName()}.edit")
+                ->withErrors($obj->errors());
+        }
+        if ($obj->updateUniques()) {
             return Redirect::route("{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        return Redirect::route("{$this->getViewAdminBaseName()}.edit")
-            ->withErrors($obj->errors());
+        /** @TODO: não deu para editar. mostrar erro para o admin */
+
     }
 
     /**

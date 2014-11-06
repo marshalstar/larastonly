@@ -1,6 +1,6 @@
 <?php
 
-function renderTitle($titles, $types, $layer = 3) {
+function renderTitle($titles, $typeAlternatives, $layer = 3) {
     foreach($titles as $t): ?>
         <div class="panel panel-default title" data-id="{{ $t->id }}" data-layer="{{ $layer }}" style="border: 10px solid #ddd;">
 
@@ -20,14 +20,14 @@ function renderTitle($titles, $types, $layer = 3) {
 
             <div class="list-group">
                 <div class="questions">
-                    <?php renderQuestion($t, $types); ?>
+                    <?php renderQuestion($t, $typeAlternatives); ?>
                 </div>
                 <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="row titles">
-                    <?php renderTitle($t->children, $types, ++$layer); ?>
+                    <?php renderTitle($t->children, $typeAlternatives, ++$layer); ?>
             </div>
             </div>
 
@@ -38,7 +38,7 @@ function renderTitle($titles, $types, $layer = 3) {
     <?php endforeach;
 }
 
-function renderQuestion($title, $types) {
+function renderQuestion($title, $typeAlternatives) {
     foreach($title->questions as $q): ?>
         <div class="list-group-item question" data-id="{{ $q->id  }}">
 
@@ -57,13 +57,13 @@ function renderQuestion($title, $types) {
             <div class="row form-group">
                 <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
                 <div class="col-lg-11 col-md-11 col-sm-10 col-xs-12">
-                    {{ Form::select(null, $types, null, ['class' => 'form-control input-type-alternative']) }}
+                    {{ Form::select(null, $typeAlternatives, null, ['class' => 'form-control input-type-alternative']) }}
                 </div>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row alternatives">
-                    <?php renderAlternative($q, $types); ?>
+                    <?php renderAlternative($q, $typeAlternatives); ?>
                 </div>
             </div>
 
@@ -76,7 +76,7 @@ function renderQuestion($title, $types) {
     <?php endforeach;
 }
 
-function renderAlternative($question, $types) {
+function renderAlternative($question, $typeAlternatives) {
     foreach($question->alternatives as $a): ?>
         <div class="alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
@@ -114,7 +114,7 @@ function renderAlternative($question, $types) {
             </div>
         </div>
         <div class="titles">
-            <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $types); ?>
+            <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeAlternatives); ?>
         </div>
         <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
     </div>
@@ -222,7 +222,7 @@ function renderAlternative($question, $types) {
                                                                                       <ul class="nav nav-pills">\
                                                                                           <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
                                                                                           <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>\
-                                                                                          <li>{{ Form::select(null, $types, null) }}</li>\
+                                                                                          <li>{{ Form::select(null, $typeAlternatives, null) }}</li>\
                                                                                       </ul>\
                                                                                   </div>');
                     },

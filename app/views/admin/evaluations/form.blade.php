@@ -5,7 +5,7 @@
     @if (isset($evaluation))
         {{ Form::model($evaluation, ['route' => ['admin.evaluations.update', $evaluation->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'admin/evaluations', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.evaluations.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

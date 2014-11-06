@@ -11,6 +11,6 @@
 			/ Criar Local.
             
           </p>
-@include('places.form')
+@include('admin.places.form')
 
 @stop

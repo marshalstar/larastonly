@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('checklists.form')
+@include('admin.checklists.form')
 
 @stop

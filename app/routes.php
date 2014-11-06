@@ -126,7 +126,7 @@ $cruds = [
     'state',
     'typePlace',
     'title',
-    'type',
+    'typeAlternative',
     'user',
 ];
 Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $controller) {

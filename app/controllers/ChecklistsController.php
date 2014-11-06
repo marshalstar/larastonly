@@ -124,10 +124,11 @@ class ChecklistsController extends AdminBaseController
     {
         /** @TODO: autenticar aqui */
         $checklist = Checklist::findOrFail($id);
-        $types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
+        //$types = array_column(Type::all(['id', 'name'])->toArray(), 'name', 'id');
         return View::make('checklists.edit')
             ->with('checklist', $checklist)
-            ->with('types', $types);
+            //->with('types', $types)
+            ;
     }
 
     public function dataGraphicsAjax($checklistId)

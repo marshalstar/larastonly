@@ -11,6 +11,6 @@
 			/ Editar Checklist.
             
           </p>
-@include('checklists.form')
+@include('admin.checklists.form')
 
 @stop

@@ -4,6 +4,6 @@
 
 @section('content')
 
-@include('questions.form')
+@include('admin.questions.form')
 
 @stop

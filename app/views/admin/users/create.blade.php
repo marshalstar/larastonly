@@ -8,6 +8,6 @@
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
 			 / Criar nova conta.
           </p>
-@include('users.form')
+@include('admin.users.form')
  
 @stop

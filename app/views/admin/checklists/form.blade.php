@@ -5,7 +5,7 @@
     @if (isset($checklist))
         {{ Form::model($checklist, ['route' => ['admin.checklists.update', $checklist->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'admin/checklists', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.checklists.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">

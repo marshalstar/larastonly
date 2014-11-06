@@ -4,7 +4,7 @@
     @if (isset($alternative))
         {{ Form::model($alternative, ['route' => ['admin.alternatives.update', $alternative->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['url' => 'admin/alternatives', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.alternatives.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">
@@ -15,9 +15,9 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('type', String::capitalize(Lang::get('tipo')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('typeAlternative', String::capitalize(Lang::get('tipo')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-            {{ Form::select('type_id', $types, isset($alternative)? null : Input::old('type_id'), ['class' => 'form-control']) }}
+            {{ Form::select('typeAlternative_id', $typeAlternatives, isset($alternative)? null : Input::old('typeAlternative_id'), ['class' => 'form-control']) }}
         </div>
     </div>
 
