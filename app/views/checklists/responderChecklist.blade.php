@@ -79,6 +79,7 @@ function renderAlternative($question) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
+
     <div class="title panel" data-id="{{ $checklist->id }}">
         <form name="checklist<?= $checklist->id ?>" action="respondeu" method="POST">
 
@@ -134,8 +135,19 @@ function renderAlternative($question) {
             <input type="button" value = "Imprimir" onclick="window.print()" style="views/style/print.css">
 
         </form>
+   
+
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_PT/sdk.js#xfbml=1&appId=647197332061835&version=v2.0";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     </div>
 
+    <div class="fb-share-button" data-href="{{ $_SERVER['PHP_SELF'] }}" data-layout="button"></div>
 </div>
 
 @stop
