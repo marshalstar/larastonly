@@ -44,6 +44,10 @@ class DatabaseSeeder extends Seeder
         User::count() && User::truncate();
         Checklist::count() && Checklist::truncate();
         Title::count() && Title::truncate();
+        Country::count() && Country::truncate();
+        State::count() && State::truncate();
+        City::count() && City::truncate();
+        Place::count() && Place::truncate();
         Evaluation::count() && Evaluation::truncate();
         Type::count() && Type::truncate();
         Question::count() && Question::truncate();
@@ -51,10 +55,6 @@ class DatabaseSeeder extends Seeder
         Answer::count() && Answer::truncate();
         DB::table('alternative_question')->count() && DB::table('alternative_question')->truncate();
         //DB::table('checklist_typePlace')->count() && DB::table('checklist_typePlace')->truncate();
-        Country::count() && Country::truncate();
-        State::count() && State::truncate();
-        City::count() && City::truncate();
-        Place::count() && Place::truncate();
         $this->command->comment('Truncate Tables');
     }
 
@@ -64,16 +64,16 @@ class DatabaseSeeder extends Seeder
         $this->call('UsersTableSeeder');
         $this->call('ChecklistsTableSeeder');
         $this->call('TitlesTableSeeder');
+        $this->call('CountriesTableSeeder');
+        $this->call('StatesTableSeeder');
+        $this->call('CitiesTableSeeder');
+        $this->call('PlacesTableSeeder');
         $this->call('EvaluationsTableSeeder');
         $this->call('TypesTableSeeder');
         $this->call('QuestionsTableSeeder');
         $this->call('AlternativesTableSeeder');
         $this->call('AlternativesQuestionsTableSeeder');
         $this->call('AnswersTableSeeder');
-        $this->call('CountriesTableSeeder');
-        $this->call('StatesTableSeeder');
-        $this->call('CitiesTableSeeder');
-        $this->call('PlacesTableSeeder');
     }
 
 }
