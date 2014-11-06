@@ -6,7 +6,7 @@ class AlternativesQuestionsTableSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $alternatives = Alternative::all();
         $questions = Question::all();
 

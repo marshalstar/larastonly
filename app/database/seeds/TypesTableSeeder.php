@@ -8,7 +8,7 @@ class TypesTableSeeder extends Seeder
 	public function run()
 	{
         /* old code (random names)
-		$faker = Faker::create();
+		$faker = Faker::create('pt_BR');
         $count = Type::count();
         $increment = ($count > DatabaseSeeder::$dimension)? $count : '';
 

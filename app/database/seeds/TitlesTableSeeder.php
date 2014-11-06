@@ -8,7 +8,7 @@ class TitlesTableSeeder extends Seeder
 	public function run()
 	{
 
-        $faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $checklists = Checklist::all(['id']);
 
         $number = intval(DatabaseSeeder::$dimension/3) +1;

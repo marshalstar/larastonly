@@ -7,7 +7,7 @@ class AlternativesTableSeeder extends Seeder
 
 	public function run()
 	{
-		$faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $types = Type::all();
 
         DB::table('alternatives')->insert(array_map(function() use ($faker, $types) {

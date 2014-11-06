@@ -7,7 +7,7 @@ class ChecklistsTableSeeder extends Seeder
 
 	public function run()
 	{
-		$faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $users = User::all();
 
         $number = intval(DatabaseSeeder::$dimension/10) +1;

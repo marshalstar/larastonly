@@ -8,7 +8,7 @@ class UsersTableSeeder extends Seeder
 
 	public function run()
 	{
-        $faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $count = User::count();
         $increment = ($count > DatabaseSeeder::$dimension)? $count : '';
 

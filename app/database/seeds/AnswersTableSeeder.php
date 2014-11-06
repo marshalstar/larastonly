@@ -7,7 +7,7 @@ class AnswersTableSeeder extends Seeder
 
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('pt_BR');
 
         $evaluations = Evaluation::all();
         $alternativesQuestions = DB::table('alternative_question')

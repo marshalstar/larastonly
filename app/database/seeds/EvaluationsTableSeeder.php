@@ -7,7 +7,7 @@ class EvaluationsTableSeeder extends Seeder
 
 	public function run()
 	{
-		$faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $users = User::all();
         $checklists = Checklist::all();
         $places = Place::all();

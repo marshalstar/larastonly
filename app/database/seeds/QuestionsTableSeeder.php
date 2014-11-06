@@ -7,7 +7,7 @@ class QuestionsTableSeeder extends Seeder
 
 	public function run()
 	{
-		$faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         $titles = Title::all();
         $count = Question::count();
         $increment = ($count > 30)? $count : '';
