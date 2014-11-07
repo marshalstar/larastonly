@@ -47,16 +47,16 @@ function renderQuestion($title, $typeAlternatives) {
                     {{ String::capitalize(Lang::get("questão")) }}
                 </label>
                 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                    <textarea class="input-title form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}"></textarea>
+                    <textarea class="input-question form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}"></textarea>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="javascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </div>
 
             <div class="row form-group">
                 <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
-                <div class="col-lg-11 col-md-11 col-sm-10 col-xs-12">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
                     {{ Form::select(null, $typeAlternatives, null, ['class' => 'form-control input-type-alternative']) }}
                 </div>
             </div>
@@ -81,7 +81,13 @@ function renderAlternative($question, $typeAlternatives) {
         <div class="alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
                 <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
-                <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>
+                <li>
+                    <div class="form-group form-group-sm">
+                        <h8>
+                            <a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>
+                        </h8>
+                    </div>
+                </li>
             </ul>
         </div>
     <?php endforeach;
@@ -113,8 +119,10 @@ function renderAlternative($question, $typeAlternatives) {
                 </div>
             </div>
         </div>
-        <div class="titles">
-            <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeAlternatives); ?>
+        <div>
+            <div class="titles">
+                <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeAlternatives); ?>
+            </div>
         </div>
         <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
     </div>
@@ -124,264 +132,28 @@ function renderAlternative($question, $typeAlternatives) {
 @stop
 
 @section('script')
-    {{-- @TODO: depois o Yuri deve por isto em um arquivo separado (vai se virar sozinho) --}}
     <script>
-    var question;
-    var alternatives;
-        $(function() {
+        var titleNameDefault = "{{ String::capitalize(Lang::get("título")) }}";
+        var titleUrlStoreAjax = "{{ URL::route("titles.store.ajax") }}";
+        var titleUrlDestroyAjax = "{{ URL::route("titles.destroy.ajax", "key") }}";
+        var titleUrlUpdateAjax = "{{ URL::route("titles.update.ajax", "key") }}";
 
-            $(document).on('click', '.btn-new-title', function() {
-                var data = {
-                    name: '{{ Lang::get('título') }}',
-                    checklist_id: '{{ $checklist->id }}'
-                };
-                var titleOrChecklist = $(this).closest('div.title');
-                if (titleOrChecklist.length == 0) {
-                    titleOrChecklist = $(this).closest('div.checklist');
-                } else {
-                    data['title_id'] = titleOrChecklist.attr('data-id');
-                }
-                $.ajax({
-                    url: "{{ URL::route("titles.store.ajax") }}",
-                    method: "POST",
-                    data: data,
-                    success: function(e) {
-                        titleOrChecklist.children().find('.titles').first().append('<div class="media title" data-id="'+ e.id +'">\
-                                                                                        <div class="pull-left">\
-                                                                                            <h5 class="media-object">título</h5>\
-                                                                                        </div>\
-                                                                                        <div class="media-body">\
-                                                                                            <ul class="nav nav-pills">\
-                                                                                                <li><input class="input-title form-control" type="text" value="'+ e.name +'" placeholder="Titulo"/></li>\
-                                                                                                <li><a href="javascript:void(0)" class="btn-del-title"><span class="glyphicon glyphicon-remove"></span></a></li>\
-                                                                                            </ul>\
-                                                                                            <div class="list-group">\
-                                                                                                <div class="questions">\
-                                                                                                </div>\
-                                                                                                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>\
-                                                                                            </div>\
-                                                                                            <div class="titles">\
-                                                                                            </div>\
-                                                                                            <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>\
-                                                                                        </div>\
-                                                                                    </div>');
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
+        var questionStatementDefault = "{{ Lang::get("questão") }}";
+        var questionUrlStoreAjax = "{{ URL::route("questions.store.ajax") }}";
+        var questionUrlDestroyAjax = "{{ URL::route("questions.destroy.ajax", "key") }}";
+        var questionUrlUpdateAjax = "{{ URL::route("questions.update.ajax", "key") }}";
 
-            });
+        var alternativeNameDefault = "{{ Lang::get("alternativa") }}";
+        var alternativeUrlStoreAjax = "{{ URL::route("alternatives.store.ajax") }}";
+        var alternativeUrlDestroyAjax = "{{ URL::route("alternatives.destroy.ajax", "key") }}";
+        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.update.ajax", "key") }}";
 
-            $(document).on('click', '.btn-new-question', function() {
-                var title = $(this).closest('div.title');
-                $.ajax({
-                    url: "{{ URL::route("questions.store.ajax") }}",
-                    method: "POST",
-                    data: {
-                        statement: '{{ Lang::get('questão') }}',
-                        title_id: title.attr('data-id')
-                    },
-                    success: function(e) {
-                        title.children().find('.questions').first().append('<div class="list-group-item question" data-id="'+ e.id +'">\
-                                                                                <div class="pull-left">\
-                                                                                    <h5 class="media-object">questão</h5>\
-                                                                                </div>\
-                                                                                <div class="media-body">\
-                                                                                    <ul class="nav nav-pills">\
-                                                                                        <li><input class="form-control input-question" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
-                                                                                        <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a></li>\
-                                                                                        <div class="form-group col-lg-1 col-md-1 col-sm-1">\
-                                                                                            <li><input class="input-weight form-control" type="number" value="'+ e.weight +'" placeholder="1"/></li>\
-                                                                                        </div>\
-                                                                                    </ul>\
-                                                                                    <div class="alternatives">\
-                                                                                    </div>\
-                                                                                    <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a>\
-                                                                                </div>\
-                                                                            </div>');
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
+        var typeAlternativeIdDefault = "{{ TypeAlternative::first()->id }}";
 
-            $(document).on('click', '.btn-new-alternative', function () {
-                var question = $(this).closest('div.question');
-                $.ajax({
-                    url: "{{ URL::route("alternatives.store.ajax") }}",
-                    method: "POST",
-                    data: {
-                        name: '{{ Lang::get('alternativa') }}',
-                        type_id: '{{ Type::query()->first(['id'])->id }}',
-                        question_id: question.attr('data-id')
-                    },
-                    success: function(e) {
-                        question.children().find('.alternatives').first().append('<div class="alternative" data-id="'+ e.id +'">\
-                                                                                      <ul class="nav nav-pills">\
-                                                                                          <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
-                                                                                          <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>\
-                                                                                          <li>{{ Form::select(null, $typeAlternatives, null) }}</li>\
-                                                                                      </ul>\
-                                                                                  </div>');
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
+        var checklistId = {{ $checklist->id }};
+        var checklistUrlUpdateAjax = "{{ URL::route("checklists.update.ajax", "key") }}";
 
-            $(document).on('click', '.btn-del-title', function () {
-                var title = $(this).closest('div.title');
-                $.ajax({
-                    url: "{{ URL::route("titles.destroy.ajax", 'key') }}".replace('key', title.attr("data-id")),
-                    method: "DELETE",
-                    success: function(e) {
-                        title.remove();
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('click', '.btn-del-question', function () {
-                var question = $(this).closest('div.question');
-                $.ajax({
-                    url: "{{ URL::route("questions.destroy.ajax", 'key') }}".replace('key', question.attr("data-id")),
-                    method: "DELETE",
-                    success: function(e) {
-                        question.remove();
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('click', '.btn-del-alternative', function () {
-                var alternative = $(this).closest('div.alternative');
-                $.ajax({
-                    url: "{{ URL::route("alternatives.destroy.ajax", 'key') }}".replace('key', alternative.attr("data-id")),
-                    method: "DELETE",
-                    success: function(e) {
-                        alternative.remove();
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-checklist', function () {
-                var checklist = $(this).closest('div.checklist');
-                var input = $(this);
-                $.ajax({
-                    url: '{{ URL::route('checklists.update.ajax', 'key')  }}'.replace('key', checklist.attr('data-id')),
-                    method: 'POST',
-                    data: {name: input.val()},
-                    success: function(e) {
-                        if (e.id !== undefined) {
-                            checklist.attr('data-id', e.id);
-                        }
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-title', function () {
-                var title = $(this).closest('div.title');
-                var input = $(this);
-                console.log('sim');
-                $.ajax({
-                    url: '{{ URL::route('titles.update.ajax', 'key')  }}'.replace('key', title.attr('data-id')),
-                    method: 'POST',
-                    data: {name: input.val()},
-                    success: function(e) {
-                        if (e.id !== undefined) {
-                            title.attr('data-id', e.id);
-                        }
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-question', function () {
-                var question = $(this).closest('div.question');
-                var input = $(this);
-                $.ajax({
-                    url: '{{ URL::route('questions.update.ajax', 'key')  }}'.replace('key', question.attr('data-id')),
-                    method: 'POST',
-                    data: {statement: input.val()},
-                    success: function(e) {
-                        if (e.id !== undefined) {
-                            question.attr('data-id', e.id);
-                        }
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-alternative', function () {
-                var alternative = $(this).closest('div.alternative');
-                var input = $(this);
-                $.ajax({
-                    url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', alternative.attr('data-id')),
-                    method: 'POST',
-                    data: {name: input.val()},
-                    success: function(e) {
-                        if (e.id !== undefined) {
-                            alternative.attr('data-id', e.id);
-                        }
-                    },
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-weight', function () {
-                var question = $(this).closest('div.question');
-                var input = $(this);
-                $.ajax({
-                    url: '{{ URL::route('questions.update.ajax', 'key')  }}'.replace('key', question.attr('data-id')),
-                    method: 'POST',
-                    data: {weight: input.val()},
-                    success: function(e) {},
-                    error: function(e) {
-                        console.error(e);
-                    }
-                });
-            });
-
-            $(document).on('change', '.input-type-alternative', function() {
-                var alternative = $(this);
-                var typeId = $(this).val();
-                var question = $(this).closest('div.question');
-                question.children().find('.alternative').each(function() {
-                    $.ajax({
-                        url: '{{ URL::route('alternatives.update.ajax', 'key')  }}'.replace('key', $(this).attr('data-id')),
-                        method: 'POST',
-                        data: {type_id: typeId},
-                        success: function(e) {
-                            if (e.id !== undefined) {
-                                alternative.attr('data-id', e.id);
-                            }
-                        },
-                        error: function(e) {
-                            console.error(e);
-                        }
-                    });
-                });
-            });
-
-        });
+        var htmlSelect = '{{ Form::select(null, $typeAlternatives, null) }}';
     </script>
+    <script src="/js/checklists/edit.js" async></script>
 @stop

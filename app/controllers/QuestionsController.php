@@ -13,66 +13,50 @@ class QuestionsController extends AdminBaseController
 
     public function storeAjax()
     {
-        //$question = new Question(Input::all());
-        $question = Question::first();
-        /*if ($question->save()) {
-            return $question;
-        }/**/
+        $question = new Question(Input::all());
+        if (!$question->save()) {
+            /** @TODO: dar exception e mostrar mensagem mensagem de erro */
+            return App::abort(404);
+        }
+
+        $alternatives = $this->alternativesOfLastChangedQuestionByChecklist($question->id);
+
+        if (count($alternatives)) {
+            $alternatives = json_decode(json_encode($alternatives, true), true);
+        } else {
+            $alternatives = Alternative::query()
+                ->limit(1)
+                ->get(['name', 'id'])
+                ->toArray();
+        }
+
+        $alternativeIds = array_column($alternatives, 'id');
+        $question->alternatives()->attach($alternativeIds);
+
+        $question->alternatives = $alternatives;
+        return $question;
+    }
+
+    /**
+     * @param $questionId
+     * @return array
+     */
+    private function alternativesOfLastChangedQuestionByChecklist($questionId)
+    {
         return DB::table('alternatives')
             ->join('alternative_question', 'alternative_question.alternative_id', '=', 'alternatives.id')
-            ->whereIn('alternative_question.question_id', function($q) use ($question) {
-                $q->from('questions')
-                    ->join('titles', 'questions.title_id', '=', 'titles.id')
-                    ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
-                    ->whereIn('checklists.id', function($q) use ($question) {
-                        $q->select('checklists.id')
-                            ->from('checklists')
-                            ->join('titles', 'titles.checklist_id', '=', 'checklists.id')
-                            ->join('questions', 'questions.title_id', '=', 'titles.id')
-                            ->where('questions.id', '=', $question->id);
-                    })
-                    ->orderBy('updated_at', 'desc')
-                    ->limit(1)
-                    ->get(['questions.*']);
-            });
-
-
-            DB::table('questions')
+            ->join('questions', 'alternative_question.question_id', '=', 'questions.id')
             ->join('titles', 'questions.title_id', '=', 'titles.id')
             ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
-            ->whereIn('checklists.id', function($q) use ($question) {
-                $q->select('checklists.id')
-                    ->from('checklists')
-                    ->join('titles', 'titles.checklist_id', '=', 'checklists.id')
-                    ->join('questions', 'questions.title_id', '=', 'titles.id')
-                    ->where('questions.id', '=', $question->id);
+            ->whereIn('checklists.id', function($query) use ($questionId) {
+                $query->from('questions')
+                    ->join('titles', 'questions.title_id', '=', 'titles.id')
+                    ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
+                    ->where('questions.id', '=', $questionId)
+                    ->get(['checklists.id']);
             })
-            ->orderBy('updated_at', 'desc')
-            ->limit(1)
-            ->get(['questions.*']);
-//        return DB::table('questions')
-//            ->join('titles', 'questions.title_id', '=', 'titles.id')
-//            ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
-//            ->whereIn('checklists.id', function($q) use ($question) {
-//                $q->select('checklists.id')
-//                  ->from('checklists')
-//                  ->join('titles', 'titles.checklist_id', '=', 'checklists.id')
-//                  ->join('questions', 'questions.title_id', '=', 'titles.id')
-//                  ->where('questions.id', '=', $question->id);
-//            })
-//            ->orderBy('updated_at', 'desc')
-//            ->limit(1)
-//            ->get(['questions.*']);
-        $checklistId = $question->title->checklist->id;
-        $ns = Checklist::find($checklistId)
-            ->titles
-            ->questions;
-//            ->orderBy('updated_at', 'desc')
-//            ->first();
-        return $ns;
-        $lastQuestionChanged = Question::orderBy('updated_at', 'desc')->first();
-        $question->alternatives = $lastQuestionChanged->alternatives->toArray();
-        return $question;
+            ->groupBy('alternatives.id')
+            ->get(['alternatives.name', 'alternatives.id']);
     }
 
     public function updateAjax($id)
@@ -87,7 +71,7 @@ class QuestionsController extends AdminBaseController
     public function destroyAjax($id)
     {
         $question = Question::findOrFail($id);
-        $question->alternatives()->delete();
+        $question->alternatives()->detach();
         $question->delete();
     }
 

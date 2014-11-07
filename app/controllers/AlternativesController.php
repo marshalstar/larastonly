@@ -33,8 +33,12 @@ class AlternativesController extends AdminBaseController
 
     public function destroyAjax($id)
     {
+        if (!Input::get('question_id')) {
+            throw new Exception('not found question');
+        }
+        $question = Question::findOrFail(Input::get('question_id'));
         $alternative = Alternative::findOrFail($id);
-        $alternative->delete();
+        $question->alternatives()->detach($alternative->id);
     }
 
 }

@@ -42,7 +42,7 @@ class TitlesController extends AdminBaseController
             $this->destroyTitle($t);
         }
         foreach($title->questions as $q) {
-            $q->alternatives()->delete();
+            $q->alternatives()->detach();
             $q->delete();
         }
         $title->delete();
