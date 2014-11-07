@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
+/** @TODO: quando tiver certeza, apagar isto aqui */
 class CreateChecklistTagTable extends Migration {
 
 	/**

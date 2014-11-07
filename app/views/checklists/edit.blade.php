@@ -57,7 +57,7 @@ function renderQuestion($title, $typeQuestions) {
             <div class="row form-group">
                 <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
                 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                    {{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-alternative']) }}
+                    {{ Form::select(null, $typeQuestions, $q->typeQuestion_id, ['class' => 'form-control input-type-question']) }}
                 </div>
             </div>
 
@@ -107,6 +107,16 @@ function renderAlternative($question, $typeQuestions) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
+    {{--**** funcionalidade da professora (⌐■_■) ****--}}
+    <input type="checkbox" class="pattern-alternatives"/> {{ Lang::get('Usar um padrão de alternativas') }}
+    <div class="alternatives-default" style="display: none;">
+        <a href="javascript:void(0)" class="btn-new-alternative-default">
+            <span class="glyphicon glyphicon-plus"></span> Adicionar alternativa
+        </a>
+        <div class="row alternatives"></div>
+    </div>
+    {{--****  ****--}}
+
     <div class="checklist" data-id="{{ $checklist->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
@@ -146,7 +156,7 @@ function renderAlternative($question, $typeQuestions) {
         var alternativeNameDefault = "{{ Lang::get("alternativa") }}";
         var alternativeUrlStoreAjax = "{{ URL::route("alternatives.store.ajax") }}";
         var alternativeUrlDestroyAjax = "{{ URL::route("alternatives.destroy.ajax", "key") }}";
-        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.update.ajax", "key") }}";
+        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.store.ajax", "key") }}";
 
         var typeQuestionIdDefault = "{{ TypeQuestion::first()->id }}";
 
@@ -154,7 +164,7 @@ function renderAlternative($question, $typeQuestions) {
         var checklistId = {{ $checklist->id }};
         var checklistUrlUpdateAjax = "{{ URL::route("checklists.update.ajax", "key") }}";
 
-        var htmlSelect = '{{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-alternative']) }}';
+        var htmlSelect = '{{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-question']) }}';
     </script>
     <script src="/js/checklists/edit.js" async></script>
 @stop

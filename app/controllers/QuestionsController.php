@@ -15,39 +15,47 @@ class QuestionsController extends AdminBaseController
 
     public function storeAjax()
     {
-        $question = new Question(Input::all());
+        $question = new Question(Input::except(['alternatives-default']));
         if (!$question->validate()) {
             throw new Exception(implode(' ', $question->errors()->toArray()));
         }
 
-        /** @TODO: validar se o checklist é do usuário logado */
-        $questions = Title::findOrFail(Input::get('title_id'))
-            ->checklist
-            ->questions()
-            ->orderBy('questions.updated_at', 'desc')
-            ->groupBy('questions.id')
-            ->limit(1)
-            ->get();
+        $checklist = Title::findOrFail(Input::get('title_id'))->checklist;
+        $checklist->authOrFail();
 
         $alternatives = null;
-        $typeQuestionId = null;
-        if (count($questions)) {
-            $lastQuestion = $questions[0];
-            $alternatives = $lastQuestion->alternatives;
-            $alternatives = json_decode(json_encode($alternatives, true), true);
-            $typeQuestionId = $lastQuestion->typeQuestion_id;
-        }
-        if (!$alternatives) {
-            $alternatives = Alternative::query()
-                ->limit(1)
-                ->get(['name', 'id'])
-                ->toArray();
-            $typeQuestionId = TypeQuestion::query()
-                ->limit(1)
-                ->get(['id'])[0]->id;
+        $typeQuestion = null;
+        if ($alternativesDefault = Input::get('alternatives-default')) {
+            /**** funcionalidade da professora (⌐■_■) ****/
+            $alternatives = [];
+            foreach($alternativesDefault as $alternativeName) {
+                $alternative = Alternative::firstOrCreate(['name' => $alternativeName]);
+                $alternatives[] = [
+                    'id' => $alternative->id,
+                    'name' => $alternative->name,
+                ];
+            }
+            $typeQuestion = TypeQuestion::first();
+            /****  ****/
+
+        } else {
+            $lastQuestion = $checklist->lastQuestionUpdated();
+            if ($lastQuestion) {
+                $alternatives = $lastQuestion->alternatives;
+                $alternatives = json_decode(json_encode($alternatives, true), true);
+                $typeQuestion = TypeQuestion::findOrFail($lastQuestion->typeQuestion_id);
+            }
         }
 
-        $question->typeQuestion_id = $typeQuestionId;
+        if (!$alternatives) {
+            $alternatives = Alternative::query()
+                            ->limit(1)
+                            ->get(['name', 'id'])
+                            ->toArray();
+            $typeQuestion = TypeQuestion::first();
+        }
+
+        $question->typeQuestion_id = $typeQuestion->id;
         if (!$question->save()) {
             throw new Exception(Lang::get('Não foi possível salvar a questão.'));
         }
@@ -61,8 +69,8 @@ class QuestionsController extends AdminBaseController
 
     public function updateAjax($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
-        $question = Question::find($id);
+        $question = Question::findOrFail($id);
+        $question->authOrFail();
         $question->fill(Input::all());
         if ($question->updateUniques()) {
             return $question;
@@ -71,8 +79,8 @@ class QuestionsController extends AdminBaseController
 
     public function destroyAjax($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
         $question = Question::findOrFail($id);
+        $question->authOrFail();
         $question->alternatives()->detach();
         $question->delete();
     }

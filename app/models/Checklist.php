@@ -67,4 +67,20 @@ class Checklist extends Ardent
         }
     }
 
+    /**
+     * @return Question
+     */
+    public function lastQuestionUpdated()
+    {
+        $result = $this->questions()
+                  ->orderBy('questions.updated_at', 'desc')
+                  ->groupBy('questions.id')
+                  ->limit(1)
+                  ->get();
+
+        if (count($result)) {
+            return $result[0];
+        }
+    }
+
 }

@@ -7,47 +7,42 @@ class AlternativesController extends AdminBaseController
 
     public function storeAjax()
     {
-        /** @TODO: validar se o checklist é do usuário logado */
-        $alternative = new Alternative(Input::except('question_id'));
-        if ($alternative->save()) {
-            if ($questionId = Input::get('question_id')) {
-                $question = Question::findOrFail($questionId);
-                $alternative->questions()->attach($questionId);
-                $this->updateQuestion($question);
+        $name = Input::get('name');
+        $question = $this->getQuestionOrFail();
+        $alternative = Alternative::whereName($name)->first();
+        if (!$alternative) {
+            $alternative = new Alternative(['name' => $name]);
+            if (!$alternative->save()) {
+                throw new Exception(Lang::get('não foi possível criar alternativa'));
             }
-            return $alternative;
         }
-    }
 
-    public function updateAjax($id)
-    {
-        /** @TODO: validar se o checklist é do usuário logado */
-        $alternative = Alternative::findOrFail($id);
-        $alternative->fill(Input::except('question_id'));
-        if ($alternative->updateUniques()) {
-            $this->updateQuestion($alternative->question);
-            return $alternative;
-        }
+        $alternative->questions()->attach($question->id);
+        $question->touch();
+        return $alternative;
     }
 
     public function destroyAjax($id)
     {
-        if (!Input::get('question_id')) {
-            throw new Exception('not found question');
-        }
-        $question = Question::findOrFail(Input::get('question_id'));
+        $question = $this->getQuestionOrFail();
         $alternative = Alternative::findOrFail($id);
         $question->alternatives()->detach($alternative->id);
-        $this->updateQuestion($question);
+        $question->touch();
     }
 
     /**
-     * @param $question \Illuminate\Database\Eloquent\Model
+     * @return Question
+     * @throws Exception
      */
-    private function updateQuestion($question)
+    private function getQuestionOrFail()
     {
-        $question->updated_at = \Carbon\Carbon::now();
-        $question->save();
+        $questionId = Input::get('question_id');
+        if (!$questionId) {
+            throw new Exception(Lang::get('questão inválida'));
+        }
+        $question = Question::findOrFail($questionId);
+        $question->authOrFail();
+        return $question;
     }
 
 }

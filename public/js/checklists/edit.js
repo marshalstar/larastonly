@@ -80,7 +80,8 @@ $(function() {
             method: "POST",
             data: {
                 statement: questionStatementDefault,
-                title_id: title.attr('data-id')
+                title_id: title.attr('data-id'),
+                "alternatives-default": getAlternativesDefault()
             },
             success: function(e) {
                 appendQuestion(title.children().find('.questions').first(), e);
@@ -254,7 +255,9 @@ $(function() {
         $.ajax({
             url: questionUrlUpdateAjax.replace('key', question.attr('data-id')),
             method: 'POST',
-            data: {statement: input.val()},
+            data: {
+                statement: input.val()
+            },
             success: function(e) {
                 if (e.id !== undefined) {
                     question.attr('data-id', e.id);
@@ -268,11 +271,15 @@ $(function() {
 
     function inputAlternative() {
         var alternative = $(this).closest('div.alternative');
+        var question = $(this).closest('div.question');
         var input = $(this);
         $.ajax({
             url: alternativeUrlUpdateAjax.replace('key', alternative.attr('data-id')),
             method: 'POST',
-            data: {name: input.val()},
+            data: {
+                name: input.val(),
+                question_id: question.attr('data-id')
+            },
             success: function(e) {
                 if (e.id !== undefined) {
                     alternative.attr('data-id', e.id);
@@ -290,7 +297,9 @@ $(function() {
         $.ajax({
             url: questionUrlUpdateAjax.replace('key', question.attr('data-id')),
             method: 'POST',
-            data: {weight: input.val()},
+            data: {
+                weight: input.val()
+            },
             success: function(e) {},
             error: function(e) {
                 console.error(e);
@@ -299,25 +308,65 @@ $(function() {
     }
 
     function inputTypeQuestion() {
-        var alternative = $(this);
-        var typeQuestionId = $(this).val();
         var question = $(this).closest('div.question');
-        question.children().find('.alternative').each(function() {
-            $.ajax({
-                url: alternativeUrlUpdateAjax.replace('key', $(this).attr('data-id')),
-                method: 'POST',
-                data: {typeQuestion_id: typeQuestionId},
-                success: function(e) {
-                    if (e.id !== undefined) {
-                        alternative.attr('data-id', e.id);
-                    }
-                },
-                error: function(e) {
-                    console.error(e);
+        var input = $(this);
+        $.ajax({
+            url: questionUrlUpdateAjax.replace('key', question.attr('data-id')),
+            method: 'POST',
+            data: {
+                typeQuestion_id: input.val()
+            },
+            success: function(e) {
+                if (e.id !== undefined) {
+                    alternative.attr('data-id', e.id);
                 }
-            });
+            },
+            error: function(e) {
+                console.error(e);
+            }
         });
     }
+
+    /**** funcionalidade da professora (⌐■_■) ****/
+
+    $(document).on('click', '.btn-new-alternative-default', function() {
+        $(".alternatives-default .alternatives").append('<div class="alternative">\
+                                                            <ul class="nav nav-pills">\
+                                                                <li><input class="input-alternative-default form-control" type="text" value="'+ alternativeNameDefault +'" placeholder="'+ alternativeNameDefault +'"/></li>\
+                                                                <li>\
+                                                                    <div class="form-group form-group-sm">\
+                                                                        <h8>\
+                                                                            <a href="javascript:void(0)" class="control-label btn-del-alternative-default"><span class="glyphicon glyphicon-remove"></span></a>\
+                                                                        </h8>\
+                                                                    </div>\
+                                                                </li>\
+                                                            </ul>\
+                                                         </div>');
+    });
+
+    $(document).on('click', '.btn-del-alternative-default', function() {
+        $(this).closest('.alternative').remove();
+    });
+
+    function getAlternativesDefault() {
+        if ($('.pattern-alternatives').is(':checked')) {
+            var alternatives = [];
+            $('.alternatives-default').children().find('.input-alternative-default').each(function() {
+                alternatives.push($(this).val());
+            });
+            console.log(alternatives);
+            if (alternatives !== undefined && alternatives.length > 0) {
+                return alternatives;
+            }
+        }
+        return null;
+    }
+
+    $(document).on('click', '.pattern-alternatives', function() {
+        $('.alternatives-default').slideToggle(100);
+    });
+
+    /****  ****/
 
 });
 
@@ -344,4 +393,4 @@ $(function() {
  var checklistUrlUpdateAjax = [...];
 
  var htmlSelect = [...];
- */
+*/

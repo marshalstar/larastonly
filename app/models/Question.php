@@ -74,4 +74,19 @@ class Question extends Ardent
         return $this->belongsTo('TypeQuestion');
     }
 
+    public function authOrFail()
+    {
+        $userId = Auth::user()->id;
+        $result = DB::table('questions')
+            ->join('titles', 'questions.title_id', '=', 'titles.id')
+            ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
+            ->where('checklists.user_id', '=', $userId)
+            ->where('questions.id', '=', $this->id)
+            ->get(['questions.id']);
+
+        if (!count($result)) {
+            throw new Exception(Lang::get('questão inválida'));
+        }
+    }
+
 }

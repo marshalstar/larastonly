@@ -61,4 +61,18 @@ class Title extends Ardent
         return $this->hasMany('Title', 'title_id');
     }
 
+    public function authOrFail()
+    {
+        $userId = Auth::user()->id;
+        $result = DB::table('titles')
+            ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
+            ->where('checklists.user_id', '=', $userId)
+            ->where('titles.id', '=', $this->id)
+            ->get(['titles.id']);
+
+        if (!count($result)) {
+            throw new Exception(Lang::get('título inválido'));
+        }
+    }
+
 }
