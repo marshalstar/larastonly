@@ -24,7 +24,7 @@ class CreateEvaluationsTable extends Migration {
 			
 			
             
-            $table->integer('place_id')->unsigned()->index()->nullable();
+            $table->integer('place_id')->unsigned()->index();
             $table->foreign('place_id')->references('id')->on('places');
 		});
 	}
