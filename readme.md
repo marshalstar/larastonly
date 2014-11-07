@@ -11,9 +11,6 @@
         ** fazer compartilhar no facebook [JUAN]
         ** fazer imprimir pdf [GORGES]
         ** fazer pesquisar
-        arrumar javascript no criar checklist [YURI] {
-            ** criar questões com alternativas padrões
-        }
         ** fazer responder checklist corresponder ao criar checklist [YURI]
         ** fazer as autenticações funcionarem (alguém só editar o checklist que criou, o admin só pode ser acessado por admin, etc)
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
