@@ -50,7 +50,7 @@
               <li><a href="{{URL::route('admin.evaluations.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Avaliações</a></li>
               <li><a href="{{URL::route('admin.typePlaces.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipos de Lugar </a></li>
               <li><a href="{{URL::route('admin.titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
-              <li><a href="{{URL::route('admin.typeQuestions.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
+              <li><a href="{{URL::route('admin.typeAlternatives.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
               <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
             </div>
           </div>
@@ -125,7 +125,7 @@
       foreach ($evaluations as $e) {
     ?>
 
-      <pre><?= $e->place #var_dump($e["attributes"]) ?></pre> 
+      <pre><a href='http://localhost:8000/evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></pre> 
     
     <?php    
       }
