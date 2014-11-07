@@ -21,7 +21,7 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-    echo "show!";
+    ddd('nice');
 });
 
 Route::get('/debug2', function()
@@ -72,6 +72,8 @@ Route::group(['prefix' => 'checklists'], function ()
     Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
 
     Route::any('/edit/{id}', ['as' => 'checklists.edit', 'uses' => 'ChecklistsController@edit']);
+
+    Route::any('/lixo/{id}', ['as' => 'checklists.lixo', 'uses' => 'ChecklistsController@lixo']);
 });
 
 Route::group(array('before' => 'auth'), function()
