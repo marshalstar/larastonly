@@ -21,6 +21,8 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
+    Alternative::findOrFail(1)->authOrFail();
+    ddd('rato');
 });
 
 Route::get('/debug2', function()

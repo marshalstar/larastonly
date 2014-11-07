@@ -57,4 +57,14 @@ class Checklist extends Ardent
         return static::where('name', 'LIKE', '%'.$keyword.'%')->paginate(3);
     }
 
+    /**
+     * @throws Exception
+     */
+    public function authOrFail()
+    {
+        if ($this->user_id != Auth::user()->id) {
+            throw new Exception(Lang::get("checklist inválido"));
+        }
+    }
+
 }

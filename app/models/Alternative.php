@@ -31,8 +31,27 @@ class Alternative extends Ardent
         // 'name' => 'required|unique:alternatives|between:3,255',
     ];
 
-    public function questions() {
+    public function questions()
+    {
         return $this->belongsToMany('Question');
+    }
+
+    public function authOrFail($questionId)
+    {
+        $userId = Auth::user()->id;
+        $result = DB::table('alternative_question')
+            ->join('questions', 'questions.id', '=', 'alternative_question.question_id')
+            ->join('titles', 'questions.title_id', '=', 'titles.id')
+            ->join('checklists', 'titles.checklist_id', '=', 'checklists.id')
+            ->join('users', 'checklists.user_id', '=', 'users.id')
+            //->groupBy('users.id')
+            ->where('alternative_question.alternative_id', '=', $this->id)
+            ->where('questions.id', '=', $questionId)
+            //->where('users.id', '=', $userId)
+            ->get(['questions.id']);
+        //->get([DB::raw('COUNT(users.id)')]);
+
+        !d($result);
     }
 
 }
