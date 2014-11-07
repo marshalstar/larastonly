@@ -13,7 +13,7 @@ $(function() {
     $(document).on('change', '.input-question', inputQuestion);
     $(document).on('change', '.input-alternative', inputAlternative);
     $(document).on('change', '.input-weight', inputWeight);
-    $(document).on('change', '.input-type-alternative', inputTypeAlternative);
+    $(document).on('change', '.input-type-question', inputTypeQuestion);
 
     function newTitle() {
         var data = {
@@ -97,23 +97,35 @@ $(function() {
     }
 
     function appendQuestion(container, e) {
+
         container.append('<div class="list-group-item question" data-id="'+ e.id +'">\
-                            <div class="pull-left">\
-                                <h5 class="media-object">questão</h5>\
-                            </div>\
-                            <div class="media-body">\
-                                <ul class="nav nav-pills">\
-                                    <li><input class="form-control input-question" type="text" value="'+ e.statement +'" placeholder="Questão"/></li>\
-                                    <li><a href="javascript:void(0)" class="btn-del-question"><span class="glyphicon glyphicon-remove"></span></a></li>\
-                                    <div class="form-group col-lg-1 col-md-1 col-sm-1">\
-                                        <li><input class="input-weight form-control" type="number" value="'+ e.weight +'" placeholder="1"/></li>\
-                                    </div>\
-                                </ul>\
-                                <div class="alternatives">\
+                        \
+                            <div class="row form-group">\
+                                <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">'+ questionStatementDefault +'</label>\
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">\
+                                    <textarea class="input-question form-control" rows="2" value="'+ e.statement +'" placeholder="'+ questionStatementDefault +'"></textarea>\
                                 </div>\
-                                <a href="javascript:void(0)" class="btn-new-alternative"><span class="glyphicon glyphicon-plus"></span> alternative</a>\
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">\
+                                    <a href="javascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>\
+                                </div>\
+                            </div>\
+                        \
+                            <div class="row form-group">\
+                                <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">'+ typeQuestionNameDefault +'</label>\
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">'+ htmlSelect +'</div>\
+                            </div>\
+                        \
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">\
+                                <div class="row alternatives"></div>\
+                            </div>\
+                        \
+                            <div class="row">\
+                                <a href="javascript:void(0)" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">\
+                                    <span class="glyphicon glyphicon-plus"></span> Adicionar alternativa\
+                                </a>\
                             </div>\
                         </div>');
+        $("[data-id='"+ e.id+"'] select").val(e.typeQuestion_id);
     }
 
     function newAlternative() {
@@ -123,7 +135,6 @@ $(function() {
             method: "POST",
             data: {
                 name: alternativeNameDefault,
-                typeAlternative_id: typeAlternativeIdDefault,
                 question_id: question.attr('data-id')
             },
             success: function(e) {
@@ -136,13 +147,19 @@ $(function() {
     }
 
     function appendAlternative(container, e) {
+
         container.append('<div class="alternative" data-id="'+ e.id +'">\
-                              <ul class="nav nav-pills">\
-                                  <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
-                                  <li><div class="form-group form-group-sm"><h8><a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a></h8></div></li>\
-                                  <li>'+ htmlSelect +'</li>\
-                              </ul>\
-                          </div>');
+            <ul class="nav nav-pills">\
+                <li><input class="input-alternative form-control" type="text" value="'+ e.name +'" placeholder="Alternativa"/></li>\
+                <li>\
+                    <div class="form-group form-group-sm">\
+                        <h8>\
+                            <a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>\
+                        </h8>\
+                    </div>\
+                </li>\
+            </ul>\
+        </div>');
     }
 
     function delTitle() {
@@ -281,15 +298,15 @@ $(function() {
         });
     }
 
-    function inputTypeAlternative() {
+    function inputTypeQuestion() {
         var alternative = $(this);
-        var typeAlternativeId = $(this).val();
+        var typeQuestionId = $(this).val();
         var question = $(this).closest('div.question');
         question.children().find('.alternative').each(function() {
             $.ajax({
                 url: alternativeUrlUpdateAjax.replace('key', $(this).attr('data-id')),
                 method: 'POST',
-                data: {typeAlternative_id: typeAlternativeId},
+                data: {typeQuestion_id: typeQuestionId},
                 success: function(e) {
                     if (e.id !== undefined) {
                         alternative.attr('data-id', e.id);
@@ -320,7 +337,8 @@ $(function() {
  var alternativeUrlDestroyAjax = [...];
  var alternativeUrlUpdateAjax = [...];
 
- var typeAlternativeIdDefault = [...];
+ var typeQuestionNameDefault = [...];
+ var typeQuestionIdDefault = [...];
 
  var checklistId = [...];
  var checklistUrlUpdateAjax = [...];

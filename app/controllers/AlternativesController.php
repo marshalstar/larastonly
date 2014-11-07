@@ -5,18 +5,15 @@ class AlternativesController extends AdminBaseController
 
     protected $modelClassName = 'alternative';
 
-    public function beforeAdminCreateOrEdit($view)
-    {
-        $typeAlternatives = array_column(TypeAlternative::all()->toArray(), 'name', 'id');
-        $view->with('typeAlternatives', $typeAlternatives);
-    }
-
     public function storeAjax()
     {
+        /** @TODO: validar se o checklist é do usuário logado */
         $alternative = new Alternative(Input::except('question_id'));
         if ($alternative->save()) {
-            if ($question_id = Input::get('question_id')) {
-                $alternative->questions()->attach($question_id);
+            if ($questionId = Input::get('question_id')) {
+                $question = Question::findOrFail($questionId);
+                $alternative->questions()->attach($questionId);
+                $this->updateQuestion($question);
             }
             return $alternative;
         }
@@ -24,9 +21,11 @@ class AlternativesController extends AdminBaseController
 
     public function updateAjax($id)
     {
+        /** @TODO: validar se o checklist é do usuário logado */
         $alternative = Alternative::findOrFail($id);
         $alternative->fill(Input::except('question_id'));
         if ($alternative->updateUniques()) {
+            $this->updateQuestion($alternative->question);
             return $alternative;
         }
     }
@@ -39,6 +38,16 @@ class AlternativesController extends AdminBaseController
         $question = Question::findOrFail(Input::get('question_id'));
         $alternative = Alternative::findOrFail($id);
         $question->alternatives()->detach($alternative->id);
+        $this->updateQuestion($question);
+    }
+
+    /**
+     * @param $question \Illuminate\Database\Eloquent\Model
+     */
+    private function updateQuestion($question)
+    {
+        $question->updated_at = \Carbon\Carbon::now();
+        $question->save();
     }
 
 }

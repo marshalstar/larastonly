@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
         City::count() && City::truncate();
         Place::count() && Place::truncate();
         Evaluation::count() && Evaluation::truncate();
-        TypeAlternative::count() && TypeAlternative::truncate();
+        TypeQuestion::count() && TypeQuestion::truncate();
         Question::count() && Question::truncate();
         Alternative::count() && Alternative::truncate();
         Answer::count() && Answer::truncate();
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
         $this->call('CitiesTableSeeder');
         $this->call('PlacesTableSeeder');
         $this->call('EvaluationsTableSeeder');
-        $this->call('TypeAlternativesTableSeeder');
+        $this->call('TypeQuestionsTableSeeder');
         $this->call('QuestionsTableSeeder');
         $this->call('AlternativesTableSeeder');
         $this->call('AlternativesQuestionsTableSeeder');

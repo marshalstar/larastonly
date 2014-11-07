@@ -2,7 +2,7 @@
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
             / 
-            <a href="{{URL::route('admin.typeAlternatives.index')}}" title= "Volta a página gerenciar tipos"> Gerenciar Tipos </a>
+            <a href="{{URL::route('admin.typeQuestions.index')}}" title= "Volta a página gerenciar tipos"> Gerenciar Tipos </a>
             / Criar novo tipo.
             
           </p>
@@ -10,16 +10,16 @@
 
     {{ HTML::ul($errors->all()) }}
 
-    @if (isset($typeAlternative))
-        {{ Form::model($typeAlternative, ['route' => ['admin.typeAlternatives.update', $typeAlternative->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+    @if (isset($typeQuestion))
+        {{ Form::model($typeQuestion, ['route' => ['admin.typeQuestions.update', $typeQuestion->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
     @else
-        {{ Form::open(['route' => 'admin.typeAlternatives.store', 'class' => 'form-horizontal']) }}
+        {{ Form::open(['route' => 'admin.typeQuestions.store', 'class' => 'form-horizontal']) }}
     @endif
 
     <div class="form-group required">
         {{ Form::label('name', String::capitalize(Lang::get('nome')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
-            {{ Form::text('name', isset($typeAlternative)? null : Input::old('name'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('nome')]) }}
+            {{ Form::text('name', isset($typeQuestion)? null : Input::old('name'), ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('nome')]) }}
         </div>
     </div>
 

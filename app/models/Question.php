@@ -69,4 +69,9 @@ class Question extends Ardent
         return $this->belongsTo('Title');
     }
 
+    public function type()
+    {
+        return $this->belongsTo('TypeQuestion');
+    }
+
 }

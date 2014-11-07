@@ -50,7 +50,7 @@
             <li><a href="{{URL::route('admin.evaluations.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Avaliações</a></li>
             <li><a href="{{URL::route('admin.typePlaces.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipos de Lugar </a></li>
             <li><a href="{{URL::route('admin.titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
-            <li><a href="{{URL::route('admin.typeAlternatives.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
+            <li><a href="{{URL::route('admin.typeQuestions.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
             <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
       </div>
     </div>

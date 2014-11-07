@@ -28,7 +28,7 @@
                     </tr>
 
                     <tr>
-                        <td><h4>{{ Lang::get('Enunciad') }}</h4></td>
+                        <td><h4>{{ Lang::get('Enunciado') }}</h4></td>
                         <td><h4>{{ $question->statement }}</h4></td>
                     </tr>
     
@@ -37,8 +37,12 @@
                         <td><h4>{{ $question->title_id }}</h4></td>
                     </tr>
                     <tr>
-                        <td><<h4>{{ Lang::get('Peso')}}</h4></td>
+                        <td><h4>{{ Lang::get('Peso')}}</h4></td>
                         <td><h4>{{ $question->weight}}</h4></td>
+                    </tr>
+                    <tr>
+                        <td><h4>{{ Lang::get('Tipo id')}}</h4></td>
+                        <td><h4>{{ $question->typeQuestion_id}}</h4></td>
                     </tr>
                 </tbody>
             </table>

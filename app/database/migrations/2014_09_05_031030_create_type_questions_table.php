@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTypeAlternativesTable extends Migration {
+class CreateTypeQuestionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateTypeAlternativesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('typeAlternatives', function(Blueprint $table)
+		Schema::create('typeQuestions', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name', 255)->unique();
@@ -27,7 +27,7 @@ class CreateTypeAlternativesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('typeAlternatives');
+		Schema::dropIfExists('typeQuestions');
 	}
 
 }

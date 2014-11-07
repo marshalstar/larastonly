@@ -9,7 +9,7 @@
 			
             
           </p>
-@section('create-url'){{ URL::route("admin.typeAlternatives.create") }} @stop
+@section('create-url'){{ URL::route("admin.typeQuestions.create") }} @stop
 @section('text-create-button'){{ Lang::get('Novo Tipo') }}@stop
 
 @section('table-content')
@@ -18,7 +18,7 @@
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 
-@section('data-url-ajax'){{ URL::route("admin.typeAlternatives.index.ajax") }} @stop
-@section('show-url'){{ URL::route("admin.typeAlternatives.show", "key") }} @stop
-@section('edit-url'){{ URL::route("admin.typeAlternatives.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('admin.typeAlternatives.destroy', 'key') }} @stop
+@section('data-url-ajax'){{ URL::route("admin.typeQuestions.index.ajax") }} @stop
+@section('show-url'){{ URL::route("admin.typeQuestions.show", "key") }} @stop
+@section('edit-url'){{ URL::route("admin.typeQuestions.edit", "key") }} @stop
+@section('destroy-url'){{ URL::route('admin.typeQuestions.destroy', 'key') }} @stop

@@ -22,6 +22,7 @@ class ChecklistsController extends AdminBaseController
 
     public function destroyAjax($id)
     {
+        /** @TODO: validar se o checklist é do usuário logado */
         Checklist::destroy($id);
     }
 
@@ -113,6 +114,7 @@ class ChecklistsController extends AdminBaseController
 
     public function create()
     {
+        /** @TODO: validar se o checklist é do usuário logado */
         $checklist = new Checklist;
         $checklist->user_id = Auth::user()->id;
         $checklist->name = 'checklist';
@@ -122,26 +124,17 @@ class ChecklistsController extends AdminBaseController
 
     public function edit($id)
     {
-        /** @TODO: autenticar aqui */
+        /** @TODO: validar se o checklist é do usuário logado */
         $checklist = Checklist::findOrFail($id);
-        $typeAlternatives = array_column(TypeAlternative::all(['id', 'name'])->toArray(), 'name', 'id');
+        $typeQuestions = array_column(TypeQuestion::all(['id', 'name'])->toArray(), 'name', 'id');
         return View::make('checklists.edit')
             ->with('checklist', $checklist)
-            ->with('typeAlternatives', $typeAlternatives);
-    }
-
-    public function lixo($id)
-    {
-        /** @TODO: autenticar aqui */
-        $checklist = Checklist::findOrFail($id);
-        $typeAlternatives = array_column(TypeAlternative::all(['id', 'name'])->toArray(), 'name', 'id');
-        return View::make('checklists.lixo')
-            ->with('checklist', $checklist)
-            ->with('typeAlternatives', $typeAlternatives);
+            ->with('typeQuestions', $typeQuestions);
     }
 
     public function dataGraphicsAjax($checklistId)
     {
+        /** @TODO: separar isto em outro método (tarefa para Yuri) */
         $query = DB::table('checklists')
                     ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
                     ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
@@ -178,8 +171,9 @@ class ChecklistsController extends AdminBaseController
                         'alternative_question.question_id as questionId',
                         'questions.statement as questionStatement',
                         DB::raw('COUNT(alternative_question.alternative_id) as total'),
-                    ]);/**/
-        /** @TODO: manda o Yuri parar de ser babaca e parar de fazer esta conversão de stdClass para array inútil */
+                    ]);
+
+        /** @TODO: arrumar isto: não é necessário converter stdClass para array antes de criar $ns */
         $arrayData = json_decode(json_encode($stdData), true);
         $ns = [];
         foreach($arrayData as $arr) {

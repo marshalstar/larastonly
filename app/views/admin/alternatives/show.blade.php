@@ -32,11 +32,6 @@
                         <td><h4>{{ $alternative->name }}</h4></td>
                     </tr>
 
-                    <tr>
-                        <td><h4>{{ Lang::get('Type_id') }}</h4></td>
-                        <td><h4>{{ $alternative->type_id }}</h4></td>
-                    </tr>
-
                 </tbody>
             </table>
         </div>

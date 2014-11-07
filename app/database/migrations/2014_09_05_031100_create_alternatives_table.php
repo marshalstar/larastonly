@@ -16,8 +16,6 @@ class CreateAlternativesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name', 255)->nullable();
-			$table->integer('typeAlternative_id')->unsigned()->index();
-            $table->foreign('typeAlternative_id')->references('id')->on('typeAlternatives');
 		});
 	}
 

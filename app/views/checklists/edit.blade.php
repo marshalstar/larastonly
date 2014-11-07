@@ -1,6 +1,6 @@
 <?php
 
-function renderTitle($titles, $typeAlternatives, $layer = 3) {
+function renderTitle($titles, $typeQuestions, $layer = 3) {
     foreach($titles as $t): ?>
         <div class="panel panel-default title" data-id="{{ $t->id }}" data-layer="{{ $layer }}" style="border: 10px solid #ddd;">
 
@@ -20,14 +20,14 @@ function renderTitle($titles, $typeAlternatives, $layer = 3) {
 
             <div class="list-group">
                 <div class="questions">
-                    <?php renderQuestion($t, $typeAlternatives); ?>
+                    <?php renderQuestion($t, $typeQuestions); ?>
                 </div>
                 <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="row titles">
-                    <?php renderTitle($t->children, $typeAlternatives, ++$layer); ?>
+                    <?php renderTitle($t->children, $typeQuestions, ++$layer); ?>
             </div>
             </div>
 
@@ -38,7 +38,7 @@ function renderTitle($titles, $typeAlternatives, $layer = 3) {
     <?php endforeach;
 }
 
-function renderQuestion($title, $typeAlternatives) {
+function renderQuestion($title, $typeQuestions) {
     foreach($title->questions as $q): ?>
         <div class="list-group-item question" data-id="{{ $q->id  }}">
 
@@ -57,13 +57,13 @@ function renderQuestion($title, $typeAlternatives) {
             <div class="row form-group">
                 <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">{{ String::capitalize(Lang::get("tipo da questão")) }}</label>
                 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                    {{ Form::select(null, $typeAlternatives, null, ['class' => 'form-control input-type-alternative']) }}
+                    {{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-alternative']) }}
                 </div>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="row alternatives">
-                    <?php renderAlternative($q, $typeAlternatives); ?>
+                    <?php renderAlternative($q, $typeQuestions); ?>
                 </div>
             </div>
 
@@ -76,7 +76,7 @@ function renderQuestion($title, $typeAlternatives) {
     <?php endforeach;
 }
 
-function renderAlternative($question, $typeAlternatives) {
+function renderAlternative($question, $typeQuestions) {
     foreach($question->alternatives as $a): ?>
         <div class="alternative" data-id="{{ $a->id }}">
             <ul class="nav nav-pills">
@@ -121,7 +121,7 @@ function renderAlternative($question, $typeAlternatives) {
         </div>
         <div>
             <div class="titles">
-                <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeAlternatives); ?>
+                <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeQuestions); ?>
             </div>
         </div>
         <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
@@ -148,12 +148,13 @@ function renderAlternative($question, $typeAlternatives) {
         var alternativeUrlDestroyAjax = "{{ URL::route("alternatives.destroy.ajax", "key") }}";
         var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.update.ajax", "key") }}";
 
-        var typeAlternativeIdDefault = "{{ TypeAlternative::first()->id }}";
+        var typeQuestionIdDefault = "{{ TypeQuestion::first()->id }}";
 
+        var typeQuestionNameDefault = "{{ String::capitalize(Lang::get("tipo da questão")) }}";
         var checklistId = {{ $checklist->id }};
         var checklistUrlUpdateAjax = "{{ URL::route("checklists.update.ajax", "key") }}";
 
-        var htmlSelect = '{{ Form::select(null, $typeAlternatives, null) }}';
+        var htmlSelect = '{{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-alternative']) }}';
     </script>
     <script src="/js/checklists/edit.js" async></script>
 @stop

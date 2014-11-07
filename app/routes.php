@@ -21,7 +21,6 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-    ddd('nice');
 });
 
 Route::get('/debug2', function()
@@ -29,8 +28,14 @@ Route::get('/debug2', function()
     return View::make('debug');
 });
 
-
-Route::pattern('id', '[0-9]+');
+Route::pattern('id', '\d+');
+Route::pattern('hash', '[a-z0-9]+');
+Route::pattern('hex', '[a-f0-9]+');
+Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+Route::pattern('base', '[a-zA-Z0-9]+');
+Route::pattern('slug', '[a-z0-9-]+');
+Route::pattern('username', '[a-z0-9_-]{3,16}');
+// font: http://www.laravel-tricks.com/tricks/routing-patterns
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
@@ -42,14 +47,14 @@ Route::group(['before' => 'guest'], function()
 
         Route::post('/new', ['as' => 'users.new', 'uses' => 'UsersController@postNew']);
 
-        Route::get('/activate/{code}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
+        Route::get('/activate/{hash}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
     });
 
     Route::get('/forgot', ['as' => 'forgot', 'uses' => 'UsersController@getForgot']);
 
     Route::post('/forgot', ['as' => 'forgot', 'uses' => 'UsersController@postForgot']);
 
-    Route::get('/recover/{code}', array('as' => 'recover', 'uses' => 'UsersController@getRecover'));
+    Route::get('/recover/{hash}', array('as' => 'recover', 'uses' => 'UsersController@getRecover'));
 
     Route::get('/login', ['as' => 'users.login', 'uses' => 'UsersController@getLogin']);
 
@@ -67,13 +72,11 @@ Route::group(['prefix' => 'checklists'], function ()
 {
     Route::get('/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
 
-    Route::get('/graphics/{id}/{query?}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
+    Route::get('/graphics/{id}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
 
     Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
 
     Route::any('/edit/{id}', ['as' => 'checklists.edit', 'uses' => 'ChecklistsController@edit']);
-
-    Route::any('/lixo/{id}', ['as' => 'checklists.lixo', 'uses' => 'ChecklistsController@lixo']);
 });
 
 Route::group(array('before' => 'auth'), function()
@@ -128,7 +131,7 @@ $cruds = [
     'state',
     'typePlace',
     'title',
-    'typeAlternative',
+    'typeQuestion',
     'user',
 ];
 Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $controller) {

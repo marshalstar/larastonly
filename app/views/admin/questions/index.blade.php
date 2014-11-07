@@ -15,8 +15,9 @@
 @section('table-content')
 <th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
 <th data-column-id="statement" class="text-center">{{ Lang::get('Enunciado') }}</th>
-<th data-column-id="title_id" class="text-center">{{ Lang::get('Título_id') }}</th>
+<th data-column-id="title_id" class="text-center">{{ Lang::get('Título id') }}</th>
 <th data-column-id="weight" class="text-center">{{ Lang::get('Peso')}}
+<th data-column-id="typeQuestion_id" class="text-center">{{ Lang::get('Tipo id')}}
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 

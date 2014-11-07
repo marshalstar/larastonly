@@ -35,9 +35,4 @@ class Alternative extends Ardent
         return $this->belongsToMany('Question');
     }
 
-    public function type()
-    {
-        return $this->belongsTo('TypeAlternative');
-    }
-
 }

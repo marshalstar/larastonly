@@ -27,12 +27,14 @@ class UsersController extends AdminBaseController
         }
         return Redirect::route('users.new')->withErrors($user->errors());
     }
-     public function getEditUser($id)
+
+    public function getEditUser($id)
     {
         $user = User::find($id);
         return View::make('users.editUser')
             ->with('user', $user);
     }
+
     public function postEditUser($id)
     {
         $user = User::find($id);

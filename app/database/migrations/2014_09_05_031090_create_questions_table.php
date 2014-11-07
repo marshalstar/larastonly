@@ -19,6 +19,8 @@ class CreateQuestionsTable extends Migration {
             $table->foreign('title_id')->references('id')->on('titles');
             $table->text('statement')->default("");
             $table->integer('weight')->default(1);
+            $table->integer('typeQuestion_id')->unsigned()->index();
+            $table->foreign('typeQuestion_id')->references('id')->on('typeQuestions');
             $table->timestamps();
 		});
 	}

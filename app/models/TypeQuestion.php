@@ -16,20 +16,20 @@ use \LaravelBook\Ardent\Ardent;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
  * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
  */
-class TypeAlternative extends Ardent
+class TypeQuestion extends Ardent
 {
 
-    protected $table = 'typeAlternatives';
+    protected $table = 'typeQuestions';
     protected $guarded = ['id'];
     public $timestamps = false;
 
     public static $rules = [
-        'name' => 'required|between:3,255|unique:typeAlternatives',
+        'name' => 'required|between:3,255|unique:typeQuestions',
     ];
 
-    public function alternatives()
+    public function questions()
     {
-        return $this->hasMany('Alternative');
+        return $this->hasMany('Question');
     }
 
     public function places()
