@@ -198,12 +198,6 @@ class ChecklistsController extends AdminBaseController
     {
         $checklist = Checklist::find($id);
 
-        // $title = $checklist->titles()->first();
-
-        // $title->titles = Title::where("title_id", "=", $title->id)->get();
-
-        // $this->renderTitle($title);
-
         return View::make("checklists.responderChecklist", array("checklist" => $checklist) );
     }
 
@@ -262,5 +256,6 @@ class ChecklistsController extends AdminBaseController
         return View::make('home')->with('result', $result);
 
     }
+
 
 }
