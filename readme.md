@@ -8,11 +8,8 @@
        )_(   |/     \||/   \__/(_______/|/       |/     \|\_______)
 
         OBRIGATÓRIAS:
-        ** fazer compartilhar no facebook [JUAN]
         ** fazer imprimir pdf [GORGES]
         ** fazer pesquisar
-        ** fazer responder checklist corresponder ao criar checklist [YURI]
-        ** fazer as autenticações funcionarem (alguém só editar o checklist que criou, o admin só pode ser acessado por admin, etc)
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
         **** tornar o site AAA no WCAG
@@ -22,14 +19,15 @@
         ++ fazer usuário se logar automaticamente no sistema ao acessar um link compartilhado
         + adicionar porcentagem na tabela na tela de criar checklist
 
-        EXTRAS RECOMENDADOS:
-        --- corrigir footer quando a página não tem nenhum conteúdo
-        --- corrigir css da tabela do usuário
+        MEDIAMENTE RECOMENDADAS:
+        === corrigir footer quando a página não tem nenhum conteúdo
+        === corrigir css da tabela do usuário
         deixar janela de gráficos mais usável {
-            --- alternar entre gráficos de colunas e pizza
-            --- gerar tabela dos dados mais respondidos nas perguntas
+            === alternar entre gráficos de colunas e pizza
+            === gerar tabela dos dados mais respondidos nas perguntas
         }
-        ----- tornar o site AAA no W3C
+        ===== tornar o site AAA no W3C
+        === adicionar index em titles e questions, e fazer eles funcionarem no criar checklist
 
     ################################################################################################################################
     ################################################################################################################################

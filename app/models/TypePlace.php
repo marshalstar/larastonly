@@ -26,4 +26,9 @@ class TypePlace extends Ardent
         'name' => 'required|between:3,255|unique:typePlaces',
     ];
 
+    public function places()
+    {
+        return $this->hasMany('Place');
+    }
+
 }

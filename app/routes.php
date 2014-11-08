@@ -116,7 +116,7 @@ Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'question', '
     Route::any("/$url/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
 });
 
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question'], function($url, $route, $controller) {
+Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
     Route::any("/$url/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
 });
 
@@ -157,5 +157,9 @@ Route::any('/checklist/save', ['as' => 'checklistSave', 'uses' => 'ChecklistsCon
 Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' => 'ChecklistsController@responder']);
 
 Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
+
+Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses' => 'ChecklistsController@answerCreate']);
+
+Route::post('/checklists/answer/{id}', ['as' => 'checklists.answer.store', 'uses' => 'ChecklistsController@answerStore']);
 
 Route::any('/evaluations/visualizarresposta/{id}', ['as' => 'evaluationsVisualizarResposta', 'uses' => 'EvaluationsController@visualizarResposta']);

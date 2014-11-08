@@ -32,9 +32,4 @@ class TypeQuestion extends Ardent
         return $this->hasMany('Question');
     }
 
-    public function places()
-    {
-        return $this->hasMany('Place');
-    }
-
 }

@@ -22,6 +22,15 @@ class AlternativesController extends AdminBaseController
         return $alternative;
     }
 
+    public function updateAjax()
+    {
+        $id = Input::get('id');
+        $question = $this->getQuestionOrFail();
+        $alternative = Alternative::findOrFail($id);
+        $question->alternatives()->detach($alternative->id);
+        return $this->storeAjax();
+    }
+
     public function destroyAjax($id)
     {
         $question = $this->getQuestionOrFail();

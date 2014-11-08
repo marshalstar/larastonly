@@ -137,6 +137,13 @@ function renderAlternative($question, $typeQuestions) {
         <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
     </div>
 
+    <div class="form-group required">
+        <label for="country" class="control-label col-lg-1 col-sm-4">{{ Lang::get('comentário') }}</label>
+        <div class="col-lg-11 col-sm-8">
+            <textarea class="form-control input-description" rows="3" placeholder="{{ Lang::get('comentário') }}" name="commentary" id="commentary"></textarea>
+        </div>
+    </div>
+
 </div>
 
 @stop
@@ -156,7 +163,7 @@ function renderAlternative($question, $typeQuestions) {
         var alternativeNameDefault = "{{ Lang::get("alternativa") }}";
         var alternativeUrlStoreAjax = "{{ URL::route("alternatives.store.ajax") }}";
         var alternativeUrlDestroyAjax = "{{ URL::route("alternatives.destroy.ajax", "key") }}";
-        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.store.ajax", "key") }}";
+        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.update.ajax", "key") }}";
 
         var typeQuestionIdDefault = "{{ TypeQuestion::first()->id }}";
 
