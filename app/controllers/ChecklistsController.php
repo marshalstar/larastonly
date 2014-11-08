@@ -257,5 +257,9 @@ class ChecklistsController extends AdminBaseController
 
     }
 
+    public function pesquisar()
+    {
+        return View::make("checklists.pesquisar");
+    }
 
 }

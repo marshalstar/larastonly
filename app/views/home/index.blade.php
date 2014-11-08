@@ -50,7 +50,7 @@
               <li><a href="{{URL::route('admin.evaluations.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Avaliações</a></li>
               <li><a href="{{URL::route('admin.typePlaces.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipos de Lugar </a></li>
               <li><a href="{{URL::route('admin.titles.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Títulos </a></li>
-              <li><a href="{{URL::route('admin.typeAlternatives.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li>
+              <!-- <li><a href="{ {URL::route('admin.typeAlternatives.index')} }"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li> -->
               <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
             </div>
           </div>
@@ -97,13 +97,14 @@
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarLocais">
-              Montar Checklist
+              Checklist
             </a>
           </h4>
         </div>
         <div id="gerenciarLocais" class="panel-collapse collapse">
           <div class="panel-body">
             <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Montar Checklist </a></li>
+            <li><a href="{{URL::route('checklists.pesquisar')}}"><i class="fa fa-pencil-square-o"></i> Responder Checklist </a></li>
           </div>
         </div>
       </div>
@@ -117,7 +118,7 @@
   @endif
 
   <div class="container container-main">
-    <h2>Ultimas avaliacoes</h2>
+    <h2>Ultimas avaliações</h2>
 
     <?php 
       $evaluations = Evaluation::take(30)->limit(7)->get();
