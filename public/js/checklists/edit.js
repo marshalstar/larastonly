@@ -237,7 +237,9 @@ $(function() {
         $.ajax({
             url: titleUrlUpdateAjax.replace('key', title.attr('data-id')),
             method: 'POST',
-            data: {name: input.val()},
+            data: {
+                name: input.val()
+            },
             success: function(e) {
                 if (e.id !== undefined) {
                     title.attr('data-id', e.id);
@@ -278,7 +280,8 @@ $(function() {
             method: 'POST',
             data: {
                 name: input.val(),
-                question_id: question.attr('data-id')
+                question_id: question.attr('data-id'),
+                id: alternative.attr('data-id')
             },
             success: function(e) {
                 if (e.id !== undefined) {

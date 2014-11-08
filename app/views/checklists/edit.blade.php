@@ -156,7 +156,7 @@ function renderAlternative($question, $typeQuestions) {
         var alternativeNameDefault = "{{ Lang::get("alternativa") }}";
         var alternativeUrlStoreAjax = "{{ URL::route("alternatives.store.ajax") }}";
         var alternativeUrlDestroyAjax = "{{ URL::route("alternatives.destroy.ajax", "key") }}";
-        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.store.ajax", "key") }}";
+        var alternativeUrlUpdateAjax = "{{ URL::route("alternatives.update.ajax", "key") }}";
 
         var typeQuestionIdDefault = "{{ TypeQuestion::first()->id }}";
 

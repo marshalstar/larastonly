@@ -114,7 +114,7 @@ Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'question', '
     Route::any("/$url/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
 });
 
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question'], function($url, $route, $controller) {
+Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
     Route::any("/$url/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
 });
 
