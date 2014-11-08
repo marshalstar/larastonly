@@ -156,4 +156,8 @@ Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' =>
 
 Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
 
+Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses' => 'ChecklistsController@answerCreate']);
+
+Route::post('/checklists/answer/{id}', ['as' => 'checklists.answer.store', 'uses' => 'ChecklistsController@answerStore']);
+
 Route::any('/evaluations/visualizarresposta/{id}', ['as' => 'evaluationsVisualizarResposta', 'uses' => 'EvaluationsController@visualizarResposta']);

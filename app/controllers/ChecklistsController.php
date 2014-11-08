@@ -195,20 +195,18 @@ class ChecklistsController extends AdminBaseController
             ->with('checklist', $checklist);
     }
 
-    public function responder($id)
+    public function answerCreate($id)
     {
         $checklist = Checklist::find($id);
-
-        return View::make("checklists.responderChecklist", array("checklist" => $checklist) );
+        return View::make("checklists.answer")
+            ->with('checklist', $checklist);
     }
 
-    public function respondeu()
+    public function answerStore($id)
     {
-        // Kint::dump(Input::all());
-
         $evaluation = new Evaluation;
 
-
+        /** @TODO: ver se o usuário pode mesmo criar país, estado e cidade */
         $country = Country::firstOrCreate(['name' => Input::get('country')]);
         $country->save();
         $state = State::firstOrCreate(['name' => Input::get('state'), 'country_id' => $country->id]);
@@ -218,24 +216,20 @@ class ChecklistsController extends AdminBaseController
         $place = Place::firstOrCreate(['name' => Input::get('place'), 'city_id' => $city->id]);
         $place->save();
 
-        $evaluation->user_id = 1;
-        foreach (Input::except(['place', 'city', 'state', 'country']) as $key => $value) {
-            $evaluation->checklist_id = Question::find($key)->title->checklist->id;
-            break;
-        }
+        $evaluation->user_id = Auth::user()->id;
+        $evaluation->checklist_id = $id;
         $evaluation->save();
 
-        foreach (Input::except(['place', 'city', 'state', 'country']) as $key => $value) {
-            $alternativeQuestion = AlternativeQuestion::
-                where("alternative_id", "=", $value)->
-                    where("question_id", "=", $key)->first();
-                // dd($alternativeQuestion);
+        foreach (Input::except(['place', 'city', 'state', 'country']) as $questionId => $alternativeId) {
+            $alternativeQuestion = AlternativeQuestion::firstOrCreate([
+                'alternative_id' => $alternativeId,
+                'question_id' => $questionId
+            ]);
             $answer = new Answer;
             $answer->alternative_question_id = $alternativeQuestion->id;
             $answer->evaluation_id = $evaluation->id;
             $answer->save();
         }
-
     }
 
     public function getResults($keyword)
