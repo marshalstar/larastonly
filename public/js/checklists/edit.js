@@ -330,6 +330,28 @@ $(function() {
         });
     }
 
+    $(document).on('change', '.input-description', inputDescription);
+
+    function inputDescription() {
+        var checklist = $('div.checklist');
+        var input = $(this);
+        $.ajax({
+            url: checklistUrlUpdateAjax.replace('key', checklist.attr('data-id')),
+            method: 'POST',
+            data: {
+                description: input.val()
+            },
+            success: function(e) {
+                if (e.id !== undefined) {
+                    checklist.attr('data-id', e.id);
+                }
+            },
+            error: function(e) {
+                console.error(e);
+            }
+        });
+    }
+
     /**** funcionalidade da professora (⌐■_■) ****/
 
     $(document).on('click', '.btn-new-alternative-default', function() {

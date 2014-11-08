@@ -10,7 +10,6 @@
         OBRIGATÓRIAS:
         ** fazer imprimir pdf [GORGES]
         ** fazer pesquisar
-        ** fazer responder checklist corresponder ao criar checklist [YURI]
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
         **** tornar o site AAA no WCAG
