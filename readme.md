@@ -11,7 +11,6 @@
         ** fazer imprimir pdf [GORGES]
         ** fazer pesquisar
         ** fazer responder checklist corresponder ao criar checklist [YURI]
-        ** fazer as autenticações funcionarem (alguém só editar o checklist que criou, o admin só pode ser acessado por admin, etc)
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
         **** tornar o site AAA no WCAG

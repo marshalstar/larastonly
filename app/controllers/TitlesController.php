@@ -15,7 +15,8 @@ class TitlesController extends AdminBaseController
 
     public function storeAjax()
     {
-        /** @TODO: validar se o checklist é do usuário logado */
+        $checklist = Checklist::findOrFail(Input::get('checklist_id'));
+        $checklist->authOrFail();
         $title = new Title(Input::all());
         if ($title->save()) {
             return $title;
@@ -24,8 +25,8 @@ class TitlesController extends AdminBaseController
 
     public function updateAjax($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
-        $title = Title::find($id);
+        $title = Title::findOrFail($id);
+        $title->authOrFail();
         $title->fill(Input::all());
         if ($title->updateUniques()) {
             return $title;
@@ -34,8 +35,8 @@ class TitlesController extends AdminBaseController
 
     public function destroyAjax($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
         $title = Title::findOrFail($id);
+        $title->authOrFail();
         $this->destroyTitle($title);
     }
 

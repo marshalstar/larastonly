@@ -14,6 +14,7 @@ class ChecklistsController extends AdminBaseController
     public function updateAjax($id)
     {
         $checklist = Checklist::findOrFail($id);
+        $checklist->authOrFail();
         $checklist->fill(Input::all());
         if ($checklist->updateUniques()) {
             return $checklist;
@@ -22,8 +23,9 @@ class ChecklistsController extends AdminBaseController
 
     public function destroyAjax($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
-        Checklist::destroy($id);
+        $checklist = Checklist::findOrFail($id);
+        $checklist->authOrFail();
+        $checklist->delete();
     }
 
 	public function newChecklist()
@@ -114,7 +116,6 @@ class ChecklistsController extends AdminBaseController
 
     public function create()
     {
-        /** @TODO: validar se o checklist é do usuário logado */
         $checklist = new Checklist;
         $checklist->user_id = Auth::user()->id;
         $checklist->name = 'checklist';
@@ -124,8 +125,8 @@ class ChecklistsController extends AdminBaseController
 
     public function edit($id)
     {
-        /** @TODO: validar se o checklist é do usuário logado */
         $checklist = Checklist::findOrFail($id);
+        $checklist->authOrFail();
         $typeQuestions = array_column(TypeQuestion::all(['id', 'name'])->toArray(), 'name', 'id');
         return View::make('checklists.edit')
             ->with('checklist', $checklist)
