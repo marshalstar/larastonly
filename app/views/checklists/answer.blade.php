@@ -62,6 +62,7 @@ function renderAlternative($question) {
 
 @section('title'){{ Str::title(Lang::get('Responder Checklist')) }} @stop
 
+
 @section('content')
   <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print" />
 <div class="container container-main">
@@ -90,17 +91,69 @@ function renderAlternative($question) {
                 </div>
             </div>
 
+            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+            <script>
+            var autocomplete;
+            function initialize() {
+                var input = document.getElementById('place');
+                autocomplete = new google.maps.places.Autocomplete(input);
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+            google.maps.event.addDomListener(window, 'click', atualizarCampos);
+
+            $(function() {
+                $(document).on('focusout', '.place', atualizarCampos);
+                $(document).on('focusin', '.place', atualizarCampos);
+                $(document).on('focusout', '.city', atualizarCampos);
+                $(document).on('focusin', '.city', atualizarCampos);
+            });
+            
+
+            function atualizarCampos()
+            {
+
+
+                console.log("palspf");
+                var pla = autocomplete.getPlace()['address_components'];
+                for(var i = 0; i < pla.length; ++i)
+                {
+                    var type = pla[i]['types'][0];
+
+                    document.getElementById("city").value = "";
+                    document.getElementById("state").value = "";
+                    document.getElementById("country").value = "";
+
+                    if (type == "administrative_area_level_2")
+                    {
+                        document.getElementById("city").value = pla[i]['long_name'];
+                    }
+                    if (type == "administrative_area_level_1")
+                    {
+                        document.getElementById("state").value = pla[i]['long_name'];
+                    }
+                    if (type == "country")
+                    {
+                        document.getElementById("country").value = pla[i]['long_name'];
+                    }
+
+                }
+            }
+
+            </script>
+
             <div class="form-group required">
                 <label for="place" class="control-label col-lg-2 col-sm-4">{{ Lang::get('lugar') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <input class="form-control" required="true" placeholder="{{ Lang::get('lugar') }}" name="place" type="text" id="place"/>
+                    <input class="form-control place" required="true" placeholder="{{ Lang::get('lugar') }}" name="place" type="text" id="place" 
+                    onchange("atualizarCampos()")>
                 </div>
             </div>
 
             <div class="form-group required">
                 <label for="city" class="control-label col-lg-2 col-sm-4">{{ Lang::get('cidade') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <input class="form-control" required="true" placeholder="{{ Lang::get('cidade') }}" name="city" type="text" id="city"/>
+                    <input class="form-control city" required="true" placeholder="{{ Lang::get('cidade') }}" name="city" type="text" id="city"/>
                 </div>
             </div>
 
