@@ -1,4 +1,4 @@
-asd    _________ _______  _______  _______  _______  _______  _______
+    _________ _______  _______  _______  _______  _______  _______
     \__   __/(  ___  )(  ____ )(  ____ \(  ____ \(  ___  )(  ____ \
        ) (   | (   ) || (    )|| (    \/| (    \/| (   ) || (    \/ _
        | |   | (___) || (____)|| (__    | (__    | (___) || (_____ (_)
@@ -8,16 +8,14 @@ asd    _________ _______  _______  _______  _______  _______  _______
        )_(   |/     \||/   \__/(_______/|/       |/     \|\_______)
 
         OBRIGATÓRIAS:
-        ** fazer imprimir pdf [GORGES]
         ** fazer pesquisar
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
         **** tornar o site AAA no WCAG
 
         FORTEMENTE RECOMENDADAS:
-        +++ usar google maps no responder checklist
-        ++ fazer usuário se logar automaticamente no sistema ao acessar um link compartilhado
         + adicionar porcentagem na tabela na tela de criar checklist
+        + radio apenas uma resposta por questao
 
         MEDIAMENTE RECOMENDADAS:
         === corrigir footer quando a página não tem nenhum conteúdo
@@ -52,8 +50,6 @@ asd    _________ _______  _______  _______  _______  _______  _______
             https://github.com/JeffreyWay/Laravel-Guard
         mimificar o html:
             https://github.com/fitztrev/laravel-html-minify
-        dom pdf para laravel:
-            https://github.com/barryvdh/laravel-dompdf
         laravel "administrator" (acho que cria os cruds para o admin):
             https://github.com/FrozenNode/Laravel-Administrator
         funções para o blade:
@@ -63,8 +59,6 @@ asd    _________ _______  _______  _______  _______  _______  _______
             https://github.com/octobercms/october
         alert estiloso:
             http://github.hubspot.com/messenger/docs/welcome/
-        tabelas por ajax e com paginação e busca, integradas com o bootstrap e jquery e acessível:
-            http://www.jquery-bootgrid.com/Examples#data-api
 
         phpdocumentor/reflection-docblock suggests installing dflydev/markdown (1.0.*)
             (?)
@@ -81,12 +75,6 @@ asd    _________ _______  _______  _______  _______  _______  _______
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
-
-    util:
-        atualizar o autoload:
-            php artisan dump-autoload
-        ajudar a ide a não se perder
-            php artisan ide-helper:models
 
 Copyright (C) 1998-2012 Free Software Foundation, Inc.
 

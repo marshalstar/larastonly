@@ -75,6 +75,26 @@
     });
 </script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
 
+<script type="text/javascript">
+    console.error('\n\
+\n\
+\n\
+                                            \n\
+ .d8888b.  888                       888    \n\
+d88P  Y88b 888                       888    Esta é uma funcionalidade do navegador \n\
+Y88b.      888                       888    destinada aos programadores. Se alguém \n\
+ "Y888b.   888888  .d88b.  88888b.   888    te disse para copiar e colar algo aqui \n\
+    "Y88b. 888    d88""88b 888 "88b  888    para ativar uma funcionalidade ou para \n\
+      "888 888    888  888 888  888  Y8P    "piratear" a conta de alguém, isto trata-se \n\
+Y88b  d88P Y88b.  Y88..88P 888 d88P         de uma fraude que lhe irá dar acesso \n\
+ "Y8888P"   "Y888  "Y88P"  88888P"   888    à tua conta do Facebook.\n\
+                           888              \n\
+                           888              \n\
+                           888              \n\
+\n\
+Para obteres mais informações consulta a página https://www.facebook.com/selfxss.');
+</script>
+
 @yield('script')
 
 </html>

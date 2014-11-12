@@ -135,7 +135,7 @@ class ChecklistsController extends AdminBaseController
 
     public function dataGraphicsAjax($checklistId)
     {
-        /** @TODO: separar isto em outro método (tarefa para Yuri) */
+        /** @TODO: separar isto em outro método (tarefa para o Yuri) */
         $query = DB::table('checklists')
                     ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
                     ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')

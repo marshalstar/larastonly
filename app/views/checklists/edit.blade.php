@@ -10,7 +10,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
                         <h{{ $layer }}>{{ String::capitalize(Lang::get("título")) }}</h{{ $layer }}>
                     </label>
                     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                        <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}"></textarea>
+                        <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}">{{ $t->name }}</textarea>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                         <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
@@ -47,7 +47,7 @@ function renderQuestion($title, $typeQuestions) {
                     {{ String::capitalize(Lang::get("questão")) }}
                 </label>
                 <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                    <textarea class="input-question form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}"></textarea>
+                    <textarea class="input-question form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}">{{ $q->statement }}</textarea>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
                     <a href="javascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
