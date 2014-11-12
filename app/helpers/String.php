@@ -3,7 +3,7 @@
 class String
 {
     /**
-     * capitalize, se você nao programa em java, é uppercase apenas da primeira letra
+     * capitalize é uppercase apenas da primeira letra
      * @param $value string
      * @return string
      */

@@ -127,6 +127,7 @@ Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 
     Route::delete("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
 });
 
+// @TODO: tirar alguns cruds
 $cruds = [
     'alternative',
     'checklist',
@@ -166,3 +167,5 @@ Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses
 Route::post('/checklists/answer/{id}', ['as' => 'checklists.answer.store', 'uses' => 'ChecklistsController@answerStore']);
 
 Route::any('/evaluations/visualizarresposta/{id}', ['as' => 'evaluationsVisualizarResposta', 'uses' => 'EvaluationsController@visualizarResposta']);
+
+Route::any('/checklists/print/{id}', ['as' => 'checklists.print', 'uses' => 'ChecklistsController@printPdf']);
