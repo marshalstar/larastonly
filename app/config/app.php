@@ -125,7 +125,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Artdarek\OAuth\OAuthServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-        'Nitmedia\Wkhtml2pdf\Wkhtml2pdfServiceProvider',
+        'Barryvdh\DomPDF\ServiceProvider',
 	),
 
 	/*

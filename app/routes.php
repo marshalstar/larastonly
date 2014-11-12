@@ -154,9 +154,9 @@ Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $
 
 Route::any('/checklist/save', ['as' => 'checklistSave', 'uses' => 'ChecklistsController@save']);
 
-Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' => 'ChecklistsController@responder']);
+// Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' => 'ChecklistsController@responder']);
 
-Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
+// Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
 
 Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses' => 'ChecklistsController@answerCreate']);
 
