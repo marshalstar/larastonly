@@ -76,6 +76,9 @@ Route::group(['prefix' => 'checklists'], function ()
 
     Route::get('/graphics/{id}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
 
+    Route::post('/data-graphics/ajax/{id}', ['as' => 'checklists.dataGraphics.ajax', 'uses' => 'ChecklistsController@dataGraphicsAjax'])
+        ->before('ajax');
+
     Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
     
     Route::any('/pesquisar', ['as' => 'checklists.pesquisar', 'uses' => 'ChecklistsController@pesquisar']);

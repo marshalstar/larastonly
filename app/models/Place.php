@@ -11,10 +11,12 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $tag_id
  * @property-read \City $city
  * @property-read \Type $type
- * @method static \Illuminate\Database\Query\Builder|\Place whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Place whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Place whereCityId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Place whereTagId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Place whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Place whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Place whereCityId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Place whereTagId($value)
+ * @property integer $typePlace_id
+ * @method static \Illuminate\Database\Query\Builder|\Place whereTypePlaceId($value)
  */
 class Place extends Ardent
 {

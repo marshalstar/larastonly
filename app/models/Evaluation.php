@@ -19,6 +19,8 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Evaluation whereUpdatedAt($value)
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\Answer[] $answers
+ * @property integer $place_id
+ * @method static \Illuminate\Database\Query\Builder|\Evaluation wherePlaceId($value)
  */
 class Evaluation extends Ardent
 {

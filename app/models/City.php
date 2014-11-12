@@ -10,9 +10,9 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $state_id
  * @property-read \State $state
  * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
- * @method static \Illuminate\Database\Query\Builder|\City whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\City whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\City whereStateId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\City whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\City whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\City whereStateId($value)
  */
 class City extends Ardent
 {

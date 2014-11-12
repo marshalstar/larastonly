@@ -9,9 +9,9 @@ use \LaravelBook\Ardent\Ardent;
  * @property string $name
  * @property integer $country_id
  * @property-read \Country $country
- * @method static \Illuminate\Database\Query\Builder|\State whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\State whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\State whereCountryId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\State whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\State whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\State whereCountryId($value)
  */
 class State extends Ardent
 {

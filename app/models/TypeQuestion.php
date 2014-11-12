@@ -15,6 +15,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Type whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Alternative[] $alternatives
  * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Question[] $questions
  */
 class TypeQuestion extends Ardent
 {

@@ -8,8 +8,8 @@ use \LaravelBook\Ardent\Ardent;
  * @property integer $id
  * @property string $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\State[] $states
- * @method static \Illuminate\Database\Query\Builder|\Country whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Country whereName($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Country whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Country whereName($value)
  */
 class Country extends Ardent
 {

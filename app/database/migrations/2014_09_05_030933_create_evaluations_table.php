@@ -19,13 +19,10 @@ class CreateEvaluationsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('checklist_id')->unsigned()->index();
             $table->foreign('checklist_id')->references('id')->on('checklists');
-			$table->text('commentary')->default("");
-			$table->timestamps();
-			
-			
-            
             $table->integer('place_id')->unsigned()->index();
             $table->foreign('place_id')->references('id')->on('places');
+			$table->text('commentary')->default("");
+			$table->timestamps();
 		});
 	}
 

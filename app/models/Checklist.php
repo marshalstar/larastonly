@@ -20,6 +20,8 @@ use \LaravelBook\Ardent\Ardent;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Evaluation[] $evaluations
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\Title[] $titles
+ * @property string $description
+ * @method static \Illuminate\Database\Query\Builder|\Checklist whereDescription($value)
  */
 class Checklist extends Ardent
 {

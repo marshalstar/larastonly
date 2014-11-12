@@ -14,6 +14,7 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Tag whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Tag whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Checklist[] $checklists
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Place[] $places
  */
 class TypePlace extends Ardent
 {
