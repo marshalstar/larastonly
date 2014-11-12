@@ -204,6 +204,8 @@ class ChecklistsController extends AdminBaseController
 
     public function answerStore($id)
     {
+        /** @TODO: colocar isso na classe certa */
+        
         $evaluation = new Evaluation;
 
         /** @TODO: ver se o usuário pode mesmo criar país, estado e cidade */
