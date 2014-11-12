@@ -28,13 +28,13 @@ class UsersTableSeeder extends Seeder
 
         if ($count == 0) {
             DB::table('users')->insert([
-                'username' => 'joço',
-                'email' => 'joco@mail.com',
+                'username' => 'admin',
+                'email' => 'admin@mail.com',
                 'password' => Hash::make('asd'),
-                'speciality' => 'boss',
+                'speciality' => 'root',
                 'is_admin' => 1,
                 'gender' => 'm',
-                'biography' => 'venceu do chuck noris.',
+                'biography' => 'Adminstrador do sistema.',
                 'picture_url' => '',
                 'active' => 1,
             ]);

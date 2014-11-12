@@ -16,6 +16,8 @@
     <link href="/packages/bootstrap/3.2.0/css/docs.min.css" rel="stylesheet">
     <style src="/packages/bootstrap/3.2.0/css/bootstrap-theme.min.css"></style>
     <link href="/packages/bootgrid/1.1.1/css/jquery.bootgrid.css" rel="stylesheet"/>
+    <style src="/packages/bootstrap-accessibility/3/css/bootstrap-accessibility.css"></style>
+    <link href="/packages/bootstrap-accessibility/3/js/bootstrap-accessibility.min.js" rel="stylesheet"/>
 
     <style>
         @-webkit-viewport { width: device-width; }

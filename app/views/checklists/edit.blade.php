@@ -144,6 +144,8 @@ function renderAlternative($question, $typeQuestions) {
         </div>
     </div>
 
+    <a href="{{ URL::route('checklists.home') }}"></a>
+
 </div>
 
 @stop
