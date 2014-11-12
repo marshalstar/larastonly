@@ -16,8 +16,8 @@
                 @else
                     <li><a href="{{URL::route('users.login')}}">Login</a></li>
                     <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
-                    zxc
                 @endif
+                    <li><a href="{{URL::route('checklists.create')}}"><span class="glyphicon glyphicon-plus"></span>{{ Lang::get(' checklist') }}</a></li>
                 {{-- Form::open(array('route' => 'search', 'class' => 'navbar-form navbar-left')) }}
                     <div class="form-group">
 
