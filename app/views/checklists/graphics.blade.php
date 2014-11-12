@@ -36,7 +36,7 @@
     <script>
 
         $.ajax({
-            url: "/checklists/dataGraphics/{{ $checklist->id }}",
+            url: "{{ URL::route("checklists.dataGraphics.ajax", $checklist->id) }}",
             method: "POST",
             success: function(e) {
 
@@ -75,7 +75,7 @@
 
         function reloadGraphics() {
             $.ajax({
-                url: "/checklists/dataGraphics/{{ $checklist->id }}",
+                url: "{{ URL::route("checklists.dataGraphics.ajax", $checklist->id) }}",
                 method: "POST",
                 data: {'where': where},
                 success: function(e) {
