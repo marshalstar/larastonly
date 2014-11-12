@@ -125,7 +125,7 @@ return array(
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Artdarek\OAuth\OAuthServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-        'Nitmedia\Wkhtml2pdf\Wkhtml2pdfServiceProvider',
+        'Barryvdh\DomPDF\ServiceProvider',
 	),
 
 	/*
@@ -194,7 +194,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'OAuth'             => 'Artdarek\OAuth\Facade\OAuth',
         'Debugbar'          => 'Barryvdh\Debugbar\Facade',
-        'PDF'    			=> 'Nitmedia\Wkhtml2pdf\Facades\Wkhtml2pdf',
+        'PDF' => 'Barryvdh\DomPDF\Facade',
 	),
 
 );

@@ -129,7 +129,8 @@ function renderAlternative($question) {
                 <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
                     {{ Form::submit(String::capitalize('Finalizar'), ['class' => 'btn btn-primary']) }}
                     {{ Form::reset(String::capitalize(Lang::get('resetar')), ['class' => 'btn btn-inverse']) }}
-                    <input type="button" class="btn btn-inverse" value="{{ String::capitalize(Lang::get('Imprimir')) }}" onclick="window.print()" style="views/style/print.css">
+                    <a href="{{ URL::route('checklists.print', $checklist->id) }}" class="btn btn-default">Imprimir</a>
+                    
                 </div>
             </div>
 

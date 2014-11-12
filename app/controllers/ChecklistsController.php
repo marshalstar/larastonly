@@ -195,15 +195,31 @@ class ChecklistsController extends AdminBaseController
             ->with('checklist', $checklist);
     }
 
+
+    /** @TODO: colocar isso na classe certa */
     public function answerCreate($id)
     {
+        // $pdf = App::make('dompdf');
+        // $pdf->loadHTML('<h1>Test</h1>');
+        // return $pdf->stream();
         $checklist = Checklist::find($id);
         return View::make("checklists.answer")
             ->with('checklist', $checklist);
     }
 
+    public function printPdf($id)
+    {
+        $ht = $this->renderTitle(Title::whereChecklistId($id)->whereTitleId(null)->get(), 3);
+        // die($ht);
+        $pdf = App::make('dompdf');
+        $pdf->loadHTML($ht);
+        return $pdf->stream(); 
+    }
+
     public function answerStore($id)
     {
+        /** @TODO: colocar isso na classe certa */
+        
         $evaluation = new Evaluation;
 
         /** @TODO: ver se o usuário pode mesmo criar país, estado e cidade */
@@ -257,6 +273,71 @@ class ChecklistsController extends AdminBaseController
     public function pesquisar()
     {
         return View::make("checklists.pesquisar");
+    }
+
+
+    public function renderTitle($titles, $layer) {
+        $h = '';
+        foreach($titles as $t):
+            $h .=
+            // echo
+             '<div class="panel panel-default title" data-id="'.$t->id.'" data-layer="'.$layer.'" style="padding: 10px; border-color: #fff">
+
+                <div class="panel-heading clearfix">
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-10">
+                            <h'.$layer.'>'.$t->name.'</h'. $layer .'>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-group">
+                    <div class="questions">
+                        '. $this->renderQuestion($t) .'
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row titles">
+                            '. $this->renderTitle($t->children, ++$layer) .'
+                    </div>
+                </div>
+            </div>';
+        endforeach;
+        return $h;
+    }
+
+    public function renderQuestion($title) {
+        $h = '';
+        foreach($title->questions as $q):
+        $h .= 
+            '<div class="list-group-item question" data-id="'. $q->id .'">
+
+                <div class="row form-group">
+                    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-10">
+                        '. $q->statement .'
+                    </div>
+                </div>
+
+                <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-10">
+                    <div >
+                        '. $this->renderAlternative($q) .'
+                    </div>
+                </div>
+
+                <div class="row"></div>
+            </div>';
+        endforeach;
+        return $h;
+    }
+
+    public function renderAlternative($question) {
+        $h = '';
+        foreach($question->alternatives as $a):
+            $h .= '&nbsp;&nbsp;&nbsp; &lt;&gt;&loz;' . $a->name . '<br/>';
+            // '<input type="'. TypeQuestion::findOrFail($question->typeQuestion_id)->name .'" name="'. $question->id .'" id="'. $question->id .'" value="'. $a->id .'"> '. $a->name ;
+        endforeach;
+        return $h . '<br/>';
     }
 
 }

@@ -13,14 +13,10 @@
 @section('text-create-button'){{ String::capitalize(Lang::get('novo checklist')) }} @stop
 
 @section('table-content')
-<th data-column-id="id" class="text-center">{{ Lang::get('Id') }}</th>
-<th data-column-id="name" class="text-center">{{ Lang::get('Name') }}</th>
-<th data-column-id="title_id" class="text-center">{{ Lang::get('Title_id') }}</th>
-<th data-column-id="user" class="text-center">{{ Lang::get('Usuario') }}</th>
-<th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
+<th data-column-id="user_id" class="text-center">{{ Lang::get('Usuario [nome]') }}</th>
+<th data-column-id="namea" class="text-center">{{ Lang::get('Name') }}</th>
+<th data-column-id="commands" data-formatter="" data-sortable="false">Ações</th>
 @stop
 
 @section('data-url-ajax'){{ URL::route("admin.checklists.index.ajax") }} @stop
-@section('show-url'){{ URL::route("admin.checklists.show", "key") }} @stop
-@section('edit-url'){{ URL::route("admin.checklists.edit", "key") }} @stop
-@section('destroy-url'){{ URL::route('admin.checklists.destroy', 'key') }} @stop
+@section('show-url'){{ URL::route("checklists.answer.create", "key") }} @stop

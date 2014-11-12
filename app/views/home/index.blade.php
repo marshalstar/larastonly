@@ -119,21 +119,21 @@
     </ul>
   @endif
 
-  <div class="container container-main">
+  <div class="container panel-main">
     <h2>Ultimas avaliações</h2>
-
+  <ul class="list-unstyled">
     <?php 
       $evaluations = Evaluation::take(30)->limit(7)->get();
 
       foreach ($evaluations as $e) {
     ?>
 
-      <pre><a href='http://localhost:8000/evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></pre> 
+      <li><a href='http://localhost:8000/evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></a></li> 
     
     <?php    
       }
     ?>
-
+<ul>
   </div>
 </div>
 @stop
