@@ -23,6 +23,9 @@ use \LaravelBook\Ardent\Ardent;
  * @method static \Illuminate\Database\Query\Builder|\Question whereStatement($value)
  * @method static \Illuminate\Database\Query\Builder|\Question whereWeight($value)
  * @property-read \Title $title
+ * @property integer $typeQuestion_id
+ * @property-read \TypeQuestion $type
+ * @method static \Illuminate\Database\Query\Builder|\Question whereTypeQuestionId($value)
  */
 class Question extends Ardent
 {

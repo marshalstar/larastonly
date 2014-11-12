@@ -218,13 +218,15 @@ class ChecklistsController extends AdminBaseController
 
         $evaluation->user_id = Auth::user()->id;
         $evaluation->checklist_id = $id;
+        $evaluation->place_id = $place->id;
         $evaluation->save();
 
-        foreach (Input::except(['place', 'city', 'state', 'country']) as $questionId => $alternativeId) {
+        foreach (Input::except(['place', 'city', 'state', 'country', 'commentary']) as $questionId => $alternativeId) {
             $alternativeQuestion = AlternativeQuestion::firstOrCreate([
                 'alternative_id' => $alternativeId,
                 'question_id' => $questionId
             ]);
+            $alternativeQuestion->save();
             $answer = new Answer;
             $answer->alternative_question_id = $alternativeQuestion->id;
             $answer->evaluation_id = $evaluation->id;
