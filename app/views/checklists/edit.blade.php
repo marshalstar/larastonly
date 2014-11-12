@@ -144,7 +144,7 @@ function renderAlternative($question, $typeQuestions) {
         </div>
     </div>
 
-    <a href="{{ URL::route('checklists.home') }}"></a>
+    <a class="btn btn-default" href="{{ URL::route('checklists.answer.create', $checklist->id) }}">Finalizar</a>
 
 </div>
 

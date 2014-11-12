@@ -100,31 +100,30 @@ function renderAlternative($question) {
             }
 
             google.maps.event.addDomListener(window, 'load', initialize);
-            google.maps.event.addDomListener(window, 'click', atualizarCampos);
+            google .maps.event.addDomListener(window, 'click', atualizarCampos);
 
             $(function() {
-                $(document).on('focusout', '.place', atualizarCampos);
-                $(document).on('focusin', '.place', atualizarCampos);
-                $(document).on('focusout', '.city', atualizarCampos);
-                $(document).on('focusin', '.city', atualizarCampos);
+                //$(document).on('focusout', '.place', atualizarCampos);
+                //$(document).on('focusin', '.place', atualizarCampos);
+                //$(document).on('focusout', '.city', atualizarCampos);
+                //$(document).on('focusin', '.city', atualizarCampos);
             });
             
 
             function atualizarCampos()
             {
 
-
                 console.log("palspf");
+                //try{
                 var pla = autocomplete.getPlace()['address_components'];
+                document.getElementById("city").value = "";
+                document.getElementById("state").value = "";
+                document.getElementById("country").value = "";
                 for(var i = 0; i < pla.length; ++i)
                 {
                     var type = pla[i]['types'][0];
 
-                    document.getElementById("city").value = "";
-                    document.getElementById("state").value = "";
-                    document.getElementById("country").value = "";
-
-                    if (type == "administrative_area_level_2")
+                    if (type == "administrative_area_level_2" || type == "locality")
                     {
                         document.getElementById("city").value = pla[i]['long_name'];
                     }
@@ -136,8 +135,9 @@ function renderAlternative($question) {
                     {
                         document.getElementById("country").value = pla[i]['long_name'];
                     }
-
                 }
+                //}catch(e){}
+
             }
 
             </script>

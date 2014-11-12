@@ -64,7 +64,7 @@ class Checklist extends Ardent
      */
     public function authOrFail()
     {
-        if ($this->user_id != Auth::user()->id) {
+        if ($this->user_id != Auth::user()->id && !Auth::user()->is_admin) {
             throw new Exception(Lang::get("checklist inválido"));
         }
     }

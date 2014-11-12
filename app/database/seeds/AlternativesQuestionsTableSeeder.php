@@ -13,14 +13,14 @@ class AlternativesQuestionsTableSeeder extends Seeder
         $alterternativeQuestions = [];
         foreach($questions as $question) {
             foreach($alternatives as $alternative) {
-                foreach(range(0, Evaluation::all()->count()) as $i) {
-                    if (mt_rand(0, 1)) {
+                //foreach(range(0, Evaluation::all()->count()) as $i) {
+                    //if (mt_rand(0, 1)) {
                         $alterternativeQuestions[] = [
                             'alternative_id' => $alternative->id,
                             'question_id' => $question->id,
                         ];
-                    }
-                }
+                    //}
+                //}
             }
         }
 

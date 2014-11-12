@@ -248,6 +248,8 @@ class ChecklistsController extends AdminBaseController
             $answer->evaluation_id = $evaluation->id;
             $answer->save();
         }
+
+        return Redirect::route('evaluationsVisualizarResposta', $evaluation->id);
     }
 
     public function getResults($keyword)

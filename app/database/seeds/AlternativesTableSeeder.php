@@ -7,13 +7,18 @@ class AlternativesTableSeeder extends Seeder
 
 	public function run()
 	{
-        $faker = Faker::create('pt_BR');
+		$count = Alternative::count();
 
-        DB::table('alternatives')->insert(array_map(function() use ($faker) {
-            return [
-                'name' => $faker->sentence(),
-            ];
-        }, range(1, DatabaseSeeder::$dimension)));
+		if($count == 0){
+			DB::table('alternatives')->insert([ [
+					'name' => 'Sim',
+				],[
+					'name' => 'Não'
+				],[
+					'name' => 'Não se aplica'
+				]
+			]);		
+		}
 	}
 
 }

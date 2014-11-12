@@ -70,7 +70,7 @@ class Title extends Ardent
             ->where('titles.id', '=', $this->id)
             ->get(['titles.id']);
 
-        if (!count($result)) {
+        if (!count($result) && !Auth::user()->is_admin) {
             throw new Exception(Lang::get('título inválido'));
         }
     }

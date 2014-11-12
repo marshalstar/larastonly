@@ -13,9 +13,13 @@ class EvaluationsController extends AdminBaseController
              ->with('checklists', $checklists);
     }
 
+
+    //@TODO: voce sabe o que é
 	public function visualizarResposta($id)
     {
         $evaluation = Evaluation::find($id);
+
+        return Redirect::route('checklists.graphics', $evaluation->checklist_id);
 
         return View::make("evaluations.visualizarResposta", array("evaluation" => $evaluation) );
     }

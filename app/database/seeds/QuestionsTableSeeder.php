@@ -12,8 +12,8 @@ class QuestionsTableSeeder extends Seeder
         $count = Question::count();
         $typeQuestions = TypeQuestion::all();
 
-        /*if ($count == 0) {
-            DB::table('users')->insert([
+        if ($count == 0) {
+            DB::table('questions')->insert([
                 [
                     'title_id' => $titles->get(rand(0, $titles->count() -1))->id,
                     'statement' => 'Tem rampas de acesso?',
@@ -86,9 +86,9 @@ class QuestionsTableSeeder extends Seeder
                     'typeQuestion_id' => $typeQuestions->get(rand(0, $typeQuestions->count() -1))->id,
                 ],
             ]);
-        }*/
+        }/**/
 
-        DB::table('questions')->insert(array_map(function() use ($faker, $titles, $count, $typeQuestions) {
+        /*DB::table('questions')->insert(array_map(function() use ($faker, $titles, $count, $typeQuestions) {
             return [
                 'title_id' => $titles->get(rand(0, $titles->count() -1))->id,
                 'statement' => $faker->unique()->paragraph(). ' ' .$count,
@@ -97,7 +97,7 @@ class QuestionsTableSeeder extends Seeder
                 'updated_at' => $faker->dateTimeThisMonth,
                 'typeQuestion_id' => $typeQuestions->get(rand(0, $typeQuestions->count() -1))->id,
             ];
-        }, range(1, DatabaseSeeder::$dimension)));
+        }, range(1, DatabaseSeeder::$dimension)));/**/
 	}
 
 }

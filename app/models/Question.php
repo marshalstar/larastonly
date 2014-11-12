@@ -87,7 +87,7 @@ class Question extends Ardent
             ->where('questions.id', '=', $this->id)
             ->get(['questions.id']);
 
-        if (!count($result)) {
+        if (!count($result)  && !Auth::user()->is_admin) {
             throw new Exception(Lang::get('questão inválida'));
         }
     }

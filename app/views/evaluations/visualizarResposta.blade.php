@@ -1,4 +1,5 @@
 <?php
+
 function renderTitle($titles, $e) {
                         // <?php die ? >
                         // die;
