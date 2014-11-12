@@ -7,33 +7,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"> <i class="fa fa-home"> Listonly</a></i>
+            <a class="navbar-brand" href="/"> <i class="fa fa-home"> Listonly</i></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"> Home </a></li>
-                <li><a href="{{URL::route('users.login')}}">Login</a></li>
-                <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
+                @if(Auth::user())
+                    <li><a href="{{URL::route('editUser', Auth::user()->id)}}">{{ Auth::user()->username }}</a></li>
+                @else
+                    <li><a href="{{URL::route('users.login')}}">Login</a></li>
+                    <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
+                @endif
+                <li><a href="{{URL::route('checklists.create')}}"><span class="glyphicon glyphicon-plus"></span>{{ Lang::get(' checklist') }}</a></li>
+                {{-- Form::open(array('route' => 'search', 'class' => 'navbar-form navbar-left')) }}
+                    <div class="form-group">
 
-                </li>
-        {{ Form::open(array('route' => 'search', 'class' => 'navbar-form navbar-left')) }}
-        <div class="form-group">
-
-        {{Form::text('keyword', 'Pesquisar', array('id' => 'keyword'))}}
-         <button type="submit"><i class="fa fa-search"></i></button>
-          </div> 
-          {{Form::close()}} 
+                    {{Form::text('keyword', 'Pesquisar', array('id' => 'keyword'))}}
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                {{Form::close()--}}
             </ul>
         </div>
         <!--/.nav-collapse-->

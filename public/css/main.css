@@ -1,21 +1,18 @@
-<style>
+.container-main {
+    background-color: white;
+    display: block;
 
-    .container-main {
-        background-color: white;
-        display: block;
+    margin-top: 50px;
+    border: 1px solid #BBB;
+    /*box-shadow: 0 0 30px #AAA;/**/
+    padding:10px 10px 10px 10px;
+    border:10px 10px 10px 10px;
 
-        margin-top: 50px;
-        border: 1px solid #BBB;
-        /*box-shadow: 0 0 30px #AAA;/**/
-        padding:10px 10px 10px 10px;
-        border:10px 10px 10px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-
-    }
-
+}
 
 #breadCrumb{
     background: #428bca;
@@ -58,9 +55,7 @@ font-weight: bold;
         min-height: 50%;
         z-index: -99999;
     }
-</style>
 
-<style>
     html, body {
         overflow: hidden;
         height: 100%;
@@ -73,9 +68,7 @@ font-weight: bold;
         height: 100%;
         overflow: auto;
     }
-</style>
 
-<style type="text/css">
 	/*body {
 		background-color: #fafafa;
 	}
@@ -112,5 +105,3 @@ font-weight: bold;
 	a:hover {
 		color: #feb246;
 	}*/
-
-</style>

@@ -26,7 +26,7 @@
         @viewport { width: device-width; }
     </style>
 
-    @include('templates.style.main')
+    <link href="/css/main.css" rel="stylesheet"/>
 
 </head>
 <body>
