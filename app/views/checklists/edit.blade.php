@@ -50,7 +50,7 @@ function renderQuestion($title, $typeQuestions) {
                     <textarea class="input-question form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}">{{ $q->statement }}</textarea>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <a href="javascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="jav    ascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </div>
 
@@ -61,11 +61,7 @@ function renderQuestion($title, $typeQuestions) {
                 </div>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="row alternatives">
-                    <?php renderAlternative($q, $typeQuestions); ?>
-                </div>
-            </div>
+            <?php renderAlternative($q, $typeQuestions); ?>
 
             <div class="row">
                 <a href="javascript:void(0)" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -77,18 +73,26 @@ function renderQuestion($title, $typeQuestions) {
 }
 
 function renderAlternative($question, $typeQuestions) {
+    $iterator = 0;
     foreach($question->alternatives as $a): ?>
         <div class="alternative" data-id="{{ $a->id }}">
-            <ul class="nav nav-pills">
-                <li><input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/></li>
-                <li>
-                    <div class="form-group form-group-sm">
-                        <h8>
-                            <a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>
-                        </h8>
+            <div class="row form-group">
+                @unless($iterator++)
+                    <label for="title" class="col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                        {{ String::capitalize(Lang::get("alternativa")) }}
+                    </label>
+                    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
+                        <input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/>
                     </div>
-                </li>
-            </ul>
+                @else
+                    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-10">
+                        <input class="input-alternative form-control" type="text" value="{{ $a->name }}" placeholder="Alternativa"/>
+                    </div>
+                @endunless
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                    <a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+            </div>
         </div>
     <?php endforeach;
 }
@@ -107,16 +111,6 @@ function renderAlternative($question, $typeQuestions) {
         <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
 
-    {{--**** funcionalidade da professora (⌐■_■) ****--}}
-    <input type="checkbox" class="pattern-alternatives"/> {{ Lang::get('Usar um padrão de alternativas') }}
-    <div class="alternatives-default" style="display: none;">
-        <a href="javascript:void(0)" class="btn-new-alternative-default">
-            <span class="glyphicon glyphicon-plus"></span> Adicionar alternativa
-        </a>
-        <div class="row alternatives"></div>
-    </div>
-    {{--****  ****--}}
-
     <div class="checklist" data-id="{{ $checklist->id }}">
         <div class="navbar navbar-default">
             <div class="container-fluid">
@@ -129,6 +123,20 @@ function renderAlternative($question, $typeQuestions) {
                 </div>
             </div>
         </div>
+
+        {{--**** funcionalidade da professora (⌐■_■) ****--}}
+        <label>
+            <input type="checkbox" class="pattern-alternatives"/> {{ Lang::get('usar mesmas alternativas para todas as questões') }}
+        </label>
+
+        <div class="alternatives-default" style="display: none;">
+            <a href="javascript:void(0)" class="btn-new-alternative-default">
+                <span class="glyphicon glyphicon-plus"></span> {{ String::capitalize(Lang::get("Adicionar alternativa")) }} 
+            </a>
+            <div class="row alternatives"></div>
+        </div>
+        {{--****  ****--}}
+
         <div>
             <div class="titles">
                 <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeQuestions); ?>
