@@ -11,6 +11,8 @@
         ** fazer pesquisar
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
         ** revisar navegação no site [GORGES]
+        ** fazer negativo (alto contraste)
+        ** fazer aumentar/diminuir letra
         **** tornar o site AAA no WCAG
 
         FORTEMENTE RECOMENDADAS:
