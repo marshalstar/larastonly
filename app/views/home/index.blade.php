@@ -17,23 +17,8 @@
 
     @if(Auth::check() && Auth::user()->is_admin)
       <p> Bem-vindo(a), {{Auth::user()->username}}</p>
+
       <div class="panel-group" id="gerenciarTudo">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarPerfil">
-                Gerenciar Perfis
-              </a>
-            </h4>
-          </div>
-          <div id="gerenciarPerfil" class="panel-collapse collapse in">
-            <div class="panel-body">
-            <li><a href="{{URL::route('admin.users.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Perfis </a></li>
-            <li><a href="{{URL::route('password.edit')}}"> <i class="fa fa-pencil-square-o"></i> Mudar minha senha </a></li>
-            <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out"></i> Sair </a></li>
-            </div>
-          </div>
-        </div>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
@@ -58,6 +43,23 @@
           </div>
         </div>
       </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#gerenciarTudo" href="#gerenciarPerfil">
+                Gerenciar Perfis
+              </a>
+            </h4>
+          </div>
+          <div id="gerenciarPerfil" class="panel-collapse collapse in">
+            <div class="panel-body">
+            <li><a href="{{URL::route('admin.users.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Perfis </a></li>
+            <li><a href="{{URL::route('password.edit')}}"> <i class="fa fa-pencil-square-o"></i> Mudar minha senha </a></li>
+            <li><a href="{{URL::route('logout')}}"><i class="fa fa-sign-out"></i> Sair </a></li>
+            </div>
+          </div>
+        </div>
+      
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
