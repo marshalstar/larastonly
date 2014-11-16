@@ -64,6 +64,13 @@ function renderAlternative($question) {
 
 
 @section('content')
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Responder Lista de Avaliação. 
+           
+            
+          </p>
   <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print" />
 <div class="container container-main">
 
