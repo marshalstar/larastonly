@@ -53,6 +53,12 @@ function renderAlternative($question, $evaluation) {
 @section('title'){{ Str::title(Lang::get('Responder Checklist')) }} @stop
 
 @section('content')
+   <p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Visualizar Respostas.
+
+          </p>
   <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print" />
 <div class="container container-main">
 
