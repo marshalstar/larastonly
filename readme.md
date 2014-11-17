@@ -13,7 +13,18 @@
         ** revisar navegação no site [GORGES]
         ** fazer negativo (alto contraste)
         ** fazer aumentar/diminuir letra
+        ** arrumar a tela de resposta de um usuario
+        * revisar cruds
+        * arrumar apresentação das ultimas avaliações
         **** tornar o site AAA no WCAG
+
+        INTERFACE (OBRIGATÓRIO):
+        ? barra de acessibilidade
+        ? nao mostrar "+ checklist" se nao tiver logado
+        ? login // crie sua conta // login via facebook
+        ? mudar "resetar" para "limpar", e tirar se desnecessário
+        ? trocar ícone de criar conta (o checkbox confunde)
+        ? tirar ícone de esqueci minha senha
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist

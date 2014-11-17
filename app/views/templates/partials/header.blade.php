@@ -18,13 +18,12 @@
                     <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
                 @endif
                 <li><a href="{{URL::route('checklists.create')}}"><span class="glyphicon glyphicon-plus"></span>{{ Lang::get(' checklist') }}</a></li>
-                {{-- Form::open(array('route' => 'search', 'class' => 'navbar-form navbar-left')) }}
+                {{ Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET']) }}
                     <div class="form-group">
-
-                    {{Form::text('keyword', 'Pesquisar', array('id' => 'keyword'))}}
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                        <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">
                     </div>
-                {{Form::close()--}}
+                    <input type="submit" class="btn btn-default" value="{{ Lang::get("Pesquisar") }}">
+                {{ Form::close() }}
             </ul>
         </div>
         <!--/.nav-collapse-->

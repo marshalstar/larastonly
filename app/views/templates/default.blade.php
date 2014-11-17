@@ -26,6 +26,10 @@
         @-ms-viewport { width: device-width; }
         @-o-viewport { width: device-width; }
         @viewport { width: device-width; }
+        {{-- serve para fazer a tela funcionar com a imagem de fundo --}}
+
+        table.table td a { display:block; }
+        {{-- serve para fazer os links numa tabela funcionarem na linha inteira--}}
     </style>
 
     <link href="/css/main.css" rel="stylesheet"/>
