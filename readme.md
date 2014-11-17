@@ -16,7 +16,7 @@
         * arrumar apresentação das ultimas avaliações
         **** tornar o site AAA no WCAG
 
-        INTERFACE (OBRIGATÓRIO):
+        MARCIA (OBRIGATÓRIO):
         ? barra de acessibilidade
         ? nao mostrar "+ checklist" se nao tiver logado
         ? login // crie sua conta // login via facebook
@@ -32,6 +32,10 @@
         ? "deletar nao existe. é excluir"
         ? ícone de editar é lápis
         ? mensagem de deletar deve ter "sim" (em vermelho à esquerda) e "não" (à direita e com foco)
+        ? comentario para resposta em questao
+        ? texto de ajuda para questao
+        ? alternativa "outro" em alternativas
+        ? mudar nome de radio para outro nome
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist

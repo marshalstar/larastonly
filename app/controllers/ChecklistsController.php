@@ -118,8 +118,21 @@ class ChecklistsController extends AdminBaseController
     {
         $checklist = new Checklist;
         $checklist->user_id = Auth::user()->id;
-        $checklist->name = 'checklist';
+        $checklist->name = Lang::get("checklist exemplo");
         $checklist->save();
+
+        $title = new Title;
+        $title->name = Lang::get("título exemplo");
+        $title->checklist_id = $checklist->id;
+        $title->save();
+
+        $question = new Question;
+        $question->name = Lang::get("questão exemplo");
+        $question->title_id = $title->id;
+        $question->save();
+
+        $question->alternatives()->attach(Alternative::first());
+
         return Redirect::route('checklists.edit', [$checklist->id]);
     }
 
