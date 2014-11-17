@@ -1,4 +1,8 @@
 @extends('templates.default')
+
+@section('title'){{ String::capitalize(Lang::get('checklist')). ' ' .$checklist->name }} @stop
+
+@section('content')
 <p id="breadCrumb">
      Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
@@ -7,9 +11,6 @@
             / Visualizar Checklist.
             
           </p>
-@section('title'){{ String::capitalize(Lang::get('checklist')). ' ' .$checklist->name }} @stop
-
-@section('content')
     <div class="container container-main">
 
         <div class="table-responsive">

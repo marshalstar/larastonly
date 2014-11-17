@@ -100,6 +100,13 @@ function renderAlternative($question, $typeQuestions) {
 @section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
 
 @section('content')
+<p id="breadCrumb">
+            Você está em:
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            / Criar Lista de Avaliação. 
+           
+            
+          </p>
 
 <div class="container container-main">
 

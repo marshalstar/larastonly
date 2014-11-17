@@ -1,4 +1,8 @@
 @extends('templates.default')
+    
+@section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
+
+@section('content')
        <p id="breadCrumb">
             Você está em:
             <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
@@ -7,10 +11,6 @@
             / Visualizar Gráfico.
 
           </p>
-@section('title'){{ String::capitalize(Lang::get('Novo Checklist')) }} @stop
-
-@section('content')
-
     <div class="container container-main">
 
         @foreach($checklist->questions as $question)
