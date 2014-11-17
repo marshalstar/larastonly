@@ -51,7 +51,7 @@ Route::group(['before' => 'guest'], function()
 
         Route::post('/new', ['as' => 'users.new', 'uses' => 'UsersController@postNew']);
 
-        Route::get('/activate/{hash}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
+        Route::get('/activate/{code}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
     });
 
     Route::get('/forgot', ['as' => 'forgot', 'uses' => 'UsersController@getForgot']);
