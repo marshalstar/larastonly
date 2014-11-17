@@ -8,9 +8,7 @@
        )_(   |/     \||/   \__/(_______/|/       |/     \|\_______)
 
         OBRIGATÓRIAS:
-        ** fazer pesquisar
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
-        ** revisar navegação no site [GORGES]
         ** fazer negativo (alto contraste)
         ** fazer aumentar/diminuir letra
         ** arrumar a tela de resposta de um usuario
@@ -25,10 +23,19 @@
         ? mudar "resetar" para "limpar", e tirar se desnecessário
         ? trocar ícone de criar conta (o checkbox confunde)
         ? tirar ícone de esqueci minha senha
+        ? arrumar tela do admin
+        ? criar usuário, o textfield está com estilo errado
+        ? nao pôr url da imagem se não for upar imagem
+        ? mudar mensagem de erro para português
+        ? mudar "trocar senha" para "alterar senha"
+        ? arrumar email que o seeder gera
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist
         + radio apenas uma resposta por questao
+        + revisar validacao de email
+        + revisar validacoes do sistema
+        + revisar mensagens de erro nos ajax's
 
         MEDIAMENTE RECOMENDADAS:
         === corrigir footer quando a página não tem nenhum conteúdo

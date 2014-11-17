@@ -10,9 +10,9 @@ $(".destroy").click(function () {
             success: function() {
                 $("#grid-data").bootgrid("reload", null);
             },
-            error: function() {
+            error: function(e) {
                 /* @TODO: vim aqui e fazer uma modal descente */
-                alert('opa! deu erro! voltar aqui e fazer uma modal decente!');
+                console.error(e);
             }
         });
     }
