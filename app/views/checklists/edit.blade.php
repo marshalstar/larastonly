@@ -22,7 +22,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
                 <div class="questions">
                     <?php renderQuestion($t, $typeQuestions); ?>
                 </div>
-                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> question</a>
+                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> Adicionar Questão </a>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,7 +32,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
             </div>
 
             <div class="panel-footer">
-                <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> title</a>
+                <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo </a>
             </div>
         </div>
     <?php endforeach;
@@ -128,7 +128,7 @@ function renderAlternative($question, $typeQuestions) {
         <div class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <span class="navbar-brand">checklist</span>
+                    <span class="navbar-brand">Nome do Checklist</span>
                 </div>
                 <div class="navbar-form navbar-left">
                     <input class="input-checklist form-control" type="text" value="{{ $checklist->name }}" placeholder="Checklist"/>
@@ -141,11 +141,11 @@ function renderAlternative($question, $typeQuestions) {
                 <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeQuestions); ?>
             </div>
         </div>
-        <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span>title</a>
+        <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo</a>
     </div>
 
     <div class="form-group required">
-        <label for="country" class="control-label col-lg-1 col-sm-4">{{ Lang::get('comentário') }}</label>
+        <label for="country" class="control-label col-lg-1 col-sm-4">{{ Lang::get('Comentário') }}</label>
         <div class="col-lg-11 col-sm-8">
             <textarea class="form-control input-description" rows="3" placeholder="{{ Lang::get('comentário') }}" name="commentary" id="commentary"></textarea>
         </div>

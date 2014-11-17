@@ -85,9 +85,8 @@ class UsersController extends AdminBaseController
         }
             
         else{
-             return Redirect::route('users.login')
-            ->with('message', Lang::get('Login falhou'))
-            ->withInput(Input::except('password'));
+             return Redirect::route('home')->with('message', Lang::get('Falha no login, verifique se você digitou corretamente seu e-mail e/ou senha'));
+          
         }
        
     }

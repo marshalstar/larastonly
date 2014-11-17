@@ -4,16 +4,16 @@
         <span class="sr-only">Close</span>
     </button>
 
-    <h4 class="modal-title" id="titleDestroy">Deletar</h4>
+    <h4 class="modal-title" id="titleDestroy">Excluir</h4>
 
     <div class="modal-body">
-        {{ Lang::get('Tem certeza que deseja deletar?') }}
+        {{ Lang::get('Tem certeza que deseja excluir?') }}
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-default popup-modal-destroy" data-dismiss="modal">{{ Lang::get('Fechar') }}</button>
         <a href="javascript:void(0);" class="btn btn-sm btn-danger popup-modal-destroy destroy">
-            {{ Lang::get('deletar') }}
+            {{ Lang::get('Excluir') }}
         </a>
     </div>
 

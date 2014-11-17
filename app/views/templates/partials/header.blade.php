@@ -11,13 +11,6 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @if(Auth::user())
-                    <li><a href="{{URL::route('editUser', Auth::user()->id)}}">{{ Auth::user()->username }}</a></li>
-                @else
-                    <li><a href="{{URL::route('users.login')}}">Login</a></li>
-                    <li><a href="{{URL::route('users.new')}}">Crie sua conta</a></li>
-                @endif
-                <li><a href="{{URL::route('checklists.create')}}"><span class="glyphicon glyphicon-plus"></span>{{ Lang::get(' checklist') }}</a></li>
                 {{ Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET']) }}
                     <div class="form-group">
                         <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">

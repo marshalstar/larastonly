@@ -53,7 +53,7 @@
                                 <a href="'+ '@yield('show-url')'.replace('key', row.id) + '" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span> {{ Lang::get('Exibir') }}</a>\
                                 <a href="'+ '@yield('edit-url')'.replace('key', row.id) +'" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-wrench"></span> {{ Lang::get('Editar') }}</a>\
                                 <a class="btn btn-sm btn-danger popup-with-zoom-anim destroy-modal" data-url="'+ '@yield('destroy-url')'.replace('key', row.id) +'"\
-                                    href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Deletar') }}</a>\
+                                    href="#destroy-dialog" data-effect="mfp-zoom-in"><span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Excluir') }}</a>\
                             </div>';
                 }
             }

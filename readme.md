@@ -18,20 +18,7 @@
 
         MARCIA (OBRIGATÓRIO):
         ? barra de acessibilidade
-        ? nao mostrar "+ checklist" se nao tiver logado
-        ? login // crie sua conta // login via facebook
-        ? mudar "resetar" para "limpar", e tirar se desnecessário
-        ? trocar ícone de criar conta (o checkbox confunde)
-        ? tirar ícone de esqueci minha senha
-        ? arrumar tela do admin
-        ? criar usuário, o textfield está com estilo errado
-        ? nao pôr url da imagem se não for upar imagem
-        ? mudar mensagem de erro para português
-        ? mudar "trocar senha" para "alterar senha"
-        ? arrumar email que o seeder gera
-        ? "deletar nao existe. é excluir"
-        ? ícone de editar é lápis
-        ? mensagem de deletar deve ter "sim" (em vermelho à esquerda) e "não" (à direita e com foco)
+       
         ? comentario para resposta em questao
         ? texto de ajuda para questao
         ? alternativa "outro" em alternativas
@@ -39,10 +26,6 @@
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist
-        + radio apenas uma resposta por questao
-        + revisar validacao de email
-        + revisar validacoes do sistema
-        + revisar mensagens de erro nos ajax's
 
         MEDIAMENTE RECOMENDADAS:
         === corrigir footer quando a página não tem nenhum conteúdo
