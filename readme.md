@@ -29,6 +29,9 @@
         ? mudar mensagem de erro para português
         ? mudar "trocar senha" para "alterar senha"
         ? arrumar email que o seeder gera
+        ? "deletar nao existe. é excluir"
+        ? ícone de editar é lápis
+        ? mensagem de deletar deve ter "sim" (em vermelho à esquerda) e "não" (à direita e com foco)
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist

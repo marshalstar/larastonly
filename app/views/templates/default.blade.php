@@ -18,7 +18,6 @@
     <link href="/packages/bootgrid/1.1.1/css/jquery.bootgrid.css" rel="stylesheet"/>
     <style src="/packages/bootstrap-accessibility/3/css/bootstrap-accessibility.css"></style>
     <link href="/packages/bootstrap-accessibility/3/js/bootstrap-accessibility.min.js" rel="stylesheet"/>
-    <script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
 
     <style>
         @-webkit-viewport { width: device-width; }
@@ -34,55 +33,51 @@
 
     <link href="/css/main.css" rel="stylesheet"/>
 
+    <script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="/packages/bootstrap/3.2.0/js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+    <script src="/packages/bootstrap/3.2.0/js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/packages/bootstrap/3.2.0/js/html5shiv.min.js"></script>
+    <script src="/packages/bootstrap/3.2.0/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="/packages/angular/1.2.8/js/angular.min.js"></script>
+    <script src="/packages/angular/1.2.8/js/angular-route.js"></script>
+
+    <script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
+
+    <script src="/packages/bootgrid/1.1.1/js/jquery.bootgrid.min.js"></script>
+
+    <script src="/packages/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/packages/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/packages/bootstrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
+
+    <script src="/packages/magnific-popup/0.9.9/js/jquery.magnific-popup.min.js"></script>
+
+    <script src="/js/anchor.js" async></script>
+
+    <script>
+        $('[data-loading-text]').on('click', function () {
+            $(this).button('loading')
+            /** @TODO: voltar aqui e terminar o esquema */
+            //setTimeout();
+        });
+    </script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
+
 </head>
 <body>
-
     <div class="wrap">
-
         @include('templates.partials.header')
             @yield('content')
         @include('templates.partials.footer')
-
     </div>
-
 </body>
 
-<!--[if lt IE 9]>
-<script src="/packages/bootstrap/3.2.0/js/ie8-responsive-file-warning.js"></script>
-<![endif]-->
-<script src="/packages/bootstrap/3.2.0/js/ie-emulation-modes-warning.js"></script>
-<!--[if lt IE 9]>
-<script src="/packages/bootstrap/3.2.0/js/html5shiv.min.js"></script>
-<script src="/packages/bootstrap/3.2.0/js/respond.min.js"></script>
-<![endif]-->
-
-<script src="/packages/angular/1.2.8/js/angular.min.js"></script>
-<script src="/packages/angular/1.2.8/js/angular-route.js"></script>
-
-<script src="/packages/jquery/2.1.1/js/jquery.min.js"></script>
-
-<script src="/packages/bootgrid/1.1.1/js/jquery.bootgrid.min.js"></script>
-
-<script src="/packages/bootstrap/3.2.0/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/packages/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="/packages/bootstrap/3.2.0/js/docs.min.js"></script> {{-- provavelmente não usaremos--}}
-
-<script src="/packages/magnific-popup/0.9.9/js/jquery.magnific-popup.min.js"></script>
-
-<script src="/js/anchor.js" async></script>
-
-<script>
-    $('[data-loading-text]').on('click', function () {
-        $(this).button('loading')
-        /** @TODO: voltar aqui e terminar o esquema */
-        //setTimeout();
-    });
-</script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
-
 <script type="text/javascript">
-    console.error('\n\
-\n\
-\n\
+    console.error('\n\n\n\
                                             \n\
  .d8888b.  888                       888    \n\
 d88P  Y88b 888                       888    Esta é uma funcionalidade do navegador \n\
@@ -94,8 +89,7 @@ Y88b  d88P Y88b.  Y88..88P 888 d88P         de uma fraude que lhe irá dar acess
  "Y8888P"   "Y888  "Y88P"  88888P"   888    à tua conta do Facebook.\n\
                            888              \n\
                            888              \n\
-                           888              \n\
-\n\
+                           888              \n\n\
 Para obteres mais informações consulta a página https://www.facebook.com/selfxss.');
 </script>
 
