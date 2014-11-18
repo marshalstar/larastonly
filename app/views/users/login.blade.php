@@ -1,6 +1,6 @@
 @extends('templates.default')
 
-@section('title'){{ String::capitalize(Lang::get('novo usuário')) }} @stop
+@section('title'){{ String::capitalize(Lang::get('Login')) }} @stop
 
 @section('content')
 <div class="container container-main">
@@ -28,13 +28,13 @@
         {{ Form::label('password', String::capitalize(Lang::get('senha')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::password('password', null, ['class' => 'form-control', 'required' => 'true', 'placeholder' => Lang::get('senha')]) }}
-              <a href="{{URL::route('forgot')}}"><i class="fa fa-refresh"></i> Esqueci minha senha</a>
+              <a href="{{URL::route('forgot')}}"> Esqueci minha senha </a>
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
-            <a href="{{URL::route('users.new')}}"><i class="fa fa-check-square-o"></i> Não possui uma conta? Cadastre-se.</a>
+            <a href="{{URL::route('users.new')}}"> Não possui uma conta? Cadastre-se.</a>
         </div>
     </div>
 

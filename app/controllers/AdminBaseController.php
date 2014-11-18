@@ -231,7 +231,6 @@ abstract class AdminBaseController extends Controller {
     {
         $this->beforeAdminDestroy($id);
         $this->query()->getQuery()->delete($id);
-        return Redirect::route("admin.{$this->getViewAdminBaseName()}.index");
     }
 
     /**

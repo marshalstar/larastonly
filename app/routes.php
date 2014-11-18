@@ -39,6 +39,8 @@ Route::pattern('slug', '[a-z0-9-]+');
 Route::pattern('username', '[a-z0-9_-]{3,16}');
 // font: http://www.laravel-tricks.com/tricks/routing-patterns
 
+Route::pattern('page', '\d+');
+
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['before' => 'guest'], function()
@@ -49,7 +51,7 @@ Route::group(['before' => 'guest'], function()
 
         Route::post('/new', ['as' => 'users.new', 'uses' => 'UsersController@postNew']);
 
-        Route::get('/activate/{hash}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
+        Route::get('/activate/{code}', ['as' => 'user-activate','uses' => 'UsersController@getActivate']);
     });
 
     Route::get('/forgot', ['as' => 'forgot', 'uses' => 'UsersController@getForgot']);
@@ -103,11 +105,12 @@ Route::group(array('before' => 'auth'), function()
         Route::get('users/logout', ['as' => 'logout', 'uses' => 'UsersController@getLogout']);
 
 });
+
 Route::get('/editUser/{id}', ['as' => 'editUser', 'uses' => 'UsersController@getEditUser']);
 
 Route::post('/editUser/{id}',['as' => 'editUser', 'uses' => 'UsersController@postEditUser']);
 
-Route::post('/search', ['as' => 'search', 'uses' =>'Checklist@search']);
+Route::get('/search', ['as' => 'search', 'uses' =>'ChecklistsController@search']);
 
 Route::get('results/(:all)', ['uses' => 'checklists@results']);
 

@@ -118,8 +118,21 @@ class ChecklistsController extends AdminBaseController
     {
         $checklist = new Checklist;
         $checklist->user_id = Auth::user()->id;
-        $checklist->name = 'checklist';
+        $checklist->name = Lang::get("checklist exemplo");
         $checklist->save();
+
+        $title = new Title;
+        $title->name = Lang::get("título exemplo");
+        $title->checklist_id = $checklist->id;
+        $title->save();
+
+        $question = new Question;
+        $question->name = Lang::get("questão exemplo");
+        $question->title_id = $title->id;
+        $question->save();
+
+        $question->alternatives()->attach(Alternative::first());
+
         return Redirect::route('checklists.edit', [$checklist->id]);
     }
 
@@ -302,6 +315,7 @@ order by evaluations.id
     }
 
 
+    /** @TODO: colocar isto na controller PDF ou deletar a controller PDF */
     public function renderTitle($titles, $layer) {
         $h = '';
         foreach($titles as $t):
@@ -364,6 +378,45 @@ order by evaluations.id
             // '<input type="'. TypeQuestion::findOrFail($question->typeQuestion_id)->name .'" name="'. $question->id .'" id="'. $question->id .'" value="'. $a->id .'"> '. $a->name ;
         endforeach;
         return $h . '<br/>';
+    }
+
+    public function search()
+    {
+        $search = trim(Input::get('keywords'));
+        $keywords = $search;
+        $keywords = preg_split('/\s+/', $keywords);
+        ($count = Input::get('count')) || $count = 10;
+
+        /** @TODO: pôr na model */
+        $query = DB::table('checklists')
+            ->leftJoin('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+            ->leftJoin('places', 'evaluations.place_id', '=', 'places.id')
+            ->leftJoin('cities', 'places.city_id', '=', 'cities.id')
+            ->leftJoin('states', 'cities.state_id', '=', 'states.id')
+            ->leftJoin('countries', 'states.country_id', '=', 'countries.id');
+
+        $likes = [
+            'checklists.name',
+            'places.name',
+            'checklists.description',
+            'cities.name',
+            'states.name',
+            'countries.name',
+            'evaluations.commentary',
+        ];
+
+        foreach($likes as $l) {
+            foreach($keywords as $k) {
+                $query->orWhere($l, 'like', "%$k%");
+                $query->orderByRaw("$l LIKE '%$k%' DESC");
+            }
+        }
+        $query->groupBy('checklists.id');
+        $checklists = $query->paginate(1, ['checklists.*']);
+
+        return View::make('checklists.search')
+            ->with('checklists', $checklists)
+            ->with('search', $search);
     }
 
 }

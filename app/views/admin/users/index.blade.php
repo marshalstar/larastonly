@@ -18,7 +18,6 @@
 <th data-column-id="is_admin" class="text-center">{{ Lang::get('É administrador?') }}</th>
 <th data-column-id="gender" class="text-center">{{ Lang::get('Sexo') }}</th>
 <th data-column-id="biography" class="text-center">{{ Lang::get('Biografia') }}</th>
-<th data-column-id="picture_url" class="text-center">{{ Lang::get('Url do Retrato') }}</th>
 <th data-column-id="commands" data-formatter="commands" data-sortable="false">Ações</th>
 @stop
 

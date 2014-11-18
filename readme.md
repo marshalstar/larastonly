@@ -8,18 +8,17 @@
        )_(   |/     \||/   \__/(_______/|/       |/     \|\_______)
 
         OBRIGATÓRIAS:
-        ** fazer pesquisar
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
-        ** revisar navegação no site [GORGES]
+        ** fazer negativo (alto contraste)
+        ** fazer aumentar/diminuir letra
+        ** arrumar a tela de resposta de um usuario
+        * revisar cruds
+        * arrumar apresentação das ultimas avaliações
         **** tornar o site AAA no WCAG
 
         FORTEMENTE RECOMENDADAS:
         + adicionar porcentagem na tabela na tela de criar checklist
         + radio apenas uma resposta por questao
-        ++ fazer "usar mesmas alternativas para todas as questoes" funcionar
-        ++ fazer, nos gráficos, sim ser sempre verde e nao sempre vermelho
-        + ver erros de console em todas as janelas e corrigir eles
-        + trocar cor dos botoes na pagina dos graficos
 
         MEDIAMENTE RECOMENDADAS:
         === corrigir footer quando a página não tem nenhum conteúdo
