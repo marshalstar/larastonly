@@ -104,7 +104,7 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
         return parseFloat(localStorage.getItem('listonly-zoom'));
     }
 
-    if (getZoom() == undefined) {
+    if (!getZoom()) {
         setZoom(1);
     }
 
