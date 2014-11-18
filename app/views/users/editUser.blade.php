@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('speciality', String::capitalize(Lang::get('Conte-nos sua especialidade(profissão)')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('speciality', String::capitalize(Lang::get('Especialidade')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::text('speciality', isset($user)? null : Input::old('speciality'), ['class' => 'form-control', 'placeholder' => Lang::get('especialidade')]) }}
         </div>
@@ -45,7 +45,7 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('biography', String::capitalize(Lang::get('Sobre você')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
+        {{ Form::label('biography', String::capitalize(Lang::get('Biografia')), ['class' => 'control-label col-lg-2 col-sm-4']) }}
         <div class="col-lg-10 col-sm-8">
             {{ Form::textarea('biography', isset($user)? null : Input::old('biography'), ['class' => 'form-control', 'placeholder' => Lang::get('biografia')]) }}
         </div>

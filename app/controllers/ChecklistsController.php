@@ -127,8 +127,9 @@ class ChecklistsController extends AdminBaseController
         $title->save();
 
         $question = new Question;
-        $question->name = Lang::get("questão exemplo");
+        $question->statement = Lang::get("questão exemplo");
         $question->title_id = $title->id;
+        $question->typeQuestion_id = TypeQuestion::first()->id;
         $question->save();
 
         $question->alternatives()->attach(Alternative::first());
