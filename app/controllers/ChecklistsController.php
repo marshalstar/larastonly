@@ -164,6 +164,30 @@ class ChecklistsController extends AdminBaseController
                     });
                 }
             });
+            /*dd($query->toSql());
+            !ddd($query->toSql());/**/
+            /*
+select `evaluations`.`id`
+from `evaluations`
+inner join `checklists`
+on `checklists`.`id` = `evaluations`.`checklist_id`
+inner join `answers`
+on `evaluations`.`id` = `answers`.`evaluation_id`
+inner join `alternative_question`
+on `answers`.`alternative_question_id` = `alternative_question`.`id`
+where `checklists`.`id` = 1
+and (`alternative_question`.`question_id` = 7
+and `alternative_question`.`alternative_id` != 1)
+
+use larastonly;
+select evaluations.id, alternative_question.*
+from evaluations
+inner join answers
+on evaluations.id = answers.id
+inner join alternative_question
+on answers.alternative_question_id = alternative_question.id
+order by evaluations.id
+            */
         }
 
         $stdData = $query->get([
