@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container container-fluid">
 
         <div class="navbar-header">
@@ -33,14 +33,26 @@
                         <img style="width: 30px; height: 30px; max-width:100px; margin-top: -7px;" alt="Brand" src="/img/high_contrast.png">
                     </a>
                 </li>
-                <li>
-                    {{ Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET']) }}
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">
-                        </div>
-                        <input type="submit" class="btn btn-primary" value="{{ Lang::get("Pesquisar") }}">
-                    {{ Form::close() }}
-                </li>
+            </ul>
+
+            {{ Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET']) }}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">
+                </div>
+                <input type="submit" class="btn btn-primary" value="{{ Lang::get("Pesquisar") }}" role="button" alt="{{ Lang::get("Pesquisar") }}" title="{{ Lang::get("Pesquisar") }}">
+            {{ Form::close() }}
+
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::user())
+                    <li><a href="#">Auth::user()->name</a></li> {{-- terminar isso --}}
+                    <li><a href="#">{{ Lang::get("Deslogar") }}</a></li> {{-- terminar isso --}}
+                @else
+                    <li>
+                        <a href="{{ URL::route('users.login') }}" alt="{{ Lang::get("Logar") }}" title="{{ Lang::get("Logar") }}" role="link">
+                            {{ Lang::get("Logar") }}
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
 

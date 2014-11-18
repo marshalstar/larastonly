@@ -96,7 +96,6 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
     {{-- controle de tamanho de fonte --}}
 
     function setZoom(z) {
-        console.error("maldito js:" + z);
         localStorage.setItem('listonly-zoom', z);
     }
 
