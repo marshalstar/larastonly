@@ -18,7 +18,6 @@
 
         MARCIA (OBRIGATÓRIO):
         ? barra de acessibilidade
-       
         ? comentario para resposta em questao
         ? texto de ajuda para questao
         ? alternativa "outro" em alternativas

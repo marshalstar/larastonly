@@ -91,6 +91,76 @@ Y88b  d88P Y88b.  Y88..88P 888 d88P         de uma fraude que lhe irá dar acess
                            888              \n\
                            888              \n\n\
 Para obteres mais informações consulta a página https://www.facebook.com/selfxss.');
+
+
+    {{-- controle de tamanho de fonte --}}
+
+    function setZoom(z) {
+        console.error("maldito js:" + z);
+        localStorage.setItem('listonly-zoom', z);
+    }
+
+    function getZoom() {
+        return parseFloat(localStorage.getItem('listonly-zoom'));
+    }
+
+    if (getZoom() == undefined) {
+        setZoom(1);
+    }
+
+    $("body").css("zoom", getZoom());
+
+    $(document).on('click', '#font-up', function () {
+        setZoom(getZoom() + 0.1);
+        $("body").css("zoom", getZoom());
+        console.info("zoom:" + getZoom());
+    });
+
+    $(document).on('click', '#font-down', function () {
+        setZoom(getZoom() - 0.1);
+        $("body").css("zoom", getZoom());
+        console.info("zoom:" + getZoom());
+    });
+
+    $(document).on('click', '#font', function () {
+        setZoom(1);
+        $("body").css("zoom", getZoom());
+        console.info("zoom:" + getZoom());
+    });
+
+
+    {{-- controle de alto contraste --}}
+
+    function setContrast(c) {
+        localStorage.setItem('listonly-constrast', c);
+    }
+
+    function getContrast() {
+        return localStorage.getItem('listonly-constrast') == "true";
+    }
+
+    if (getContrast() == undefined) {
+        setContrast(false);
+    }
+
+    renderContrast(getContrast());
+    $(document).on('click', '#high-contrast', function () {
+        renderContrast(!getContrast());
+        setContrast(!getContrast());
+    });
+
+    function renderContrast(c) {
+        if (!c) {
+            $("body").css("-webkit-filter", "invert(0%)");
+            $("body").css("background-color", "#fff");
+            console.info("contrast (p):" + getContrast());
+        } else {
+            $("body").css("-webkit-filter", "invert(100%)");
+            $("body").css("background-color", "#000");
+            console.info("contrast (n):" + getContrast());
+        }
+    }
+
 </script>
 
 @yield('script')
