@@ -10,10 +10,10 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
                         <h{{ $layer }}>{{ String::capitalize(Lang::get("título")) }}</h{{ $layer }}>
                     </label>
                     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-10">
-                        <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}">{{ $t->name }}</textarea>
+                        <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}" alt="Nome do titulo" title="Nome do titulo" >{{ $t->name }}</textarea>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                        <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="javascript:void(0)" class="btn-del-title btn" alt="Remover titulo" title="Remover titulo"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                 </div>
             </div>

@@ -44,7 +44,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::user())
-                    <li><a href="#">Auth::user()->name</a></li> {{-- terminar isso --}}
+                    <li><a href="#">{{ Auth::user()->username }}</a></li> {{-- terminar isso --}}
                     <li><a href="#">{{ Lang::get("Deslogar") }}</a></li> {{-- terminar isso --}}
                 @else
                     <li>
