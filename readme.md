@@ -26,6 +26,8 @@
         }
         ===== tornar o site AAA no W3C
 
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+
     ################################################################################################################################
     ################################################################################################################################
     ################################################################################################################################
@@ -74,12 +76,3 @@
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
         https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
-
-Copyright (C) 1998-2012 Free Software Foundation, Inc.
-
-Permission is granted to copy, distribute and/or modify this document
-under the terms of the GNU Free Documentation License, Version 1.3 or
-any later version published by the Free Software Foundation; with no
-Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
-Texts.  A copy of the license is included in the "GNU Free
-Documentation License" file as part of this distribution.
