@@ -37,7 +37,7 @@
 
             {{ Form::open(['route' => 'search', 'class' => 'navbar-form navbar-left', 'method' => 'GET']) }}
                 <div class="form-group">
-                    <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">
+                    <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}" title="{{ Lang::get("Pesquisa") }}">
                 </div>
                 <button type="submit" class="btn btn-primary" role="submit" alt="{{ Lang::get("Pesquisar") }}" title="{{ Lang::get("Pesquisar") }}">
                     <span class="glyphicon glyphicon-search"></span>

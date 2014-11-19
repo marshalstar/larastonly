@@ -40,7 +40,24 @@ Route::pattern('username', '[a-z0-9_-]{3,16}');
 // font: http://www.laravel-tricks.com/tricks/routing-patterns
 Route::pattern('page', '\d+');
 
+/********** sem autenticação **********/
+
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+Route::group(['prefix' => 'checklists'], function ()
+{
+
+    Route::get('/graphics/{id}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
+
+    Route::post('/data-graphics/ajax/{id}', ['as' => 'checklists.dataGraphics.ajax', 'uses' => 'ChecklistsController@dataGraphicsAjax'])
+        ->before('ajax');
+
+    // Route::any('/pesquisar', ['as' => 'checklists.pesquisar', 'uses' => 'ChecklistsController@pesquisar']);
+});
+
+Route::get('/search', ['as' => 'search', 'uses' =>'ChecklistsController@search']);
+
+/********** Usuário deslogado **********/
 
 Route::group(['before' => 'guest'], function()
 {
@@ -62,112 +79,107 @@ Route::group(['before' => 'guest'], function()
     Route::get('/login', ['as' => 'users.login', 'uses' => 'UsersController@getLogin']);
 
     Route::post('/login', ['uses' => 'UsersController@postLogin']);
+
+    Route::get('/fb', ['uses' => 'UsersController@loginWithFacebook']);
 });
 
-Route::get('/logout', ['as' => 'users.logout', 'uses' => 'UsersController@getLogout']);
+/********** Usuário logado **********/
+
+Route::group(array('before' => 'auth'), function()
+{
+
+    Route::group(array('before'=>'csrf'), function()
+    {
+        Route::put('/users/password', ['as' => 'password.update', 'uses' => 'UsersController@passwordUpdate']);
+
+        Route::put('/admin/users/password/{id}', ['as' => 'admin.password.update', 'uses' => 'UsersController@adminPasswordUpdate']);
+    });
+
+    Route::group(['prefix' => 'checklists'], function ()
+    {
+        Route::get('/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
+
+        Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
+
+        Route::any('/edit/{id}', ['as' => 'checklists.edit', 'uses' => 'ChecklistsController@edit']);
+    });
+
+    Route::get('/users/password', ['as' => 'password.edit', 'uses' => 'UsersController@passwordEdit']);
+
+    Route::get('/admin/users/password/{id}', ['as' => 'admin.password.edit', 'uses' => 'UsersController@adminPasswordEdit']);
+
+    Route::get('users/logout', ['as' => 'logout', 'uses' => 'UsersController@getLogout']);
+
+    Route::get('/logout', ['as' => 'users.logout', 'uses' => 'UsersController@getLogout']);
+
+    Route::get('/editUser/{id}', ['as' => 'editUser', 'uses' => 'UsersController@getEditUser']);
+
+    Route::post('/editUser/{id}',['as' => 'editUser', 'uses' => 'UsersController@postEditUser']);
+
+    Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'question', 'alternative'], function($url, $route, $controller) {
+        Route::any("/$url/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
+    });
+
+    Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
+        Route::any("/$url/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
+    });
+
+    Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
+        Route::delete("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
+    });
+
+    // Route::get('/results/(:all)', ['uses' => 'checklists@results']);
+
+    // Route::get('/checklist/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
+
+    $cruds = [
+        'alternative',
+        'checklist',
+        'city',
+        'country',
+        'evaluation',
+        'place',
+        'question',
+        'state',
+        'typePlace',
+        'title',
+        'typeQuestion',
+        'user',
+    ];
+
+    Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $controller) {
+        Route::get("/$url", ["as" => "admin.$route.index", "uses" => "$controller@adminIndex"]);
+        Route::get("/$url/create", ["as" => "admin.$route.create", "uses" => "$controller@adminCreate"]);
+        Route::post("/$url", ["as" => "admin.$route.store", "uses" => "$controller@adminStore"]);
+        Route::get("/$url/{id}", ["as" => "admin.$route.show", "uses" => "$controller@adminShow"]);
+        Route::get("/$url/{id}/edit", ["as" => "admin.$route.edit", "uses" => "$controller@adminEdit"]);
+        Route::put("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
+        Route::patch("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
+        Route::delete("/$url/{id}", ["as" => "admin.$route.destroy", "uses" => "$controller@adminDestroy"]);
+
+        Route::any("/$url/index/ajax", ["as" => "admin.$route.index.ajax", "uses" => "$controller@adminIndexAjax"])
+            ->before('ajax');
+    });
+
+    // Route::any('/checklist/save', ['as' => 'checklistSave', 'uses' => 'ChecklistsController@save']);
+
+    // Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' => 'ChecklistsController@responder']);
+
+    // Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
+
+    Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses' => 'ChecklistsController@answerCreate']);
+
+    Route::post('/checklists/answer/{id}', ['as' => 'checklists.answer.store', 'uses' => 'ChecklistsController@answerStore']);
+
+    Route::any('/evaluations/visualizarresposta/{id}', ['as' => 'evaluationsVisualizarResposta', 'uses' => 'EvaluationsController@visualizarResposta']);
+
+    Route::any('/checklists/print/{id}', ['as' => 'checklists.print', 'uses' => 'ChecklistsController@printPdf']);
+
+});
+
+/********** Admin logado **********/
 
 Route::group(['prefix' => 'admin', 'before' => 'auth'], function ()
 {
     Route::get('/profile', ['as' => 'users.profile', 'uses' => 'UsersController@getProfile']);
 });
-
-Route::group(['prefix' => 'checklists'], function ()
-{
-    Route::get('/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
-
-    Route::get('/graphics/{id}', ['as' => 'checklists.graphics', 'uses' => 'ChecklistsController@graphics']);
-
-    Route::post('/data-graphics/ajax/{id}', ['as' => 'checklists.dataGraphics.ajax', 'uses' => 'ChecklistsController@dataGraphicsAjax'])
-        ->before('ajax');
-
-    Route::any('/create', ['as' => 'checklists.create', 'uses' => 'ChecklistsController@create']);
-    
-    Route::any('/pesquisar', ['as' => 'checklists.pesquisar', 'uses' => 'ChecklistsController@pesquisar']);
-
-    Route::any('/edit/{id}', ['as' => 'checklists.edit', 'uses' => 'ChecklistsController@edit']);
-});
-
-Route::group(array('before' => 'auth'), function()
-{
-        
-        Route::group(array('before'=>'csrf'), function()
-        {
-            Route::put('/users/password', ['as' => 'password.update', 'uses' => 'UsersController@passwordUpdate']);
-
-            Route::put('/admin/users/password/{id}', ['as' => 'admin.password.update', 'uses' => 'UsersController@adminPasswordUpdate']);
-        });
-
-        Route::get('/users/password', ['as' => 'password.edit', 'uses' => 'UsersController@passwordEdit']);
-
-        Route::get('/admin/users/password/{id}', ['as' => 'admin.password.edit', 'uses' => 'UsersController@adminPasswordEdit']);
-
-        Route::get('users/logout', ['as' => 'logout', 'uses' => 'UsersController@getLogout']);
-
-});
-
-Route::get('/editUser/{id}', ['as' => 'editUser', 'uses' => 'UsersController@getEditUser']);
-
-Route::post('/editUser/{id}',['as' => 'editUser', 'uses' => 'UsersController@postEditUser']);
-
-Route::get('/search', ['as' => 'search', 'uses' =>'ChecklistsController@search']);
-
-Route::get('results/(:all)', ['uses' => 'checklists@results']);
-
-Route::get('/checklist/new', ['as' => 'checklistNew', 'uses' => 'ChecklistsController@newChecklist']);
-
-Route::get('/fb', ['uses' => 'UsersController@loginWithFacebook']);
-
-Rounting::eachController(['before'=>'ajax'], ['title', 'question', 'question', 'alternative'], function($url, $route, $controller) {
-    Route::any("/$url/store/ajax", ["as" => "$route.store.ajax", "uses" => "$controller@storeAjax"]);
-});
-
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
-    Route::any("/$url/update/ajax/{id}", ["as" => "$route.update.ajax", "uses" => "$controller@updateAjax"]);
-});
-
-Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
-    Route::delete("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
-});
-
-// @TODO: tirar alguns cruds
-$cruds = [
-    'alternative',
-    'checklist',
-    'city',
-    'country',
-    'evaluation',
-    'place',
-    'question',
-    'state',
-    'typePlace',
-    'title',
-    'typeQuestion',
-    'user',
-];
-Rounting::eachController(['prefix' => 'admin'], $cruds, function($url, $route, $controller) {
-    Route::get("/$url", ["as" => "admin.$route.index", "uses" => "$controller@adminIndex"]);
-    Route::get("/$url/create", ["as" => "admin.$route.create", "uses" => "$controller@adminCreate"]);
-    Route::post("/$url", ["as" => "admin.$route.store", "uses" => "$controller@adminStore"]);
-    Route::get("/$url/{id}", ["as" => "admin.$route.show", "uses" => "$controller@adminShow"]);
-    Route::get("/$url/{id}/edit", ["as" => "admin.$route.edit", "uses" => "$controller@adminEdit"]);
-    Route::put("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
-    Route::patch("/$url/{id}", ["as" => "admin.$route.update", "uses" => "$controller@adminUpdate"]);
-    Route::delete("/$url/{id}", ["as" => "admin.$route.destroy", "uses" => "$controller@adminDestroy"]);
-
-    Route::any("/$url/index/ajax", ["as" => "admin.$route.index.ajax", "uses" => "$controller@adminIndexAjax"])
-        ->before('ajax');
-});
-
-Route::any('/checklist/save', ['as' => 'checklistSave', 'uses' => 'ChecklistsController@save']);
-
-// Route::any('/checklist/responder/{id}', ['as' => 'checklistResponder', 'uses' => 'ChecklistsController@responder']);
-
-// Route::post('/checklist/responder/respondeu', ['as' => 'checklistRespondeu', 'uses' => 'ChecklistsController@respondeu']);
-
-Route::get('/checklists/answer/{id}', ['as' => 'checklists.answer.create', 'uses' => 'ChecklistsController@answerCreate']);
-
-Route::post('/checklists/answer/{id}', ['as' => 'checklists.answer.store', 'uses' => 'ChecklistsController@answerStore']);
-
-Route::any('/evaluations/visualizarresposta/{id}', ['as' => 'evaluationsVisualizarResposta', 'uses' => 'EvaluationsController@visualizarResposta']);
-
-Route::any('/checklists/print/{id}', ['as' => 'checklists.print', 'uses' => 'ChecklistsController@printPdf']);
