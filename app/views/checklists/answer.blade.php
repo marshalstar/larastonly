@@ -66,12 +66,12 @@ function renderAlternative($question) {
 @section('content')
 <p id="breadCrumb">
             Você está em:
-            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
+            <a href = "{{URL::route('home')}}" title= "Voltar a página inicial." alt="Voltar a página inicial."> Página Inicial </a>
             / Responder Lista de Avaliação. 
            
             
           </p>
-  <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print" />
+  <link rel="stylesheet" href="/views/style/print.css" type="text/css" media="print"/>
 <div class="container container-main">
 
     @if (Session::has('message'))
@@ -153,35 +153,35 @@ function renderAlternative($question) {
                 <label for="place" class="control-label col-lg-2 col-sm-4">{{ Lang::get('lugar') }}</label>
                 <div class="col-lg-10 col-sm-8">
                     <input class="form-control place" required="true" placeholder="{{ Lang::get('lugar') }}" name="place" type="text" id="place" 
-                    onchange("atualizarCampos()")>
+                    onchange("atualizarCampos()") alt="Nome do lugar a ser avaliado" title="Nome do lugar a ser avaliado">
                 </div>
             </div>
 
             <div class="form-group required">
                 <label for="city" class="control-label col-lg-2 col-sm-4">{{ Lang::get('cidade') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <input class="form-control city" required="true" placeholder="{{ Lang::get('cidade') }}" name="city" type="text" id="city"/>
+                    <input class="form-control city" required="true" placeholder="{{ Lang::get('cidade') }}" name="city" type="text" id="city" alt="Cidade do lugar a ser avaliado" title="Cidade do lugar a ser avaliado"/>
                 </div>
             </div>
 
             <div class="form-group required">
                 <label for="state" class="control-label col-lg-2 col-sm-4">{{ Lang::get('estado') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <input class="form-control" required="true" placeholder="{{ Lang::get('estado') }}" name="state" type="text" id="state"/>
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('estado') }}" name="state" type="text" id="state"alt="Estado do lugar a ser avaliado" title="Estado do lugar a ser avaliado"/>
                 </div>
             </div>
 
             <div class="form-group required">
                 <label for="country" class="control-label col-lg-2 col-sm-4">{{ Lang::get('país') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <input class="form-control" required="true" placeholder="{{ Lang::get('país') }}" name="country" type="text" id="country"/>
+                    <input class="form-control" required="true" placeholder="{{ Lang::get('país') }}" name="country" type="text" id="country"alt="Pais do lugar a ser avaliado" title="Pais do lugar a ser avaliado"/>
                 </div>
             </div>
 
             <div class="form-group required">
                 <label for="country" class="control-label col-lg-2 col-sm-4">{{ Lang::get('comentário') }}</label>
                 <div class="col-lg-10 col-sm-8">
-                    <textarea class="form-control" rows="3" placeholder="{{ Lang::get('comentário') }}" name="commentary" id="commentary"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="{{ Lang::get('comentário') }}" name="commentary" id="commentary" alt="Comentario" title="Comentario"></textarea>
                 </div>
             </div>
 
@@ -189,7 +189,7 @@ function renderAlternative($question) {
                 <div class="col-lg-offset-2 col-sm-offset-4 col-lg-10 col-sm-8">
                     {{ Form::submit(String::capitalize('Finalizar'), ['class' => 'btn btn-primary']) }}
                     {{ Form::reset(String::capitalize(Lang::get('resetar')), ['class' => 'btn btn-inverse']) }}
-                    <a href="{{ URL::route('checklists.print', $checklist->id) }}" class="btn btn-default">Imprimir</a>
+                    <a href="{{ URL::route('checklists.print', $checklist->id) }}" class="btn btn-default" alt="Imprimir" title="Imprimir">Imprimir</a>
                     
                 </div>
             </div>
