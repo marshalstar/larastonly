@@ -134,7 +134,7 @@ function renderAlternative($question, $typeQuestions) {
 
         {{--**** funcionalidade da professora (⌐■_■) ****--}}
         <label>
-            <input type="checkbox" class="pattern-alternatives"/> {{ Lang::get('usar mesmas alternativas para todas as questões') }}
+            <input type="checkbox" class="pattern-alternatives" alt="Todas as questoes com as mesmas alternativas" title="Todas as questoes com as mesmas alternativas"/> {{ Lang::get('usar mesmas alternativas para todas as questões') }}
         </label>
 
         <div class="alternatives-default" style="display: none;">
