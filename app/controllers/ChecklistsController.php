@@ -260,7 +260,6 @@ order by evaluations.id
         
         $evaluation = new Evaluation;
 
-        /** @TODO: ver se o usuário pode mesmo criar país, estado e cidade */
         $country = Country::firstOrCreate(['name' => Input::get('country')]);
         $country->save();
         $state = State::firstOrCreate(['name' => Input::get('state'), 'country_id' => $country->id]);
@@ -295,6 +294,7 @@ order by evaluations.id
         return View::make('checklists.results')->with('title', 'Resultados da busca.')->with('checklists', Checklist::search($keyword));
 
     }
+
     public function postResults()
     {
         $keyword = Input::get('keyword');
@@ -310,11 +310,10 @@ order by evaluations.id
 
     }
 
-    public function pesquisar()
+    /*public function pesquisar()
     {
         return View::make("checklists.pesquisar");
-    }
-
+    }/**/
 
     /** @TODO: colocar isto na controller PDF ou deletar a controller PDF */
     public function renderTitle($titles, $layer) {
@@ -409,7 +408,8 @@ order by evaluations.id
         foreach($likes as $l) {
             foreach($keywords as $k) {
                 $query->orWhere($l, 'like', "%$k%");
-                $query->orderByRaw("$l LIKE '%$k%' DESC");
+                $k = DB::connection()->getPdo()->quote("%$k%");
+                $query->orderByRaw("$l LIKE $k DESC");
             }
         }
         $query->groupBy('checklists.id');
