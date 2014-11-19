@@ -19,6 +19,8 @@
     <style src="/packages/bootstrap-accessibility/3/css/bootstrap-accessibility.css"></style>
     <script href="/packages/bootstrap-accessibility/3/js/bootstrap-accessibility.min.js" rel="stylesheet"></script>
 
+    <link rel="shortcut icon" href="/img/checked_checkbox.png" />
+
     <style>
         @-webkit-viewport { width: device-width; }
         @-moz-viewport { width: device-width; }

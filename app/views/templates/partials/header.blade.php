@@ -39,13 +39,23 @@
                 <div class="form-group">
                     <input type="text" class="form-control" name="keywords" placeholder="{{ Lang::get("Pesquisa") }}">
                 </div>
-                <input type="submit" class="btn btn-primary" value="{{ Lang::get("Pesquisar") }}" role="button" alt="{{ Lang::get("Pesquisar") }}" title="{{ Lang::get("Pesquisar") }}">
+                <button type="submit" class="btn btn-primary" role="submit" alt="{{ Lang::get("Pesquisar") }}" title="{{ Lang::get("Pesquisar") }}">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
             {{ Form::close() }}
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::user())
-                    <li><a href="#">{{ Auth::user()->username }}</a></li> {{-- terminar isso --}}
-                    <li><a href="#">{{ Lang::get("Deslogar") }}</a></li> {{-- terminar isso --}}
+                    <li>
+                        <a href="{{ URL::route("users.profile") }}">
+                            {{ Auth::user()->username }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::route("logout") }}" alt="{{ Lang::get("Deslogar") }}" title="{{ Lang::get("Deslogar") }}">
+                            <span class="glyphicon glyphicon-off"></span>
+                        </a>
+                    </li> {{-- terminar isso --}}
                 @else
                     <li>
                         <a href="{{ URL::route('users.login') }}" alt="{{ Lang::get("Logar") }}" title="{{ Lang::get("Logar") }}" role="link">

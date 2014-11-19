@@ -9,7 +9,6 @@
 
         OBRIGATÓRIAS:
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
-        ** arrumar a tela de resposta de um usuario
         * revisar cruds
         * arrumar apresentação das ultimas avaliações
         **** tornar o site AAA no WCAG
@@ -26,7 +25,6 @@
             === gerar tabela dos dados mais respondidos nas perguntas
         }
         ===== tornar o site AAA no W3C
-        === adicionar index em titles e questions, e fazer eles funcionarem no criar checklist
 
     ################################################################################################################################
     ################################################################################################################################
