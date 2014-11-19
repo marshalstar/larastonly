@@ -11,7 +11,7 @@ $(".destroy").click(function () {
                 $("#grid-data").bootgrid("reload", null);
             },
             error: function(e) {
-                /* @TODO: vir aqui e fazer uma modal descente */
+                /* @TODO: futuramente, fazer modal para erros */
                 console.error(e);
             }
         });

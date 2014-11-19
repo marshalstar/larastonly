@@ -55,7 +55,7 @@ class User extends Ardent implements UserInterface, RemindableInterface
         'password' => 'required',
         'password_confirmation' => '',
         'speciality' => '',
-        'is_admin' => '', // @TODO: fazer o boolean daqui funcionar (não funciona porque vem false ou 'on' do formulário)
+        'is_admin' => '',
         'gender' => 'alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
         'biography' => '',
         'picture_url' => '',

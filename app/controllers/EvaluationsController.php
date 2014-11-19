@@ -14,7 +14,7 @@ class EvaluationsController extends AdminBaseController
     }
 
 
-    //@TODO: voce sabe o que é
+    //@TODO: voce sabe o que é (visualizarResposta está bugado, entao está sendo redirecionado)
 	public function visualizarResposta($id)
     {
         $evaluation = Evaluation::find($id);

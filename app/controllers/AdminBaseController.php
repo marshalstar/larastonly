@@ -119,16 +119,15 @@ abstract class AdminBaseController extends Controller {
     public function adminStore()
     {
         $obj = $this->logicAdminStore();
-        if ($obj->errors()->count()) {
-            return Redirect::route("{$this->getViewAdminBaseName()}.create")
-                ->withErrors($obj->errors());
-        }
+
         if ($obj->save()) {
+            ddd($obj->errors());
             return Redirect::route("{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Salvo com sucesso'));
         }
-        /** @TODO: não deu para salvar. mostrar erro para o admin */
 
+        return Redirect::route("{$this->getViewAdminBaseName()}.create")
+            ->withErrors($obj->errors());
     }
 
     /**
@@ -203,15 +202,14 @@ abstract class AdminBaseController extends Controller {
     public function adminUpdate($id)
     {
         $obj = $this->logicAdminUpdate($id);
-        if ($obj->errors()->count()) {
-            return Redirect::route("{$this->getViewAdminBaseName()}.edit")
-                ->withErrors($obj->errors());
-        }
+
         if ($obj->updateUniques()) {
             return Redirect::route("{$this->getViewAdminBaseName()}.index")
                 ->with('message', Lang::get('Editado com sucesso'));
         }
-        /** @TODO: não deu para editar. mostrar erro para o admin */
+
+        return Redirect::route("{$this->getViewAdminBaseName()}.edit")
+            ->withErrors($obj->errors());
 
     }
 
@@ -272,10 +270,6 @@ abstract class AdminBaseController extends Controller {
 
         $query->take($data['rowCount'])->skip($data['rowCount']*($data['current']-1));
 
-        /* @TODO: arrumar isto mais tarde
-        $data['rows'] = Cache::remember($this->basePlural.http_build_query($data), .1 , function() use ($query) {
-        return $query->get()->all();
-        });*/
         $data['rows'] = $query->get()->all();
 
         return $data;

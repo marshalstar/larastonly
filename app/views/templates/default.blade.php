@@ -64,8 +64,6 @@
     <script>
         $('[data-loading-text]').on('click', function () {
             $(this).button('loading')
-            /** @TODO: voltar aqui e terminar o esquema */
-            //setTimeout();
         });
     </script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
 

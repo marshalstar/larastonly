@@ -315,7 +315,6 @@ order by evaluations.id
         return View::make("checklists.pesquisar");
     }/**/
 
-    /** @TODO: colocar isto na controller PDF ou deletar a controller PDF */
     public function renderTitle($titles, $layer) {
         $h = '';
         foreach($titles as $t):
@@ -387,7 +386,7 @@ order by evaluations.id
         $keywords = preg_split('/\s+/', $keywords);
         ($count = Input::get('count')) || $count = 10;
 
-        /** @TODO: pôr na model */
+        /** @TODO: pôr na model (lugar certo) */
         $query = DB::table('checklists')
             ->leftJoin('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
             ->leftJoin('places', 'evaluations.place_id', '=', 'places.id')
