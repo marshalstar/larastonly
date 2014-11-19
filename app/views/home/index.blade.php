@@ -63,7 +63,7 @@
                 <a href="#" class="list-group-item active">Checklist</a>
                     <ul>
                         <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Criar  Checklist </a></li>
-                        <li><a href="{{URL::route('checklists.pesquisar')}}"><i class="fa fa-pencil-square-o"></i> Responder Checklist </a></li>
+                        <li><a href="{{URL::route('checklists.search')}}"> Nada </a>
                     </ul>
             </div>
             <p></p>
