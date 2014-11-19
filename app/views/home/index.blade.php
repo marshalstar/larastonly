@@ -2,11 +2,12 @@
 
 @section('content')
 
-<div class="container container-main">
-    <p id="breadCrumb">
+<p id="breadCrumb">
         Você está em:
         <a href = "{{URL::route('home')}}" title= "Voltar a página inicial."> Página Inicial </a>
     </p>
+
+<div class="container container-main">
 
     @if (Session::has('message'))
       <div class="alert alert-info">{{ Session::get('message') }}</div>
