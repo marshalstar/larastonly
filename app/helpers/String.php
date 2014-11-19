@@ -9,7 +9,7 @@ class String
      */
     public static function capitalize($value)
     {
-        $value = strtolower($value);
+        $value = mb_strtolower($value);
         $fc = mb_strtoupper(mb_substr($value, 0, 1));
         $value = $fc.mb_substr($value, 1);
         return $value;

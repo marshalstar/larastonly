@@ -149,16 +149,80 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
         setContrast(!getContrast());
     });
 
+    var all = $("*").each(function() {
+        var rgba = $(this).css("background-color");
+        $(this).attr("data-original-color", rgba);
+    });
+
     function renderContrast(c) {
+
         if (!c) {
-            $("body").css("-webkit-filter", "invert(0%)");
-            $("body").css("background-color", "#fff");
+            $("html").css("-webkit-filter", "invert(0%)");
+            $("html").css("-moz-filter", "invert(0%)");
+            $("html").css("-o-filter", "invert(0%)");
+            $("html").css("-ms-filter", "invert(0%)");
             //console.info("contrast (p):" + getContrast());
         } else {
-            $("body").css("-webkit-filter", "invert(100%)");
-            $("body").css("background-color", "#000");
+            $("html").css("-webkit-filter", "invert(100%)");
+            $("html").css("-moz-filter", "invert(100%)");
+            $("html").css("-o-filter", "invert(100%)");
+            $("html").css("-ms-filter", "invert(100%)");
             //console.info("contrast (n):" + getContrast());
+        }/**/
+
+        /*function red(rgba) {
+            var r = rgba.replace(/\D*(\d+)\D+(\d+)\D+(\d+)\D+(\d+)?\D*.*.?/, "$1");
+            return parseInt(r);
         }
+
+        function green(rgba) {
+            var g = rgba.replace(/\D*(\d+)\D+(\d+)\D+(\d+)\D+(\d+)?\D*.*.?/, "$2");
+            return parseInt(g);
+        }
+
+        function blue(rgba) {
+            var b = rgba.replace(/\D*(\d+)\D+(\d+)\D+(\d+)\D+(\d+)?\D*.*.?/, "$3");
+            return parseInt(b);
+        }
+
+        function alpha(rgba) {
+            var a = rgba.replace(/\D*(\d+)\D+(\d+)\D+(\d+)\D+(\d+)?\D*.*.?/, "$4");
+            if(a === "") {
+                return 255;
+            }
+            return parseInt(a);
+        }
+
+        function negative(n) {
+            return 255 -n;
+        }
+
+        function contrast(c) {
+            if (c >= 127) {
+                c = c +(255 -c) * 0.6;
+                c = parseInt(c);
+                return c;
+
+            } else {
+                c = c -(255 -c) * 0.6;
+                c = parseInt(c);
+                return c;
+            }
+        }
+
+        var all = $("*");
+        //all.each(function() {
+        //    var rgba = $(this).css("background-color");
+        //    var nrgb = "rgba(" + negative(red(rgba)) + "," + negative(green(rgba)) + "," + negative(blue(rgba)) + "," + alpha(rgba) + ")";
+        //    $(this).css("background-color", nrgb);
+        //});
+
+        all.each(function() {
+            var rgba = $(this).css("color");
+            var nrgb = "rgba(" + negative(contrast(red(rgba))) + "," + negative(contrast(green(rgba))) + "," + negative(contrast(blue(rgba))) + "," + alpha(rgba) + ")";
+            console.log(rgba + " --> " + nrgb);
+            $(this).css("color", nrgb);
+        });/**/
     }
 
 </script>
