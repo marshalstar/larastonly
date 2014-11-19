@@ -21,13 +21,13 @@
 
 Route::match(array('GET', 'POST'), '/debug', function()
 {
-    Title::find(8)->authOrFail();
-    ddd('rato');
+    //Title::find(8)->authOrFail();
+    //ddd('rato');
 });
 
 Route::get('/debug2', function()
 {
-    return View::make('debug');
+    //return View::make('debug');
 });
 
 Route::pattern('id', '\d+');
@@ -38,7 +38,6 @@ Route::pattern('base', '[a-zA-Z0-9]+');
 Route::pattern('slug', '[a-z0-9-]+');
 Route::pattern('username', '[a-z0-9_-]{3,16}');
 // font: http://www.laravel-tricks.com/tricks/routing-patterns
-
 Route::pattern('page', '\d+');
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
