@@ -47,7 +47,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::user())
                     <li>
-                        <a href="{{ URL::route("users.profile") }}" alt="{{ Lang::get("Perfil") }}" title="{{ Lang::get("Perfil") }}">
+                        <a href="{{URL::route('editUser',Auth::user()->id)}}">
                             {{ Auth::user()->username }}
                         </a>
                     </li>
