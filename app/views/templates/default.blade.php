@@ -76,6 +76,7 @@
             @yield('content')
         @include('templates.partials.footer')
     </div>
+
 </body>
 
 <script type="text/javascript">
