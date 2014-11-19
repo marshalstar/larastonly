@@ -14,17 +14,17 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a id="font-up" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Aumentar o tamanho da fonte") }}" title="{{ Lang::get("Aumentar o tamanho da fonte") }}">
+                    <a id="font-up" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Aumentar zoom da tela") }}" title="{{ Lang::get("Aumentar zoom da tela") }}">
                         <img style="width: 30px; height: 30px; max-width:100px; margin-top: -7px;" alt="Brand" src="/img/font_up.png">
                     </a>
                 </li>
                 <li>
-                    <a id="font-down" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Diminuir o tamanho da fonte") }}" title="{{ Lang::get("Diminuir o tamanho da fonte") }}">
+                    <a id="font-down" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Diminuir zoom da tela") }}" title="{{ Lang::get("Diminuir zoom da tela") }}">
                         <img style="width: 30px; height: 30px; max-width:100px; margin-top: -7px;" alt="Brand" src="/img/font_down.png">
                     </a>
                 </li>
                 <li>
-                    <a id="font" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Resetar o tamanho da fonte") }}" title="{{ Lang::get("Resetar o tamanho da fonte") }}">
+                    <a id="font" class="navbar-brand" href="javascript:void(0);" alt="{{ Lang::get("Resetar zoom da tela") }}" title="{{ Lang::get("Resetar zoom da tela") }}">
                         <img style="width: 30px; height: 30px; max-width:100px; margin-top: -7px;" alt="Brand" src="/img/font.png">
                     </a>
                 </li>
@@ -44,7 +44,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::user())
-                    <li><a href="#">Auth::user()->name</a></li> {{-- terminar isso --}}
+                    <li><a href="#">{{ Auth::user()->username }}</a></li> {{-- terminar isso --}}
                     <li><a href="#">{{ Lang::get("Deslogar") }}</a></li> {{-- terminar isso --}}
                 @else
                     <li>

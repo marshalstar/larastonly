@@ -1,7 +1,8 @@
 <?php
 
-function renderTitle($titles, $typeQuestions, $layer = 3) {
-    foreach($titles as $t): ?>
+function renderTitle($titles, $typeQuestions, $layerDefault = 3) {
+    foreach($titles as $t):
+        $layer = $layerDefault; ?>
         <div class="panel panel-default title" data-id="{{ $t->id }}" data-layer="{{ $layer }}" style="border: 10px solid #ddd;">
 
             <div class="panel-heading clearfix" style="background-color: #DDD;" >
@@ -13,7 +14,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
                         <textarea class="input-title form-control" rows="2" value="{{ $t->name }}" placeholder="{{ String::capitalize(Lang::get("título")) }}">{{ $t->name }}</textarea>
                     </div>
                     <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                        <a href="javascript:void(0)" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="javascript:void(0);" class="btn-del-title btn"><span class="glyphicon glyphicon-remove"></span></a>
                     </div>
                 </div>
             </div>
@@ -22,7 +23,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
                 <div class="questions">
                     <?php renderQuestion($t, $typeQuestions); ?>
                 </div>
-                <a href="javascript:void(0)" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> Adicionar Questão </a>
+                <a href="javascript:void(0);" class="btn-new-question list-group-item"><span class="glyphicon glyphicon-plus"></span> Adicionar Questão </a>
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,7 +33,7 @@ function renderTitle($titles, $typeQuestions, $layer = 3) {
             </div>
 
             <div class="panel-footer">
-                <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo </a>
+                <a href="javascript:void(0);" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo </a>
             </div>
         </div>
     <?php endforeach;
@@ -50,7 +51,7 @@ function renderQuestion($title, $typeQuestions) {
                     <textarea class="input-question form-control" rows="2" value="{{ $q->statement }}" placeholder="{{ String::capitalize(Lang::get("questão")) }}">{{ $q->statement }}</textarea>
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <a href="jav    ascript:void(0)" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="javascript:void(0);" class="btn-del-question btn"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </div>
 
@@ -61,10 +62,14 @@ function renderQuestion($title, $typeQuestions) {
                 </div>
             </div>
 
-            <?php renderAlternative($q, $typeQuestions); ?>
+            <div>
+                <div class="alternatives">
+                    <?php renderAlternative($q, $typeQuestions); ?>
+                </div>
+            </div>
 
             <div class="row">
-                <a href="javascript:void(0)" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href="javascript:void(0);" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <span class="glyphicon glyphicon-plus"></span> Adicionar alternativa
                 </a>
             </div>
@@ -90,7 +95,7 @@ function renderAlternative($question, $typeQuestions) {
                     </div>
                 @endunless
                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
-                    <a href="javascript:void(0)" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="javascript:void(0);" class="control-label btn-del-alternative"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             </div>
         </div>
@@ -137,8 +142,8 @@ function renderAlternative($question, $typeQuestions) {
         </label>
 
         <div class="alternatives-default" style="display: none;">
-            <a href="javascript:void(0)" class="btn-new-alternative-default">
-                <span class="glyphicon glyphicon-plus"></span> {{ String::capitalize(Lang::get("Adicionar alternativa")) }} 
+            <a href="javascript:void(0);" class="btn-new-alternative-default">
+                <span class="glyphicon glyphicon-plus"></span> {{ String::capitalize(Lang::get(" alternativa")) }}
             </a>
             <div class="row alternatives"></div>
         </div>
@@ -149,7 +154,7 @@ function renderAlternative($question, $typeQuestions) {
                 <?php renderTitle(Title::whereChecklistId($checklist->id)->whereTitleId(null)->get(), $typeQuestions); ?>
             </div>
         </div>
-        <a href="javascript:void(0)" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo</a>
+        <a href="javascript:void(0);" class="btn-new-title"><span class="glyphicon glyphicon-plus"></span> Adicionar Titulo</a>
     </div>
 
     <div class="form-group required">

@@ -17,7 +17,7 @@
     <style src="/packages/bootstrap/3.2.0/css/bootstrap-theme.min.css"></style>
     <link href="/packages/bootgrid/1.1.1/css/jquery.bootgrid.css" rel="stylesheet"/>
     <style src="/packages/bootstrap-accessibility/3/css/bootstrap-accessibility.css"></style>
-    <link href="/packages/bootstrap-accessibility/3/js/bootstrap-accessibility.min.js" rel="stylesheet"/>
+    <script href="/packages/bootstrap-accessibility/3/js/bootstrap-accessibility.min.js" rel="stylesheet"></script>
 
     <style>
         @-webkit-viewport { width: device-width; }
@@ -112,19 +112,19 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
     $(document).on('click', '#font-up', function () {
         setZoom(getZoom() + 0.1);
         $("body").css("zoom", getZoom());
-        console.info("zoom:" + getZoom());
+        //console.info("zoom:" + getZoom());
     });
 
     $(document).on('click', '#font-down', function () {
         setZoom(getZoom() - 0.1);
         $("body").css("zoom", getZoom());
-        console.info("zoom:" + getZoom());
+        //console.info("zoom:" + getZoom());
     });
 
     $(document).on('click', '#font', function () {
         setZoom(1);
         $("body").css("zoom", getZoom());
-        console.info("zoom:" + getZoom());
+        //console.info("zoom:" + getZoom());
     });
 
 
@@ -152,11 +152,11 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
         if (!c) {
             $("body").css("-webkit-filter", "invert(0%)");
             $("body").css("background-color", "#fff");
-            console.info("contrast (p):" + getContrast());
+            //console.info("contrast (p):" + getContrast());
         } else {
             $("body").css("-webkit-filter", "invert(100%)");
             $("body").css("background-color", "#000");
-            console.info("contrast (n):" + getContrast());
+            //console.info("contrast (n):" + getContrast());
         }
     }
 

@@ -9,8 +9,6 @@
 
         OBRIGATÓRIAS:
         ** revisar T0D0's e fazer algo com eles; xingar o Yuri quando possível
-        ** fazer negativo (alto contraste)
-        ** fazer aumentar/diminuir letra
         ** arrumar a tela de resposta de um usuario
         * revisar cruds
         * arrumar apresentação das ultimas avaliações
