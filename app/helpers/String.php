@@ -9,7 +9,10 @@ class String
      */
     public static function capitalize($value)
     {
-        return ucfirst(strtolower($value));
+        $value = strtolower($value);
+        $fc = mb_strtoupper(mb_substr($value, 0, 1));
+        $value = $fc.mb_substr($value, 1);
+        return $value;
     }
 
     public static function slug($str)

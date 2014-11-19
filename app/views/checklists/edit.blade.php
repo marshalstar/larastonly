@@ -62,7 +62,11 @@ function renderQuestion($title, $typeQuestions) {
                 </div>
             </div>
 
-            <?php renderAlternative($q, $typeQuestions); ?>
+            <div>
+                <div class="alternatives">
+                    <?php renderAlternative($q, $typeQuestions); ?>
+                </div>
+            </div>
 
             <div class="row">
                 <a href="javascript:void(0)" class="btn-new-alternative col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -134,7 +138,7 @@ function renderAlternative($question, $typeQuestions) {
 
         {{--**** funcionalidade da professora (⌐■_■) ****--}}
         <label>
-            <input type="checkbox" class="pattern-alternatives" alt="Todas as questoes com as mesmas alternativas" title="Todas as questoes com as mesmas alternativas"/> {{ Lang::get('usar mesmas alternativas para todas as questões') }}
+            <input type="checkbox" class="pattern-alternatives" alt="Todas as questoes com as mesmas alternativas" title="Todas as questoes com as mesmas alternativas"/> {{ Lang::get('Usar mesmas alternativas para todas as questões') }}
         </label>
 
         <div class="alternatives-default" style="display: none;">

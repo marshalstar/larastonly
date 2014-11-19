@@ -139,7 +139,6 @@ $(function() {
                 question_id: question.attr('data-id')
             },
             success: function(e) {
-                console.log(question);
                 appendAlternative(question.children().find('.alternatives').first(), e);
             },
             error: function(e) {
@@ -151,6 +150,8 @@ $(function() {
     function appendAlternative(container, e) {
 
         var iterator = container.children().length;
+        console.log(container);
+        console.log(iterator);
 
         var html = '<div class="alternative" data-id="'+ e.id +'">\
             <div class="row form-group">\
