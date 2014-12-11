@@ -27,6 +27,14 @@ class Answer extends Ardent
 
     public static $rules = [];
 
+    public static $customMessages = array(
+        'required' => 'O campo :attribute é necessário.',
+        'same'    => 'O campo :attribute e :other precisam ser iguais.',
+        'size'    => 'O campo :attribute ter tamanho igual a :size.',
+        'between' => 'O campo :attribute precisa estar entre :min e :max.',
+        'in'      => 'O campo :attribute deve estar entre os seguintes valores: :values',
+    );
+
     public function evaluation()
     {
         return $this->belongsTo('Evaluation');

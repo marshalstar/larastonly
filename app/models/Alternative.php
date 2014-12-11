@@ -31,6 +31,14 @@ class Alternative extends Ardent
         // 'name' => 'required|unique:alternatives|between:3,255',
     ];
 
+    public static $customMessages = array(
+        'required' => 'O campo :attribute é necessário.',
+        'same'    => 'O campo :attribute e :other precisam ser iguais.',
+        'size'    => 'O campo :attribute ter tamanho igual a :size.',
+        'between' => 'O campo :attribute precisa estar entre :min e :max.',
+        'in'      => 'O campo :attribute deve estar entre os seguintes valores: :values',
+    );
+
     public function questions()
     {
         return $this->belongsToMany('Question');

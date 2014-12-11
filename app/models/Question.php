@@ -41,6 +41,14 @@ class Question extends Ardent
         // 'alternatives' => '',
     ];
 
+    public static $customMessages = array(
+        'required' => 'O campo :attribute é necessário.',
+        'same'    => 'O campo :attribute e :other precisam ser iguais.',
+        'size'    => 'O campo :attribute ter tamanho igual a :size.',
+        'between' => 'O campo :attribute precisa estar entre :min e :max.',
+        'in'      => 'O campo :attribute deve estar entre os seguintes valores: :values',
+    );
+
     public static $relationsData = [
         'alternatives' => [self::BELONGS_TO_MANY, 'Alternative', 'table' => 'alternative_question'],
     ];

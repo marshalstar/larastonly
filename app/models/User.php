@@ -56,18 +56,27 @@ class User extends Ardent implements UserInterface, RemindableInterface
         'password_confirmation' => '',
         'speciality' => '',
         'is_admin' => '',
-        'gender' => 'alpha_num|size:1', // @TODO: tem que obrigar a ser 'f', 'm' ou 'o'
+        'gender' => 'alpha_num|size:1',
         'biography' => '',
         'picture_url' => '',
         'code' => '',
         'active' => '',
     ];
 
-    /* @TODO o yuri vai arrumar esta draga
-       'password' => 'required|confirmed',
-       'password_confirmation' => 'required',
-
-     */
+    public static $customMessages = array(
+        'required' => 'O campo :attribute é necessário.',
+        'same'    => 'O campo :attribute e :other precisam ser iguais.',
+        'size'    => 'O campo :attribute ter tamanho igual a :size.',
+        'between' => 'O campo :attribute precisa estar entre :min e :max.',
+        'in'      => 'O campo :attribute deve estar entre os seguintes valores: :values',
+        'username.required' => 'O campo nome do usuário é necessário.',
+        'email.required' => 'O campo email é necessário.',
+        'email.email'    => 'O campo email e precisa ser um email válido.',
+        'password.required' => 'O campo senha é necessário.',
+        'gender.required' => 'O campo sexo é necessário.',
+        'gender.alpha_num'    => 'O campo sexo precisa ser uma letra.',
+        'gender.size'    => 'O campo sexo ter tamanho igual a :size.',
+    );
 
     public function beforeSave()
     {

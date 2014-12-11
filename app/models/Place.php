@@ -29,6 +29,16 @@ class Place extends Ardent
         'name' => 'required|between:3,255',
     ];
 
+    public static $customMessages = array(
+        'required' => 'O campo :attribute é necessário.',
+        'same'    => 'O campo :attribute e :other precisam ser iguais.',
+        'size'    => 'O campo :attribute ter tamanho igual a :size.',
+        'between' => 'O campo :attribute precisa estar entre :min e :max.',
+        'in'      => 'O campo :attribute deve estar entre os seguintes valores: :values',
+        'name.required' => 'O campo nome é necessário.',
+        'name.between' => 'O campo nome precisa estar entre :min e :max.',
+    );
+
     public function city()
     {
         return $this->belongsTo('City');
