@@ -150,7 +150,7 @@ Route::group(array('before' => 'auth'), function()
 
 /********** Admin logado **********/
 
-Route::group(['prefix' => 'admin', 'before' => 'auth'], function ()
+Route::group(['prefix' => 'admin', 'before' => 'admin'], function ()
 {
     Route::get('/profile', ['as' => 'users.profile', 'uses' => 'UsersController@getProfile']);
 

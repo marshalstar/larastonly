@@ -92,3 +92,16 @@ Route::filter('ajax', function() {
         App::abort(500);
     }
 });
+
+Route::filter('admin', function()
+{
+    if (Auth::guest()) {
+        if (Request::ajax()) {
+            return Response::make('Unauthorized', 401);
+        } else {
+            return Redirect::guest(URL::route('users.login'));
+        }
+    } elseif(!Auth::user()->is_admin) {
+        return Redirect::guest(URL::route('home'));
+    }
+});
