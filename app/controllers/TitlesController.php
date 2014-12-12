@@ -37,19 +37,7 @@ class TitlesController extends AdminBaseController
     {
         $title = Title::findOrFail($id);
         $title->authOrFail();
-        $this->destroyTitle($title);
-    }
-
-    private function destroyTitle($title)
-    {
-        foreach($title->children as $t) {
-            $this->destroyTitle($t);
-        }
-        foreach($title->questions as $q) {
-            $q->alternatives()->detach();
-            $q->delete();
-        }
-        $title->delete();
+        $title->destroyRecursive();
     }
 
 }

@@ -24,7 +24,13 @@ class ChecklistsController extends AdminBaseController
     public function destroyAjax($id)
     {
         $checklist = Checklist::findOrFail($id);
+        foreach($checklist->evaluations as $evaluation) {
+            $evaluation->destroyRecursive();
+        }
         $checklist->authOrFail();
+        foreach($checklist->titles as $title) {
+            $title->destroyRecursive();
+        }
         $checklist->delete();
     }
 

@@ -92,11 +92,62 @@
                 <?php $evaluations = Evaluation::take(30)->limit(7)->get(); ?>
 
                 @foreach($evaluations as $e)
-                    <li><a href='http://localhost:8000/evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></a></li>
+                    <li><a href='evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></a></li>
                 @endforeach
 
             </ul>
         </div>
+
+        @if (!Auth::guest())
+            <div class="container panel-main">
+                <h2>Seus checklists</h2>
+
+                <?php $checklists = Auth::user()->checklists; ?>
+                <table class="table table-hover">
+                    <tbody>
+                        @foreach($checklists as $c)
+                        <tr>
+                            <td>{{ $c->name }}</td>
+                            <td>
+                                <a href="checklists/edit/{{ $c->id }}">
+                                    <span class="glyphicon glyphicon-wrench" title="editar" alt="editar checklist"></span>
+                                </a>
+                                <a href="javascript:void(0);" class="del-checklist" data-id="{{ $c->id }}">
+                                    <span class="glyphicon glyphicon-remove" title="excluir" alt="excluir checklist"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @endif
     </div>
 </div>
+
+<a class="popup-with-zoom-anim error-modal" href="#error-dialog" style="display:none"></a>
+@stop
+
+@section('script')
+    @include('templates.modal.error.effect')
+    <script>@include('templates.modal.error.script')</script>
+    <script>
+
+        $(function() {
+            $(document).on('click', '.del-checklist', function() {
+                var btn = $(this);
+                $.ajax({
+                    'url': 'checklists/destroy/ajax/' + $(this).attr('data-id'),
+                    success: function(e) {
+                        btn.closest("tr").remove();
+                    },
+                    error: function(e) {
+                        console.error(e);
+                        $(".error-modal").click();
+                        $('.msg').text("Verifique sua conexão com a internet.");
+                    }
+                });
+            });
+        });
+    </script>
 @stop

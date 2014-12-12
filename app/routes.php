@@ -125,7 +125,7 @@ Route::group(array('before' => 'auth'), function()
     });
 
     Rounting::eachController(['before'=>'ajax'], ['checklist', 'title', 'question', 'alternative'], function($url, $route, $controller) {
-        Route::delete("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
+        Route::any("/$url/destroy/ajax/{id}", ["as" => "$route.destroy.ajax", "uses" => "$controller@destroyAjax"]);
     });
 
     // Route::get('/results/(:all)', ['uses' => 'checklists@results']);

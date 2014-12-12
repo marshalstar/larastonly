@@ -83,4 +83,19 @@ class Title extends Ardent
         }
     }
 
+    public function destroyRecursive($title = null)
+    {
+        if (!$title) {
+            $title = $this;
+        }
+        foreach($title->children as $t) {
+            $this->destroyRecursive($t);
+        }
+        foreach($title->questions as $q) {
+            $q->alternatives()->detach();
+            $q->delete();
+        }
+        $title->delete();
+    }
+
 }

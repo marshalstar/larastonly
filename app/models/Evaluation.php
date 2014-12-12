@@ -51,4 +51,12 @@ class Evaluation extends Ardent
         return $this->hasMany('Answer');
     }
 
+    public function destroyRecursive()
+    {
+        foreach($this->answers as $answer) {
+            $answer->delete();
+        }
+        $this->delete();
+    }
+
 }
