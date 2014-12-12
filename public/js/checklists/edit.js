@@ -35,6 +35,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -93,6 +95,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -143,6 +147,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -186,6 +192,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Você não pode excluir um título já respondido.");
             }
         });
     }
@@ -201,6 +209,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Você não pode excluir uma questão já respondido.");
             }
         });
     }
@@ -220,6 +230,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Você não pode excluir uma alternativa já respondida.");
             }
         });
     }
@@ -238,6 +250,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -259,6 +273,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -279,6 +295,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -302,6 +320,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -318,6 +338,8 @@ $(function() {
             success: function(e) {},
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -338,6 +360,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }
@@ -360,6 +384,8 @@ $(function() {
             },
             error: function(e) {
                 console.error(e);
+                $(".error-modal").click();
+                $('.msg').text("Verifique sua conexão com a internet.");
             }
         });
     }

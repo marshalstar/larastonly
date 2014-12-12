@@ -96,4 +96,90 @@ class Checklist extends Ardent
         }
     }
 
+    /**
+     * @return array
+     */
+    public function getDataGraphics()
+    {
+        $query = DB::table('checklists')
+            ->join('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+            ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+            ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+            ->join('alternatives', 'alternatives.id', '=', 'alternative_question.alternative_id')
+            ->join('questions', 'questions.id', '=', 'alternative_question.question_id')
+            ->join('titles', 'titles.id', '=', 'questions.title_id')
+            ->where('titles.checklist_id', '=', $this->id)
+            ->where('checklists.id', '=', $this->id)
+            ->groupBy('alternative_question.question_id')
+            ->groupBy('alternative_question.alternative_id')
+            ->orderBy('total', 'desc');
+
+        if (is_array(Input::get('where'))) {
+            $checklistId = $this->id;
+            $query->whereIn('evaluations.id', function($subQuery) use($checklistId) {
+                $subQuery->select('evaluations.id')
+                    ->from('evaluations')
+                    ->join('checklists', 'checklists.id', '=', 'evaluations.checklist_id')
+                    ->join('answers', 'evaluations.id', '=', 'answers.evaluation_id')
+                    ->join('alternative_question', 'answers.alternative_question_id', '=', 'alternative_question.id')
+                    ->where('checklists.id', '=', $checklistId);
+                foreach (Input::get('where') as $w) {
+                    $subQuery->where(function ($q) use ($w) {
+                        $q->where('alternative_question.question_id', '=', $w['alternative_question.question_id'])
+                            ->where('alternative_question.alternative_id', '!=', $w['alternative_question.alternative_id']);
+                    });
+                }
+            });
+        }
+
+        $stdData = $query->get([
+            'alternatives.name as alternativeName',
+            'alternatives.id as alternativeId',
+            'alternative_question.question_id as questionId',
+            'questions.statement as questionStatement',
+            DB::raw('COUNT(alternative_question.alternative_id) as total'),
+        ]);
+
+        $normalized = json_decode(json_encode($stdData), true);
+        return $normalized;
+    }
+
+    /**
+     * @param $search
+     * @return \Illuminate\Pagination\Paginator
+     */
+    public static function fullSearch($search) {
+        $keywords = trim($search);
+        $keywords = preg_split('/\s+/', $keywords);
+        ($count = Input::get('count')) || $count = 10;
+
+        $query = DB::table('checklists')
+            ->leftJoin('evaluations', 'checklists.id', '=', 'evaluations.checklist_id')
+            ->leftJoin('places', 'evaluations.place_id', '=', 'places.id')
+            ->leftJoin('cities', 'places.city_id', '=', 'cities.id')
+            ->leftJoin('states', 'cities.state_id', '=', 'states.id')
+            ->leftJoin('countries', 'states.country_id', '=', 'countries.id');
+
+        $likes = [
+            'checklists.name',
+            'places.name',
+            'checklists.description',
+            'cities.name',
+            'states.name',
+            'countries.name',
+            'evaluations.commentary',
+        ];
+
+        foreach($likes as $l) {
+            foreach($keywords as $k) {
+                $query->orWhere($l, 'like', "%$k%");
+                $k = DB::connection()->getPdo()->quote("%$k%");
+                $query->orderByRaw("$l LIKE $k DESC");
+            }
+        }
+        $query->groupBy('checklists.id');
+        $checklists = $query->paginate(10, ['checklists.*']);
+        return $checklists;
+    }
+
 }

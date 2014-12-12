@@ -166,6 +166,12 @@ function renderAlternative($question, $typeQuestions) {
 
     <a class="btn btn-default" href="{{ URL::route('checklists.answer.create', $checklist->id) }}">Finalizar</a>
 
+    <!--<a class="btn btn-sm btn-danger popup-with-zoom-anim error-modal"  href="#error-dialog" data-effect="mfp-zoom-in">
+        <span class="glyphicon glyphicon-remove"></span> {{ Lang::get('Excluir') }}
+    </a>-->
+
+    <a class="popup-with-zoom-anim error-modal" href="#error-dialog" style="display:none"></a>
+
 </div>
 
 @stop
@@ -196,4 +202,8 @@ function renderAlternative($question, $typeQuestions) {
         var htmlSelect = '{{ Form::select(null, $typeQuestions, null, ['class' => 'form-control input-type-question']) }}';
     </script>
     <script src="/js/checklists/edit.js" async></script>
+
+    @include('templates.modal.error.effect')
+    <script>@include('templates.modal.error.script')</script>
+
 @stop
