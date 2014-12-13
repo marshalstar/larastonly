@@ -146,6 +146,8 @@ Route::group(array('before' => 'auth'), function()
 
     Route::any('/checklists/print/{id}', ['as' => 'checklists.print', 'uses' => 'ChecklistsController@printPdf']);
 
+    Route::any('/checklists', ['as' => 'checklists.index', 'uses' => 'ChecklistsController@index']);
+
 });
 
 /********** Admin logado **********/

@@ -86,6 +86,8 @@
             </ul>
         @endif
 
+        <a href="{{ URL::route('checklists.index') }}">ver todos checklists</a>
+
         <div class="container panel-main">
             <h2>Ultimas avaliações</h2>
             <ul class="list-unstyled">
@@ -94,7 +96,6 @@
                 @foreach($evaluations as $e)
                     <li><a href='evaluations/visualizarresposta/{{ $e->id }}'><?= Place::find($e->place_id)->name." no ".Checklist::find($e->checklist_id)->name ?></a></li>
                 @endforeach
-
             </ul>
         </div>
 

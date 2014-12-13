@@ -329,4 +329,11 @@ class ChecklistsController extends AdminBaseController
             ->with('search', $search);
     }
 
+    public function index()
+    {
+        $checklists = DB::table('checklists')->paginate(10);
+        return View::make('checklists.index')
+            ->with('checklists', $checklists);
+    }
+
 }
