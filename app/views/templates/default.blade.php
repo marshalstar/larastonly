@@ -229,4 +229,14 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
 
 @yield('script')
 
+<!-- obrigado bootstrap por ser o pior framework css mainstream com uma letra do tamanho do seu órgão -->
+<style>
+* {
+    font-size: 102%;
+}
+#breadCrumb {
+    font-size: 102%;
+}
+</style>
+
 </html>
