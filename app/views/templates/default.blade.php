@@ -67,6 +67,15 @@
         });
     </script> {{-- isto faz o efeito de "carregando..." em um botão depois que ele é clicado --}}
 
+    <style>
+        * {
+            font-size: 102%;
+        }
+        #breadCrumb {
+            font-size: 102%;
+        }
+    </style>
+
 </head>
 <body>
     <div class="wrap">
@@ -228,15 +237,5 @@ Para obteres mais informações consulta a página https://www.facebook.com/self
 </script>
 
 @yield('script')
-
-<!-- obrigado bootstrap por ser o pior framework css mainstream com uma letra do tamanho do seu órgão -->
-<style>
-* {
-    font-size: 102%;
-}
-#breadCrumb {
-    font-size: 102%;
-}
-</style>
 
 </html>

@@ -38,7 +38,7 @@ function renderQuestion($title) {
             </div>
 
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-9 col-sm-offset-2 col-xs-10">
-                <div class="row alternatives btn-group" data-toggle="buttons">
+                <div class="alternatives">
                     <?php renderAlternative($q); ?>
                 </div>
             </div>
@@ -50,9 +50,7 @@ function renderQuestion($title) {
 
 function renderAlternative($question) {
     foreach($question->alternatives as $a): ?>
-        <label class="btn btn-default">
-            <input type="{{ TypeQuestion::findOrFail($question->typeQuestion_id)->name }}" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $a->id }}"> {{ $a->name }}
-        </label>
+        <input type="{{ TypeQuestion::findOrFail($question->typeQuestion_id)->name }}" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $a->id }}"> {{ $a->name }}
     <?php endforeach;
 }
 
