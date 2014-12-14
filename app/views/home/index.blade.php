@@ -33,6 +33,7 @@
                       <!-- <li><a href="{{URL::route('admin.typeQuestions.index')}}"><i class="fa fa-pencil-square-o"></i> Gerenciar Tipo </a></li> -->
 
                     <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Criar Checklist </a></li>
+                    <a href="{{ URL::route('checklists.index') }}">Visualizar Todos os Checklists</a>
                 </ul>
             </div>
             <p></p>
@@ -64,6 +65,7 @@
                 <a href="#" class="list-group-item active">Checklist</a>
                     <ul>
                         <li><a href="{{URL::route('checklists.create')}}"><i class="fa fa-pencil-square-o"></i> Criar  Checklist </a></li>
+                        <a href="{{ URL::route('checklists.index') }}">Visualizar Todos os Checklists</a>
                     </ul>
             </div>
             <p></p>
@@ -86,7 +88,7 @@
             </ul>
         @endif
 
-        <a href="{{ URL::route('checklists.index') }}">ver todos checklists</a>
+        
 
         <div class="container panel-main">
             <h2>Ultimas avaliações</h2>
