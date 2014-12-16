@@ -50,7 +50,7 @@ function renderQuestion($title) {
 
 function renderAlternative($question) {
     foreach($question->alternatives as $a): ?>
-        <input type="{{ TypeQuestion::findOrFail($question->typeQuestion_id)->name }}" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $a->id }}"> {{ $a->name }}
+        <input type="{{ TypeQuestion::findOrFail($question->typeQuestion_id)->name == "multipla alternativa"? "checkbox": "radio" }}" name="{{ $question->id }}" id="{{ $question->id }}" value="{{ $a->id }}"> {{ $a->name }}
     <?php endforeach;
 }
 

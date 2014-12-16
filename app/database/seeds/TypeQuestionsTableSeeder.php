@@ -8,9 +8,9 @@ class TypeQuestionsTableSeeder extends Seeder
 		$count = TypeQuestion::count();
 		if ($count == 0) {
 			DB::table('typeQuestions')->insert([[
-	                'name' => 'checkbox',
+	                'name' => 'multipla alternativa',
 	            ], [
-	                'name' => 'radio',
+	                'name' => 'única alternativa',
 	            ]
 	        ]);
 		}
